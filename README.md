@@ -157,10 +157,39 @@ damped intro lands where the music is already quiet, regenerates `beatgrid.ts`
 from real beat times, and trims the window into `video/public/`. It warns if beat
 confidence is below 0.55 — some tracks simply don't have a pulse you can cut to.
 
-**Those files must not be committed.** Envato/Artlist/Musicbed licences permit use
-in an end product but forbid redistributing the source audio, and each project
-needs its own licence registration on their side. `audio/raw/` is gitignored; keep
-your own `video/public/*.mp3` out of commits too.
+#### Which library actually covers a company launch video
+
+Verify current terms yourself — this is a summary, not legal advice — but the
+traps are consistent:
+
+| source | commercial company launch video? |
+|---|---|
+| **incompetech** (Kevin MacLeod, CC BY 4.0) | Yes, attribution required. What ships here. |
+| **freetouse.com** — free tier | **No.** *"Use of the Digital Assets in Commercial Content... is strictly prohibited."* |
+| **freetouse.com** — paid | Yes (Commercial/Pro), no attribution |
+| **Epidemic Sound** — Creator | **No.** *"can't use our music in digital advertising, marketing, or promotion for a brand or company"* |
+| **Epidemic Sound** — Business | Yes — marketing, corporate/explainer, internal comms. Caps at **<$10M company revenue** |
+| **Epidemic Sound** — Enterprise | Required above that cap |
+| **Envato Elements** | Yes, with per-project licence registration |
+
+Two things that catch people out:
+
+- A "free" tier almost never covers a company's own launch video. Free usually
+  means *personal channel*, and a product announcement is commercial content
+  even when it is posted to a company social account.
+- Epidemic's Business **and** Pro plans exclude companies above ~$10M revenue —
+  larger organisations need Enterprise. Check whether marketing already holds a
+  seat somewhere before buying anything.
+
+Epidemic's genuine edge: anything published during an active subscription stays
+cleared permanently, even after cancelling. The others don't guarantee that as
+cleanly.
+
+**Source audio must never be committed.** Every subscription library (Envato,
+Artlist, Musicbed, Epidemic, freetouse) permits use in an end product but forbids
+redistributing the files, and each project needs its own licence registration on
+their side. `audio/raw/` is gitignored; keep your own `video/public/*.mp3` out of
+commits too.
 
 ### Mixing
 
