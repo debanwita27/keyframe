@@ -11,3 +11,4 @@ export * from "./elements";
 export * from "./ambient";
 export * from "./camera";
 export * from "./treatment";
+export * from "./masks";

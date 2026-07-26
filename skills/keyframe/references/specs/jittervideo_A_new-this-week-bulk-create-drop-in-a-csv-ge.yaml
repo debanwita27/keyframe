@@ -1,0 +1,404 @@
+id: jittervideo_A_new-this-week-bulk-create-drop-in-a-csv-ge
+source: local-reference (jittervideo_A_new-this-week-bulk-create-drop-in-a-csv-ge.mp4)
+category: launch-video
+product_type: visual-product
+
+format:
+  aspect: "1152:720"
+  fps: 60
+  duration_s: 10.5
+  orientation: horizontal
+
+verdict: >
+  A file-drop metaphor sells "bulk create" better than any dashboard tour would: a
+  CSV chip visibly tumbles onto a finished poster, the poster ghosts through a
+  desaturation pulse instead of a spinner, then shrinks and multiplies into a graded
+  grid of localized variants that duplicates itself to read as volume. All of it runs
+  on three cheap primitives — a symmetric mask-grow reveal, one CSS filter for
+  "processing," and a staggered-blur grid population — with no cursor and no 3D.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#181818"
+  accent: "#7C5CFA"
+  support: ["#D8D8F0", "#FAF08C", "#000000"]
+  notes: >
+    Poster canvas is near-white (#F0F0F0) with near-black ink for the "Summer Sales"
+    display type. The CSV file chip carries a violet accent pill (~#7C5CFA, close to
+    the purple used across the rest of the Jitter/byshubh corpus) and appears for
+    only two consecutive beats (fly-in, landing) before vanishing. A pale desaturated
+    lavender (#D8D8F0) is the transient "processing" ghost state of the whole poster,
+    not a static palette colour. The outro breaks fully to pure black (#000000) with
+    a single saturated pale-yellow pill (~#FAF08C) carrying the "jitter.video"
+    wordmark — a second, unrelated accent reserved exclusively for the brand lockup.
+    Two accents total (violet for the file action, yellow for the brand) rather than
+    the usual one, but each is rationed to a single beat.
+
+typography:
+  family_look: geometric sans
+  weights: [bold, medium]
+  case: sentence
+  tracking: tight
+  headline_frame_share: 0.3
+  notes: >
+    The mock poster headline "Summer Sales" is a heavy geometric sans set in two
+    stacked words, sentence case, with a small medium-weight byline row ("Online" /
+    "www.acme.com") at roughly 12% of the headline's size. The outro copy ("Bulk
+    create", "Now available") uses the same bold geometric sans, single line,
+    centred, never more than two words at once. The "jitter.video" wordmark is the
+    same family in a lowercase mixed-case lockup inside a pill badge.
+
+structure:
+  - act: hook
+    t: [0.00, 1.73]
+    purpose: >
+      Build the tool's baseline output live on screen — a single "Summer Sales"
+      poster template assembling itself from a blank card — before any capability
+      is named.
+    shots: [1]
+  - act: capability
+    t: [1.73, 4.07]
+    purpose: >
+      Show the actual input mechanic for "bulk create" — a CSV file physically
+      dropped onto the finished poster — and cue that the system is now processing it.
+    shots: [1]
+  - act: reveal
+    t: [4.07, 7.30]
+    purpose: >
+      Pay off "bulk create" concretely: the one poster multiplies into a graded grid
+      of localized variants in five languages, tripled to read as volume.
+    shots: [1]
+  - act: cta
+    t: [7.30, 10.50]
+    purpose: >
+      Name the feature, confirm availability, and land on the brand wordmark.
+    shots: [2]
+
+shots:
+  - n: 1
+    t: [0.00, 7.30]
+    frames: [0, 438]
+    layout: centre-stack
+    content: >
+      Vertical "story"-format poster card, borderless, centred in the wider
+      horizontal canvas (no phone-bezel chrome — the artifact itself is the frame).
+      A thin horizontal band at the image's vertical centre grows to reveal the full
+      hero photo (woman in green shirt against a sky backdrop) while the headline
+      "Summer" then "Sales" masks up line by line, followed by the byline "Online
+      www.acme.com". The finished poster holds. A small violet pill labelled
+      "acme-sales-translation.csv" with a tilted photo-stack icon flies in
+      diagonally from off-frame bottom-right, tumbles, and lands overlapping the
+      poster's lower-left corner, then vanishes as if ingested. The whole poster
+      ghosts through a pale, desaturated "processing" state and returns to full
+      colour. It then shrinks into one cell of an emerging 5-column grid; the
+      remaining cells resolve from a motion-blur streak into sharp localized poster
+      variants — "Saldi estivi" (Italian), "여름맞이 정기세일" (Korean), "Summer
+      Sales" (English), "Лето Сезон" (Russian), "Soldes d'été" (French) — each
+      recoloured, and the 5-column row is tripled vertically to read as a large
+      batch. The grid holds before the cut.
+    moves:
+      - move: maskGrowBand
+        target: hero photo
+        at_f: 0
+        params: {origin: center, height: ["20%", "100%"], dur_f: 24, ease: expoOut}
+      - move: maskWipeUp
+        target: "\"Summer\" / \"Sales\" headline (2 lines)"
+        at_f: 8
+        params: {dur_f: 16, per_line_stagger_f: 10, ease: expoOut}
+      - move: staggerRise
+        target: "\"Online / www.acme.com\" byline"
+        at_f: 50
+        params: {y: [10, 0], opacity: [0, 1], blur: [4, 0], dur_f: 14, ease: springSoft}
+      - move: dragDropTumble
+        target: "\"acme-sales-translation.csv\" file chip"
+        at_f: 100
+        params: {translate: [["140%", "60%"], ["-6%", "72%"]], rotate: [18, 0], dur_f: 40, ease: springSoft}
+      - move: dissolveBlur
+        target: file chip (ingested)
+        at_f: 140
+        params: {blur: [0, 10], opacity: [1, 0], dur_f: 8}
+      - move: desaturatePulse
+        target: whole poster group
+        at_f: 144
+        params: {saturate: [1, 0.1, 1], brightness: [1, 1.3, 1], dur_f: 100, ease: expoInOut}
+      - move: gridMultiplyReveal
+        target: poster -> 5x3 localization grid
+        at_f: 256
+        params: {from_scale: 1, to_scale: 0.14, cols: 5, rows: 3, col_stagger_f: 6, cell_resolve_blur: 14, dur_f: 170, ease: expoInOut}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut, dur_f: 438}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 12
+
+  - n: 2
+    t: [7.317, 10.483]
+    frames: [439, 629]
+    layout: centre-stack
+    content: >
+      Hard cut to a full-black card. Bold white "Bulk create" lands centred, holds,
+      then directly crossfades in place to "Now available". This then gives way to a
+      pill-shaped badge reading "jitter.video" in dark text on a saturated pale
+      yellow fill with a soft yellow glow halo, which pops in and holds static to
+      the end of the video.
+    moves:
+      - move: scaleIn
+        target: "\"Bulk create\" headline"
+        at_f: 5
+        params: {scale: [1.08, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: wordSwap
+        target: headline text slot ("Bulk create" -> "Now available")
+        at_f: 50
+        params: {dur_f: 10, ease: expoOut, crossfade: true}
+      - move: popIn
+        target: "\"jitter.video\" pill badge"
+        at_f: 95
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: breathe
+        target: pill badge + glow halo
+        at_f: 106
+        params: {scale: [1, 1.015, 1], period_f: 120}
+    camera: {move: pushIn, params: {scale: [1, 1.015], ease: expoInOut, dur_f: 191}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 59
+
+techniques:
+  - id: image-reveal-center-band-mask
+    what: >
+      The hero photo is revealed through a rectangular mask that starts as a thin
+      horizontal band (~20% of the image height) centred vertically on the image,
+      then grows symmetrically upward and downward until it covers 100% of the
+      image, over 24 frames.
+    where: shot 1, frames 0-24
+    why_it_reads: >
+      Content appears to materialise from the middle outward rather than
+      cross-fading flat or wiping from one edge — a small variation that reads as
+      more deliberate than a plain fade, for near-zero extra cost.
+    remotion_recipe: >
+      Wrap the <img> in a container with overflow:hidden. Animate the wrapper's
+      clip-path: inset(topInset% 0 bottomInset% 0), where both topInset and
+      bottomInset interpolate from 40 to 0 using the SAME interpolate(frame,
+      [startF, startF+24], [40, 0], {easing: expoOut}) call — driving both edges
+      from one input keeps them perfectly symmetric. This is distinct from
+      maskWipeUp/maskWipeSide in MOVE_VOCAB.md, which only animate a single edge.
+    difficulty: trivial
+
+  - id: drag-drop-file-tumble
+    what: >
+      A compound element (small tilted photo-stack icon + rounded violet label pill
+      reading the filename) enters from off-frame bottom-right at an 18-degree tilt,
+      translates diagonally to overlap the poster's lower-left corner while
+      rotating back to 0deg with a spring settle-bounce, then dissolves out as if
+      absorbed, over roughly 40 frames plus an 8-frame exit.
+    where: shot 1, frames 100-148
+    why_it_reads: >
+      It is the literal, physical enactment of "drop in a CSV" — a file arriving
+      and being visibly consumed by the canvas — rather than an icon simply cutting
+      in. Disappearing on contact reads as "ingested," motivating the processing
+      beat that follows.
+    remotion_recipe: >
+      Single absolutely-positioned div holding the icon+pill group. Drive
+      translateX/translateY and rotate off ONE spring({damping:16, mass:0.6,
+      stiffness:140}) progress value: translateX from 140% to -6% of card width,
+      translateY from 60% to 72% of card height, rotate from 18deg to 0deg, all
+      keyed to the same spring progress so the tumble and the landing bounce stay
+      physically coupled (matches the profile's own "ease-in builds, overshoot/
+      settle bounce" velocity read for this shot). On arrival, crossfade opacity
+      1->0 over 8 frames (dissolveBlur) rather than a hard cut, so it reads as
+      absorption, not disappearance.
+    difficulty: moderate
+
+  - id: processing-desaturation-pulse
+    what: >
+      Once the file lands, the entire poster group (headline + photo + byline)
+      desaturates and brightens toward a pale, near-white ghost of itself over ~50
+      frames, then returns to full saturation and brightness over another ~50
+      frames — no spinner, no progress bar.
+    where: shot 1, frames 144-244
+    why_it_reads: >
+      Sells "the system is working on your file" purely through a colour-state
+      change on content the viewer has already read, which is cheaper and reads
+      more premium than any literal loading affordance.
+    remotion_recipe: >
+      Wrap the whole poster group in one CSS filter string. interpolate(frame,
+      [144, 194, 244], [1, 0.1, 1]) drives saturate(), and the same three-keyframe
+      interpolate with range [1, 1.3, 1] drives brightness(), both with
+      Easing.bezier for expoInOut. One filter on one wrapper animates every child
+      layer in sync — no per-layer opacity keyframing needed.
+    difficulty: trivial
+
+  - id: grid-multiply-localization-reveal
+    what: >
+      The single poster scales from full-frame down to ~14% width and relocates
+      into one cell of an emerging 5-column grid. The remaining cells populate
+      left-to-right: each resolves from a horizontal motion-blur streak into a
+      sharp, distinctly-coloured localized poster variant (5 languages), and the
+      resulting 5-cell row is duplicated three times vertically to read as a large
+      batch rather than 5 discrete outputs.
+    where: shot 1, frames 256-426
+    why_it_reads: >
+      The blur-to-sharp resolve per column reads as "generating," and tripling an
+      identical row is a free way to imply volume/scale without designing 15
+      unique layouts.
+    remotion_recipe: >
+      Grid cell containing the original poster animates transform: scale(1 ->
+      0.14) and translate to its target grid-cell coordinates over the shot's
+      duration (expoInOut). Each OTHER column's <img> sits behind filter:
+      blur(14px), interpolating to blur(0) over 10 frames, with the start frame of
+      each column offset by col_stagger_f=6 so columns resolve left to right. The
+      finished 5-column row is then rendered three times as literal duplicate DOM
+      subtrees (or three <Sequence> copies) stacked vertically with a small 4-frame
+      inter-row stagger — pure duplication, no unique per-row content needed.
+    difficulty: moderate
+
+  - id: pill-logo-glow-lockup
+    what: >
+      The outro's final state is a rounded-pill badge, bold lowercase "jitter.video"
+      wordmark, dark text on saturated pale-yellow, with a soft radial yellow glow
+      halo behind it on full black, popping in with overshoot and holding static
+      (with a slow ambient breathe) to the end of the video.
+    where: shot 2, frames 528-629
+    why_it_reads: >
+      Structurally identical to a toast/success-confirmation pop (bright,
+      off-palette accent + glow + overshoot) but repurposed as a brand lockup — the
+      viewer's brain reads "confirmed / done" exactly when the wordmark lands.
+    remotion_recipe: >
+      div with border-radius:999px, background: saturated pale yellow, box-shadow:
+      0 0 32px rgba(yellow,0.55) for the bloomGlow halo. Enter with
+      spring({damping:14, mass:0.5, stiffness:180}) driving scale 0->1.08->1
+      (springSnap/popIn). Ambient breathe afterward: scale 1->1.015->1 on a 120f
+      sine loop so the long hold is never perfectly static.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 2
+  median_shot_f: 315
+  fastest_f: 191
+  slowest_f: 438
+  pattern: >
+    One long 438f (7.3s) continuous shot carrying five sequential beats (build
+    poster -> hold -> file-drop tumble -> desaturation-pulse process -> grid
+    multiply/reveal) -> a single hard cut (the video's only real cut, matching a
+    221.8-magnitude luma spike) -> a calm 191f (3.18s) black outro shot containing
+    two internal word-swap/pop beats (Bulk create -> Now available -> jitter.video
+    pill) below the cut-detection threshold, ending on a long static brand hold.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - >
+    Steal drag-drop-file-tumble for any "user uploads/drops something" beat: one
+    spring driving translate+rotate together, dissolve on arrival to sell
+    ingestion, instead of a flat fade-in icon.
+  - >
+    Steal processing-desaturation-pulse as the default "system is working" cue: one
+    CSS filter (saturate+brightness), two interpolate calls, no spinner asset needed.
+  - >
+    Steal the centre-band mask-grow reveal for hero image entrances as a cheap
+    variant on maskWipeUp/maskWipeSide when a from-the-middle feel is wanted.
+  - >
+    Steal grid-multiply-localization-reveal for any "one input becomes N
+    personalised/localised outputs" capability beat — stagger columns left to
+    right for a generating feel, then literally duplicate the finished row to imply
+    greater volume for free.
+  - >
+    The "Bulk create" -> "Now available" -> pill-logo outro is the cheapest
+    possible CTA: one wordSwap text slot plus one popIn badge, zero camera move
+    required beyond a barely-there pushIn.
+
+avoid:
+  - >
+    The five bespoke localized poster variants (real translated copy, matched
+    photography per locale) are content production, not motion technique — swap in
+    placeholder/lorem copy per locale rather than attempting to hand-generate
+    convincing translations.
+  - >
+    The CSV chip's exact tumble arc looks like it could have been hand-keyframed
+    across several waypoints in After Effects — substitute the single
+    spring-driven translate+rotate described in drag-drop-file-tumble rather than
+    keying multiple intermediate positions.
+  - >
+    Do not build a literal spinner or progress bar for a "processing" beat when a
+    whole-group desaturation filter reads more premium and is one property to animate.
+
+new_moves:
+  - name: maskGrowBand
+    params: {origin: center, height: ["20%", "100%"], dur_f: 24, ease: expoOut}
+    description: >
+      A rectangular mask that grows symmetrically from a thin horizontal band at
+      the content's vertical centre out to full height, revealing content from the
+      middle outward. Distinct from maskWipeUp (single bottom-to-top edge) and
+      maskWipeSide (single left-to-right edge) because both mask edges move at once
+      from a shared centre line.
+  - name: dragDropTumble
+    params: {translate: [["from_x", "from_y"], ["to_x", "to_y"]], rotate: [18, 0], dur_f: 40, ease: springSoft, exit_dissolve_f: 8}
+    description: >
+      A compound element enters from off-frame on a diagonal, rotated, and settles
+      via a single spring onto a target position (translate and rotate driven off
+      the same spring progress so the tumble and the landing bounce stay coupled),
+      then dissolves (opacity fade) as if absorbed. For drag-and-drop /
+      file-upload metaphors where the element should visibly land and be consumed.
+  - name: desaturatePulse
+    params: {saturate: [1, 0.1, 1], brightness: [1, 1.3, 1], dur_f: 100, ease: expoInOut}
+    description: >
+      A whole-element CSS filter dip: saturation and brightness both animate out to
+      a washed/ghosted state and back via a single shared interpolation. Used as a
+      "system is processing" cue in place of a literal spinner or progress
+      indicator — cheaper to build and reads as more premium.
+  - name: gridMultiplyReveal
+    params: {from_scale: 1, to_scale: 0.14, cols: 5, rows: 3, col_stagger_f: 6, cell_resolve_blur: 14, dur_f: 170, ease: expoInOut}
+    description: >
+      A single hero element shrinks and relocates into one cell of an emerging
+      grid; the remaining cells populate as blurred-then-sharp variants staggered
+      left-to-right by column, and the resolved row pattern is duplicated
+      vertically to imply greater volume without designing unique content per row.
+      For "one input -> many outputs" capability beats (bulk generation,
+      localization, batch export).
+  - name: wordSwap
+    params: {dur_f: 10, ease: expoOut, crossfade: true}
+    description: >
+      A single text slot where one word/short phrase crossfades directly into the
+      next at the same position and size — no per-letter animation, no layout
+      shift. The capability-list workhorse named in PRINCIPLES.md section 10 for
+      text-heavy tools; here used for a two-beat feature-name/status sequence
+      rather than a list.
+
+convergence:
+  - >
+    Pill-badge popIn + bloomGlow as a "confirmed" signal — matches the
+    toast-confirmation-pop technique in A_explainer-zhylar-crm-cpq.yaml (there a
+    green success toast, here a yellow brand-lockup pill); both use overshoot
+    scale-in plus a glow halo reserved for a single payoff beat.
+  - >
+    Per-line masked headline build (maskWipeUp with per_line_stagger) for a
+    two-word/two-line title — the same mechanic as zhylar shot 3's word-group
+    reveal of "Keeps all your critical data."
+  - >
+    A single slow pushIn camera as the only camera move sustained across one long,
+    otherwise-static shot — the same ambient-only camera discipline zhylar uses on
+    its dashboard and illustration shots.
+  - >
+    Staggered scale/opacity population of a card grid (zhylar's Lead/Deals metric
+    cards vs. this video's 5x3 localization grid) as the default way to bring
+    multiple UI-like elements on screen together.
+
+detection_notes: >
+  profile.md's cut detector (threshold delta > 26.0) found exactly one real cut, at
+  frame 438 (delta 221.8) — sheets confirm this is the hard cut from the fully
+  populated 5x3 localization grid to the solid-black "Bulk create" card, matching
+  shot boundaries [0,438] and [439,629] exactly; those boundaries are used verbatim
+  above, not contradicted. Inside shot 2, two smaller motion bumps (delta 3.6 at
+  frame 489 and delta 23.7 at frame 528) are NOT treated as separate shots: both
+  happen on an unchanging solid-black backdrop (no composition change, no camera
+  cut) and correspond to a wordSwap ("Bulk create" -> "Now available") and a popIn
+  (the "jitter.video" pill replacing the text) respectively — sequential moves
+  within one continuous shot, consistent with the profile's own count of 2 total
+  shots. The two "frozen stretches" profile.md flags as bugs are both intentional:
+  frames 187-206 fall inside the trough of the processing-desaturation-pulse (the
+  washed-out hold is the point of that beat), and frames 570-629 are the
+  terminal branded end-card hold (59f), which exceeds the standard 6-10f hold rule
+  deliberately because nothing follows it in the edit.

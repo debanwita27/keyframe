@@ -1,0 +1,503 @@
+id: Kirschberg__B_yummy-yummy-most-slop-please
+source: https://x.com/Kirschberg_/status/yummy-yummy-most-slop-please
+category: launch-video
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 53.067
+  orientation: horizontal
+
+verdict: >
+  A 53s launch film for "Fastlane" (usefastlane.ai) that stages the whole pitch as one
+  agent conversation: a Claude-branded orbit visualization contracts into a chat bullet,
+  the user types one prompt, and every proof point (accounts multiplying, global reach,
+  a content calendar, a 100x output counter) plays out as the agent's own status updates
+  and generated artifacts rather than as narrated slides.
+
+palette:
+  bg: "#F5F1EE"
+  ink: "#1C1418"
+  accent: "#C81E2E"
+  support: ["#F0D8D8", "#2A0A10"]
+  notes: >
+    Off-white/cream with a pulsing pink radial haze dominates roughly 70% of runtime.
+    The accent red is rationed to exactly two set pieces - the single glowing send-dot
+    at frame ~310 and the deep maroon backdrop behind the multiplying phone mockups
+    (f570-869) - then never reappears. Phone screens themselves stay true black (OLED
+    mockup convention), never off-black.
+
+typography:
+  family_look: serif display
+  weights: [regular, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.34
+  notes: >
+    Headlines ("Good afternoon, Zach", "Introducing Fastlane", "Time to fill up your
+    Fastlane calendar") set in a serif display face, single line, sentence case. All
+    UI chrome (chat input, checklist, calendar, status line) uses a separate small
+    geometric sans, kept strictly smaller than the headline tier - a two-family system
+    the vocab doesn't usually call for but is deliberate here (headline = brand voice,
+    UI = product chrome).
+
+structure:
+  - act: hook
+    t: [0.0, 3.6]
+    purpose: brand title card establishes "Claude for Social Media" before any product is shown
+    shots: [1]
+  - act: capability
+    t: [3.6, 12.3]
+    purpose: >
+      abstract orbit-of-accounts visualization contracts to a single dot, match-cutting
+      into a live chat UI where the user types the one prompt that drives the whole film
+    shots: [1]
+  - act: proof
+    t: [12.3, 26.3]
+    purpose: agent narrates its own progress (thinking, connecting, provisioning) while phone mockups physically multiply on screen
+    shots: [1]
+  - act: reveal
+    t: [26.3, 29.0]
+    purpose: the multiplying phones scatter into an arc and the brand name "Fastlane" lands
+    shots: [2]
+  - act: capability
+    t: [29.0, 44.3]
+    purpose: three rapid-fire proof beats - global reach (globe), quality guardrails (checklist), scheduling (calendar filling with posts)
+    shots: [3]
+  - act: proof
+    t: [44.3, 51.6]
+    purpose: a 1x-to-100x output counter lands on a real phone mockup with a stacked notification feed, selling volume concretely
+    shots: [3]
+  - act: cta
+    t: [51.6, 53.1]
+    purpose: fade to black, wordmark hold
+    shots: [3]
+
+shots:
+  - n: 1
+    t: [0.00, 26.33]
+    frames: [0, 790]
+    layout: centre-stack
+    content: >
+      One continuous take, no internal hard cuts (analyzer confirms "subtle" energy,
+      ease-in build with an overshoot/settle bounce). Frame 0-95: "Presenting Claude for
+      Social Media" wordmark + rounded-square asterisk icon slides/reveals into frame,
+      holds, then the text dissolves away leaving only the icon. Frame 95-310: the icon
+      erupts into a radial burst of ~24 small avatar/account nodes on connector lines
+      (an orbit-of-accounts motif), holds at full bloom, then retracts back down through
+      the icon into a single glowing red dot. Frame 310-360: the dot match-cuts into a
+      small red bullet beside the greeting "Good afternoon, Zach" above a chat input bar.
+      Frame 360-450: the input types itself out - "Make me 1000 TikTok and Instagram
+      accounts for Cal AI" - then submits. Frame 450-570: a single status line beneath
+      the submitted prompt cycles through "thinking...", "Connecting to Fastlane", "Drivers,
+      start your engines!" (this exact span is where the analyzer's frozen-stretch list
+      flags two static holds, 507-523 and 539-549 - the two status-line dwells). Frame
+      570-790: dark phone mockups (each showing a generated creator profile - name, bio,
+      stats) begin dropping onto a deep maroon backdrop one at a time, at a raked 3D
+      angle, fanning into a growing overlapping deck as more arrive.
+    moves:
+      - move: maskWipeSide
+        target: title_lockup
+        at_f: 0
+        params: {dur_f: 20, dir: r-to-l, ease: expoInOut}
+      - move: dissolveBlur
+        target: title_wordmark_text
+        at_f: 70
+        params: {blur_px: [0, 14], opacity: [1, 0], dur_f: 20, note: "icon persists after text clears"}
+      - move: radialNodeBurst
+        target: account_orbit_nodes
+        at_f: 95
+        params: {dur_f: 140, node_count: 24, stagger_f: 3, ease: expoOut, direction: expand}
+      - move: radialNodeBurst
+        target: account_orbit_nodes
+        at_f: 250
+        params: {dur_f: 60, stagger_f: 2, ease: expoIn, direction: retract}
+      - move: scaleIn
+        target: send_dot
+        at_f: 310
+        params: {scale: [0, 1], dur_f: 20, ease: backOut}
+      - move: matchCut
+        target: send_dot_to_chat_bullet
+        at_f: 330
+        params: {dur_f: 10, note: "dot repositions/shrinks to become the bullet beside the greeting headline"}
+      - move: staggerRise
+        target: greeting_headline
+        at_f: 335
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+      - move: scaleIn
+        target: chat_input_bar
+        at_f: 350
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: typeOn
+        target: prompt_text
+        at_f: 365
+        params: {chars_per_f: 0.6, caret: true, caret_blink_f: 15, dur_f: 90}
+      - move: statusLineSwap
+        target: agent_status_line
+        at_f: 460
+        params: {dur_f: 110, swaps: 3, per_swap_dur_f: 8, hold_f: 27, ease: expoOut}
+      - move: mockupFanIn
+        target: creator_phone_deck
+        at_f: 575
+        params: {dur_f: 210, stagger_f: 18, rotate3d_deg: [25, 0], ease: backOut}
+    camera: {move: driftCamera, params: {amp_pct: 1.0, period_f: 260, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 2
+    t: [26.37, 29.00]
+    frames: [791, 869]
+    layout: full-bleed-ui
+    content: >
+      The one genuinely "hot" (fast) shot in the film, matching the analyzer's velocity
+      read. The dense phone-deck cluster from shot 1 flies apart into an evenly spaced
+      arc/wave of small dark phone mockups across a plain white background, and the bold
+      serif wordmark "Introducing Fastlane" fades up centred beneath the arc.
+    moves:
+      - move: scatterArc
+        target: creator_phone_deck
+        at_f: 0
+        params: {dur_f: 24, stagger_f: 2, ease: expoOut}
+      - move: maskWipeUp
+        target: introducing_fastlane_headline
+        at_f: 15
+        params: {dur_f: 16, ease: expoOut}
+      - move: breathe
+        target: phone_arc
+        at_f: 30
+        params: {scale: [1, 1.015], period_f: 60}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [29.00, 53.07]
+    frames: [870, 1591]
+    layout: centre-stack
+    content: >
+      Second long continuous take (722f / 24s, "subtle" energy with an ease-out +
+      overshoot/settle bounce). Frame 870-960: a slowly rotating dotted 3D globe with
+      pinned city labels under "Target 12+ countries, no matter where you are". Frame
+      960-185(rel): dissolves into a phone mockup that ticks off three checklist items
+      one at a time - "Created by humans, not robots", "Warmed up in your fitness niche",
+      "Ready to post content" (a static hold here matches the analyzer's 1100-1126 frozen
+      stretch). Frame 1080-1310: "Time to fill up your Fastlane calendar" headline, two
+      platform icons (TikTok, Instagram) pop in, an empty June 2026 calendar grid scales
+      in, then its cells populate with small dots over ~120 frames in a non-sequential
+      scan order (matches the brief 1224-1233 frozen stretch mid-fill). Frame 1330-1390:
+      crossfades to a bare numeral that counts 1x-2x-5x-10x-18x-27x-38x-52x-65x-76x-85x-
+      92x-97x-99x-100x under the label "your content output". Frame 1490-1550: a phone
+      mockup with a generated portrait photo receives a stack of notification banners
+      sliding down over it, then settles and holds (matches the 1494-1518 frozen stretch).
+      Frame 1550-1591: fades to black; the wordmark "usefastlane.ai" fades in and holds
+      to the final frame (matches both remaining frozen stretches, 1551-1566 and 1574-1591).
+    moves:
+      - move: globeSpin
+        target: world_globe
+        at_f: 0
+        params: {dur_f: 90, rotateY_deg: [0, 140], tilt_deg: 18, ease: linear}
+      - move: maskWipeUp
+        target: target_countries_headline
+        at_f: 0
+        params: {dur_f: 16, ease: expoOut}
+      - move: dissolveBlur
+        target: globe_scene
+        at_f: 85
+        params: {blur_px: [0, 14], opacity: [1, 0], dur_f: 25}
+      - move: scaleIn
+        target: checklist_phone
+        at_f: 110
+        params: {scale: [0.86, 1], dur_f: 14, ease: backOut}
+      - move: staggerRise
+        target: checklist_items
+        at_f: 125
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 15, dur_f: 45, ease: springSoft}
+      - move: popIn
+        target: checklist_checkmarks
+        at_f: 130
+        params: {scale: [0, 1.08, 1], stagger_f: 15, dur_f: 11, ease: springSnap}
+      - move: maskWipeUp
+        target: calendar_headline
+        at_f: 210
+        params: {dur_f: 16, ease: expoOut}
+      - move: popIn
+        target: platform_icons
+        at_f: 230
+        params: {stagger_f: 8, dur_f: 11, ease: springSnap}
+      - move: scaleIn
+        target: empty_calendar_grid
+        at_f: 260
+        params: {scale: [0.9, 1], dur_f: 16, ease: backOut}
+      - move: gridFillReveal
+        target: calendar_dots
+        at_f: 280
+        params: {dur_f: 120, stagger_f: 2, scan_order: shuffled, ease: expoOut}
+      - move: dissolveBlur
+        target: calendar_scene
+        at_f: 410
+        params: {blur_px: [0, 12], opacity: [1, 0], dur_f: 20}
+      - move: counterUp
+        target: output_multiplier
+        at_f: 430
+        params: {dur_f: 60, keyframed_values: [1, 2, 5, 10, 18, 27, 38, 52, 65, 76, 85, 92, 97, 99, 100], step_hold_f: 4, monospace_digits: true, note: "irregular decelerating jumps, not one smooth pass"}
+      - move: scaleIn
+        target: photo_phone_mockup
+        at_f: 490
+        params: {scale: [0.9, 1], dur_f: 20, ease: backOut}
+      - move: slideStackIn
+        target: notification_stack
+        at_f: 510
+        params: {y: [-40, 0], stagger_f: 4, z_offset_px: 6, dur_f: 40, ease: springSoft}
+      - move: dissolveBlur
+        target: full_scene
+        at_f: 648
+        params: {blur_px: [0, 16], opacity: [1, 0], dur_f: 27}
+      - move: unblurIn
+        target: usefastlane_wordmark
+        at_f: 675
+        params: {blur_px: [18, 0], scale: [1.04, 1], dur_f: 20, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 1.2, period_f: 300, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft, filmGrain, vignette]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 20
+
+techniques:
+  - id: orbit-burst-to-chat-bullet
+    what: >
+      A rounded-square brand icon erupts into a radial burst of ~24 small connected
+      account/avatar nodes, holds at full bloom, then retracts back through the icon
+      into a single glowing dot - which then match-cuts directly into a small coloured
+      bullet sitting beside the next scene's headline.
+    where: shot 1, frames 95-360
+    why_it_reads: >
+      The abstract "many accounts radiating from one brain" visual answers the product's
+      core claim (one prompt, many outputs) before any UI is shown, and collapsing it to
+      a dot that becomes a literal UI element bridges concept and product with one shape
+      instead of a cut.
+    remotion_recipe: >
+      Absolutely-position N child nodes at polar coordinates (angle = i/N * 360, radius
+      driven by a single progress value p via interp(p,[0,1],[0,maxRadius])), each with
+      an SVG line back to the centre whose strokeDashoffset also derives from p so the
+      spokes draw on as the nodes travel. Retract is the same p driven backward
+      (1 -> 0) on an expoIn curve. The final dot is just p's radius hitting 0 with node
+      opacity crossfaded into a single circle whose fill/position is animated with
+      Remotion's spring() to its new bullet position for the "match cut".
+    difficulty: moderate
+
+  - id: agent-status-line-swap
+    what: >
+      Between prompt submission and the product's first visual proof, a single fixed
+      text slot cycles through three short first-person status strings ("thinking...",
+      "Connecting to Fastlane", "Drivers, start your engines!") rather than showing one
+      static "loading" state.
+    where: shot 1, frames 460-570
+    why_it_reads: >
+      Turns a dead loading interval into narrative beats that each land a brand/feature
+      name, and reads as the agent genuinely working rather than a spinner.
+    remotion_recipe: >
+      One absolutely-positioned text node; index into a fixed string array with
+      Math.floor(frame / swapIntervalFrames), crossfade + 6px rise (opacity 0->1,
+      translateY 6->0, expoOut, ~8f) on each index change, then hold static at that value
+      until the next boundary - do not tween between the strings themselves.
+    difficulty: trivial
+
+  - id: mockup-fan-deck-build
+    what: >
+      Phone mockups showing generated creator profiles drop in one at a time at a raked
+      3D angle onto a saturated maroon backdrop, each new arrival pushing the pile into
+      a denser overlapping fan, before the whole deck scatters into an arc in the next shot.
+    where: shots 1-2, frames 575-869
+    why_it_reads: >
+      Watching the pile visibly grow sells "volume" more convincingly than a static
+      counter alone would at this point in the film - the counter payoff later works
+      because this scene already primed the eye for "many."
+    remotion_recipe: >
+      A data array of N mockup configs (index, rotateZ jitter, x/y offset, z-index);
+      spring() each mockup's entrance (translateX from off-frame, rotate3d + perspective
+      on a shared parent) staggered by index * 18f. The later scatter shot reads the same
+      array and interpolates each mockup's position from its stacked coordinate to a
+      precomputed arc coordinate - one dataset drives both the build and the break-apart.
+    difficulty: moderate
+
+  - id: calendar-grid-fill-reveal
+    what: >
+      An empty month calendar's cells populate with small coloured dots one at a time,
+      in a shuffled (not row-by-row) order, over about 4 seconds, ending on a visibly
+      dense, fully-booked grid.
+    where: shot 3, frames 1130-1400 (relative to shot start)
+    why_it_reads: >
+      A row-by-row fill reads as a progress bar; a shuffled fill reads as content
+      "arriving" the way a real scheduling queue would populate, which matters because
+      this is the film's scheduling/automation proof point.
+    remotion_recipe: >
+      Precompute a shuffled index array over all calendar cells (seeded, not
+      Math.random(), for determinism). Cell i's dot opacity/scale is 0 until frame >=
+      startFrame + shuffledIndexOf(i) * staggerFrames, then springs in (scale 0->1,
+      springSnap). Multiple dots per cell simply repeat the pattern with a small
+      per-dot offset.
+    difficulty: trivial
+
+  - id: decelerating-multiplier-counter
+    what: >
+      A bare "Nx" numeral climbs 1-2-5-10-18-27-38-52-65-76-85-92-97-99-100 rather than
+      counting linearly or smoothly - fast early jumps that visibly decelerate into the
+      landing value.
+    where: shot 3, frames 1300-1360 (relative to shot start)
+    why_it_reads: >
+      The deceleration itself communicates "settling on a real, verified number" instead
+      of a slot-machine spin - it's the shape of an expoOut curve applied to the value
+      itself, not just its motion.
+    remotion_recipe: >
+      Do not interpolate the displayed integer continuously. Hold a short array of
+      target values; snap (or 3f ease) the displayed number to array[index] where index
+      = Math.floor(interp(frame,[startF,endF],[0,array.length-1], {easing: Easing.out}))
+      - the easing lives in which value you're on, not in a per-frame lerp of the number.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 3
+  median_shot_f: 722
+  fastest_f: 79
+  slowest_f: 791
+  pattern: >
+    26.3s continuous build (title card -> orbit burst/contract -> chat reveal -> typed
+    prompt -> agent status swaps -> phone deck building) -> one 2.6s "hot" dissolve
+    transition (phone deck scatters into arc, brand name lands) -> 24s continuous back
+    half stacking three rapid proof beats (globe, checklist, calendar-fill) into a
+    counter payoff and a final phone/notification proof, then a held wordmark outro.
+  beat_grid_f: 0
+  energy_curve: wave
+
+detection_notes: >
+  The frame-delta cut detector (threshold 26.0) found only 3 hard cuts, at 790/791 and
+  869/870 - both confirmed correct by the sheets (phone-deck cluster -> scattered arc is
+  a genuine instant cut; arc/headline -> globe scene is a genuine instant cut). Everything
+  else that looks like a scene change in the sheets (title card -> orbit icon, orbit dot
+  -> chat UI, chat -> status line, globe -> checklist, checklist -> calendar, calendar ->
+  counter, counter -> notification phone, notification phone -> black -> wordmark) is a
+  soft dissolveBlur/crossfade, not a cut, which is why the detector folds all of it into
+  just 2 "shots" of 790 and 722 frames. The seven frozen-stretch spans in profile.md
+  (39-51, 64-73, 507-523, 539-549, 1100-1126, 1224-1233, 1494-1518, 1551-1566, 1574-1591)
+  independently corroborate the internal beat boundaries used above: they land almost
+  exactly on the title-card hold, the two agent-status dwells, the post-checklist-icon
+  hold, a mid-calendar-fill pause, and the two wordmark-outro holds.
+
+transferable:
+  - >
+    To compress this to 25-30s: cut the mockup-fan-deck build (shot 1, f575-790, 215f/
+    7.2s of phones stacking one by one) down to a single 20f burst where 6-8 phones
+    spring in simultaneously with light stagger - the film does not need to watch the
+    pile grow one card at a time to sell "many accounts."
+  - >
+    To compress this to 25-30s: cut the orbit-burst expand phase (f95-250, 155f) roughly
+    in half and keep only the retract-to-dot beat in full - the expand is the least
+    information-dense 5 seconds in the film and the retract is what actually earns the
+    match cut.
+  - >
+    To compress this to 25-30s: cut the calendar grid-fill (shot 3, ~120f/4s of dots
+    populating) down to a single 20f reveal that fades straight from an empty grid to a
+    95%-full one - the audience does not need real-time proof of the fill, only the
+    before/after states.
+  - >
+    To compress this to 25-30s: cut the globe establishing beat (shot 3, f0-85, ~2.8s of
+    pure ambient rotation with no new information after the headline lands at f16) down
+    to 20f total.
+  - >
+    Use a single fixed-position text slot with discrete crossfaded swaps (agent-status-
+    line-swap) for any sequence of short status/progress strings instead of a spinner or
+    progress bar - it is nearly free to build and reads as far more alive.
+  - >
+    A shape that contracts to a single point and match-cuts into a literal UI element of
+    similar size/colour (orbit-burst-to-chat-bullet) is a cheap, high-value way to bridge
+    an abstract brand moment into the first product screen without a hard cut.
+  - >
+    Register changes roughly every 15-20s across this 53s piece (abstract brand moment ->
+    conversational UI -> physical-object proof -> brand card -> stat/checklist montage ->
+    counter payoff -> outro) - for a 25-30s film, keep that same register-change cadence
+    but compress to 3-4 beats total, not 7.
+
+avoid:
+  - >
+    Hand-keyframing all 24 orbit-burst nodes individually in After Effects; drive them
+    from one polar-coordinate function of a single progress value plus index, as
+    described in the orbit-burst-to-chat-bullet recipe.
+  - >
+    Manually placing/rotating each mockup in the phone-fan deck; use one data array of
+    configs consumed by both the build-in and the later scatter-out animation so they
+    stay physically consistent (same recipe drives both directions).
+  - >
+    Faking the "shuffled" calendar fill by eye-balling random-looking delays per cell;
+    seed a deterministic shuffled index array (never Math.random() in a composition) so
+    renders reproduce exactly.
+  - >
+    Animating the 1x-100x counter as one smooth interpolated number; use the source's own
+    keyframed-value-array approach (also used in the byshubh corpus) so the deceleration
+    reads as a real settling number, not a slot-machine spin.
+
+new_moves:
+  - name: radialNodeBurst
+    params: {node_count: 24, dur_f: 140, stagger_f: 3, ease: expoOut, direction: expand-or-retract}
+    description: >
+      A center icon erupts into N nodes placed at polar coordinates around it, connected
+      by lines whose strokeDashoffset draws on in sync with node travel, driven by one
+      progress value; the same move run backward (expoIn) retracts the nodes back
+      through the icon into a single point.
+  - name: statusLineSwap
+    params: {swaps: 3, per_swap_dur_f: 8, hold_f: 27, y: [6, 0], opacity: [0, 1], ease: expoOut}
+    description: >
+      A fixed-position text slot holding a short array of status strings; on each swap
+      boundary the incoming string crossfades in with a small upward rise while the
+      outgoing string is simply replaced (not tweened as text) - used for agent/loading
+      status sequences instead of a spinner.
+  - name: mockupFanIn
+    params: {stagger_f: 18, rotate3d_deg: [25, 0], dur_f: 22, ease: backOut, z_offset_px: 10}
+    description: >
+      Device/card mockups enter one at a time from off-frame at a raked 3D angle
+      (perspective + rotate3d on a shared parent), each new arrival layered in front of
+      the previous with a z-offset, building a fanned overlapping deck rather than a
+      flat stack.
+  - name: scatterArc
+    params: {stagger_f: 2, dur_f: 24, ease: expoOut, path: cluster-to-arc}
+    description: >
+      Elements sitting in a dense cluster fly apart along individual paths to settle at
+      precomputed positions along a wide arc/wave - the inverse choreography of a
+      mockupFanIn build, ideally driven by the same position dataset.
+  - name: globeSpin
+    params: {rotateY_deg: [0, 140], tilt_deg: 18, period_f: 300, ease: linear}
+    description: >
+      Continuous slow rotation of a 3D dotted/wireframe globe asset with pinned city
+      labels, used as an ambient establishing visual behind a geographic-reach claim;
+      linear is acceptable here as one of the vocab's named continuous-loop exceptions.
+  - name: gridFillReveal
+    params: {stagger_f: 2, dur_f: 120, scan_order: shuffled, ease: expoOut}
+    description: >
+      A grid's empty cells populate one at a time in a seeded-shuffled (non-sequential)
+      order rather than row-by-row, so the fill reads as content arriving organically
+      instead of a mechanical progress scan.
+
+convergence:
+  - >
+    Discrete keyframed-value counter jumps (this film's 1x-100x escalation) match the
+    byshubh corpus's continuous-live-counter technique (A_not-your-average-ui-animation):
+    both hold a short array of target values and snap/ease between them rather than
+    tweening one smooth range.
+  - >
+    The orbit-burst-to-chat-bullet collapse is the same family of move as byshubh's
+    flat-to-isometric-dashboard-reveal: one continuous progress-driven transform bridges
+    an abstract state into a concrete UI state instead of cutting between them.
+  - >
+    dropShadowSoft on every floating phone mockup in this film matches byshubh's
+    treatment of floating dashboard cards - a single soft shadow, not a stack of them.
+  - >
+    A background ambient (this film's pink gradient haze) that shifts intensity across
+    the runtime rather than sitting static mirrors byshubh's content-driven
+    radialRevealGlow, though here it is not explicitly tied to a content-count variable.

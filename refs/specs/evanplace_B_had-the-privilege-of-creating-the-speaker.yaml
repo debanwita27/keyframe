@@ -1,0 +1,333 @@
+id: evanplace_B_had-the-privilege-of-creating-the-speaker
+source: https://x.com/evanplace/status/placeholder-had-the-privilege-of-creating-the-speaker
+category: brand-loop
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 20.0
+  orientation: horizontal
+
+verdict: >
+  A single 276-frame locked-off shot builds a three-part cartoon character on a factory
+  conveyor via a robot arm and colour-coded blob-to-capsule morphs, then the finished
+  piece recedes into a starfield until it matches the size and hue of a background star —
+  a payoff match-cut into an identical starfield "speaker" name-card that opened the video.
+
+palette:
+  bg: "#181818"
+  ink: "#F0E8D8"
+  accent: "#D81B7A"
+  support: ["#E2453B", "#F0A030", "#907860", "#484848"]
+  notes: >
+    Background stays near-black charcoal throughout. Each assembled body segment gets
+    exactly one saturated hue in sequence (magenta head, red torso, orange hips) against
+    the cream-white robot-arm material — the only colour event in an otherwise monochrome
+    factory set. The name-card's ring halo cycles the same magenta→red→orange→blue family
+    as a static (non-animating) badge.
+
+typography:
+  family_look: geometric sans
+  weights: [bold]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.22
+  notes: >
+    Single line, "Michael Fugoso" — a name/credit label above a circular avatar photo,
+    not a headline. No other on-screen copy anywhere in the piece.
+
+structure:
+  - act: hook
+    t: [0.0, 0.83]
+    purpose: static name/avatar card establishes whose "speaker" identity this is
+    shots: [1]
+  - act: capability
+    t: [0.83, 4.42]
+    purpose: a blob part is spawned, travels the conveyor, and is grabbed by the robot arm
+    shots: [2]
+  - act: reveal
+    t: [4.42, 12.21]
+    purpose: two more colour-coded segments descend and stretch into place, completing the character
+    shots: [2]
+  - act: proof
+    t: [12.21, 14.13]
+    purpose: hard cut to space; the finished piece shrinks and fades until it IS a background star
+    shots: [3]
+  - act: cta
+    t: [14.13, 20.0]
+    purpose: long hold on the same name/avatar card, now read as the payoff of the build
+    shots: [4]
+
+shots:
+  - n: 1
+    t: [0.00, 0.88]
+    frames: [0, 20]
+    layout: centre-stack
+    content: >
+      "Michael Fugoso" set in bold white sans above a circular headshot photo ringed in
+      orange, with a concentric rainbow (pink/red/orange/blue) halo of rings beneath it
+      like a soundwave/badge, on a dark starfield background. Per motion.csv this stretch
+      is essentially motionless (motion value ~0.02, flat) for the full 18 frames.
+    moves: []
+    camera: {move: driftCamera, params: {amp_pct: 0, period_f: 0, axes: xy, note: "no camera or badge motion detected — flagged in avoid"}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [0.88, 12.33]
+    frames: [21, 296]
+    layout: centre-stack
+    content: >
+      Hard cut to a dark factory interior (silhouetted arched windows, a vertical rail,
+      a small gear icon) with a horizontal conveyor belt of rivet-lights scrolling
+      continuously. Frame 49: a magenta blob drops from the rail. Frames 53-73: it rolls
+      left along the belt. Frames 89-121: a cream jointed robot arm swings down, closes on
+      the blob, and squash-stretches it overhead into a rounded cap shape (the character's
+      "head"). Frames 145-165: the cap settles on top of a second exposed joint. Frames
+      169-193: a red blob descends between the two joints and stretches into a torso
+      capsule. Frames 217-241: an orange blob does the same beneath it, forming a hip
+      segment, while small cream dome pieces keep passing on the belt behind it. Frames
+      265-293: the assembled magenta/red/orange figure and the arm lower together as the
+      belt keeps running underneath.
+    moves:
+      - move: marquee
+        target: conveyor_belt_rivets
+        at_f: 0
+        params: {x: [0, "-100%"], period_f: 90, ease: linear}
+      - move: blobMorphTravel
+        target: head_blob
+        at_f: 28
+        params: {dur_f: 44, path: "rail-drop→belt-roll-left", squash: [0.7, 1.3], ease: expoOut}
+      - move: armSwingAssemble
+        target: robot_arm
+        at_f: 68
+        params: {dur_f: 33, rotate_deg: [-70, 0], grab_at_f: 78, ease: springSnap}
+      - move: blobSquashStretch
+        target: head_blob
+        at_f: 76
+        params: {dur_f: 24, scaleY: [1, 2.4], settle_overshoot_pct: 5, ease: springSnap}
+      - move: blobSquashStretch
+        target: torso_blob
+        at_f: 148
+        params: {dur_f: 24, scaleY: [1, 2.6], settle_overshoot_pct: 5, ease: springSnap, color: "#E2453B"}
+      - move: blobSquashStretch
+        target: hip_blob
+        at_f: 196
+        params: {dur_f: 24, scaleY: [1, 2.2], settle_overshoot_pct: 5, ease: springSnap, color: "#F0A030"}
+      - move: staggerRise
+        target: background_dome_pieces
+        at_f: 176
+        params: {y: [0, 0], opacity: [0, 1], stagger_f: 4, dur_f: 10, ease: springSoft, note: "small secondary pieces cycling on the belt, not the hero build"}
+    camera: {move: driftCamera, params: {amp_pct: 0, period_f: 0, axes: xy, note: "locked-off for all 276f — no drift detected, flagged in avoid"}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [12.33, 14.13]
+    frames: [297, 339]
+    layout: centre-stack
+    content: >
+      Hard cut to a starfield. A small orange-yellow circle (the finished character,
+      reduced to a point of light) drops and drifts slowly downward, shrinking and
+      desaturating as it goes. A cream trapezoid flickers briefly at the cut (a residual
+      matched shape from the factory set) then disappears. By frame ~337 the dot is the
+      same size and colour as the small background star-dots around it.
+    moves:
+      - move: recedeToStar
+        target: finished_character_dot
+        at_f: 0
+        params: {dur_f: 40, scale: [1, 0.15], saturate_pct: [100, 0], drift_y_px: [0, 60], ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 140, axes: xy}}
+    bg: {kind: grain, moves: [gradientDrift]}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: matchCut, params: {note: "dot's final scale/colour matches a bg star exactly; crossfades under the returning name-card layer"}}
+    hold_f: 2
+
+  - n: 4
+    t: [14.13, 20.0]
+    frames: [340, 479]
+    layout: centre-stack
+    content: >
+      The identical "Michael Fugoso" name/avatar/ring-halo card from shot 1 crossfades in
+      over the same starfield and holds, unchanged, for the remaining 140 frames (5.8s) —
+      the longest static stretch in the video, flagged frozen at frames 449-479 in profile.md.
+    moves:
+      - move: unblurIn
+        target: name_card_badge
+        at_f: 0
+        params: {blur_px: [10, 0], scale: [1.04, 1], dur_f: 16, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0, period_f: 0, axes: xy, note: "no motion for the final ~124f — flagged in avoid"}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 124
+
+detection_notes: >
+  profile.md's cut-detector only flags 3 shots (splitting at f105/106 and f127/128) because
+  its threshold triggers on the sharp local motion spikes from the arm's grab-and-squash
+  action, not on an actual scene change — visually frames 21-296 are one continuous
+  locked-off shot with zero cuts. Merged into a single shot 2 here. The two real hard cuts
+  are at f21 (card→factory) and f297 (factory→space); the card's reappearance at f340 reads
+  as a crossfade/match rather than a hard cut.
+
+techniques:
+  - id: single-continuous-factory-build
+    what: >
+      One locked-off 276-frame shot assembles a 3-part character live: a blob spawns,
+      travels, gets grabbed by a robot arm, and squash-stretches into a body segment,
+      repeated three times in three colours with zero cuts.
+    where: shot 2, frames 21-296
+    why_it_reads: >
+      Every ~24-40f a new event (spawn, travel, grab, stretch, settle) refreshes attention
+      without ever needing a cut — the eye stays oriented because the camera and set never
+      move, only the built object does.
+    remotion_recipe: >
+      Single composition, static camera. Drive one frame-derived `buildStage` index off a
+      small array of stage-start frames (0, 28, 68, 76, 148, 196, 244...). Each body part is
+      a self-contained component with its own local progress = clamp((frame-stageStart)/dur).
+      The robot arm is one rig component reused three times with different rotation targets
+      passed as props, not three separately hand-tuned animations.
+    difficulty: moderate
+
+  - id: color-coded-body-segment-morph
+    what: >
+      Each body segment is built from a small round blob (~40px radius) that squash-stretches
+      vertically (scaleY 1→2.2-2.6) between two fixed joint anchors to become a rounded
+      capsule, with a ~5% overshoot bounce on landing.
+    where: shot 2, frames 76-241 (three repetitions)
+    why_it_reads: >
+      Reads as "gooey material being formed" rather than a shape just appearing, because the
+      squash-stretch implies mass and the small overshoot implies it settling under its own
+      weight.
+    remotion_recipe: >
+      Model each segment as two fixed circles (top cap at the upper joint, bottom cap at the
+      lower joint) plus a connecting div with border-radius:999px whose height is the only
+      animated value, height = interpolate(localFrame, [0,dur], [0, jointGap], {easing:
+      spring}) — cheaper and more controllable than true SVG path-morphing for a symmetric
+      capsule shape.
+    difficulty: moderate
+
+  - id: robotic-claw-grab-assemble
+    what: >
+      A three-segment cream robot arm (shoulder joint, forearm, claw) swings down from
+      off-frame on a -70deg→0 shoulder rotation, closes its claw on the target blob, and
+      carries it up to the build point.
+    where: shot 2, frames 68-121 (and repeated per segment)
+    why_it_reads: >
+      Forward-kinematic rotation (each segment pivots at its own joint, inheriting the
+      parent's rotation) reads as a real mechanical arm rather than a shape sliding in a
+      straight line.
+    remotion_recipe: >
+      Nest divs: outer div pivoted at the shoulder's screen coordinates with
+      transform-origin set to that point, rotate via CSS transform; forearm is a child with
+      its own transform-origin at the elbow; claw halves are children of the forearm with
+      their own pivot, rotating toward each other 25deg→0 over ~4f to "grip". Never animate
+      the child segments' rotation independently of the parent chain.
+    difficulty: moderate
+
+  - id: match-cut-object-to-background-star
+    what: >
+      The finished character shrinks (scale 1→0.15) and desaturates (100%→0%) over 40
+      frames against a starfield until its final rendered size and colour are
+      indistinguishable from the small decorative background stars around it, at which
+      point the outro card's identical starfield crossfades in underneath.
+    where: shot 3→4, frames 297-340
+    why_it_reads: >
+      It's a matchCut on colour+scale convergence rather than on a hard shape edge — the
+      "reveal" is that the thing you just watched get built was, all along, the same visual
+      material as the card's own background, tying the build sequence back to the bookend.
+    remotion_recipe: >
+      Keep one shared array of star positions/sizes used by both the bg layer and this
+      shot's receding dot. Interpolate the dot's scale and a CSS filter:saturate() together
+      over the last 40f so it lands exactly on one star's recorded size/opacity, then
+      crossfade shot 3's dot-layer opacity 1→0 over the final 8f while shot 4's identical
+      starfield+card layer crossfades 0→1 beneath it — same star field in both layers so
+      nothing visibly jumps.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 2
+  median_shot_f: 92
+  fastest_f: 21
+  slowest_f: 276
+  pattern: >
+    21f frozen name card → hardCut → 276f single continuous build shot (event every
+    24-40f: spawn, travel, grab, stretch x3) with its own motion peak at ~f89-121 (arm
+    grab, ~22% of total runtime) → hardCut → 43f space recede/match-cut → 140f frozen
+    outro hold on the returning name card (the single longest static stretch in the film).
+  beat_grid_f: 0
+  energy_curve: front-loaded
+
+transferable:
+  - A long piece does not need more cuts to hold attention — it needs a new discrete event
+    every 24-40f inside a single continuous shot (spawn / travel / grab / stretch / settle,
+    repeated with a colour change each time). Cut count and attention are not the same axis.
+  - To compress THIS reference to ~25s, cut the frozen intro (frames 0-18, ~0.75s) entirely —
+    start already settled on the name card and hard-cut straight into the factory build.
+  - Cut the outro hold (shot 4, 140f/5.8s) down to a normal 20-30f settle+hold; nothing new
+    happens after frame ~360, so ~4.5s of pure held frame is the single biggest thing to trim.
+  - Trim the space-recede beat (shot 3, 43f) to ~20-24f — it's a connective transition, not new
+    information, and 43f is longer than any transition needs to be per the timing law.
+  - >
+    Net compression math: 480f (20s) reduces to roughly 21f intro (cut) + 276f build (keep)
+    + 24f recede + 25f outro ≈ 325f / 13.5s of real content, leaving 11.5-16.5s of budget in
+    a 25-30s slot for an explicit product/CTA card this reference doesn't have.
+  - Reuse one parametrised rig (blob-to-capsule + robot-arm) three times with only a colour
+    and target-position prop changed, instead of hand-building three separate sequences —
+    this is what makes a 276f single shot tractable to build at all.
+
+avoid:
+  - The intro and outro name-card graphics are both genuinely static for their full duration
+    (0-18f and especially 360-479f) with zero ambient move — a direct violation of "nothing
+    is ever still." Do not copy this; add a `breathe` (scale 1→1.015→1) on the badge and a
+    `gradientDrift` on the starfield instead of a flat hold.
+  - The 276f build shot runs on a fully locked-off camera with no drift for its entire
+    length — acceptable here because the built object itself is always moving, but if the
+    object action ever pauses, add a `driftCamera` (amp ≤1.5%) rather than leaving the frame
+    dead.
+  - Hand-keyframing three separate blob-to-capsule morphs in After Effects; use one
+    parametrised component (two fixed-joint circles + an animated-height connector) driven
+    by props, per color-coded-body-segment-morph above.
+
+new_moves:
+  - name: blobMorphTravel
+    params: {dur_f: 44, path: "arbitrary 2-point-or-more travel path", squash: [0.7, 1.3], ease: expoOut}
+    description: >
+      A small round shape falls/rolls along a defined path (e.g. off a ledge onto a
+      conveyor) while its scaleX/scaleY oscillate between the two squash values in
+      antiphase with vertical velocity, selling weight and gooeyness during travel.
+  - name: armSwingAssemble
+    params: {dur_f: 33, rotate_deg: [-70, 0], grab_at_f: 78, ease: springSnap}
+    description: >
+      A jointed arm rig (shoulder→forearm→claw, each child pivoted at its own joint and
+      inheriting parent rotation) swings from an off-frame angle to 0deg, closes its claw
+      on a target at a specified sub-frame, then reverses to carry the target to a mount
+      point. Forward-kinematic — never animate child segments independently of the parent.
+  - name: blobSquashStretch
+    params: {dur_f: 24, scaleY: [1, 2.4], settle_overshoot_pct: 5, ease: springSnap}
+    description: >
+      A round blob held between two fixed joint anchors elongates on scaleY only (width
+      holds/eases back to a fixed capsule width) until it spans the anchor gap, with a
+      small overshoot-and-settle bounce at the end. Build as two static end-caps plus one
+      animated-height connector, not a true path morph.
+  - name: recedeToStar
+    params: {dur_f: 40, scale: [1, 0.15], saturate_pct: [100, 0], drift_y_px: [0, 60], ease: expoOut}
+    description: >
+      An element shrinks and desaturates in place until its final rendered size/colour
+      matches a specific background decorative element (here, a starfield dot) exactly,
+      so a following crossfade to a shot containing that same background element reads as
+      a seamless match-cut rather than a fade to a new scene.
+
+convergence:
+  - "single-continuous-factory-build (shot 2) parallels byshubh_'s flat-to-isometric-dashboard-reveal:
+    both build a multi-part object piece-by-piece inside one uncut shot with a locked or single
+    shared transform, rather than cutting between build stages."

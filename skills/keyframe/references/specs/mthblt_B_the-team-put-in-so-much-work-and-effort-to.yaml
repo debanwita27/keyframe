@@ -1,0 +1,471 @@
+id: mthblt_B_the-team-put-in-so-much-work-and-effort-to
+source: https://x.com/mthblt/status/the-team-put-in-so-much-work-and-effort-to
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:10"
+  fps: 30
+  duration_s: 5.967
+  orientation: horizontal
+
+verdict: >
+  A hard-cut highlight reel of the real apple.com/vision-pro site — ten discrete hero
+  moments (dark identity loop, white landing page, ambient theater section, spec-flash
+  cluster, exploded chip build, floating spatial UI, and a handheld-tablet finale) rather
+  than one continuous scroll capture. The payoff is the last shot: the exact same site,
+  now framed inside a physically-held tablet, which is what actually sells "this shipped."
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#181818"
+  accent: "#FF6B45"
+  support: ["#D8D8D8", "#483018", "#3078C0"]
+  notes: >
+    Near-monochrome Apple system: off-white page bg, off-black copy, zero saturation on
+    UI chrome. The only accent hit is the coral-orange link/CTA colour ("Watch the film",
+    "Learn more about design"), used twice, exactly per the accent-rationing rule. A brief
+    burst of full-saturation colour appears once, in the app-icon cluster (shot 8), then
+    never recurs — the single deliberate colour event in an otherwise neutral film.
+
+typography:
+  family_look: geometric sans
+  weights: [regular, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.5
+  notes: >
+    Two-line max headlines ("The ultimate theater. / Wherever you are."), centred, sentence
+    case. Spec-list copy (Enclosure/Light Seal/Head Band/Power/Sound) runs left-aligned in
+    a narrow column at roughly a third of the body-text size of the headlines, paired 1:1
+    with a product photo on the same card.
+
+structure:
+  - act: hook
+    t: [0.0, 0.77]
+    purpose: dark, low-key identity loop establishes the product as an object before any UI is shown
+    shots: [1]
+  - act: reveal
+    t: [0.77, 2.13]
+    purpose: cut to the real live website — landing page, then the first content section
+    shots: [2, 3]
+  - act: capability
+    t: [2.17, 4.27]
+    purpose: rapid-fire feature/material detail cards, then an exploded hardware build, then spatial-computing UI in a real room
+    shots: [4, 5, 6, 7, 8]
+  - act: proof
+    t: [4.3, 5.0]
+    purpose: model wearing/adjusting the device, grounding the spec sheet back in a human body
+    shots: [9]
+  - act: cta
+    t: [5.03, 5.97]
+    purpose: the same site, now scrolled live on a tablet held in a real hand — the "it's real and it's yours" close
+    shots: [10]
+
+shots:
+  - n: 1
+    t: [0.00, 0.73]
+    frames: [0, 22]
+    layout: centre-stack
+    content: >
+      Frame 0-22: near-black background, the Vision Pro visor centred on a model's face,
+      barely lit from the front so the glass reads almost as a void. Top nav is already
+      present and static: "Vision Pro" wordmark top-left, black "Notify me" pill top-right.
+      No text entrance happens inside this shot — it opens mid-loop of the site's autoplay
+      hero video. Motion is a slow, continuous build (motion value climbs from 0.04 to
+      1.7 across the 22 frames per motion.csv) consistent with a slow push-in on the face.
+    moves:
+      - move: pushIn
+        target: whole_frame
+        at_f: 0
+        params: {scale: [1, 1.04], dur_f: 22, ease: expoInOut}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: flat, moves: [breathe]}
+    treatment: [vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [0.77, 1.37]
+    frames: [23, 41]
+    layout: centre-stack
+    content: >
+      Hard cut (motion spike 222 at f22→23) to a flat white product page: same nav bar,
+      centred "Vision Pro" wordmark + logo, two coral-orange links "Watch the film ⊙" and
+      "Watch the event >", grey "Available early next year" caption, and below it a 3D
+      render of the visor with its band unfolded, floating on white. The render itself
+      slowly rotates at constant angular velocity (profile flags this shot "linear/constant
+      velocity") while all text stays completely static — a turntable next to fixed copy.
+    moves:
+      - move: orbit3D
+        target: product_render
+        at_f: 0
+        params: {rotateY_deg: [0, 14], dur_f: 19, ease: linear, note: "object turntable, not a camera move — copy above it never moves"}
+    camera: {move: pushIn, params: {scale: [1, 1.0], ease: linear, note: "camera itself is static; only the render turns"}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 3
+    t: [1.40, 2.13]
+    frames: [42, 64]
+    layout: split
+    content: >
+      Hard cut (motion spike 194 at f41→42) into a dim living room: a large screen glows
+      on the left edge of frame showing shifting blue/white static-like content, a person
+      wearing the visor sits on a couch on the right under a lamp, and the centred headline
+      "Entertainment / The ultimate theater. / Wherever you are." sits pinned over the scene
+      for the full shot. Per-frame motion decays steadily from ~15 to ~3 across the shot
+      (ease-out profile) — the only thing moving is the looping ambient screen content and
+      a slow settle of the room's ambient light; the headline itself never shifts a pixel.
+    moves:
+      - move: pinnedHeadlineAmbientBG
+        target: headline
+        at_f: 0
+        params: {dur_f: 23, locked: true}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoOut}}
+    bg: {kind: blurred-ui, moves: [grainShift]}
+    treatment: [vignette]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 4
+    t: [2.17, 2.37]
+    frames: [65, 71]
+    layout: grid
+    content: >
+      7-frame flash cut to a white background 3-panel grid: two square close-ups of the
+      visor's glass-to-frame seam (top row) and one wide reflective material detail (bottom
+      row). Held static for the full 7 frames — below the 11f minimum-shot-length craft
+      rule, functioning as a texture-flash beat rather than a readable shot.
+    moves:
+      - move: specFlashCluster
+        target: material_grid
+        at_f: 0
+        params: {panel_index: 1, dur_f: 7}
+    camera: {move: pushIn, params: {scale: [1, 1.0], ease: linear}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 5
+    t: [2.40, 2.63]
+    frames: [72, 79]
+    layout: split
+    content: >
+      8-frame flash cut to a white split layout: a left-aligned spec list (Enclosure, Light
+      Seal, Head Band, Power, Sound — one bold label + one grey sentence each) beside a
+      product photo of a model wearing the visor in profile, right-aligned. Static hold,
+      no per-line reveal visible within the 8 frames available.
+    moves:
+      - move: specFlashCluster
+        target: spec_list_card
+        at_f: 0
+        params: {panel_index: 2, dur_f: 8}
+    camera: {move: pushIn, params: {scale: [1, 1.0], ease: linear}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 6
+    t: [2.67, 2.87]
+    frames: [80, 86]
+    layout: centre-stack
+    content: >
+      7-frame flash cut to a white card: a headline sentence describing the laminated-glass
+      enclosure and aluminium frame, an exploded render of the visor's underside/band below
+      it, and a coral-orange "Learn more about design" pill CTA. Third and last card in the
+      rapid-flash cluster.
+    moves:
+      - move: specFlashCluster
+        target: material_callout_card
+        at_f: 0
+        params: {panel_index: 3, dur_f: 7}
+    camera: {move: pushIn, params: {scale: [1, 1.0], ease: linear}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 7
+    t: [2.90, 3.60]
+    frames: [87, 108]
+    layout: 3d-set
+    content: >
+      Hard cut to black. "Revolutionary dual-chip performance" copy sits over a render of
+      the visor's construction separated into three flat layers along the z-axis — outer
+      glass/frame shell, a middle chip/sensor board, and the inner light-seal shell — spaced
+      apart in a vertical exploded stack. Over the 22-frame shot the layers close back
+      together and the camera settles on a tight lens/dial close-up of the reassembled
+      visor. Motion profile is ease-in-out with the peak mid-shot, matching the layers'
+      closing motion.
+    moves:
+      - move: explodedLayerReveal
+        target: visor_construction
+        at_f: 0
+        params: {axis: z, layer_count: 3, dur_f: 21, ease: expoInOut}
+    camera: {move: orbit3D, params: {rotateY_deg: [-6, 0], perspective_px: 1200, dur_f: 22, ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [vignette, bloomGlow]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 8
+    t: [3.63, 4.27]
+    frames: [109, 128]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to real, live-action footage of a home interior (fireplace, wood floor,
+      framed art) with seven visionOS app-icon bubbles (Music, Freeform/teal, Safari,
+      Photos, Files, Messages/green, TV) composited as floating 3D-shadowed circles at
+      different depths across the room. The whole cluster drifts at what the profile flags
+      as constant/linear velocity — read as one lateral camera pan across the space rather
+      than any single icon animating.
+    moves:
+      - move: iconCloudDrift
+        target: app_icon_cluster
+        at_f: 0
+        params: {bob_amp_px: 6, bob_period_f: 90, per_icon_phase_offset_f: 12}
+    camera: {move: whipPan, params: {x_sweep_px: 220, dur_f: 20, ease: linear, motion_blur: none, note: "constant-velocity lateral dolly, not a whip — reusing whipPan's axis, not its speed profile"}}
+    bg: {kind: 3d-set, moves: [parallaxLayers]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 9
+    t: [4.30, 5.00]
+    frames: [129, 150]
+    layout: split
+    content: >
+      Hard cut back to the white spec-list layout, now showing the model in two further
+      profile poses adjusting the head band and lifting the visor to her ear, same
+      left-text/right-photo split as shot 5. Ease-in-out motion, peaking mid-shot as she
+      shifts pose.
+    moves:
+      - move: staggerRise
+        target: pose_photo
+        at_f: 0
+        params: {y: [10, 0], opacity: [0.7, 1], dur_f: 10, ease: springSoft}
+    camera: {move: pushIn, params: {scale: [1, 1.01], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 10
+    t: [5.03, 5.97]
+    frames: [151, 178]
+    layout: floating-panel
+    content: >
+      Hard cut to a light-grey background; a dark hand holds an iPad-shaped tablet at a
+      slight angle, screen filling most of frame with rounded corners and a visible camera
+      dot. The on-screen content is the site's spec-swatch section: a bottom tab bar reading
+      "Head Band · Displays · Light Seal · Digital Crown · Top button · Power" with one
+      3D product render above it. Across the shot's 28 frames the render reframes to a new
+      crop/zoom for each tab (full visor → band buckle close-up → dial with red indicator
+      dot → top-button close-up → full visor again), each held ~5-6f, ease-in-out per hop.
+      The tablet itself has a small constant handheld sway (~±2°) independent of the
+      on-screen camera hops.
+    moves:
+      - move: specTabCameraJump
+        target: product_render_on_tablet_screen
+        at_f: 0
+        params: {tab_count: 5, dur_f_per_hop: 6, ease: expoInOut}
+      - move: breathe
+        target: tablet_frame
+        at_f: 0
+        params: {rotate_deg: [-2, 2], period_f: 28, note: "handheld sway on the physical frame, decoupled from the on-screen camera hops"}
+    camera: {move: pushIn, params: {scale: [1, 1.0], ease: linear}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+techniques:
+  - id: handheld-device-frame-spec-tabs
+    what: >
+      The entire final shot frames live website content inside a photographed/rendered
+      tablet held by a real hand, rather than a flat full-bleed screenshot. Selecting each
+      spec tab in the on-screen UI triggers the 3D product render to reframe to a new
+      focal point (band, dial, button) via a quick eased camera hop, while the tablet frame
+      itself carries an independent, slower handheld sway.
+    where: shot 10, frames 151-178
+    why_it_reads: >
+      Two motions running at different speeds and on different rigs (fast discrete camera
+      hops inside the screen vs. slow continuous sway of the physical frame) sell "this is
+      a real device being held", which a static screenshot or a single locked camera never
+      could.
+    remotion_recipe: >
+      Render the tablet chrome as a fixed-aspect rounded-rect div with a soft drop shadow
+      and a thin inner bezel. Inside it, mount the product render in its own absolutely
+      positioned wrapper with its own transform (translate/scale keyed per active tab index,
+      expoInOut, ~6f per hop) so screen content moves independently of the outer frame.
+      Apply a second, much slower transform (rotateZ -2 to 2deg, sinusoidal, 28f period) to
+      the outer tablet wrapper only, driven off frame directly (not off the tab index), so
+      the two motions never sync up.
+    difficulty: moderate
+
+  - id: chip-exploded-layer-reveal
+    what: >
+      The visor's internal construction is shown as three flat layers (outer glass/frame,
+      chip/sensor board, inner light seal) pulled apart along the z-axis into a vertical
+      exploded stack, then closed back together, while the camera performs a slow orbit
+      around the whole assembly.
+    where: shot 7, frames 87-108
+    why_it_reads: >
+      Exploding along a single consistent axis (not scattering parts in arbitrary
+      directions) reads as an engineering diagram, which borrows credibility from technical
+      drawings rather than looking like a generic product-render flourish.
+    remotion_recipe: >
+      Stack three pre-rendered/pre-modelled layer assets as siblings inside one
+      perspective/preserve-3d wrapper. Animate each layer's translateZ (and a small matching
+      translateY for the vertical spacing seen on screen) from 0 to a layer-specific offset
+      and back, all driven by one shared progress value (expoInOut, ~21f), so they open and
+      close in lockstep. Orbit the parent wrapper's rotateY -6→0deg over the same duration
+      so the reassembly reads as one continuous camera+object move, not two separate events.
+    difficulty: hard
+
+  - id: rapid-detail-flash-montage
+    what: >
+      Three distinct informational cards — a material-texture grid, a spec-list-with-photo
+      card, and a material-callout-with-CTA card — are each held for only 7-8 frames
+      (below the 11f minimum-shot-length rule) in immediate hard-cut succession.
+    where: shots 4-6, frames 65-86 (22 frames total across three shots)
+    why_it_reads: >
+      No single card is meant to be read; the cluster reads as "there is a lot of
+      considered detail here", trading legibility of any one panel for a sense of density.
+      It only works because it is exactly three cards, back to back, inside one continuous
+      high-energy stretch of the edit — an isolated 7f shot elsewhere would just read broken.
+    remotion_recipe: >
+      Sequence three pre-composed static cards back to back with hardCut transitions and no
+      per-card entrance animation (any entrance would get clipped by the short duration
+      anyway). Gate this pattern behind a rule: only trigger it as a group of 3, each
+      6-9f, never as a single isolated sub-11f shot.
+    difficulty: trivial
+
+  - id: floating-app-icon-cloud
+    what: >
+      Seven flat-colour, circular app icons are composited into real handheld room footage
+      at varying depths, each with a soft drop shadow, while the camera pans laterally
+      across the room at constant velocity.
+    where: shot 8, frames 109-128
+    why_it_reads: >
+      Real, textured, imperfect room footage grounds the otherwise-flat vector icons in
+      physical space; the constant-velocity pan (rather than an eased push) reads as a
+      believable head-turn in a spatial-computing headset rather than an edited camera move.
+    remotion_recipe: >
+      Composite the live-action plate as the background layer. Absolutely-position each
+      icon as a circular div with drop-shadow, placed at a fixed (x, y, scale-as-depth)
+      coordinate. Give each icon a small independent sinusoidal translateY bob
+      (amplitude ~6px, period ~90f, phase offset by icon index × 12f so none sync) layered
+      on top of one shared linear translateX applied to the whole icon layer plus the
+      background plate together, so icons and room move in the same plane and parallax is
+      implicit rather than separately keyed.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 9
+  median_shot_f: 21
+  fastest_f: 7
+  slowest_f: 28
+  pattern: >
+    dark 23f identity loop -> white 19f turntable hero with static copy -> 23f pinned-
+    headline ambient-video section -> three 7-8f detail-card flashes back to back -> 22f
+    exploded chip-layer build -> 20f floating-icon room pan -> 22f wearing-demo split ->
+    28f handheld-tablet close with per-tab camera hops. Energy is front-loaded low (dark
+    loop), spikes at the flash cluster and chip build, then settles for the human/proof
+    beats at the end.
+  beat_grid_f: 0
+  energy_curve: wave
+
+transferable:
+  - Compile a product-reveal video as discrete hard-cut hero moments lifted straight from
+    the live site, rather than one continuous scroll capture — it sells "look how many good
+    moments there are" instead of "look how smooth the scroll is."
+  - Close a launch-recap edit on a handheld device frame (not a flat screenshot) so the last
+    beat is physically "this is real and in your hands", after a run of full-bleed shots.
+  - Build a chip/hardware reveal as a literal single-axis z-separation of flat layers with
+    an orbiting camera on the same timeline — not a cross-fade between two static renders.
+  - Composite floating spatial UI into real handheld footage with each element bobbing on
+    its own phase-offset sine, then move camera and background plate together as one linear
+    pan so the parallax between UI and room reads as physical, not separately keyed.
+  - Deliberately break the 11f minimum-shot rule for a tight cluster of exactly three detail
+    cards back to back when the goal is conveying density rather than legibility — never as
+    an isolated short shot.
+  - Pin a headline completely still over a looping ambient background video so a
+    copy-heavy shot still reads as alive without animating the text itself.
+
+avoid:
+  - Shots 1 and 3 depend on real pre-rendered 3D/live-action Apple asset-pipeline footage
+    for the device loop and the ambient theater scene; substitute a WebGL/three.js render
+    pass or licensed stock plate driven by the same easing curves logged here, not an
+    attempt to hand-paint the material response.
+  - The exploded chip-layer render implies true subsurface-scattering glass shaders;
+    approximate in code with flat layered PNG/SVG cross-sections on a CSS 3D transform
+    stack rather than chasing physically-accurate refraction.
+  - This reference is a hard-cut highlight compilation of a real, already-live website, not
+    a captured continuous scroll — there is no literal scroll-distance/scroll-easing data to
+    extract from it; don't treat any shot boundary here as scroll timing.
+  - No shape-driven mask reveal (circle/blob/polygon wipe) appears anywhere in this clip —
+    do not claim one when reusing this spec as a source for that pattern.
+
+detection_notes: >
+  All 9 shot-boundary cuts (22/23, 41/42, 64/65, 71/72, 79/80, 86/87, 108/109, 128/129,
+  150/151) were checked against the contact sheet and confirmed as genuine hard cuts between
+  distinct site sections or renders — none were false-positive flashes needing a merge.
+  Shots 4-6 (frames 65-86, 7-8f each) fall below the 11f minimum-shot-length craft rule; this
+  is treated as a deliberate three-card flash cluster rather than a detector error, per
+  "rapid-detail-flash-montage" above.
+
+convergence:
+  - The soft drop shadow under the handheld tablet in shot 10 matches the dropShadowSoft
+    treatment already used on the floating dashboard in the existing
+    "A_not-your-average-ui-animation" byshubh_ spec — same treatment, different context
+    (handheld device vs. isometric dashboard).
+
+new_moves:
+  - name: explodedLayerReveal
+    params: {axis: z, layer_count: 3, dur_f: 21, ease: expoInOut}
+    description: >
+      A hard-surface object's internal construction separates into discrete flat layers
+      along one consistent axis (translateZ + matching translateY spacing) driven by one
+      shared progress value, then closes back together, typically while the camera orbits
+      the assembly on the same timeline.
+  - name: specTabCameraJump
+    params: {tab_count: 5, dur_f_per_hop: 6, ease: expoInOut}
+    description: >
+      Inside a persistent device-frame mockup, selecting a spec/feature tab triggers the
+      on-screen 3D product render to reframe (translate + scale) to a new focal point tied
+      to that tab, via a short eased hop rather than a continuous drag or crossfade.
+  - name: specFlashCluster
+    params: {panel_count: 3, dur_f_each: 7, transition: hardCut}
+    description: >
+      Exactly three static informational panels shown back to back at durations below the
+      11f minimum-shot rule, used as a group to convey density of detail rather than to be
+      individually read; never used as a single isolated short shot.
+  - name: iconCloudDrift
+    params: {bob_amp_px: 6, bob_period_f: 90, per_icon_phase_offset_f: 12}
+    description: >
+      A cluster of flat circular UI icons composited into real footage at varied depths,
+      each bobbing on an independent phase-offset sine, moved as one group with the
+      background plate under a single shared linear pan so icon-to-room parallax is
+      implicit rather than separately keyed per icon.
+  - name: pinnedHeadlineAmbientBG
+    params: {locked: true, dur_f: "whole shot"}
+    description: >
+      A headline's position and opacity are completely locked for the full shot while a
+      looping ambient background video supplies all the motion, so a copy-heavy static
+      composition never reads as a freeze-frame.

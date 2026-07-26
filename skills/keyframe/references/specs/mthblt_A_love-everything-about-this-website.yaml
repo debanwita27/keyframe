@@ -1,0 +1,434 @@
+id: mthblt_A_love-everything-about-this-website
+source: https://x.com/mthblt/status/love-everything-about-this-website
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 60
+  duration_s: 16.95
+  orientation: horizontal
+
+verdict: >
+  A full-bleed, pointer-locked WebGL 3D world (not a scrolled page) is toured as one
+  continuous flight through discrete "sections" — meadow, coral lagoon, fungi forest —
+  each entered through a hard flash-cut title card, with a shoppable product HUD pinned
+  in screen-space over the moving 3D avatar. The illusion of scroll is replaced entirely
+  by camera dolly-through-world, which is the technique worth stealing for any
+  full-bleed 3D product tour.
+
+palette:
+  bg: "#F0F0C0"
+  ink: "#001800"
+  accent: "#3078C0"
+  support: ["#6090C0", "#184818", "#78A860", "#78A8A8"]
+  notes: >
+    Each world section carries its own saturated environment palette (sky-blue meadow,
+    red-coral desert, dark moss-green forest); the only constant neutral is the cream
+    UI-card background used for wordmarks and the product panel, which stays flat across
+    every environment so the shoppable UI reads as one consistent layer above the 3D world.
+
+typography:
+  family_look: geometric sans
+  weights: [bold]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.22
+  notes: >
+    Section wordmarks ("field trip", "coral lagoon", "fungi forest") are set in an
+    all-lowercase, rounded bubble-weight display face, two stacked short words, roughly
+    22% of frame width. Product-card copy ("GIANT KELP PONCHO") is small-caps UI type at
+    under 5% frame width, clearly a secondary HUD layer, not display type.
+
+structure:
+  - act: hook
+    t: [0.0, 1.55]
+    purpose: establish the avatar and wordmark as a static hero card before any camera motion
+    shots: [1]
+  - act: capability
+    t: [1.55, 7.78]
+    purpose: fly into the 3D meadow, then into a coral-desert product world; reveal the shoppable garment on the avatar
+    shots: [2, 3, 4]
+  - act: proof
+    t: [7.78, 13.68]
+    purpose: cycle the avatar through outfit poses with a live product card, then pull back to a 4-avatar collection lineup
+    shots: [5, 6, 7]
+  - act: cta
+    t: [13.68, 16.95]
+    purpose: flash-cut into a final "fungi forest" world and fly through a ring-shaped fungal arch to close on a glowing clearing
+    shots: [8]
+
+shots:
+  - n: 1
+    t: [0.00, 1.55]
+    frames: [0, 93]
+    layout: full-bleed-ui
+    content: >
+      Static hero frame: pink tentacle/petal flower shapes billow in from top-right over a
+      flat sky-blue background; a humanoid avatar in a dark furred jacket with a
+      flower-and-bird headdress stands centre-left holding a small bird. "field trip"
+      wordmark sits upper-left in cream bubble type; two green pill badges (recording /
+      currency HUD chrome) sit top-right. Only the petal geometry moves; avatar and camera
+      are locked off.
+    moves:
+      - move: blobMorphAmbient
+        target: petal_flower_geometry
+        at_f: 0
+        params: {amp_pct: 4, period_f: 90, control_points: 6, note: "soft-body billow, no rigid rotation"}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 2
+    t: [1.55, 5.10]
+    frames: [94, 306]
+    layout: 3d-set
+    content: >
+      Camera dollies forward off the static hero into a rolling grass meadow dotted with
+      giant pink flowers; the avatar is now full-body, small in frame, walking through the
+      field. Motion is fast at the cut then eases to a settle (ease-out profile per
+      motion-analysis), landing on a wide establishing composition of the meadow.
+    moves:
+      - move: dollyThrough
+        target: camera
+        at_f: 0
+        params: {translateZ_pct: [0, 60], fov_deg: [42, 58], dur_f: 120, ease: expoOut}
+    camera: {move: dollyThrough, params: {translateZ_pct: [0, 60], ease: expoOut}}
+    bg: {kind: 3d-set, moves: [driftCamera]}
+    treatment: [filmGrain, vignette]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 3
+    t: [5.12, 6.73]
+    frames: [307, 404]
+    layout: 3d-set
+    content: >
+      Camera orbits roughly 40° around the avatar standing among tall flower stalks, peak
+      velocity mid-shot then settling (ease-in-out per motion profile) — a slow product-
+      style turntable read on the avatar's default outfit before the coral-world cut.
+    moves:
+      - move: orbit3D
+        target: camera
+        at_f: 0
+        params: {rotateY_deg: [-20, 20], perspective_px: 1400, dur_f: 98, ease: expoInOut}
+    camera: {move: orbit3D, params: {rotateY_deg: [-20, 20], ease: expoInOut}}
+    bg: {kind: 3d-set, moves: [driftCamera]}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: flashCut, params: {dur_f: 3, note: "white/red flash into coral title card"}}
+    hold_f: 6
+
+  - n: 4
+    t: [6.75, 7.78]
+    frames: [405, 466]
+    layout: full-bleed-ui
+    content: >
+      Hard flash-cut (motion spike 70.06 at f466 boundary, the sharpest in the piece) into
+      "coral lagoon" wordmark over a red-coral desert-and-water backdrop; the wordmark's
+      exact glyph shape is mirrored/rippled in the water surface directly below it. A green
+      kelp-poncho garment materialises on a floating mannequin figure beneath the text as
+      the camera pulls back off the title.
+    moves:
+      - move: unblurIn
+        target: coral_lagoon_wordmark
+        at_f: 0
+        params: {blur_px: [16, 0], scale: [1.05, 1], dur_f: 14, ease: expoOut}
+      - move: mirrorReflectionRipple
+        target: wordmark_water_reflection
+        at_f: 0
+        params: {dur_f: 40, wave_amp_px: 6, period_f: 20}
+      - move: scaleIn
+        target: kelp_poncho_garment
+        at_f: 10
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+    camera: {move: pullOut, params: {scale: [1.1, 1], ease: expoInOut}}
+    bg: {kind: 3d-set, moves: [driftCamera]}
+    treatment: [filmGrain, vignette]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 5
+    t: [7.78, 10.23]
+    frames: [467, 614]
+    layout: split
+    content: >
+      Avatar in the giant-kelp poncho cycles through roughly 13 distinct dance/try-on poses
+      (yoga balance, walk-cycle, hood-up spin, arms-out T-pose) at ~10-frame intervals while
+      a fixed cream product card is pinned to the right third of the frame: garment
+      thumbnail, "GIANT KELP PONCHO", origin tag, and a second swatch thumbnail for
+      matching trousers. A small circular reticle cursor appears intermittently over the
+      avatar, implying drag-to-rotate/try-on interaction. Camera slowly arcs left-to-right
+      around the avatar throughout (ease-out then a bounce settle per motion profile).
+    moves:
+      - move: hudCardSlideIn
+        target: product_card_panel
+        at_f: 0
+        params: {x_pct: [100, 0], dur_f: 16, ease: expoInOut, pinned: screen-space}
+      - move: poseCycleSwap
+        target: avatar_pose
+        at_f: 6
+        params: {hold_f: 10, pose_count: 13, transition: hardCut, note: "baked pose library, not interpolated between poses"}
+      - move: popIn
+        target: drag_reticle_cursor
+        at_f: 20
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap, retrigger: true}
+    camera: {move: orbit3D, params: {rotateY_deg: [-15, 15], perspective_px: 1400, ease: expoOut}}
+    bg: {kind: 3d-set, moves: [driftCamera]}
+    treatment: [filmGrain, dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 6
+    t: [10.25, 13.67]
+    frames: [615, 820]
+    layout: 3d-set
+    content: >
+      Avatar leaps into a rock pool; a heavy particle-splash simulation fills the frame
+      (builds in, exits fast — the "ease-in, builds, exits fast" profile with an
+      overshoot/settle bounce). Camera then pulls back and up to reveal four avatar
+      characters, each standing on its own small floating green sphere/planet, one holding
+      a red balloon — a product-collection lineup shot.
+    moves:
+      - move: splashParticleBurst
+        target: water_surface
+        at_f: 0
+        params: {dur_f: 30, particle_count: 400, ease: expoIn}
+      - move: pullOut
+        target: camera
+        at_f: 60
+        params: {scale: [1.6, 1], translateY_px: [-40, 0], dur_f: 90, ease: expoInOut}
+      - move: staggerRise
+        target: collection_avatars
+        at_f: 90
+        params: {y: [24, 0], opacity: [0, 1], stagger_f: 4, dur_f: 18, ease: springSoft}
+    camera: {move: pullOut, params: {scale: [1.6, 1], ease: expoInOut}}
+    bg: {kind: 3d-set, moves: [driftCamera]}
+    treatment: [filmGrain, dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 7
+    t: [13.68, 14.68]
+    frames: [821, 880]
+    layout: full-bleed-ui
+    content: >
+      Camera and background hold static on the 4-avatar collection lineup; only a small
+      region animates — a "fungi forest" wordmark fading up over dark moss texture in the
+      lower-right, functioning as the next-section teaser card while the current world is
+      still on screen (no macro camera event, matches profile's "small-region/text only"
+      reading for this shot).
+    moves:
+      - move: maskWipeUp
+        target: fungi_forest_teaser_wordmark
+        at_f: 4
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+    camera: {move: breathe, params: {scale: [1, 1.01], period_f: 60}}
+    bg: {kind: 3d-set, moves: []}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: flashCut, params: {dur_f: 3}}
+    hold_f: 4
+
+  - n: 8
+    t: [14.68, 16.95]
+    frames: [881, 1016]
+    layout: 3d-set
+    content: >
+      Flash-cut into full "fungi forest" wordmark over a dark green tree-bark texture, then
+      the camera dollies through a giant green ring-shaped fungal arch (a literal torus of
+      mushroom growth) into a moonlit clearing with drifting sparkle particles, a small
+      overhead moon, and a glowing mushroom-ring altar at the centre where the shot settles
+      and holds.
+    moves:
+      - move: unblurIn
+        target: fungi_forest_wordmark
+        at_f: 0
+        params: {blur_px: [18, 0], scale: [1.04, 1], dur_f: 20, ease: expoOut}
+      - move: ringApertureFlythrough
+        target: camera
+        at_f: 24
+        params: {translateZ_pct: [0, 100], ring_inner_radius_pct: 30, ring_outer_radius_pct: 55, dur_f: 90, ease: expoInOut}
+      - move: grainShift
+        target: sparkle_particles
+        at_f: 30
+        params: {noise_seed: frame, opacity: 0.08}
+    camera: {move: dollyThrough, params: {translateZ_pct: [0, 100], ease: expoInOut}}
+    bg: {kind: 3d-set, moves: [driftCamera, gradientDrift]}
+    treatment: [filmGrain, vignette, bloomGlow]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+techniques:
+  - id: ring-aperture-flythrough
+    what: >
+      A giant torus-shaped fungal arch sits in the 3D scene as a literal ring; the camera
+      dollies forward through its hole, so the ring functions as a travelling circular
+      mask/iris that the world beyond is revealed through, rather than a flat cut.
+    where: shot 8, frames ~905-995
+    why_it_reads: >
+      A shape mask that exists as geometry in the world (not a screen-space overlay) reads
+      as an environmental portal rather than an edit trick — it motivates the reveal
+      diegetically, so the "mask" never looks like a UI device.
+    remotion_recipe: >
+      In 2D/CSS terms without full 3D: render the destination scene behind a foreground
+      layer that has an SVG mask of a ring (two concentric circles, evenodd fill-rule,
+      radius A shrinking toward radius B). Scale the foreground layer up (or push camera
+      translateZ in a three.js scene) while the ring mask's outer radius grows past the
+      viewport bounds, so the ring appears to rush toward and past the camera. In three.js,
+      literally model a torus, position the camera to fly through its centre hole with
+      translateZ interpolated 0→100% of the distance, expoInOut.
+    difficulty: hard
+
+  - id: continuous-3d-world-as-scroll-analog
+    target: whole video
+    what: >
+      There is no scrollbar, address bar, or page anywhere in this reference — it is a
+      full-bleed, pointer-locked WebGL experience. The feeling of "scrolling through a long
+      site" is produced entirely by forward camera dolly (dollyThrough) between discrete
+      title-carded "sections" (meadow → coral lagoon → fungi forest), each entered via a
+      flash-cut spike (peak motion values 52.6, 43.6, 70.1, 66.9 at the section boundaries).
+    where: shot boundaries at frames 93, 404, 466, 820
+    why_it_reads: >
+      Section boundaries get a hard flash instead of an eased scroll-stop, so each new
+      "page" reads as arriving with impact rather than drifting into view — appropriate for
+      a game-like/3D product world where literal scroll physics would break the illusion.
+    remotion_recipe: >
+      Drive one global progress value through discrete camera-position keyframes (dolly
+      translateZ + look-at target) rather than a scroll-linked transform. At each section
+      boundary, cut the progress value hard (no easing across the cut) and trigger a 2-3f
+      white/accent flashCut, then resume an expoOut ease into the new section's camera path.
+      This is the WebGL equivalent of a scroll-snap point, but implemented as a camera
+      state machine instead of scrollTop.
+    difficulty: hard
+
+  - id: screen-space-product-hud-over-3d-world
+    what: >
+      A flat, cream UI card (garment thumbnail, name, origin tag, swatch) is pinned to a
+      fixed screen position while the 3D camera behind it continues to orbit and the avatar
+      cycles through poses — the HUD never moves with the world.
+    where: shot 5, frames 467-614
+    why_it_reads: >
+      Keeping the shoppable info static while everything behind it moves signals "this is
+      real interface" rather than "this is a video" — the split between world-space motion
+      and screen-space UI is what sells the shoppability.
+    remotion_recipe: >
+      Two-layer composition: a 3D canvas layer (three.js/WebGL) for the avatar/camera, and
+      an absolutely-positioned HTML/CSS overlay layer for the card, with no shared transform
+      context. Slide the card in once with slidePush/hudCardSlideIn (x 100%→0, ~16f,
+      expoInOut) and then leave its transform untouched for the rest of the shot regardless
+      of camera movement underneath.
+    difficulty: moderate
+
+  - id: baked-pose-cycle-instead-of-interpolated-rotation
+    what: >
+      The try-on avatar does not rotate smoothly on a turntable; it swaps between ~13
+      distinct held poses (yoga pose, walk stride, hood-up spin, T-pose) roughly every 10
+      frames, each a discrete animation clip rather than an interpolated blend.
+    where: shot 5, frames 467-614
+    why_it_reads: >
+      Distinct, characterful poses read as "outfit try-on" content, not just as an object
+      spinning — it shows what the garment does in motion rather than just what it looks
+      like from N angles.
+    remotion_recipe: >
+      Precompute or pre-render a short library of pose states (sprite sheet, GLTF animation
+      clips, or Lottie states). Drive an index into that library from `Math.floor(frame/10)
+      % poseCount` and hard-switch (no cross-fade) between them so each pose is legible on
+      its own, matching the source's discrete-jump feel rather than smoothing it.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 7
+  median_shot_f: 148
+  fastest_f: 60
+  slowest_f: 213
+  pattern: >
+    static hero hold (94f) → meadow dolly-in easing to a stop (213f) → orbit turntable
+    (98f) → flash-cut title + garment materialise (62f) → pose-cycle product shot with
+    camera arc (148f) → splash + collection pull-back (206f) → static teaser-text-only
+    shot (60f) → flash-cut into ring-flythrough finale (136f).
+  beat_grid_f: 0
+  energy_curve: wave
+
+transferable:
+  - Replace page-scroll entirely with a camera state machine (dollyThrough between fixed
+    world positions) for a full-bleed 3D/WebGL product tour — hard-cut with a 2-3f flash at
+    each section boundary instead of easing scroll to a stop.
+  - Build a shape-as-portal reveal by modelling the mask as literal 3D geometry (a torus)
+    that the camera flies through, instead of a 2D clip-path overlay.
+  - Pin shoppable product UI to screen-space while the 3D world behind it keeps moving —
+    never parent the HUD to the world's transform.
+  - Swap between a small library of discrete held poses on a hard index (frame/10 % N)
+    rather than interpolating a continuous rotation, when showing a garment/object in use.
+  - Mirror a title wordmark into a rippling "water reflection" directly beneath it for a
+    one-time environmental flourish at a title-card cut.
+
+avoid:
+  - Hand-animating the petal/cloth billow in shot 1 keyframe by keyframe; drive it from a
+    small sum-of-sines control-point offset seeded by frame number instead.
+  - Rotoscoping or manually painting the splash particle burst; use a seeded particle
+    system (count, spread, gravity, seed=elementIndex) so it renders deterministically.
+  - Treating the ring-flythrough as a 2D clip-path animation for authenticity's sake if you
+    already have 3D geometry available — model the ring as real geometry and dolly the
+    camera through it; the parallax it gives for free is what makes it read as a portal
+    rather than a wipe.
+
+new_moves:
+  - name: dollyThrough
+    params: {translateZ_pct: [0, 100], fov_deg: [42, 58], dur_f: 120, ease: expoOut}
+    description: >
+      Continuous forward camera translation along the view axis through a 3D scene
+      (as opposed to dollyToUI's zoom-to-a-focus-point). Used to traverse "sections" of a
+      full-bleed 3D world in place of page scroll. FOV widens slightly as translateZ
+      increases to sell speed without motion blur.
+  - name: ringApertureFlythrough
+    params: {translateZ_pct: [0, 100], ring_inner_radius_pct: 30, ring_outer_radius_pct: 55, dur_f: 90, ease: expoInOut}
+    description: >
+      Camera/content moves through a literal ring/torus-shaped mask in 3D space (or an
+      animated SVG-mask ring in 2D) so the ring's hole functions as a travelling iris that
+      the next scene is revealed through. The mask is the subject, not an overlay.
+  - name: hudCardSlideIn
+    params: {x_pct: [100, 0], dur_f: 16, ease: expoInOut, pinned: screen-space}
+    description: >
+      A flat UI card enters from off-frame and is pinned in screen-space thereafter,
+      independent of any camera or world transform happening behind it. Used for
+      shoppable product info over a moving 3D/game scene.
+  - name: poseCycleSwap
+    params: {hold_f: 10, pose_count: 13, transition: hardCut}
+    description: >
+      A character/object hard-switches between a small library of discrete pose states on
+      a fixed frame interval, rather than interpolating continuously between them.
+  - name: blobMorphAmbient
+    params: {amp_pct: 4, period_f: 90, control_points: 6}
+    description: >
+      Soft-body ambient deformation of an organic shape (petal, cloth, tentacle) via a
+      handful of control points each offset by an independent sine wave — used as the sole
+      "nothing is ever still" ambient move in an otherwise locked-off hero shot.
+  - name: mirrorReflectionRipple
+    params: {dur_f: 40, wave_amp_px: 6, period_f: 20}
+    description: >
+      A wordmark or object is mirrored vertically beneath itself (as a water reflection)
+      with a small sine-driven vertical displacement per horizontal slice to simulate
+      ripple, used once at a title-card cut for environmental flavour.
+  - name: splashParticleBurst
+    params: {dur_f: 30, particle_count: 400, ease: expoIn}
+    description: >
+      A seeded particle system emits from an impact point (character entering water),
+      builds quickly (expoIn) and dissipates faster than it built — matches the
+      "ease-in, builds, exits fast" motion-curve signature of a physical splash.
+
+convergence:
+  - Product cards use staggerRise / scaleIn entrance shapes (y or scale + opacity + blur)
+    matching the byshubh_ corpus's default element-entrance vocabulary.
+  - The title-card wordmark treatment (unblurIn, blur 16-18px resolving over ~14-20f,
+    expoOut) matches the byshubh_ corpus's logo/hero-shot entrance pattern.
+  - Soft drop shadow on floating UI (dropShadowSoft) on the product card matches the
+    byshubh_ corpus's standard floating-UI treatment.

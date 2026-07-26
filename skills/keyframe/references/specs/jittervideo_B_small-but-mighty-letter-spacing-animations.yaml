@@ -1,0 +1,239 @@
+id: jittervideo_B_small-but-mighty-letter-spacing-animations
+source: local-reference (jittervideo_B_small-but-mighty-letter-spacing-animations.mp4)
+category: kinetic-type
+product_type: text-heavy-tool
+
+format:
+  aspect: "4:5"
+  fps: 30
+  duration_s: 4.0
+  orientation: vertical
+
+verdict: >
+  A self-referential feature demo: the "letter spacing" effect is itself the
+  entire visual, shown as a 3D wall of repeating type receding above and below
+  a single calm, legible instance of the words, while every letter in the
+  receding rows stutters via a deterministic per-character noise offset.
+  Buildable entirely with CSS 3D transforms and a seeded per-letter hash, no
+  WebGL or hand-keyframing needed.
+
+palette:
+  bg: "#0000F0"
+  ink: "#F0F0FA"
+  accent: "#0000A8"
+  support: ["#6060C0", "#6048C0"]
+  notes: >
+    Strictly monochrome electric-blue field with off-white letters — no second
+    hue anywhere. Variation is carried entirely by luminance/saturation: rows
+    receding in the 3D perspective (further from the calm centre block) render
+    in progressively darker/desaturated blue tints, standing in for depth fog
+    since there is no separate accent colour to spend on it.
+
+typography:
+  family_look: grotesk
+  weights: [bold]
+  case: upper
+  tracking: normal
+  headline_frame_share: 0.5
+  notes: >
+    Single word pair "LETTER" / "SPACING" set in bold uppercase grotesk,
+    alternated and stacked six lines deep in the calm centre block (LETTER,
+    SPACING, LETTER, SPACING, LETTER, SPACING). Identical wordset repeats in
+    every receding row above and below, so the whole frame is built from one
+    string with zero other copy.
+
+structure:
+  - act: hook
+    t: [0.0, 4.0]
+    purpose: >
+      Demonstrate the "letter spacing" animation preset as the entire visual
+      content of the video — no product UI, no voiceover setup, just the
+      effect running at full intensity for the whole duration.
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 4.00]
+    frames: [0, 120]
+    layout: 3d-set
+    content: >
+      Full-bleed saturated blue field. Centre: six stacked lines reading
+      "LETTER / SPACING / LETTER / SPACING / LETTER / SPACING" in bold
+      uppercase, rendered crisp and stable — the one legible, non-jittering
+      anchor in the frame. Above and below it, the same word-pair repeats in
+      rows arranged as a 3D perspective wall/tunnel: rows curve away from the
+      viewer like the inside of a cylinder, fanning up toward the top edge and
+      down toards the bottom edge, each row more foreshortened the further it
+      is from centre. Every letter in every receding row is mid-glitch: pairs
+      of overlapping duplicate strokes offset by a few pixels and a few
+      degrees of rotation, reseeding continuously, so words read as
+      "TTEER"/"PACINNG"-style double-struck noise rather than clean type. A
+      static "Made with Jitter AI" pill badge sits fixed near the lower third
+      throughout — brand watermark, not part of the animated effect.
+    moves:
+      - move: perspectiveTypeWall
+        target: repeating "LETTER SPACING" rows above and below the centre block
+        at_f: 0
+        params: {perspective_px: 800, rotate_x_per_row_deg: 12, max_rotate_x_deg: 70, dur_f: 120}
+      - move: letterEchoJitter
+        target: every letter glyph in the receding rows
+        at_f: 0
+        params: {amp_edge_px: 6, amp_center_px: 0, rotate_edge_deg: 6, reseed_every_f: 2, dur_f: 120}
+      - move: breathe
+        target: centre "LETTER / SPACING" stack (kept legible, minimal motion)
+        at_f: 0
+        params: {scale: [1, 1.008, 1], period_f: 150}
+    camera:
+      move: driftCamera
+      params: {amp: 0.4%, period_f: 150, axes: xy}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+techniques:
+  - id: letter-echo-jitter-glitch
+    what: >
+      Each character in the "noisy" rows is drawn as two overlapping copies —
+      one static base glyph, one offset copy at dx/dy up to 6px and rotated up
+      to 6deg — reseeded every 2 frames, producing a stutter/double-strike look
+      ("LETTER" reads as "L:TTEER"). Amplitude scales from 0 at the calm centre
+      row to full (6px/6deg) at the outermost receding rows, so noise doubles
+      as a depth cue.
+    where: shot 1, whole duration (frames 0-120), all rows except the centre stack
+    why_it_reads: >
+      A deterministic, continuously-reseeding offset reads as "vibrating" or
+      "glitching" far more convincingly than a single static jitter, and
+      keeping one instance of the words perfectly calm at frame centre gives
+      the eye an anchor so the noise reads as intentional effect, not a
+      render error.
+    remotion_recipe: >
+      Per character span, compute a seeded pseudo-random hash from
+      (charIndex, Math.floor(frame / reseedEveryF)) via a small deterministic
+      hash function (e.g. mulberry32 seeded by charIndex*1000+bucket) — never
+      Math.random(). Use the hash to derive dx, dy in [-amp, amp]px and
+      rotate in [-rotateEdge, rotateEdge]deg. Render two absolutely-stacked
+      spans of the same glyph: base at transform:none, echo at
+      translate(dx,dy) rotate(deg) with opacity ~0.7. Scale amp by the row's
+      normalized distance from the centre row (0 at centre, 1 at the
+      outermost row) so the effect ramps outward.
+    difficulty: moderate
+
+  - id: perspective-type-wall-tunnel
+    what: >
+      Repeating text rows arranged as a bowtie-shaped 3D tunnel: rows above
+      centre rotate increasingly around the X axis toward the viewer's "up"
+      (as if wrapping over a ceiling), rows below rotate the opposite way (as
+      if wrapping under a floor), with rotation magnitude proportional to a
+      row's distance from the centre, capped at ~70deg.
+    where: shot 1, whole duration, all non-centre rows
+    why_it_reads: >
+      Gives an otherwise flat repeated-text pattern real spatial depth and an
+      infinite/tunnel feel without any 3D asset or camera move — it's pure
+      CSS perspective math applied to 2D rows.
+    remotion_recipe: >
+      Outer container: `perspective: 800px; perspective-origin: 50% 50%`.
+      Each row is an absolutely positioned div at `transform-origin: center
+      center`; rowIndex counted from the centre row outward (centre = 0).
+      `rotateX = clamp(rowIndex * 12deg, -70deg, 70deg)`, sign flips above vs
+      below centre. Add a small `translateZ(-rowIndex * 40px)` so rows don't
+      z-fight, and darken each row's color toward `support`/`accent` (darker
+      blue) as `|rowIndex|` increases to sell atmospheric depth in a
+      single-hue palette. No 3D engine needed — flat CSS 3D transforms only.
+    difficulty: moderate
+
+  - id: calm-core-chaotic-perimeter
+    what: >
+      Exactly one instance of the demo word-pair (the dead-centre stack) is
+      held clean and static-looking while every other instance of the same
+      words, radiating outward, is heavily glitched.
+    where: shot 1, whole duration
+    why_it_reads: >
+      Contrast sells the effect: without a calm control instance the viewer
+      cannot tell if the whole frame is broken; with one, the noise reads
+      unambiguously as "letter spacing animation," a deliberate feature, not
+      a bug.
+    remotion_recipe: >
+      Structural, not a new mechanic — simply exclude the centre row(s) from
+      the letterEchoJitter amplitude ramp (amp_center_px: 0) so it inherits
+      none of the offset/rotation the other rows get. Reuse for any
+      "look how wild this effect can get" demo: always keep one legible
+      control instance in frame.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 120
+  fastest_f: 120
+  slowest_f: 120
+  pattern: >
+    One unbroken 120f (4s) shot, no hard cuts — the entire video is a single
+    continuously-running glitch/jitter loop with no held or frozen frames
+    (profile: 0/239 frames frozen across all three motion scales), sustained
+    medium energy throughout rather than a rising curve.
+  beat_grid_f: null
+  energy_curve: flat
+
+transferable:
+  - Steal letterEchoJitter for any "look how expressive our type tool is"
+    micro-demo — it is a hash-seeded per-character offset, not hand-keyframed
+    noise, so it costs one small deterministic function.
+  - Steal perspectiveTypeWall for infinite/tunnel repeating-text backgrounds —
+    pure CSS perspective + rotateX per row, no 3D engine.
+  - Always keep one calm, undistorted instance of the demoed content in frame
+    when the rest of the composition is intentionally chaotic, so the effect
+    reads as a feature rather than a glitch.
+  - A feature-name demo does not need cuts or narrative acts if the effect
+    itself sustains 4s of visual interest — one shot, full duration, is
+    correct here.
+  - >
+    Depth without a second colour: darken/desaturate receding elements toward
+    the same hue family instead of introducing an accent, when the palette is
+    meant to stay monochrome.
+
+avoid:
+  - Do not attempt this as a WebGL particle/text system — it is achievable
+    with CSS 3D transforms on flat row planes plus a per-letter hash offset,
+    both trivially cheap at runtime.
+  - Do not hand-key each letter's stutter position frame by frame — derive it
+    from a deterministic seeded-noise function of (charIndex, frame-bucket)
+    so it reproduces identically on every render (Principle 11).
+  - There is no product UI, cursor, or app chrome in this reference at all —
+    do not force a UI-showcase reading onto it; its value is purely the
+    kinetic-type mechanic.
+
+new_moves:
+  - name: letterEchoJitter
+    params: {amp_edge_px: 6, amp_center_px: 0, rotate_edge_deg: 6, reseed_every_f: 2, dur_f: "whole shot"}
+    description: >
+      Per-letter continuous glitch: each glyph is drawn as a static base copy
+      plus one offset/rotated echo copy at reduced opacity, with the
+      offset/rotation driven by a deterministic hash of (charIndex,
+      frame-bucket) reseeded every `reseed_every_f` frames. Amplitude can be
+      ramped by an external parameter (e.g. distance from a "calm" anchor
+      element) from `amp_center_px` up to `amp_edge_px`. Reads as a
+      stutter/double-strike glitch. Distinct from grainShift (which perturbs
+      the whole frame, not discrete glyphs) and from motionTrail (which
+      implies directional motion blur, not positional noise).
+  - name: perspectiveTypeWall
+    params: {perspective_px: 800, rotate_x_per_row_deg: 12, max_rotate_x_deg: 70}
+    description: >
+      A stack of repeating text rows rendered inside a `perspective` container,
+      each row rotated around the X axis by an amount proportional to its
+      distance from a centre row (sign flips above vs below centre), capped at
+      `max_rotate_x_deg`, with an optional negative translateZ per row to
+      avoid z-fighting. Produces a symmetrical "tunnel" or "bowtie" of type
+      receding both up and down from a flat, legible centre band. Pure CSS 3D,
+      no 3D engine required.
+
+convergence: []
+
+detection_notes: >
+  Profile's cut detector reported "1 cuts detected @ delta > 26.0" but the
+  resulting shot table lists a single row spanning the entire clip
+  (frames 0-239, 4.00s) — i.e. zero internal cuts were actually found; the
+  wording refers to the detector's threshold pass, not a real cut. No merge
+  was needed. Sheet inspection across all 24 sampled frames (f0-f234)
+  confirms continuous single-shot content: the perspective wall and letter
+  jitter run throughout with no layout change or hard cut.

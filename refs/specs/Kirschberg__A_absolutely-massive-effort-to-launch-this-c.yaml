@@ -1,0 +1,732 @@
+id: Kirschberg__A_absolutely-massive-effort-to-launch-this-c
+source: https://x.com/Kirschberg_/status/absolutely-massive-effort-to-launch-this
+category: launch-video
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 44.678
+  orientation: horizontal
+
+verdict: >
+  A 44.7s Discord Nitro rewards campaign spot that never lets one visual idea run past
+  roughly five seconds: a charging orb cracks open, debris resolves into a wordmark, a
+  tumbling card-stack sells partner logos, a live counter races while the camera zooms
+  into it, and a parachuting loot-crate literally delivers the "Unlock with Nitro" CTA.
+  The throughline is objects that transform into the next object rather than cutting to it.
+
+palette:
+  bg: "#000018"
+  ink: "#F4F0FA"
+  accent: "#7830C0"
+  support: ["#300048", "#180030", "#600060", "#78C0F0", "#90E0C0"]
+  notes: >
+    Near-black space background throughout (#000018/#180018) with a magenta-to-purple
+    nebula glow (#300048/#600060/#7830C0) behind every scene. Brand-partner segments
+    (Xbox green, SteelSeries white/pink, Logitech G white/magenta) each get one saturated
+    accent swap against the same dark base, functioning as the "invert once per shot"
+    colour beat rather than a single global accent.
+
+typography:
+  family_look: grotesk
+  weights: [bold, black]
+  case: upper
+  tracking: tight
+  headline_frame_share: 0.55
+  notes: >
+    Headline cards ("BIG", "NEW WAYS TO GET ORBS", "MAX OUT YOUR GAME", "Discord NITRO")
+    run 1-4 words, always upper/mixed-case bold, set very large against the debris field.
+    UI copy (Discord chat, tooltip, game titles) stays small and functional by contrast.
+
+structure:
+  - act: hook
+    t: [0.0, 3.24]
+    purpose: a small object charges with light and cracks open, establishing "something is about to unlock"
+    shots: [1]
+  - act: reveal
+    t: [3.24, 10.41]
+    purpose: the burst resolves into brand mascot, chat notification and orbiting product debris
+    shots: [2, 3]
+  - act: hook
+    t: [10.41, 13.98]
+    purpose: a flash-cut kinetic-type impact ("BIG") resets energy for the capability section
+    shots: [4, 5]
+  - act: capability
+    t: [13.98, 22.76]
+    purpose: partner-integration proof — Xbox Game Pass library, SteelSeries and Logitech G peripherals
+    shots: [6, 7, 8, 9, 10]
+  - act: capability
+    t: [22.76, 33.97]
+    purpose: the reward mechanic itself — an orb counter races up, coalesces into a parachuting loot-crate, and unlocks
+    shots: [11, 12, 13]
+  - act: proof
+    t: [33.97, 37.90]
+    purpose: social proof inside the real Discord app — a voice-channel screen with reaction stickers
+    shots: [14, 15]
+  - act: cta
+    t: [37.90, 44.68]
+    purpose: debris resolves into the Discord Nitro lockup with partner logos, held to the end
+    shots: [16]
+
+shots:
+  - n: 1
+    t: [0.00, 3.24]
+    frames: [0, 97]
+    layout: centre-stack
+    content: >
+      A small dark capsule/battery-shaped object tumbles slowly in starfield space, lit by
+      a growing magenta-purple glow behind it. Fine crack lines spread across its shell as
+      the glow brightens (f60-87), then it shatters outward in a bright white burst at f88,
+      the sharpest motion spike in the whole video (58.3 of a 76.6 peak).
+    moves:
+      - move: orbitRing
+        target: capsule_object
+        at_f: 0
+        params: {rotate_deg: [0, 140], period_f: 97, children_counter_rotate: false, ease: linear}
+      - move: crackGlowReveal
+        target: capsule_shell
+        at_f: 60
+        params: {dur_f: 27, crack_opacity: [0, 1], glow_intensity: [0.2, 1.0], ease: expoIn}
+      - move: shatterBurst
+        target: capsule_object
+        at_f: 88
+        params: {dur_f: 9, flash_opacity: [0, 1, 0], fragment_count: 24, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.08], ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, filmGrain, vignette]
+    audio_cue: riser
+    transition_out: {move: flashCut, params: {dur_f: 2}}
+    hold_f: 0
+
+  - n: 2
+    t: [3.27, 5.74]
+    frames: [98, 172]
+    layout: full-bleed-ui
+    content: >
+      The shatter fragments (a green four-point star, a folded blue paper shard) tumble and
+      settle, then flatten into a Discord "@everyone" chat-mention chip next to the Wumpus
+      mascot and a small stack of server-icon coins, still drifting in the same nebula space.
+    moves:
+      - move: staggerRise
+        target: star_and_paper_fragments
+        at_f: 0
+        params: {y: [24, 0], opacity: [0, 1], blur_px: [10, 0], stagger_f: 4, dur_f: 18, ease: springSoft}
+      - move: popIn
+        target: everyone_chat_chip
+        at_f: 30
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: driftCamera
+        target: whole_comp
+        at_f: 0
+        params: {amp_pct: 1.2, period_f: 160, axes: xy}
+    camera: {move: driftCamera, params: {amp_pct: 1.2, period_f: 160}}
+    bg: {kind: gradient-drift, moves: [gradientDrift, grainShift]}
+    treatment: [filmGrain, dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [5.77, 10.41]
+    frames: [173, 312]
+    layout: full-bleed-ui
+    content: >
+      A dense field of Discord-brand props (rubber duck, camera icon, mascot avatars, a
+      tablet showing a live "Deep Rock Galactic" voice-channel stream) drifts past the
+      camera in loose 3D parallax. A pill-shaped toggle switch prop flips between three
+      states, dark-off to white-on to purple-on, mid-flight, without a scene cut.
+    moves:
+      - move: parallaxLayers
+        target: debris_field
+        at_f: 0
+        params: {depth: [0.2, 0.5, 1.0], amp_px: 30}
+      - move: toggleStateCycle
+        target: toggle_prop
+        at_f: 15
+        params: {dur_f: 55, states: 3, hold_per_state_f: 18, ease: springSnap}
+      - move: scaleIn
+        target: tablet_live_stream_panel
+        at_f: 70
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+    camera: {move: driftCamera, params: {amp_pct: 1.5, period_f: 180}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft, filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: flashCut, params: {dur_f: 4}}
+    hold_f: 0
+
+  - n: 4
+    t: [10.44, 12.91]
+    frames: [313, 387]
+    layout: centre-stack
+    content: >
+      Debris converges through a bright vertical bar shape that morphs into the wordmark
+      "BIG" (a single glowing stroke widens and splits into the three letterforms), with
+      green/blue shard confetti still orbiting it. Holds for a beat before the next whip-pan.
+    moves:
+      - move: barToWordmarkMorph
+        target: big_wordmark
+        at_f: 2
+        params: {dur_f: 18, source_shape: vertical_bar, ease: expoOut}
+      - move: popIn
+        target: debris_shards_around_wordmark
+        at_f: 10
+        params: {scale: [0, 1.1, 1], stagger_f: 2, dur_f: 11, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 1.0, period_f: 90}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, chromaticEdge, filmGrain]
+    audio_cue: impact
+    transition_out: {move: whipPan, params: {dur_f: 6, motion_blur: heavy}}
+    hold_f: 8
+
+  - n: 5
+    t: [12.95, 13.98]
+    frames: [388, 419]
+    layout: 3d-set
+    content: >
+      A fast whip-pan/zoom-blur carries from the "BIG" card into a green-screened cluster
+      of Xbox game boxart cards, already tumbling in 3D as the shot lands.
+    moves:
+      - move: zoomBlurCut
+        target: whole_comp
+        at_f: 0
+        params: {scale: [1, 1.3], dur_f: 5, radial_blur: heavy}
+    camera: {move: whipPan, params: {dur_f: 32, motion_blur: heavy}}
+    bg: {kind: 3d-set, moves: [parallaxLayers]}
+    treatment: [chromaticEdge, motionTrail]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 6
+    t: [14.01, 19.39]
+    frames: [420, 581]
+    layout: 3d-set
+    content: >
+      A loose cloud of Xbox Game Pass boxart cards (Fallout 4, Hades, Starfield, Deep Rock
+      Galactic) tumbles in 3D against a green void, converging into the "XBOX GAME PASS"
+      logo lockup. The camera then holds on floating rounded-rect frames of screen-recorded
+      gameplay trailers (Grounded, an underwater/nature clip, Stardew Valley) tumbling past —
+      this stretch is largely unstyled B-roll footage inside moving picture frames, not
+      bespoke motion design.
+    moves:
+      - move: slideStackIn
+        target: boxart_card_cloud
+        at_f: 0
+        params: {y: [50, 0], stagger_f: 3, z_offset_px: 20, ease: springSoft, dur_f: 20}
+      - move: maskWipeUp
+        target: xbox_game_pass_wordmark
+        at_f: 60
+        params: {dur_f: 16, ease: expoOut}
+      - move: orbitRing
+        target: trailer_frame_cluster
+        at_f: 90
+        params: {rotate_deg: [0, 60], period_f: 100, children_counter_rotate: true}
+    camera: {move: orbit3D, params: {rotateY_deg: [-12, 12], perspective_px: 1200, dur_f: 162}}
+    bg: {kind: 3d-set, moves: [parallaxLayers]}
+    treatment: [dropShadowSoft, chromaticEdge]
+    audio_cue: riser
+    transition_out: {move: matchCut, params: {note: "boxart card edge aligns to next shot's product-shot frame"}}
+    hold_f: 4
+
+  - n: 7
+    t: [19.42, 20.39]
+    frames: [582, 611]
+    layout: centre-stack
+    content: >
+      A blurred keyboard/mouse close-up resolves into a chromatic-aberration SteelSeries "S"
+      glyph, the camera pushing toward it.
+    moves:
+      - move: rackFocus
+        target: keyboard_mouse_bg_to_logo
+        at_f: 0
+        params: {dur_f: 18, blur_px: [10, 0]}
+      - move: unblurIn
+        target: steelseries_logo
+        at_f: 6
+        params: {blur_px: [18, 0], scale: [1.04, 1], dur_f: 20, ease: expoOut}
+    camera: {move: dollyToUI, params: {scale: [1, 1.6], dur_f: 30, ease: expoInOut}}
+    bg: {kind: blurred-ui, moves: [gradientDrift]}
+    treatment: [chromaticEdge, bloomGlow]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 8
+    t: [20.42, 20.95]
+    frames: [612, 628]
+    layout: centre-stack
+    content: >
+      SteelSeries headset, mouse and keyboard hold in a product-shot arrangement beside the
+      glyph mark, on a magenta-to-purple ground.
+    moves:
+      - move: breathe
+        target: steelseries_product_group
+        at_f: 0
+        params: {scale: [1, 1.015, 1], period_f: 17}
+    camera: {move: driftCamera, params: {amp_pct: 1.0, period_f: 60}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: flashCut, params: {dur_f: 4}}
+    hold_f: 0
+
+  - n: 9
+    t: [20.99, 21.22]
+    frames: [629, 636]
+    layout: centre-stack
+    content: >
+      A quick two-frame-flagged flash transition (treated as one beat, see detection_notes)
+      swaps the SteelSeries glyph for the Logitech "G" mark.
+    moves:
+      - move: flashCut
+        target: whole_comp
+        at_f: 0
+        params: {dur_f: 8, colour: white}
+    camera: {move: pushIn, params: {scale: [1, 1.1], ease: expoIn}}
+    bg: {kind: flat, moves: []}
+    treatment: [chromaticEdge]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 10
+    t: [21.25, 22.76]
+    frames: [637, 682]
+    layout: centre-stack
+    content: >
+      Logitech G headset, mouse and RGB keyboard orbit the bold "G" glyph; the camera pushes
+      through the glyph's negative space until it fills the frame and doubles as a mask into
+      the next scene.
+    moves:
+      - move: logoGlyphPortalMask
+        target: g_glyph
+        at_f: 10
+        params: {dur_f: 36, scale: [1, 40], ease: expoInOut}
+      - move: orbitRing
+        target: logitech_product_group
+        at_f: 0
+        params: {rotate_deg: [0, 45], period_f: 46, children_counter_rotate: true}
+    camera: {move: dollyToUI, params: {scale: [1, 2.4], dur_f: 36, ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: matchCut, params: {note: "G glyph negative space matches the O of the ORBS wordmark next"}}
+    hold_f: 0
+
+  - n: 11
+    t: [22.79, 27.63]
+    frames: [683, 828]
+    layout: centre-stack
+    content: >
+      "NEW WAYS TO GET ORBS" assembles over a field of falling crystal orb icons, each with
+      a small counter beside it that races upward in irregular jumps (261, 341, 429, 516,
+      595, 664, 724, 775, 818, 854, 885, 911, 933, 950, 965, 976, 985, 991, 996, 998) while
+      the camera continuously zooms in until only the word "ORBS" fills frame.
+    moves:
+      - move: maskWipeUp
+        target: new_ways_to_get_orbs_headline
+        at_f: 4
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: counterUp
+        target: orb_count_value
+        at_f: 20
+        params: {retrigger: true, keyframed_values: [261, 341, 429, 516, 595, 664, 724, 775, 818, 854, 885, 911, 933, 950, 965, 976, 985, 991, 996, 998], step_hold_f: 6, monospace_digits: true}
+      - move: orbitRing
+        target: falling_orb_icons
+        at_f: 0
+        params: {rotate_deg: [0, 90], period_f: 145, children_counter_rotate: true}
+    camera: {move: dollyToUI, params: {scale: [1, 3.2], dur_f: 145, ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, chromaticEdge, filmGrain]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 12
+    t: [27.66, 31.76]
+    frames: [829, 952]
+    layout: 3d-set
+    content: >
+      The orb icons coalesce into cube-shaped loot crates, each sprouting a parachute canopy,
+      and fall together through the purple sky, the camera pushing through the cluster of
+      canopies as they descend.
+    moves:
+      - move: scaleIn
+        target: orb_to_crate_transform
+        at_f: 0
+        params: {scale: [0.4, 1], opacity: [0, 1], dur_f: 14, stagger_f: 3, ease: backOut}
+      - move: driftCamera
+        target: parachute_cluster
+        at_f: 0
+        params: {amp_pct: 1.5, period_f: 124, axes: xy}
+    camera: {move: pushIn, params: {scale: [1, 1.15], ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft, filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 13
+    t: [31.80, 33.97]
+    frames: [953, 1018]
+    layout: centre-stack
+    content: >
+      A single crate lands, its lid drawing open (an animated seam/crack line, not a hinge),
+      revealing a white "Unlock with Nitro" tooltip that a synthetic cursor moves toward and
+      clicks, rippling on contact.
+    moves:
+      - move: crackGlowReveal
+        target: crate_lid_seam
+        at_f: 0
+        params: {dur_f: 16, crack_opacity: [0, 1], glow_intensity: [0.1, 0.8], ease: expoOut}
+      - move: scaleIn
+        target: unlock_with_nitro_tooltip
+        at_f: 18
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: popIn
+        target: synthetic_cursor
+        at_f: 30
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 1.0, period_f: 66}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: flashCut, params: {dur_f: 3}}
+    hold_f: 4
+
+  - n: 14
+    t: [34.00, 35.94]
+    frames: [1019, 1077]
+    layout: full-bleed-ui
+    content: >
+      A quick flash resolves into a laptop screen showing the real Discord app open on a
+      "buddies" server with an active video call thumbnail and a game controller/headset
+      floating in front of it in soft 3D.
+    moves:
+      - move: flashCut
+        target: whole_comp
+        at_f: 0
+        params: {dur_f: 4, colour: white}
+      - move: unblurIn
+        target: discord_app_screen
+        at_f: 6
+        params: {blur_px: [18, 0], scale: [1.04, 1], dur_f: 20, ease: expoOut}
+      - move: slideStackIn
+        target: controller_and_headset_props
+        at_f: 20
+        params: {y: [30, 0], stagger_f: 3, z_offset_px: 10, ease: springSoft, dur_f: 16}
+    camera: {move: driftCamera, params: {amp_pct: 1.0, period_f: 58}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft, filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 15
+    t: [35.97, 37.90]
+    frames: [1078, 1136]
+    layout: full-bleed-ui
+    content: >
+      Over the same Discord voice-channel screen, "SAME SAME SAME" kinetic type stacks in on
+      the left in yellow, a "GG" sticker pops beside it, and a chat-bubble callout with an
+      avatar reads "What build did you end up going with?" — selling the social feature via
+      the product's own UI rather than a description card.
+    moves:
+      - move: letterCascade
+        target: same_same_same_stack
+        at_f: 0
+        params: {per_char_stagger_f: 1, y: [18, 0], rotate_deg: [6, 0], dur_f: 14, ease: backOut}
+      - move: popIn
+        target: gg_sticker
+        at_f: 10
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: staggerRise
+        target: chat_bubble_callout
+        at_f: 16
+        params: {y: [20, 0], opacity: [0, 1], blur_px: [6, 0], stagger_f: 3, dur_f: 16, ease: springSoft}
+    camera: {move: driftCamera, params: {amp_pct: 1.0, period_f: 59}}
+    bg: {kind: blurred-ui, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: zoomBlurCut, params: {dur_f: 5, radial_blur: heavy}}
+    hold_f: 0
+
+  - n: 16
+    t: [37.94, 44.68]
+    frames: [1137, 1338]
+    layout: centre-stack
+    content: >
+      Debris (icons, coins, product glyphs) bursts outward from centre and settles into
+      "MAX OUT YOUR GAME" beside a small astronaut-robot mascot, the Xbox/SteelSeries/
+      Logitech logos and a "1.2x Bonus" chip orbiting around it; the headline then swaps
+      (no hard cut) to "Discord NITRO" as the final lockup, legal disclaimer fine print
+      fading in beneath, held static but for the orbiting debris for the last ~2s.
+    moves:
+      - move: staggerRise
+        target: debris_burst_icons
+        at_f: 0
+        params: {y: [30, 0], opacity: [0, 1], blur_px: [10, 0], stagger_f: 3, dur_f: 20, ease: springSoft}
+      - move: maskWipeUp
+        target: max_out_your_game_headline
+        at_f: 20
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: wordSwapCrossfadeMorph
+        target: headline_text
+        at_f: 90
+        params: {dur_f: 14, from: "MAX OUT YOUR GAME", to: "Discord NITRO", ease: expoInOut}
+      - move: orbitRing
+        target: partner_logo_cluster
+        at_f: 30
+        params: {rotate_deg: [0, 50], period_f: 170, children_counter_rotate: true}
+      - move: staggerRise
+        target: legal_disclaimer_text
+        at_f: 110
+        params: {y: [10, 0], opacity: [0, 1], stagger_f: 0, dur_f: 12, ease: springSoft}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 120}}
+    bg: {kind: gradient-drift, moves: [gradientDrift, grainShift]}
+    treatment: [bloomGlow, filmGrain, vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+techniques:
+  - id: crack-glow-preshatter-reveal
+    what: >
+      Before an object physically breaks, thin crack lines spread across its surface and
+      brighten from within — the cracks are a shape-driven mask over a bright glow layer,
+      not the fracture geometry itself, so the reveal reads as "light escaping" a beat
+      before the object's shell actually separates.
+    where: shot 1 (frames 60-97, capsule) and shot 13 (frames 953-969, loot crate lid)
+    why_it_reads: >
+      Separating the mask reveal (light through cracks) from the physical break (shell
+      fragments flying apart) gives two readable beats instead of one instant pop, so the
+      payoff feels earned rather than abrupt.
+    remotion_recipe: >
+      Author a static SVG of 6-10 jagged crack-line paths over the object's silhouette. Use
+      each path as a `mask` element (stroke, no fill) composited over a bright radial-
+      gradient div; animate stroke-width and a Gaussian `feGaussianBlur` stdDeviation on the
+      mask from near-zero to a few px so the cracks bloom into visible bright seams. Cut to
+      the real fracture (separate rigid fragments, see shatter-burst below) once mask opacity
+      hits 1.
+    difficulty: moderate
+
+  - id: shatter-burst
+    what: >
+      At the sharpest motion spike in the whole video (frame 88, magnitude 58.3 of a 76.6
+      peak) the object's shell separates into ~24 rigid fragments that fly outward with a
+      single white flash frame at the moment of separation.
+    where: shot 1, frame 88
+    why_it_reads: >
+      The flash masks the exact frame where continuity would otherwise look broken (fragment
+      positions jumping from "whole" to "in pieces"), the classic trick for hiding a hard
+      state change inside a bright pop.
+    remotion_recipe: >
+      Pre-author N fragment meshes/sprites arranged to reassemble into the whole object at
+      t=0. Interpolate each fragment's translate/rotate outward along its own radial vector
+      with `expoOut`, staggered by fragment index. Composite a solid white div at opacity
+      0→1→0 over exactly 2-3 frames centred on the separation frame so the pop covers the
+      state discontinuity.
+    difficulty: moderate
+
+  - id: bar-to-wordmark-morph
+    what: >
+      A single glowing vertical bar (visually reads as a capital "I") widens and splits into
+      the full wordmark "BIG" — a shape morph from one simple form into three letterforms,
+      not a mask reveal of pre-existing type.
+    where: shot 4, frames 313-330
+    why_it_reads: >
+      Starting from a shape simpler than the destination type gives the eye one clear thing
+      to track (a bar) before the payoff (a word), instead of the word simply fading up.
+    remotion_recipe: >
+      Two SVG paths sharing the same point count: a tall rectangle and the compound path of
+      "BIG" set in the display face. Interpolate the `d` attribute between them with a path-
+      morphing library (flubber or manual point interpolation) over 18f with `expoOut`; drive
+      a screen-space bloom filter on the same shape so the mid-morph frames still read as
+      "glowing," masking any interim-shape ugliness.
+    difficulty: hard
+
+  - id: logo-glyph-portal-mask
+    what: >
+      The camera pushes toward a bold brand glyph (Logitech's "G") until the glyph's stroke
+      fills the entire frame; the glyph's negative space is used as a hard-edged mask so the
+      push itself functions as the wipe into the next scene, rather than a cut.
+    where: shot 10, frames 637-673 (and the SteelSeries "S" equivalent in shot 7)
+    why_it_reads: >
+      A shape-mask transition where the mask is the brand mark itself makes the logo do
+      double duty as content and as edit punctuation — the mark is remembered because the
+      video was built out of it, not just labelled with it.
+    remotion_recipe: >
+      Render the glyph as a large SVG `clipPath` applied to the outgoing composition's
+      wrapper. Scale the glyph's viewBox transform from 1x to ~40x over 36f with `expoInOut`
+      so its stroke edges sweep past frame edges; crossfade the incoming scene's opacity
+      0→1 only in the final 6f once the glyph fully covers the frame, so the cut is hidden
+      inside the mask's own motion.
+    difficulty: hard
+
+  - id: irregular-counter-with-camera-zoom-climax
+    what: >
+      A metric ("orb count") climbs in 20 irregular discrete jumps from 261 to 998 across
+      ~145 frames while the camera continuously dollies in, so the counter's final digits
+      arrive exactly as the word "ORBS" fills the frame.
+    where: shot 11, frames 683-828
+    why_it_reads: >
+      Tying the camera's climax (max zoom) to the counter's climax (near-max value) makes
+      two independent parameters feel like one causal event — "the number going up is what's
+      pulling the camera in."
+    remotion_recipe: >
+      Drive both the counter's displayed value and the camera's dolly scale off the same
+      shared progress value p (0-1) rather than independent timers: counter snaps between
+      the keyed value array at p-derived checkpoints, `scale = interp(p, [0,1], [1,3.2])`
+      with `expoInOut`. This is the same "drive ambient/hero motion off one progress value"
+      principle as byshubh's radial-glow technique, applied to a camera move instead of a glow.
+    difficulty: moderate
+
+  - id: orb-to-parachute-crate-transform
+    what: >
+      Falling orb icons from the previous shot are the same objects that become the loot
+      crates in this shot — no new elements are introduced, they scale/reshape from sphere
+      to cube-with-canopy across the cut.
+    where: shots 11→12 boundary, frames 828-852
+    why_it_reads: >
+      Reusing the exact object across a scene change (an implicit match cut on the object's
+      identity, not just its silhouette) sells "these orbs are the reward" without a caption.
+    remotion_recipe: >
+      Keep the same particle-system instance IDs across both shots; interpolate each
+      instance's geometry (sphere→rounded-cube) and add a parachute-canopy child mesh whose
+      scale animates 0→1 with `backOut` once the cube shape is reached, rather than
+      destroying and re-spawning new elements.
+    difficulty: needs-3d
+
+rhythm:
+  cut_count: 15
+  median_shot_f: 108
+  fastest_f: 8
+  slowest_f: 202
+  pattern: >
+    Ten distinct registers in 44.7s, each running roughly 2-6s before a hard content pivot
+    (new object, new brand, new UI): orb-charge hook (3.2s) -> debris/mascot reveal (7.2s)
+    -> BIG flash-cut impact (3.5s) -> Xbox Game Pass proof (5.4s) -> SteelSeries cameo (1.3s)
+    -> Logitech G cameo (1.5s) -> orb-counter/zoom climax (4.8s) -> parachute-crate drop
+    (4.1s) -> Discord-UI social proof (3.9s) -> Nitro endcard hold (6.7s). The two sharpest
+    motion-curve peaks (the frame-88 shatter and the frame-762-873 zoom-to-ORBS stretch) sit
+    at roughly 2% and 60-65% of runtime, matching the "peaks cluster near 70%, then a long
+    held end card" energy-curve law even without a fixed beat grid.
+  beat_grid_f: 0
+  energy_curve: wave
+
+transferable:
+  - >
+    To compress this to 25-30s: cut shot 6's screen-recorded gameplay trailer footage
+    (frames ~460-580, ~4s) entirely — it is unstyled B-roll and the lowest craft-per-second
+    stretch in the video; keep only the boxart-cards-into-GAME-PASS-wordmark beat (~1.5s).
+  - >
+    Merge the SteelSeries (shot 7-9) and Logitech G (shot 10) cameos into one ~2s combined
+    "accessory partners" beat — two sequential single-brand product shots read as repetition
+    at this length; one shot with both logos orbiting together reads as one idea, not two.
+  - >
+    Cut shot 15's "SAME SAME SAME"/GG social-proof beat if time-constrained — it repeats the
+    "here's the Discord UI" idea already established in shot 14 without adding a new
+    mechanic, whereas every other shot introduces a new object or new information.
+  - >
+    Trim the final hold (shot 16, 6.7s) to ~3s — two headline swaps plus legal fine print is
+    more than a 25-30s spot needs; keep the debris-burst-into-wordmark entrance and cut
+    straight to the final "Discord NITRO" lockup without the intermediate "MAX OUT YOUR GAME" card.
+  - >
+    Drive a camera's climax off the same progress value as a counter's climax (see
+    irregular-counter-with-camera-zoom-climax) instead of hand-timing two separate curves —
+    it's cheaper to build and reads as more intentional.
+  - >
+    Reuse one object's mesh/particle instance across a scene boundary (orb-to-crate) instead
+    of a cut to new elements — the strongest "no-cut" transitions in this piece are all
+    object transforms, not composited wipes.
+
+avoid:
+  - >
+    Hand-keyframing 24 shatter fragments' individual trajectories in After Effects; use a
+    radial-vector formula (angle = index/count * 360, distance = f(frame)) driven by a
+    single progress value so the burst is parametric and reusable at any fragment count.
+  - >
+    Rotoscoping or manually painting the crack-line glow; author the cracks as one static
+    SVG path set and drive stroke/blur opacity from a single value — see crack-glow-preshatter-reveal.
+  - >
+    Licensing/using real game-trailer screen-recordings as filler (shot 6's Grounded/
+    Stardew clips) in a from-scratch spot; substitute a synthetic UI showing the product's
+    own screen states, animated on state changes per Principle 10's visual-product guidance.
+  - >
+    Attempting the path-morph from bar to "BIG" wordmark by hand-tweening points frame by
+    frame; use a path-interpolation library so the point correspondence and easing are
+    computed once, not re-keyed per letterform.
+
+new_moves:
+  - name: crackGlowReveal
+    params: {crack_opacity: [0, 1], glow_intensity: [0.1, 1.0], dur_f: 16-27, ease: expoIn}
+    description: >
+      A shape-driven mask reveal where a static set of crack-line SVG paths is used as a
+      mask/stroke over a bright glow layer; the mask's opacity and the glow's intensity
+      animate together so light appears to escape through the cracks before the surface
+      physically breaks. Used once per "something is about to unlock" beat.
+  - name: shatterBurst
+    params: {flash_opacity: [0, 1, 0], fragment_count: 12-24, dur_f: 6-10, ease: expoOut}
+    description: >
+      A rigid object separates into N fragments that fly outward along radial vectors from
+      the object's centre, staggered by fragment index, with a 2-3f solid-colour flash
+      composited at the exact separation frame to hide the whole/fragmented state jump.
+  - name: barToWordmarkMorph
+    params: {dur_f: 18, source_shape: vertical_bar, ease: expoOut}
+    description: >
+      An SVG path morphs from a simple placeholder shape (a bar, a dot) into a compound
+      wordmark path with matching point count, via path interpolation, so a headline
+      resolves out of an ambiguous shape rather than fading up as static type.
+  - name: logoGlyphPortalMask
+    params: {scale: [1, 40], dur_f: 30-36, ease: expoInOut}
+    description: >
+      A brand glyph is used as a clip-path mask on the outgoing scene; scaling the glyph
+      up until its stroke fills the frame functions as a wipe transition into the next
+      scene, crossfaded in only during the final few frames once the mask is full-bleed.
+  - name: toggleStateCycle
+    params: {states: 3, hold_per_state_f: 18, dur_f: 55, ease: springSnap}
+    description: >
+      A UI toggle prop flips between more than two visual states (off/dark, on/white,
+      on/accent-colour) inline within an otherwise-continuous ambient shot, each state
+      held briefly with a spring settle, to demonstrate a feature without a dedicated shot.
+  - name: wordSwapCrossfadeMorph
+    params: {dur_f: 14, ease: expoInOut}
+    description: >
+      One headline's full text is replaced by a different full string in place, via a
+      per-character or per-line cross-fade/mask, keeping layout and type size identical so
+      the swap reads as one sign changing its message rather than a new card.
+
+convergence:
+  - >
+    counterUp with a keyframed-jump value array driving a metric upward in irregular steps —
+    matches byshubh's continuous-live-counter technique almost exactly, just applied to an
+    orb-reward count instead of a revenue figure.
+  - >
+    A bright flash/specular pop used to mask a hard state discontinuity (shatterBurst here,
+    specular-flash-outro-loop in byshubh) — same underlying trick, different geometry.
+  - >
+    dropShadowSoft on floating UI panels (the tablet live-stream, the Discord laptop screen)
+    matches byshubh's treatment-layer usage on floating cards.
+  - >
+    Driving two independent parameters (camera scale, counter value) off one shared progress
+    value instead of two timers — the same pattern as byshubh's radial-glow-tied-to-content-
+    progress technique.
+  - >
+    staggerRise for debris/icon entrances is the same move byshubh uses for stat-card
+    entrances, just applied to loose particle props instead of UI cards.
+
+detection_notes: >
+  Raw cut-detector found 40 shot boundaries; several are false positives from motion-blur/
+  flash spikes inside one continuous beat, merged here: frames 89-97 (table shots 2-3) are
+  the shatter-burst climax of shot 1, not separate cuts. Frames 165-172 (shots 5-6) are the
+  toggle-switch colour-pop inside shot 3, not cuts. Frames 313-320 (shots 8-9) are one
+  flash-cut transition into the BIG card, counted as a single transition. Frames 349-419
+  (shots 11-12, 14-18) are the BIG-card hold and its whip-pan exit, merged into shots 4-5.
+  Frames 629-636 (shots 22-23) are one flash transition between the SteelSeries and Logitech
+  cameos. Frames 747-828 (shots 26-27, 29-31) are motion-blur spikes from individual falling
+  orb icons passing close to camera during the continuous zoom of shot 11, not cuts. Frames
+  866-873 (shots 33-34) are inside the orb-to-crate transform of shot 12. Frame 1019-1022
+  (shot 37) is the flash transition into shot 14. Net effect: 40 detected boundaries collapse
+  to 15 real cuts across 16 shots.

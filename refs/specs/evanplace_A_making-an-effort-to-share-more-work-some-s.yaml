@@ -1,0 +1,497 @@
+id: evanplace_A_making-an-effort-to-share-more-work-some-s
+source: local-reference (evanplace_A_making-an-effort-to-share-more-work-some-s.mp4)
+category: brand-loop
+product_type: brand-only
+
+format:
+  aspect: "720:900"
+  fps: 30
+  duration_s: 8.867
+  orientation: vertical
+
+verdict: >
+  A Vizcom brand-merch reel that hides four cuts inside one continuous
+  "zoom into the moodboard" camera move, then reuses the wordCycleSettle
+  slot-machine trick (frame-indexed array, crossfade, land on final value)
+  on IMAGES instead of words to fake a colour/material catalogue in two
+  fast shots. The back half proves a brand system by putting type
+  treatment, lifestyle photo, product application and a swatch deck in
+  one grid instead of four sequential cuts, then loops back to its own
+  opening frame for seamless autoplay.
+
+palette:
+  bg: "#141414"
+  ink: "#F0F0F0"
+  accent: "#2255CC"
+  support: ["#D64545", "#5C8A2E", "#D8D850", "#E066A0", "#E08040", "#606048"]
+  notes: >
+    Base composition is near-black/near-white (bg #141414, ink #F0F0F0,
+    matching the profile's dominant #000000/#181818/#D8D8D8 screen-share).
+    The "accent" is not fixed — it is whichever material swatch or sticker
+    patch is currently on screen (red foil, blue grid, green grid, yellow
+    with pink dots, orange stripe, magenta diamond), i.e. colour variety is
+    the product being sold, so the palette rule is deliberately broken: the
+    swatches ARE the content, rationed by being shown one at a time inside
+    a fixed frame rather than all at once.
+
+typography:
+  family_look: grotesk
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.85
+  notes: >
+    "VIZCOM" wordmark is a bold geometric sans, all caps, always paired
+    with a fine grid-line texture behind it on its blue card. "Dream Up
+    New Ideas" is hand-drawn illustrated lettering as part of a screen-
+    printed tee graphic, not a live text layer. The hero line "Make it
+    real" mixes two voices in one lockup: "Make" set in a loose italic
+    marker/script face, "it real" set in an upright clean grotesk on the
+    same baseline — repeated 4 times stacked, each instance differentiated
+    only by its underline style (solid, dotted, zigzag, double-line),
+    turning the underline into the variable, not the words.
+
+structure:
+  - act: hook
+    t: [0.00, 1.53]
+    purpose: Open on a 4-quadrant brand moodboard, then push the camera into one cell (a material swatch) until it fills the frame.
+    shots: [1]
+  - act: capability
+    t: [1.53, 3.50]
+    purpose: Cycle through 3 material/colour swatches inside the same fixed frame to sell "options," then whip-transition to product.
+    shots: [2]
+  - act: capability
+    t: [3.53, 5.57]
+    purpose: Show the wordmark being "printed" onto a real product (laptop lid) while sticker patches cycle around it.
+    shots: [3]
+  - act: proof
+    t: [5.57, 7.57]
+    purpose: Prove the brand is a system — type treatment, lifestyle photo, print application and a colour-swatch deck shown together in one grid.
+    shots: [4]
+  - act: cta
+    t: [7.57, 8.867]
+    purpose: Flash-montage bridge back to the opening composite, closing the loop for seamless autoplay.
+    shots: [5, 6]
+
+shots:
+  - n: 1
+    t: [0.00, 1.50]
+    frames: [0, 45]
+    layout: grid
+    content: >
+      Static 4-quadrant moodboard, camera pushing in throughout: top-left a
+      blue card with fine grid texture and the white "VIZCOM" wordmark;
+      top-right a cropped torso wearing a black tee printed with hand-drawn
+      "Dream Up New Ideas" line art (monitor, desk lamp, pencil cup, eggs,
+      keyboard), a backpack strap over the shoulder, a laptop under the arm;
+      bottom-left a framed material swatch mounted on a golden pegboard,
+      opening on a red foil-like swatch (f0) that crossfades to a blue
+      grid-pattern swatch by f7 and holds; bottom-right a small icon grid
+      (a squiggle mark, a black "vizcom" wordmark tile, a sketch icon) plus
+      a labelled orange armchair CAD reference thumbnail with a blue
+      bounding box. The whole composite scales up around the bottom-left
+      cell so that by f41-45 the swatch frame fills the entire vertical
+      frame, with heavy motion blur on the last 4 frames as the push
+      accelerates into the cut.
+    moves:
+      - move: materialSwapCycle
+        target: bottom-left swatch cell content
+        at_f: 0
+        params: {items: [redFoil, blueGrid], swap_at_f: [0, 7], crossfade_f: 3, hold_f: 20}
+      - move: staggerRise
+        target: [top-left logo card, top-right torso crop, bottom-right icon grid]
+        at_f: 0
+        params: {y: [0, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft}
+    camera: {move: dollyToUI, params: {scale: [1, 2.2], translate_to: "bottom-left cell centre", ease: expoInOut, dur_f: 46}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: whipPan, params: {dur_f: 4, motion_blur: heavy}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.53, 3.50]
+    frames: [46, 105]
+    layout: full-bleed-ui
+    content: >
+      Full-bleed on the framed swatch from shot 1, mounted on the golden
+      pegboard, camera fully static. Interior swatch content cycles: a
+      dark speckled/confetti-pattern swatch (f46-61) crossfades to a green
+      grid-graph swatch with diagonal and quarter-circle CAD-style guide
+      lines (f62-87, held essentially motionless for 0.67s per profile's
+      frozen-stretch flag — see avoid) which crossfades to a yellow swatch
+      with pink dots (f92-101). Ends on a 4-frame heavy-motion-blur whip
+      (f102-105) into the laptop scene.
+    moves:
+      - move: materialSwapCycle
+        target: swatch content inside the picture-frame mask
+        at_f: 0
+        params: {items: [darkSpeckle, greenGrid, yellowDot], swap_at_f: [0, 16, 46], crossfade_f: 4}
+    camera: {move: pushIn, params: {scale: [1, 1.015], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: whipPan, params: {dur_f: 4, motion_blur: heavy}}
+    hold_f: 0
+
+  - n: 3
+    t: [3.53, 5.57]
+    frames: [106, 166]
+    layout: full-bleed-ui
+    content: >
+      Overhead flat-lay of a wooden desk: a green cutting-mat with grid
+      lines, a closed MacBook centred, an orange desk lamp top-right, loose
+      sketch papers scattered around. Colour-patch stickers land on the
+      laptop lid one at a time — a magenta diamond patch, then an orange
+      diagonal-stripe patch, then a green swirl patch — while the "VIZCOM"
+      wordmark is progressively revealed on the lid: only a cropped
+      fragment ("...com") is visible at first (clipped by the frame edge,
+      local f20-30), growing left-to-right into the complete "VIZCOM"
+      wordmark by local f36-46, synced to a slow rightward camera dolly so
+      the reveal edge reads as caught by the moving camera. Holds full on
+      "VIZCOM" plus the three patches before a 4f whip-blur exit.
+    moves:
+      - move: maskWipeSide
+        target: "VIZCOM wordmark decal on laptop lid"
+        at_f: 20
+        params: {dur_f: 20, dir: "l→r", ease: expoInOut}
+      - move: materialSwapCycle
+        target: sticker patch in laptop-lid corner
+        at_f: 0
+        params: {items: [magentaDiamond, orangeStripe, greenSwirl], swap_every_f: 18, crossfade_f: 3}
+    camera: {move: driftCamera, params: {amp: 3%, period_f: 46, axes: x}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: whipPan, params: {dur_f: 4, motion_blur: heavy}}
+    hold_f: 0
+
+  - n: 4
+    t: [5.57, 7.57]
+    frames: [167, 226]
+    layout: grid
+    content: >
+      Near-black frame split into a brand-system grid. Top-left: four
+      stacked lines all reading "Make it real," each with a different
+      hand-drawn underline — solid orange, dotted magenta, yellow-green
+      zigzag, double blue line. Top-right: a portrait close-up of a man in
+      a blue cap embroidered "Make it real" in white script, looking down.
+      Mid-right: the desk flat-lay from shot 3 with the laptop showing a
+      blue splash screen. Bottom-left: a framed print reading "Make it
+      real" on the green cutting-mat-graph paper, leaning on a shelf.
+      Bottom band: a fanned deck of 7 rounded-corner colour-swatch cards,
+      each labelled with a paint-style name and code — legible ones read
+      "Ideation Blue," "Ideate Purple," "Cutting Mat Green," "Post-it
+      Peach," "Clay Orange," "Ink Black," and a partially-cropped
+      "Blueprint" card — overlapping at varied rotations like cards
+      spilled on a table.
+    moves:
+      - move: staggerRise
+        target: 4 "Make it real" lines
+        at_f: 0
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 4, ease: springSoft}
+      - move: drawOn
+        target: [orange solid underline, magenta dotted underline, yellow-green zigzag underline, blue double underline]
+        at_f: 4
+        params: {strokeDashoffset: [1, 0], dur_f: 14, ease: expoOut, per_line_stagger_f: 4}
+      - move: staggerRise
+        target: [portrait photo cell, desk-scene photo cell, framed print cell]
+        at_f: 0
+        params: {y: [24, 0], opacity: [0, 1], blur: [8, 0], stagger_f: 4, ease: springSoft}
+      - move: swatchDeckSettle
+        target: 7-card colour-swatch deck
+        at_f: 8
+        params: {card_count: 7, per_card_rotate_deg: [-12, 12], stagger_f: 3, ease: springSoft}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoInOut}}
+    bg: {kind: flat, moves: [breathe]}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: zoomBlurCut, params: {dur_f: 16}}
+    hold_f: 0
+
+  - n: 5
+    t: [7.57, 8.10]
+    frames: [227, 242]
+    layout: full-bleed-ui
+    content: >
+      Merged flash-montage bridge (see detection_notes): heavily
+      motion-blurred sub-flashes cropping "...ke it real" (f227-230), a
+      blue field with "VIZCOM" barely legible through blur (f231-234), a
+      green-swirl material fragment with blue accents (f235-238), and a
+      whip-blurred pan into the wooden pegboard with a red swatch
+      (f239-242) that becomes the opening of shot 6.
+    moves:
+      - move: zoomBlurCut
+        target: full frame, repeated per sub-cut
+        at_f: 0
+        params: {scale: [1, 1.3], radial_blur: true, dur_f: 5}
+    camera: {move: whipPan, params: {dur_f: 16, motion_blur: heavy}}
+    bg: {kind: flat, moves: []}
+    treatment: [chromaticEdge]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 6
+    t: [8.10, 8.87]
+    frames: [243, 265]
+    layout: grid
+    content: >
+      Returns to the same 4-quadrant composite that opened shot 1 (blue
+      Vizcom logo card, torso in the "Dream Up New Ideas" tee, icon grid),
+      but the bottom-left swatch cell now shows the red foil swatch rather
+      than blue — mirroring shot 1's very first frame (which also opened
+      on red before swapping) so the video cuts back to its own start
+      point for a seamless autoplay loop. Holds static to the last frame.
+    moves:
+      - move: scaleIn
+        target: whole composite
+        at_f: 0
+        params: {scale: [0.98, 1], opacity: [0.8, 1], dur_f: 10, ease: expoOut}
+    camera: {move: breathe, params: {scale: [1, 1.01, 1], period_f: 120}}
+    bg: {kind: flat, moves: [breathe]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 15
+
+techniques:
+  - id: grid-cell-to-fullbleed-dolly
+    what: >
+      A 4-quadrant static moodboard scales up around one quadrant (a
+      framed material swatch) continuously until that cell alone fills
+      the entire frame, converting an "overview" grid into a single
+      "detail" shot without a hard cut.
+    where: shot 1, frames 0-45
+    why_it_reads: >
+      Reads as the camera physically pushing into one photo in a grid of
+      photos, so a plain content change is disguised as camera movement —
+      cheaper than a match cut and reads as more considered than a fade.
+    remotion_recipe: >
+      Render the 4-quadrant grid as 4 absolutely-positioned divs at 50%
+      width/height each inside one wrapper. Apply a single transform
+      scale()+translate() to the wrapper with transform-origin pinned to
+      the target cell's centre (e.g. 25% 75% for bottom-left). Interpolate
+      scale 1 to ~2.2 from f0 to f41 with expoIn (slow build, accelerating
+      late, matching the profile's "ease-in builds, exits fast"
+      classification), then run a 4-frame heavy motion-blur whip (f42-45)
+      as the scale finishes — fake the blur with a CSS filter:blur tied to
+      frame-to-frame delta, or by stacking 2-3 opacity-fading ghost copies
+      offset by 1-2 frames each. Land with a small 3-4% overshoot settle
+      at f46 via a spring, then no further camera move is needed since
+      shot 2 is fully static.
+    difficulty: moderate
+
+  - id: material-swatch-slot-cycle
+    what: >
+      Inside a fixed rectangular mask (a photographed picture-frame
+      mount), the interior image content swaps 2-3 times on a
+      frame-indexed schedule with a short crossfade, landing on a final
+      material/colour swatch.
+    where: shot 1 (red to blue) and shot 2 (dark-speckle to green-grid to yellow-dot), frames 0-7 and 46-101
+    why_it_reads: >
+      Reuses the exact "array indexed by frame, crossfade between
+      entries, land on the last one" trick that wordCycleSettle uses for
+      text, but applied to full-bleed images — sells "here are the
+      finish/colour options" as one continuous material shot instead of
+      three separate cuts.
+    remotion_recipe: >
+      Precompute an ordered array of image sources per slot. currentIndex
+      = clamp(floor((frame - startF) / swapEveryF), 0, arr.length - 1).
+      Render two absolutely-positioned Img layers (current and previous)
+      inside a shared clip-path/mask container matching the picture
+      frame's white mat (a fixed inset() clip-path or a CSS mask-image
+      traced from the photographed frame), crossfading opacity 1 to 0 /
+      0 to 1 over crossfade_f frames whenever currentIndex changes. No
+      per-swatch keyframing required.
+    difficulty: trivial
+
+  - id: wordmark-print-wipe-on-product
+    what: >
+      A brand wordmark is revealed on a photographed product surface (a
+      MacBook lid) via a left-to-right mask wipe timed to a slow camera
+      dolly, so the logo appears to be printed onto the real object
+      rather than composited over it.
+    where: shot 3, local frames 20-46 (global 126-152)
+    why_it_reads: >
+      Tying a flat text reveal to camera motion makes it read as
+      physically anchored to the product's surface rather than a static
+      overlay — the classic parallax-consistency trick that sells a
+      composite as photographed.
+    remotion_recipe: >
+      Pre-warp the wordmark into the lid's photographed perspective (a
+      CSS 3D transform plane, or a pre-warped PNG). Apply clip-path
+      inset(0 X% 0 0) where X animates 100% to 0% over 20f with
+      expoInOut, starting a few frames after the camera dolly begins so
+      the reveal edge appears "caught" by the moving camera. Give the
+      wordmark plane the same translate/scale offset driven by the shared
+      camera-drift value as the background plate so the two move in
+      lockstep (shared parallax) instead of sliding independently.
+    difficulty: moderate
+
+  - id: brand-system-quad-grid
+    what: >
+      A single 60-frame shot splits the frame into 4 zones showing type
+      treatment options, a lifestyle photo application, a print
+      application, and a fanned colour-swatch deck simultaneously — the
+      full brand system in one composite instead of 4 sequential cuts.
+    where: shot 4, frames 167-226
+    why_it_reads: >
+      Four sequential cuts would cost 4x the read time and feel like a
+      list. Showing all 4 applications at once in fixed screen real
+      estate reads as "this is a coherent system" — the actual pitch of a
+      brand-identity reel.
+    remotion_recipe: >
+      CSS grid with 4 fixed zone rects (or 4 absolutely-positioned divs).
+      Each zone animates in independently with a staggered entrance
+      (staggerRise) at shot-start, then holds with only a slow shared
+      breathe (scale 1 to 1.015 to 1, period 120f) on the outer container
+      so the 60-frame hold is never fully still. No camera move needed —
+      the grid layout itself carries the visual interest.
+    difficulty: trivial
+
+  - id: swatch-deck-fan
+    what: >
+      7 rounded-corner colour-swatch cards, each labelled with a
+      paint-style name and code, are scattered and fanned at varied
+      rotations and overlap depths as if physically laid on a table,
+      instead of shown as a flat swatch row.
+    where: shot 4 bottom zone, frames 167-226
+    why_it_reads: >
+      A flat swatch row reads as a style-guide page; a fanned physical
+      deck reads as tactile, designed objects — reinforcing the
+      brand-as-craft narrative (pegboard, cutting mat, sketch pad) that
+      runs through the whole video.
+    remotion_recipe: >
+      For each of N cards, assign a fixed seeded rotation (seed = card
+      index, never Math.random) between -12deg and +12deg and a z-index
+      overlap offset. Animate each card in with staggerRise (y 24 to 0,
+      stagger_f 3, springSoft) at a per-card delay, landing at its fixed
+      fanned rotation and position — deterministic and reproducible on
+      every render.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 5
+  median_shot_f: 53
+  fastest_f: 16
+  slowest_f: 61
+  pattern: >
+    46f grid-to-fullbleed push-in -> 60f static swatch-cycle hold -> 61f
+    product-branding dolly -> 60f brand-system grid hold -> 16f merged
+    flash-montage bridge (originally detected as four separate sub-4f
+    cuts) -> 23f loop-closing hold that returns to shot 1's opening
+    composite. Energy rises from "subtle" through two "medium" beats to a
+    "hot" flash peak at ~85% of runtime, then resolves into a calm static
+    hold for the loop point — matching the intended rising-energy law.
+  beat_grid_f: null
+  energy_curve: rising
+
+transferable:
+  - Steal grid-cell-to-fullbleed-dolly for any "here's our full moodboard,
+    now here's the one thing" opening — one continuous scale/translate,
+    zero hard cuts, disguises a content swap as camera movement.
+  - Steal material-swatch-slot-cycle for any colour/material/variant
+    catalogue — it is wordCycleSettle's array-index-by-frame logic
+    applied to images instead of text, inside one fixed mask.
+  - Use wordmark-print-wipe-on-product whenever a logo needs to look
+    "printed onto" a real photographed object rather than pasted over
+    it — the wipe direction and the camera dolly must share one clock.
+  - Use brand-system-quad-grid instead of a 4-shot slideshow whenever you
+    need to prove a brand is a coherent system (type + photo + print +
+    colour) rather than a list of assets.
+  - Bookend the video by returning to the opening composite's exact
+    framing (with one variable swapped, here red vs blue swatch) so
+    autoplay loops read as intentional rather than as the clip
+    restarting.
+
+avoid:
+  - The green-grid swatch hold in shot 2 (frames 68-88, 0.67s) is flagged
+    by the profile as a frozen stretch on all three motion scales — a
+    real bug, not a stylistic choice. Fix by keeping a `breathe` or
+    `driftCamera` running under any content hold longer than ~15f, per
+    PRINCIPLES.md section 4.
+  - The four merged 4-frame "shots" in the flash-montage bridge
+    (227-230, 231-234, 235-238, 239-242) are a screen-recorded whip-pan
+    transition, not hand-keyframed content — do not budget per-shot
+    design effort on them; build as one zoomBlurCut/whipPan treatment
+    layer spanning the full 16f, not four discrete scenes.
+  - The photographed product shots (laptop flat-lay, pegboard swatch
+    frame) depend on real photography/props for their texture and
+    lighting — do not attempt to fully 3D-render the desk scene; treat
+    the photo as a static plate and only animate the composited
+    wordmark/sticker layers on top of it.
+
+new_moves:
+  - name: materialSwapCycle
+    params: {items: [], swap_at_f: [], swap_every_f: null, crossfade_f: 3}
+    description: >
+      Inside a fixed mask/frame, swap the interior image content through
+      an ordered array on a frame-indexed schedule (either explicit
+      swap_at_f offsets or a fixed swap_every_f interval), crossfading
+      opacity between the outgoing and incoming image over crossfade_f
+      frames. The image-content equivalent of wordCycleSettle: sells a
+      catalogue of options as one continuous shot rather than N cuts.
+  - name: swatchDeckSettle
+    params: {card_count: 7, per_card_rotate_deg: [-12, 12], stagger_f: 3, ease: springSoft}
+    description: >
+      N labelled cards (colour swatches, material chips) enter with a
+      staggered rise and land at individually seeded rotation values so
+      the final resting composition reads as a fanned physical deck
+      rather than a grid — seed rotation by card index for determinism,
+      never randomise per render.
+
+convergence:
+  - move: maskWipeSide
+    note: >
+      Both this reference (wordmark "printed" onto the laptop lid, shot
+      3) and A_explainer-zhylar-crm-cpq (dashboard chrome revealed left
+      to right, shot 2) use the identical mechanism — a clip-path inset
+      sweep with content static underneath, explicitly reading as
+      "printing" onto a surface — independently arrived at by both
+      designers.
+  - move: drawOn
+    note: >
+      Zhylar uses drawOn for a line-art doodle stroke reveal (shot 2);
+      this reference uses the same strokeDashoffset mechanism for the
+      four hand-drawn underlines in shot 4. Same primitive, different
+      subject.
+  - move: breathe
+    note: >
+      Both references end on a held hero composite with only a breathe
+      (scale 1 to ~1.015 to 1) keeping the frame alive — Zhylar's skyline
+      outro and this reference's loop-closing shot 6.
+  - mechanism: frame-indexed-array-cycle
+    note: >
+      The strongest convergence in the pair: Zhylar's wordCycleSettle
+      (three text columns cycling candidate words, landing left to
+      right) and this reference's materialSwapCycle (a single slot
+      cycling candidate images) are the same underlying trick — index an
+      array by floor(frame/interval), crossfade on change, land on the
+      final entry — independently used by both designers to fake
+      "the system deciding" cheaply.
+  - pattern: merged-flash-transitions
+    note: >
+      Both references' cut-detectors fired multiple sub-11f "shots" that
+      are really flash/whip transition punches, not content (Zhylar
+      frames 78-81/125-128/213-218; here frames 227-242) — both were
+      folded into a single transition treatment rather than treated as
+      independent scenes, suggesting this is a common analyzer artefact
+      worth expecting across the whole corpus.
+
+detection_notes: >
+  The profile's cut detector found 12 shots; 7 of them (frames 42-45,
+  102-105, 163-166, 227-230, 231-234, 235-238, 239-242) are under the
+  11f minimum-shot-length rule in MOVE_VOCAB.md and read on the sheets as
+  whip-pan/flash-blur transition punches, not distinct content. Frames
+  42-45, 102-105 and 163-166 were each folded into the transition_out of
+  the preceding content shot (shots 1, 2 and 3 respectively). Frames
+  227-230, 231-234, 235-238 and 239-242 form one continuous 16-frame
+  motion-blurred whip-pan/flash-montage and were merged into a single
+  shot 5 rather than folded into a neighbour, since they carry distinct
+  legible content (cropped "real" text, a blurred VIZCOM flash, a
+  green-swirl flash) worth documenting as their own transition beat. The
+  remaining 5 profile-detected shots (0-41, 46-101, 106-162, 167-226,
+  243-265) map one-to-one to this spec's shots 1, 2, 3, 4 and 6, with
+  shot boundaries adjusted by a few frames only to absorb the folded
+  flashes. No shots were merged incorrectly in the other direction.

@@ -1,0 +1,838 @@
+id: jittervideo_A_introducing-superagents-remix-resize-trans
+source: local-reference (jittervideo_A_introducing-superagents-remix-resize-trans.mp4)
+category: launch-video
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 37.933
+  orientation: horizontal
+
+verdict: >
+  Jitter selling its own AI feature by literally showing the chat command and the
+  canvas obeying it in real time — dots snapping into a ring, a poster regrowing
+  across five aspect ratios at once, a style picker warping the artwork live.
+  Every synthetic cursor carries a name tag, which turns anonymous UI demos into
+  "a real person just did this," and the one genuinely novel visual (a countdown
+  numeral inside a pulsing circular halftone halo) proves the mask can be the
+  hero object, not just a reveal device.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#101010"
+  accent: "#18A8F0"
+  support: ["#D8D8F0", "#F0F000", "#7C4DFF", "#F0409C"]
+  notes: >
+    Two base modes alternate rather than blend: a light near-white UI chrome
+    (#F0F0F0 / #D8D8F0) for headline and template beats, and pure black
+    (#000000, 24% of total screen time) for every canvas/agent-chat beat. Cyan
+    accent (#18A8F0) is rationed to the product's own bot icon and one wordmark
+    colour-flash. Purple (~#7C4DFF) marks AI-agent chat bubbles and cursor tags.
+    Magenta and yellow each appear on exactly one hero object each (the
+    "Superagents" colour-cycle and the "SUMMER SALE" campaign) — never mixed
+    into the same frame as an accent.
+
+typography:
+  family_look: geometric sans
+  weights: [bold, black]
+  case: mixed
+  tracking: tight
+  headline_frame_share: 0.4
+  notes: >
+    Wordmark and hero headlines ("Meet", "Jitter", "Superagents", "WE ARE
+    HIRING. SENIOR DESIGNER.") run in one heavy geometric sans at 35-45% of
+    frame width. All in-app UI copy (chat bubbles, layer names, tooltips) drops
+    to a much smaller regular-weight version of the same family at
+    roughly 12-16px equivalent, sentence case throughout.
+
+structure:
+  - act: hook
+    t: [0.0, 6.95]
+    purpose: >
+      Land the product name through a fast word-swap, then run one full
+      "remix a template" demo end to end so the payoff (a finished on-brand
+      poster) appears before the six-second mark.
+    shots: [1, 2, 3, 4]
+  - act: capability
+    t: [6.95, 17.45]
+    purpose: >
+      Show two more agent actions living inside a floating product window:
+      a physics/layout command (ellipses into a ring, then gravity) and a
+      style-transfer command (displacement shaders), ending on the single
+      most ornamental shot in the video (the halftone counter).
+    shots: [5, 6, 7, 8]
+  - act: capability
+    t: [17.45, 26.65]
+    purpose: >
+      Stage the headline claim "scale one asset into a full campaign" word by
+      word, then prove it literally with a Magic Resize action that regrows
+      one poster across five aspect ratios and a live translate command.
+    shots: [9, 10, 11, 12]
+  - act: proof
+    t: [26.65, 31.6]
+    purpose: >
+      Show the AI output at volume — a diagonal cascade of translated
+      variants, then a wall of roughly 120 generated tiles with an export
+      action — to make "bulk" a visible fact, not a claim.
+    shots: [13, 14, 15]
+  - act: cta
+    t: [31.6, 37.933]
+    purpose: Logo lockup, tagline, and a colour-cycling CTA pill held to black.
+    shots: [16, 17]
+
+shots:
+  - n: 1
+    t: [0.00, 0.283]
+    frames: [0, 9]
+    layout: centre-stack
+    content: >
+      Cold open: "Meet" in heavy black geometric sans, centred on light-gray
+      bg. Held less than half a second before a hard cut.
+    moves:
+      - move: maskWipeUp
+        target: "\"Meet\" headline"
+        at_f: 0
+        params: {dur_f: 8, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 2
+    t: [0.300, 2.983]
+    frames: [9, 90]
+    layout: full-bleed-ui
+    content: >
+      Hard cut "Meet" to "Jitter" (black), which itself flashes cyan then
+      "Superagents" (cyan, then a fast magenta colour-flash). Cuts to the
+      product's "Ask anything..." AI prompt bar with its bot-mascot icon,
+      typed live. Hard cut to a horizontal filmstrip of poster thumbnails
+      (a red Nike-style "Session Complete" poster with a running-figure
+      photo; a blue Mango "We are hiring." poster) sliding past. A floating
+      "Template" card reads "Remix this template using my brand colors,
+      typeface, logo, and assets" as it types out live, while a cursor
+      tagged "Sacha" moves toward the send control.
+    moves:
+      - move: wordCycleSettle
+        target: "\"Meet\" -> \"Jitter\" -> \"Superagents\" headline slot"
+        at_f: 0
+        params: {cycle_words_per_col: 3, swap_every_f: 4, settle_stagger_f: 0, ease: expoOut}
+      - move: typeOn
+        target: "\"Ask anything...\" prompt bar"
+        at_f: 10
+        params: {chars_per_f: 1.2, caret: false}
+      - move: typeOn
+        target: "\"Remix this template using my brand colors, typeface, logo, and assets\" card"
+        at_f: 25
+        params: {chars_per_f: 1.8, caret: true, caret_blink_f: 15}
+      - move: cursorNameTagChoreo
+        target: "\"Sacha\" cursor"
+        at_f: 30
+        params: {dur_f: 20, click_ripple: true}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [3.000, 4.433]
+    frames: [90, 133]
+    layout: full-bleed-ui
+    content: >
+      "Sacha" clicks send; the template poster briefly desaturates (a
+      processing cue) then reforms in-brand as "We are hiring. Senior
+      designer." over a blue photo, the Mango logo and URL settling in the
+      footer.
+    moves:
+      - move: popIn
+        target: click ripple
+        at_f: 0
+        params: {scale: [1, 1.6], opacity: [0.5, 0], dur_f: 6, ease: springSnap}
+      - move: dissolveBlur
+        target: poster photo (desaturate cue)
+        at_f: 2
+        params: {blur: [0, 6], opacity: [1, 0.6], dur_f: 6}
+      - move: unblurIn
+        target: poster photo (reform in brand colour)
+        at_f: 8
+        params: {blur: [6, 0], scale: [1.02, 1], dur_f: 10, ease: expoOut}
+      - move: maskWipeSide
+        target: "\"We are hiring. Senior designer.\" headline"
+        at_f: 12
+        params: {dur_f: 9, dir: "l→r", ease: expoInOut}
+    camera: {move: rackFocus, params: {dur_f: 9}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 4
+    t: [4.450, 6.950]
+    frames: [133, 209]
+    layout: full-bleed-ui
+    content: >
+      The finished branded poster holds solo, full-frame, against a plain
+      sky-gradient backdrop — the "after" payoff of the remix, uncluttered.
+    moves:
+      - move: breathe
+        target: poster
+        at_f: 0
+        params: {scale: [1, 1.015, 1], period_f: 60}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 5
+    t: [6.967, 9.200]
+    frames: [209, 276]
+    layout: centre-stack
+    content: >
+      Hard cut to a dramatic orange sports poster (athlete photo, swoosh
+      logo bottom-right). Headline assembles in bold white caps, one clause
+      per beat: "WE" then "WE ARE HIRING." then "WE ARE HIRING. SENIOR" then
+      "WE ARE HIRING. SENIOR DESIGNER."
+    moves:
+      - move: sentenceBuildCascade
+        target: "\"WE ARE HIRING. SENIOR DESIGNER.\""
+        at_f: 0
+        params: {word_groups: 4, dur_per_group_f: 14, transition: hardCut, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: gradient-drift}
+    treatment: [filmGrain, vignette]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 6
+    t: [9.217, 13.350]
+    frames: [276, 401]
+    layout: full-bleed-ui
+    content: >
+      Cut to a floating editor window over a blue-sky/cloud backdrop. An AI
+      chat panel reads a prompt as one continuous string built up on screen -
+      "Distribute ellipse layers evenly around the center of the artboard to
+      form a perfect circle, with equal spacing between each ellipse" -
+      answered by "Done — I arranged the ellipse layers into a perfectly
+      centered circle, with equal spacing." White dot "ellipses" scattered on
+      a black canvas visibly converge into an evenly-spaced ring. A second
+      prompt follows, "Animate all ellipses so they fall down with gravity
+      and bounce off the bottom edge of the artboard," answered "Done — I
+      added the bounce animation" as the ring of dots drops and bounces along
+      the floor of the canvas. The same window then shows a "Portrait" video
+      timeline (layer rows: Main headline, Group · Rotate, Portrait, Image
+      moves, Ken Burns) while a tooltip "Add a 20ms offset" repeats and a
+      cursor tagged "Louisa" nudges each layer's keyframe bar slightly
+      further right in sequence.
+    moves:
+      - move: orbitRing
+        target: 12 scattered dots converging to a ring
+        at_f: 0
+        params: {rotate: [0, 15], period_f: 90, children_counter_rotate: false}
+      - move: popIn
+        target: dots on gravity-bounce impact
+        at_f: 35
+        params: {scale: [1, 0.85, 1], dur_f: 6, ease: springSnap, stagger_f: 2}
+      - move: cursorNameTagChoreo
+        target: "\"Louisa\" cursor"
+        at_f: 48
+        params: {dur_f: 60, per_target_stagger_f: 8}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: blurred-ui, moves: [parallaxLayers]}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 7
+    t: [13.367, 15.450]
+    frames: [401, 464]
+    layout: full-bleed-ui
+    content: >
+      Same floating window; a purple agent chip reads "Apply a displacement
+      shader" as a right-hand style-picker cycles two named thumbnails at a
+      time — "Fluid Warp / Fluted Glass", then album-cover art labelled
+      "Bulge / Displacement", then a portrait photo labelled "Noise Warp /
+      Ripple", then a "Post FX" pair — while the canvas artwork visibly
+      warps to match whichever effect is highlighted.
+    moves:
+      - move: popIn
+        target: "\"Apply a displacement shader\" command chip"
+        at_f: 0
+        params: {scale: [0, 1.05, 1], dur_f: 8, ease: springSnap}
+      - move: staggerRise
+        target: style-thumbnail pairs swapping
+        at_f: 0
+        params: {y: [10, 0], opacity: [0, 1], blur: [4, 0], stagger_f: 3, ease: springSoft}
+    camera: {move: dollyToUI, params: {scale: [1, 1.1], ease: expoInOut, dur_f: 30}}
+    bg: {kind: blurred-ui}
+    treatment: [dropShadowSoft, chromaticEdge]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 8
+    t: [15.467, 17.450]
+    frames: [464, 524]
+    layout: full-bleed-ui
+    content: >
+      Zoom into one artboard: a black "LIVE TWITCH STARTING SOON PLEASE
+      WAIT" countdown card. A large yellow numeral counts up ("38" to "39")
+      inside a circular halo made of a fine dot/halftone grid radiating
+      outward from the number. Caption "1MIN. REMAINING" sits beneath.
+    moves:
+      - move: counterUp
+        target: countdown numeral
+        at_f: 0
+        params: {dur_f: 30, ease: linear, monospace_digits: true}
+      - move: radialHalftoneMask
+        target: dot halo behind numeral
+        at_f: 0
+        params: {radius_pct: 38, dot_grid: "24x24", pulse_period_f: 30, dot_opacity: [0.15, 0.9]}
+    camera: {move: dollyToUI, params: {scale: [1, 1.8], ease: expoInOut, dur_f: 40}}
+    bg: {kind: flat}
+    treatment: [bloomGlow, filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 9
+    t: [17.467, 19.333]
+    frames: [524, 580]
+    layout: centre-stack
+    content: >
+      Cut to plain light bg; a new sentence assembles by appending whole
+      words, holding earlier ones in place: "Scale" then "Scale one" then
+      "Scale one asset" then "Scale one asset into" then "Scale one asset
+      into a full" then "Scale one asset into a full campaign" — the final
+      word "campaign" landing in accent purple-blue.
+    moves:
+      - move: sentenceBuildCascade
+        target: "\"Scale one asset into a full campaign\""
+        at_f: 0
+        params: {word_groups: 6, dur_per_group_f: 9, transition: hardCut, ease: expoOut, accent_last_word: true}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 10
+    t: [19.350, 21.533]
+    frames: [580, 646]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to a bold yellow "SUMMER SALE" hero poster (tilted sneaker
+      photo, "FREE SHIPPING" footer). Camera pushes into a tight crop on
+      the headline as a right-click context menu opens beside a cursor
+      tagged "Patrick": "Brainstorm / Magic Resize / Translate / Rename
+      layers / Clean up timeline" — the cursor hovers and clicks
+      "Magic Resize."
+    moves:
+      - move: scaleIn
+        target: context menu panel
+        at_f: 12
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 10, ease: backOut}
+      - move: cursorNameTagChoreo
+        target: "\"Patrick\" cursor"
+        at_f: 16
+        params: {dur_f: 14, click_ripple: true}
+    camera: {move: dollyToUI, params: {scale: [1, 2.4], ease: expoInOut, dur_f: 30}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 11
+    t: [21.550, 22.933]
+    frames: [646, 688]
+    layout: grid
+    content: >
+      After Magic Resize triggers, the headline regrows letter by letter —
+      "S" then "SUM" then "SUMMER" then "SUMMER SA" then "SUMMER SALE" —
+      while five differently-cropped poster variants (portrait, square,
+      tall story) fan out beside it, each reflowing the same headline and
+      photo to its own aspect ratio in real time.
+    moves:
+      - move: typeOn
+        target: "\"SUMMER SALE\" headline (regrowing)"
+        at_f: 0
+        params: {chars_per_f: 1.0, caret: false}
+      - move: staggerRise
+        target: 5 aspect-ratio poster variants
+        at_f: 6
+        params: {x: [40, 0], scale: [0.85, 1], opacity: [0, 1], stagger_f: 4, ease: springSoft}
+    camera: {move: pullOut, params: {scale: [1.1, 1]}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 12
+    t: [22.950, 26.650]
+    frames: [688, 800]
+    layout: full-bleed-ui
+    content: >
+      A filmstrip of six finished "SUMMER SALE" variants at different
+      aspect ratios scrolls past. Hard cut to a chat bubble asking "Hey!
+      Which languages would you like me to translate this scene into?"
+      with a reply bubble typing out live: "French, Spanish, German,
+      Italian, Finnish, Japanese, Chinese, Swedish, Catalan, and Latin."
+    moves:
+      - move: staggerRise
+        target: 6 resized poster variants
+        at_f: 0
+        params: {x: [30, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: typeOn
+        target: language-list reply bubble
+        at_f: 56
+        params: {chars_per_f: 2.2, caret: true, caret_blink_f: 12}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 13
+    t: [26.667, 27.433]
+    frames: [800, 823]
+    layout: grid
+    content: >
+      Small black "NASA" mission posters, headlined in the requested
+      languages ("Soon," "Pronto," "Presto," "Pian," "Bald," "Snart,"
+      "Aviat," "Mox," plus Japanese and Chinese equivalents), fly in from
+      the upper right and land staggered along a descending diagonal — each
+      one offset further down-left and slightly smaller than the last.
+    moves:
+      - move: diagonalCascadeIn
+        target: 10 localized poster variants
+        at_f: 0
+        params: {dx: -90px, dy: 60px, stagger_f: 2, scale_falloff: 0.03, ease: backOut}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 14
+    t: [27.450, 31.017]
+    frames: [823, 931]
+    layout: full-bleed-ui
+    content: >
+      Cut to an "Artboard" AI chat command typing live: "C" then "Cre" then
+      "Create var" then "Create variations with different copy, visuals,
+      layouts, animation styles," beside a "Thinking..." loader. Hard cut
+      to a dense grid of small square localized-variant tiles (blue
+      sky-and-cloud photography, captions "WHAT'S NEW," "IN THE NEWS," "IN
+      THE NEWS TODAY," "A LA UNE AUJOURD'HUI," "DANS L'ACTU DU JOUR") tiling
+      in and filling the frame edge to edge.
+    moves:
+      - move: typeOn
+        target: "\"Create variations with different copy, visuals, layouts, animation styles\" chat input"
+        at_f: 0
+        params: {chars_per_f: 1.6, caret: true, caret_blink_f: 15}
+      - move: staggerRise
+        target: grid tiles (dozens, visible + off-frame)
+        at_f: 60
+        params: {scale: [0.8, 1], opacity: [0, 1], stagger_f: 1, ease: springSoft}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 15
+    t: [31.033, 31.600]
+    frames: [931, 948]
+    layout: grid
+    content: >
+      The tile grid finishes populating to a full wall of roughly 120
+      variant tiles. A rounded tooltip reading ".webm Export 120 videos"
+      pops in beside a cursor tagged "Anais" as it drifts across the
+      packed grid.
+    moves:
+      - move: scaleIn
+        target: "\"Export 120 videos\" tooltip"
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 8, ease: backOut}
+      - move: cursorNameTagChoreo
+        target: "\"Anais\" cursor"
+        at_f: 0
+        params: {dur_f: 17}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 16
+    t: [31.600, 34.000]
+    frames: [948, 1020]
+    layout: centre-stack
+    content: >
+      Hard cut to black. The "Superagents" wordmark scales up from a small
+      clipped fragment into its full white lockup, centred. "Now available"
+      settles beneath it a beat later.
+    moves:
+      - move: scaleIn
+        target: "\"Superagents\" wordmark"
+        at_f: 0
+        params: {scale: [0.3, 1], opacity: [0, 1], dur_f: 20, ease: backOut}
+      - move: maskWipeUp
+        target: "\"Now available\" tagline"
+        at_f: 24
+        params: {dur_f: 12, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: [filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+  - n: 17
+    t: [34.000, 37.933]
+    frames: [1020, 1138]
+    layout: centre-stack
+    content: >
+      A "jitter.video" pill-shaped CTA button holds centre frame on black,
+      its fill colour-cycling through the brand palette (violet, magenta,
+      cyan, back to violet) before settling and holding to the final frame.
+    moves:
+      - move: popIn
+        target: CTA pill
+        at_f: 0
+        params: {scale: [0, 1.05, 1], dur_f: 10, ease: springSnap}
+      - move: gradientDrift
+        target: pill fill colour
+        at_f: 10
+        params: {hue_rotate: ±140deg, period_f: 90}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 100}}
+    bg: {kind: flat}
+    treatment: [bloomGlow]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 20
+
+techniques:
+  - id: ai-chat-canvas-morph
+    what: >
+      A visible AI chat panel receives a plain-English instruction
+      ("Distribute ellipse layers evenly...", "Animate all ellipses so they
+      fall down with gravity...") and the canvas responds by physically
+      rearranging its objects — scattered dots snapping into an
+      evenly-spaced ring, then that ring dropping and bouncing under
+      gravity — with a "Done — ..." confirmation line appearing after each
+      result lands.
+    where: shot 6, frames 276-401
+    why_it_reads: >
+      Watching an instruction turn directly into a canvas state-change,
+      with the chat log as the receipt, sells "the tool understands intent"
+      far more convincingly than a voiceover claim could. It is the
+      clearest UI-as-hero demonstration in the whole reference.
+    remotion_recipe: >
+      Precompute two or three named object-position arrays: scatterPositions
+      (random), ringPositions (polar coordinates, x=r*cos(theta),
+      y=r*sin(theta) around a shared centre), bouncePositions (a simple
+      gravity + restitution simulation baked to per-frame y-offsets for each
+      dot). For the currently-active instruction, interpolate each dot's
+      x/y between whichever two position arrays bound the current frame
+      range using an expoInOut ease. Render the chat log as a scrolling
+      flex column of bubbles revealed with springSoft (y + opacity), and
+      gate each "Done" bubble to fire only once its corresponding canvas
+      animation's frame range has completed.
+    difficulty: moderate
+
+  - id: displacement-style-picker-grid
+    what: >
+      A side panel shows named effect thumbnails (Fluid Warp, Fluted Glass,
+      Bulge, Displacement, Noise Warp, Ripple, Post FX) two at a time; as
+      the AI applies each, the live canvas artwork visibly warps to match.
+    where: shot 7, frames 401-464
+    why_it_reads: >
+      Naming the effect in text right beside its live preview turns an
+      abstract "apply an effect" claim into a mapped, concrete visual
+      result — PRINCIPLES' "abstract claim gets one concrete visual object"
+      rule, executed twice per second.
+    remotion_recipe: >
+      Apply an SVG feDisplacementMap filter (or a WebGL fragment shader
+      sampling a displacement texture) to the artwork layer, driving the
+      map's scale/frequency uniform from 0 to a target value over 8-10f per
+      applied effect. Swap the underlying displacement texture (fine noise
+      for Noise Warp, a radial gradient for Bulge, a sine-wave pattern for
+      Ripple) per named effect rather than trying to build one universal
+      shader that fakes all of them.
+    difficulty: hard
+
+  - id: radial-halftone-counter-halo
+    what: >
+      A large countdown numeral sits inside a circular field of small dots
+      whose density/opacity radiates outward from the number, giving it a
+      glowing, textured halo in place of a flat drop shadow.
+    where: shot 8, frames 464-524
+    why_it_reads: >
+      The mask/texture is the subject here, not a reveal device — it makes
+      one numeral feel like the centre of an energy field, which is
+      exactly the register a "starting soon" countdown needs. Direct
+      answer to the shape-driven-masking brief: the mask boundary is a
+      circle, the fill is animated, and nothing is being "revealed" by it.
+    remotion_recipe: >
+      Generate an SVG pattern of small circles on a grid; clip it to a disc
+      with clip-path: circle(38% at 50% 50%) (radius_pct=38 of the
+      containing box). Drive each dot's opacity/radius as a function of its
+      distance from the centre plus a per-frame sine term
+      (Math.sin(frame / period_f + distance * k)) so the halo visibly
+      pulses in sync with the counter, entirely from useCurrentFrame() —
+      no video texture or pre-baked asset needed.
+    difficulty: moderate
+
+  - id: sentence-build-word-append
+    what: >
+      A headline is built by appending one or more NEW words per beat while
+      all previously-landed words stay in place, ending on a full sentence
+      with the final word in an accent colour. Distinct from letter-by-letter
+      typing and from suffix-growth of a single word.
+    where: shots 5 and 9, frames 209-276 and 524-580
+    why_it_reads: >
+      Matches PRINCIPLES' "never put a full sentence on screen at once,
+      stage it" almost exactly — each beat gives the eye one new idea
+      instead of a wall of text, and the accent colour on the last word
+      rewards reaching the end of the claim.
+    remotion_recipe: >
+      Store the full sentence as an array of word-groups, e.g.
+      ["WE", "ARE HIRING.", "SENIOR", "DESIGNER."]. currentGroup =
+      Math.floor((frame - startF) / durPerGroupF). Render
+      groups.slice(0, currentGroup + 1).join(' '), with the newest group's
+      opacity animated 0 to 1 over 4-6f paired with a 6px y-rise so each
+      addition still reads as a small entrance rather than a bare cross-fade.
+    difficulty: trivial
+
+  - id: magic-resize-live-reflow
+    what: >
+      Selecting "Magic Resize" from a context menu triggers the same
+      asset's headline and photo to simultaneously regrow and reflow across
+      several differently-cropped aspect-ratio variants in parallel, rather
+      than resizing a static screenshot.
+    where: shots 10-11, frames 580-688
+    why_it_reads: >
+      This is PRINCIPLES' "animate the UI's own state changes... rather
+      than animating the screenshot as one image" in its purest form — the
+      payoff (one asset becomes a full campaign) is a real, simultaneous
+      multi-artboard transformation, not an implied cut.
+    remotion_recipe: >
+      Keep one canonical content model (headline string, photo focal-point
+      rect) and N artboard components that each map that model to their own
+      aspect ratio via CSS aspect-ratio plus object-fit: cover with a
+      per-artboard focal point. Drive all N artboards' text-reveal off the
+      same shared frame counter so they visibly grow in lockstep, and
+      stagger only their entrance (x/opacity, 3-4f apart) so the group reads
+      as one action fanning out, not N separate animations.
+    difficulty: moderate
+
+  - id: multiplayer-cursor-name-tags
+    what: >
+      Every synthetic cursor carries a small pill-shaped name tag (a
+      colour-coded chip plus first name — Sacha, Thomas, Louisa, Patrick,
+      Anais) that travels with the pointer and attaches to whichever UI
+      action it performs.
+    where: shots 2, 6, 10, 15
+    why_it_reads: >
+      Reframes every cursor move as "a real collaborator doing this live"
+      instead of an anonymous demo pointer, implying a whole team/workflow
+      without ever showing a face.
+    remotion_recipe: >
+      A single Cursor component composed of an SVG arrow plus an
+      absolutely-positioned label div (border-radius: 999px, background:
+      the cursor's assigned colour) offset (18px, 18px) from the arrow tip.
+      Interpolate position between keyframed (x, y) waypoints per shot with
+      an expoOut ease; fire a springSnap scale pulse (1 to 0.85 to 1, 6f) on
+      any frame flagged as a click.
+    difficulty: trivial
+
+  - id: diagonal-cascade-array
+    what: >
+      A set of related variant cards (the same poster translated into ten
+      languages) fly in and land staggered along a descending diagonal,
+      each offset down-and-left and slightly smaller than the last, rather
+      than in a grid or a straight stack.
+    where: shot 13, frames 800-823
+    why_it_reads: >
+      A diagonal arrangement reads as "many parallel outputs from one
+      source" more legibly than a grid at this small a scale — the
+      staircase implies both quantity and an implicit order without
+      labelling either.
+    remotion_recipe: >
+      For card index i: targetX = -i * dxStep, targetY = i * dyStep (both
+      px; dxStep negative/left, dyStep positive/down), scale = 1 - i * 0.03.
+      Animate each card in from an offset start position (targetX + 120,
+      targetY - 120) with opacity 0 to 1 and a backOut ease, staggering the
+      start frame by 2f per index — pure index-driven math, no per-card
+      hand placement.
+    difficulty: trivial
+
+  - id: bulk-variant-tile-wall
+    what: >
+      A single AI instruction resolves into a dense wall of roughly 120
+      small square video-tile thumbnails filling the entire frame, followed
+      by a one-line "Export 120 videos" action.
+    where: shots 14-15, frames 823-948
+    why_it_reads: >
+      Scale becomes the visual — the video never claims "generate at
+      scale" in words, it shows an uncountable grid and lets the "120" in
+      the export button retroactively confirm the count.
+    remotion_recipe: >
+      Render an MxN CSS grid of tile components, each a cheap placeholder
+      (a single looping background clip with a caption drawn from a small
+      array of localized strings, indexed by (row * N + col) modulo
+      array.length so only a handful of unique assets fill 120 slots).
+      Populate the grid with one staggerRise pass at a tight 1f per-tile
+      stagger — at that rate it reads as instant population, not a slow
+      reveal.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 16
+  median_shot_f: 66
+  fastest_f: 9
+  slowest_f: 125
+  pattern: >
+    9f cold-open flash ("Meet") -> 81f wordmark/prompt/carousel hook ->
+    three 43-76f "remix payoff" beats -> a 67-125f pair of AI-chat-driven
+    canvas demos (ellipses, displacement shader) -> a 60f ornamental
+    counter-halo beat -> two 42-112f "sentence assembles + Magic Resize"
+    beats -> a 23-108f bulk-proof pair (diagonal cascade, tile wall) -> a
+    72f logo lockup -> a 118f colour-cycling CTA hold. Energy is
+    front-loaded at the hook, dips to a steady medium through the two long
+    UI-demo shots, and never fully re-accelerates before the long outro
+    hold.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Steal ai-chat-canvas-morph as the default explainer beat for any
+    AI-powered feature — show the instruction and the canvas obeying it,
+    never voiceover the claim instead.
+  - Use sentence-build-word-append instead of typeOn for any claim longer
+    than about six words; it stages the sentence without a caret cliche.
+  - Give every synthetic cursor a name tag (multiplayer-cursor-name-tags) —
+    it is a single component and implies a whole team for free.
+  - Use magic-resize-live-reflow (one content model, N aspect-ratio
+    artboards driven off a shared frame counter) for any "one input, many
+    outputs" feature instead of showing outputs as static side-by-side
+    screenshots.
+  - Use diagonal-cascade-array in place of a plain grid stagger whenever
+    showing several parallel variants of one source asset.
+  - Reserve one ornamental mask-as-subject moment per video (here,
+    radial-halftone-counter-halo) rather than spreading shape-masking
+    thinly across many shots.
+
+avoid:
+  - The 125f screen-recording montage in shot 6 depends on a real,
+    hand-scripted product session (an actual AI response). Don't fake
+    per-token "AI thinking" timing by hand-keying it — script the full
+    response text up front and drive its reveal purely from frame math
+    (typeOn / sentenceBuildCascade), exactly as every other text beat in
+    this spec already does.
+  - The style-picker's Fluid Warp/Bulge effects are genuine GPU shader
+    passes (feDisplacementMap or WebGL), not CSS filters — don't
+    approximate them with blur/hue-rotate; use a real displacement shader
+    or drop that specific beat if the pipeline has no WebGL layer.
+  - The 120-tile wall implies 120 unique renders. Don't actually render 120
+    distinct Remotion comps — reuse a small placeholder set indexed
+    modulo array length, per bulk-variant-tile-wall.
+  - The final 0.7s of the video (last ~59f of shot 17, after the CTA pill's
+    colour-cycle settles) is a genuinely dead, fully static hold — a bug per
+    PRINCIPLES section 12, not a deliberate choice. Fix with a tiny
+    breathe/gradientDrift that keeps running after the colour settles.
+
+new_moves:
+  - name: sentenceBuildCascade
+    params: {word_groups: 6, dur_per_group_f: 9, transition: hardCut, ease: expoOut, accent_last_word: true}
+    description: >
+      A sentence is assembled by appending one or more whole new words per
+      beat while previously-landed words remain static, rather than typing
+      character-by-character (typeOn) or growing one word's suffix
+      (wordBuildReveal). Each new word-group's opacity animates 0 to 1 over
+      4-6f paired with a small y-rise so the addition reads as an entrance,
+      not a cross-fade. Optionally colour the final word-group as an accent
+      to mark the sentence's completion.
+  - name: radialHalftoneMask
+    params: {radius_pct: 38, dot_grid: "24x24", pulse_period_f: 30, dot_opacity: [0.15, 0.9]}
+    description: >
+      A field of small repeated shapes (dots) arranged on a grid and hard
+      clipped to a circular (or other) boundary around a hero element,
+      where the dot pattern itself is the visual subject rather than a
+      wipe/reveal device. Dot opacity/scale is driven by distance from
+      centre plus a per-frame sine term so the whole halo pulses in place.
+  - name: cursorNameTagChoreo
+    params: {dur_f: 20, click_ripple: true, per_target_stagger_f: 8}
+    description: >
+      A synthetic cursor (arrow + offset pill-shaped name tag) is animated
+      along keyframed waypoints to simulate a named collaborator performing
+      UI actions. Optionally fires a springSnap scale-pulse "click ripple"
+      when it reaches an interactive target, and can visit multiple targets
+      in sequence with per_target_stagger_f between arrivals.
+  - name: diagonalCascadeIn
+    params: {dx: -90px, dy: 60px, stagger_f: 2, scale_falloff: 0.03, ease: backOut}
+    description: >
+      An index-driven variant of slideStackIn where each successive item is
+      offset along BOTH x and y (dx, dy per index) rather than pure y,
+      producing a descending diagonal staircase instead of a vertical stack
+      or a grid. scale_falloff shrinks each successive item slightly to
+      reinforce depth/order.
+
+detection_notes: >
+  Source video is 60fps (2276 frames / 37.933s) but this spec normalizes
+  every frame count to the pipeline's 30fps convention per MOVE_VOCAB.md —
+  all `t:` seconds match profile.md exactly, and `frames:` values here are
+  the source's native frame numbers divided by two. One merge was made
+  against the profile's 18-cut shot table: source frames 1600-1607 (8f at
+  60fps = 0.13s, tagged "hot / linear" in profile.md) sit below the 11f
+  minimum-shot-length rule and are a cut-detector artifact at the join
+  between the diagonal-cascade landing and the "Artboard" chat command
+  beginning, not a real shot — folded into shot 14 (source frames
+  1608-1646) here. No other shots were merged; the remaining 16
+  profile-detected cuts each correspond to a real, visually distinct
+  content change confirmed on the sheets. The profile's flagged frozen
+  stretch (source frames 2233-2275, ≈ frames 1117-1138 here) is confirmed
+  genuine dead time after the CTA pill's colour-cycle settles — flagged
+  under `avoid`, not merged away, since it is a real bug rather than a
+  detection error.
+
+convergence:
+  - >
+    wordCycleSettle / word-cycle-slot-settle (Zhylar spec, shot 4): both
+    reveal a headline identity by substituting whole words into a fixed
+    text slot on a frame-indexed timer rather than typing or cutting to it
+    — here "Meet" -> "Jitter" -> "Superagents" (shot 2), there a 3-column
+    slot machine landing on a value prop.
+  - >
+    wordBuildReveal / word-build-suffix-reveal (Zhylar spec, shot 14): both
+    stage a short claim by progressively growing visible text rather than
+    typing it character-by-character or cutting to it whole — here the
+    "SUM" -> "SUMMER SALE" letter growth (shot 11) and the whole-word
+    sentence-build-word-append beats (shots 5, 9); there the "Simplify
+    Pro" -> "Simplify Processes" suffix growth with a redrawing underline.
+  - >
+    driftCamera / pushIn as the default ambient move on floating UI and
+    hero-object shots: both specs run a near-imperceptible camera drift or
+    slow push on almost every shot rather than ever holding the frame
+    perfectly static.
+  - >
+    dropShadowSoft on floating UI cards/panels: both specs consistently
+    treat any UI mockup or floating card with a single soft drop shadow to
+    read as "physically placed" rather than pasted flat.

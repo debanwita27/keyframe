@@ -1,0 +1,360 @@
+id: evanplace_B_a-logo-animation-of-openais-logo
+source: "unknown (X/Twitter post by @evanplace; folder name preserves the original post's caption text)"
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 60
+  duration_s: 7.917
+  orientation: horizontal
+
+verdict: >
+  Cold-opens on the finished OpenAI lockup, cuts to black, then rebuilds the
+  mark from a loading-spinner motif (8 dots -> ring rotation -> hexagon ->
+  point -> mark) before the wordmark wipes in from the right edge, landing on
+  the exact frame it teased at the start. The reusable idea is treating an
+  abstract, already-familiar UI shape (a spinner) as the raw geometric material
+  a brand mark gets built from, so the "construction" reads as a joke/wink
+  instead of arbitrary vector noise.
+
+detection_notes: >
+  profile.md's shot detector reports a single shot (0-474f, no luma-delta cut
+  above 26.0) for the entire 475-frame clip -- there are zero hard cuts.
+  Everything below is a narrative subdivision of one continuous take into
+  construction beats, matching the precedent set by B_chromatic-logo-2d3d.yaml.
+  Frozen-stretch list (0-24, 32-71, 207-227, 379-474) independently confirms
+  the beat boundaries used here: 0-24 is the cold-open hold on the full
+  lockup; 32-71 is the black anticipation gap; 207-227 is the tiny-dot hold
+  immediately before the pop into the mark (sheet_01 row4 frames 204/214/224
+  all show the same single small dot, matching); 379-474 is the closing hold
+  on the rebuilt lockup. No false-positive cuts to merge -- the analyzer
+  correctly found no cuts at all.
+
+palette:
+  bg: "#000000"
+  ink: "#D8D8D8"
+  accent: "none"
+  support: ["#A8A8A8", "#303030", "#484848", "#909090"]
+  notes: >
+    Screen share is 98.3% pure black. Every visible element (spinner dots,
+    guide hexagon, mark, wordmark) renders in a single off-white value with no
+    hue anywhere in the piece -- a fully monochrome brand execution. There is
+    no accent color to ration; the "accent" move here is motion/geometry, not
+    color.
+
+typography:
+  family_look: "geometric sans (OpenAI's custom wordmark face)"
+  weights: [bold]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.22
+  notes: >
+    Single wordmark moment only: "OpenAI" in mixed case, set immediately to
+    the right of the mark, appearing once via a masked wipe in shot 5. No
+    other text in the piece.
+
+structure:
+  - act: hook
+    t: [0.00, 1.233]
+    purpose: tease the finished lockup for less than half a second, then cut to black so the audience wants to know how it reassembles.
+    shots: [1, 2]
+  - act: reveal
+    t: [1.233, 3.900]
+    purpose: rebuild the mark starting from an abstract loading-spinner motif, through a ring rotation, a hexagon collapse, and a shape-morph pop into the final icon.
+    shots: [3, 4]
+  - act: proof
+    t: [3.900, 5.900]
+    purpose: the wordmark assembles beside the now-settled mark, delivering on the exact lockup teased at the open.
+    shots: [5]
+  - act: cta
+    t: [5.900, 7.917]
+    purpose: hold on the completed lockup long enough to brand it before the clip ends.
+    shots: [6]
+
+shots:
+  - n: 1
+    t: [0.00, 0.567]
+    frames: [0, 34]
+    layout: centre-stack
+    content: >
+      The finished OpenAI lockup (knot mark + "OpenAI" wordmark) holds static,
+      centred, small relative to frame, on full black. By frame 34 it has
+      dissolved to pure black.
+    moves:
+      - move: dissolveBlur
+        target: lockup
+        at_f: 22
+        params: {blur: "0->14", opacity: "1->0", dur_f: 12}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 0
+
+  - n: 2
+    t: [0.567, 1.233]
+    frames: [34, 74]
+    layout: centre-stack
+    content: >
+      Full-bleed black, empty, held as an anticipation gap before the
+      spinner-dot construction begins.
+    moves:
+      - move: grainShift
+        target: fullFrame
+        at_f: 0
+        params: {noise_seed: frame, opacity: 0.05}
+    camera: {move: static, params: {}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 0
+
+  - n: 3
+    t: [1.233, 3.067]
+    frames: [74, 184]
+    layout: centre-stack
+    content: >
+      8 small white dots appear one at a time (roughly one every 5f) around a
+      ring, arranged like a classic UI loading spinner (key sheet_01 frames
+      74/84/94/104/114 show the ring populating). Once complete, the whole
+      ring of dots slowly rotates in place through the rest of the shot
+      (frames 124-174 show the same 8-dot pattern at progressively rotated
+      positions).
+    moves:
+      - move: popIn
+        target: "spinnerDot (x8, polar ring r ~= 8% of frame height)"
+        at_f: 0
+        params: {n: 8, stagger_f: 5, scale: "0->1.1->1", dur_f: 10, ease: springSnap}
+      - move: orbitRing
+        target: spinnerRing
+        at_f: 40
+        params: {rotate: "0->130", dur_f: 70, ease: linear, children_counter_rotate: false}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain]
+    audio_cue: riser
+    transition_out: {move: morphShape, params: {note: "continuous into shot 4, no hard cut"}}
+    hold_f: 0
+
+  - n: 4
+    t: [3.067, 3.900]
+    frames: [184, 234]
+    layout: centre-stack
+    content: >
+      The 8 orbiting dots pull inward from the ring into a tight cluster (key
+      frame 184), merge into a single hexagon-outline shape (key frame 194,
+      also saved as keys/00_f213.png), then shrink down to a single tiny dot
+      held for ~20f (frames 204/214/224 all show the same small dot -- this is
+      the profile's 207-227 frozen stretch), before popping open into the
+      full OpenAI knot mark by frame 234.
+    moves:
+      - move: ringToMarkMorph
+        target: "spinnerRing -> hexagon -> point -> mark"
+        at_f: 0
+        params: {converge_dur_f: 10, hexagon_hold_f: 10, shrink_dur_f: 20, pop_dur_f: 10, ease: expoInOut}
+      - move: scaleIn
+        target: mark
+        at_f: 40
+        params: {scale: "0.05->1", opacity: "0->1", dur_f: 10, ease: backOut}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: none, params: {note: "mark persists directly into shot 5"}}
+    hold_f: 0
+
+  - n: 5
+    t: [3.900, 5.900]
+    frames: [234, 354]
+    layout: centre-stack
+    content: >
+      The settled knot mark holds essentially still while the "OpenAI"
+      wordmark reveals to its right via a rectangular mask whose left edge
+      sweeps from the right side of the text block toward the mark -- at
+      frame 314 only the rightmost glyph "I" is visible, at frame 324 "enAI"
+      (with a sliver of "p"), at frame 334 "penAI", and by frame 344 the full
+      "OpenAI" is legible. This is a right-to-left uncover, the reverse of the
+      usual "printing" left-to-right wipe.
+    moves:
+      - move: breathe
+        target: mark
+        at_f: 0
+        params: {scale: "1->1.01->1", period_f: 100}
+      - move: maskWipeSide
+        target: "wordmark (OpenAI)"
+        at_f: 70
+        params: {dur_f: 40, dir: "r->l", ease: expoInOut}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: none, params: {note: "settles directly into the hold, shot 6"}}
+    hold_f: 0
+
+  - n: 6
+    t: [5.900, 7.900]
+    frames: [354, 474]
+    layout: centre-stack
+    content: >
+      The complete lockup (mark + wordmark) holds static for the remainder of
+      the clip -- the exact frame that was teased at the very start.
+    moves:
+      - move: breathe
+        target: lockup
+        at_f: 0
+        params: {scale: "1->1.012->1", period_f: 120}
+    camera: {move: pushIn, params: {scale: "1->1.02", dur_f: 120, ease: expoInOut}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 10
+
+techniques:
+  - id: spinner-to-mark-shape-convergence
+    what: >
+      8 dots build into a ring (a literal, recognizable "AI thinking"
+      loading-spinner), the ring rotates, then the dots converge inward and
+      merge into a single hexagon outline path, which shrinks to a point
+      before path-morphing outward into the final brand mark.
+    where: shots 3-4, frames 74-234
+    why_it_reads: >
+      Starting from a shape the audience already reads as "the product
+      working" gives the abstract construction phase built-in meaning instead
+      of looking like arbitrary vector noise -- the mark is revealed to
+      literally emerge from the loading state.
+    remotion_recipe: >
+      Position 8 circles at polar coordinates around a centre, entrance via
+      popIn staggered 5f apart. Animate the parent group's rotation
+      linearly (orbitRing) for the spin phase. At the convergence frame,
+      interpolate each dot's position toward a shared hexagon-vertex layout,
+      then use an SVG path-morph library (flubber or d3-interpolate-path) to
+      interpolate a hexagon polygon path down to a near-zero-radius circle,
+      then morph that same path to the final mark's path data while scaling
+      0.05->1. Where a morph library isn't available, substitute a growing
+      circular clip-path (r 0%->100% centred on the point) revealing the
+      pre-drawn mark artwork underneath -- lower fidelity but much cheaper.
+    difficulty: moderate
+
+  - id: reversed-wordmark-wipe
+    what: >
+      The "OpenAI" wordmark reveals via a rectangular mask whose boundary
+      sweeps from the right edge of the text block leftward, uncovering the
+      rightmost glyph first and the leftmost glyph last -- the mirror of the
+      standard left-to-right "printing" reveal.
+    where: shot 5, frames 304-354
+    why_it_reads: >
+      Because the mark sits to the LEFT of the wordmark, revealing
+      right-to-left makes the text feel like it is completing "toward" the
+      mark rather than typing away from it, which reads as more intentional
+      than a generic left-to-right wipe would in this exact layout.
+    remotion_recipe: >
+      Position the wordmark absolutely inside an overflow-hidden container.
+      Drive `clip-path: inset(0 0 0 ${pct}%)` where pct is
+      interpolate(frame, [a,b], [100,0]) with expoInOut -- this is
+      maskWipeSide with dir set to r->l instead of the default l->r.
+    difficulty: trivial
+
+  - id: cold-open-tease-then-rebuild
+    what: >
+      The video opens on the finished lockup for under half a second, cuts to
+      black, then spends the remaining ~90% of the runtime rebuilding that
+      exact same frame from raw geometry.
+    where: whole piece
+    why_it_reads: >
+      Telling the eye the payoff up front turns the abstract dot/spinner/
+      hexagon phase into a legible journey with a known destination, instead
+      of a confusing sequence of unrelated shapes.
+    remotion_recipe: >
+      Render the exact same lockup composition at t=0 and at the final hold;
+      drive both from the identical component/props so they are pixel-
+      identical, and insert the black gap + construction sequence between them
+      as a single continuous Sequence.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 80
+  fastest_f: 34
+  slowest_f: 120
+  pattern: >
+    34f cold-open hold+fade -> 40f black anticipation gap -> 110f
+    spinner-build-and-rotate -> 50f converge/collapse/pop shape-morph -> 120f
+    wordmark reveal beside the settled mark -> 120f final hold on the
+    completed lockup. Zero hard cuts; every boundary is a fade, morph, or
+    continuous shape transformation.
+  beat_grid_f: none
+  energy_curve: wave
+
+transferable:
+  - Stage a logo construction through an already-legible UI shape (a loading
+    spinner, a progress ring) before revealing the actual mark -- the
+    audience's existing mental model of that shape does the "please wait, it
+    is becoming something" storytelling for free.
+  - Collapse a group of elements to a single point before popping outward
+    into the next shape (ring -> hexagon -> point -> mark) as a soft,
+    morph-driven transition instead of a hard cut.
+  - Reverse the direction of a wordmark's mask wipe (right-to-left instead of
+    left-to-right) when the mark it sits next to is on the left -- it reads
+    as the text "completing toward" the mark.
+  - Open on the finished result for a beat, cut away, then spend the rest of
+    the runtime earning that exact frame again -- a cheap way to give an
+    abstract construction sequence a legible destination.
+  - Keep an entire logo piece strictly monochrome (here 98.3% pure black) so
+    every bit of visual interest has to come from geometry and motion, not
+    color -- forces disciplined shape work.
+
+avoid:
+  - The 8-dot ring rotation will read as a literal "buffering" bug if it is
+    keyframed in discrete steps -- drive rotation from a single continuous
+    interpolate() call, never per-frame manual positions.
+  - Path-morphing a circle/hexagon into the brand mark needs matched point
+    counts and winding order between the two SVG paths or a morph library
+    will produce ugly, crossing interpolation artifacts -- do not substitute
+    a simple opacity cross-fade between the two paths, it reads as a double
+    exposure, not a transformation.
+  - The cold-open-then-rebuild structure only works if the opening and
+    closing lockup frames are pixel-identical -- render both from the same
+    component/props rather than two hand-tuned instances.
+
+new_moves:
+  - name: ringToMarkMorph
+    params: {ring_dur_f: 70, converge_dur_f: 10, hexagon_hold_f: 10, shrink_dur_f: 20, pop_dur_f: 10, ease: expoInOut}
+    description: >
+      A ring of small dots (styled as a loading spinner) rotates, then the
+      dots converge inward and merge into a single simple polygon outline
+      (e.g. a hexagon), which holds briefly, shrinks to a point, then
+      path-morphs outward into a final target mark shape. Combines
+      orbitRing + a shape convergence + morphShape into one named beat for
+      logo constructions that stage through an intermediate abstract/
+      geometric form before revealing the brand mark.
+  - name: collapseToPoint
+    params: {dur_f: 20, ease: expoIn}
+    description: >
+      A fully-formed group of shapes shrinks/fades in unison down to a
+      single point (one surviving primitive scaled to a small dot), which
+      then either drifts to seed the next construction or pops back outward
+      into a new shape -- used as a soft connective transition between two
+      constructed states instead of a hard cut. (Shared definition with
+      evanplace_B_had-a-lot-of-fun-working-on-the-speaker-an.yaml, which uses
+      the same move without the ring/hexagon staging.)
+
+convergence:
+  - >
+    orbitRing (a ring of small elements rotating around a static or
+    about-to-be-revealed centre) is directly convergent with B_chromatic's
+    "flat-icon-vector-anchor-orbit" technique (shot 3, a ring of anchor-point
+    handles orbiting the finished flat mark) -- same move, different dressing.
+  - >
+    morphShape (SVG path interpolation between two states of the same object)
+    is convergent with B_chromatic's "bloom-invert-morph-transition"
+    technique, which also interpolates a path from one silhouette to another
+    as its connective transition instead of a hard cut.
+  - >
+    The overall "every transition is a flash/morph on the same continuing
+    object, never a hard scene change" structure matches B_chromatic's
+    detection_notes finding almost verbatim -- that reference has 1 real cut
+    in 257 frames, this one has 0 cuts in 475 frames.

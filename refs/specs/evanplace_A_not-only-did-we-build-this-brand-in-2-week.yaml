@@ -1,0 +1,344 @@
+id: evanplace_A_not-only-did-we-build-this-brand-in-2-week
+source: local-reference (evanplace_A_not-only-did-we-build-this-brand-in-2-week.mp4)
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "4:3"
+  fps: 60
+  duration_s: 16.483
+  orientation: horizontal
+
+verdict: >
+  Not a motion-designed reel at all — it is one unedited 16.5s screen recording
+  of a real, playable browser game ("Bean Cat") permanently framed inside a
+  mock browser-chrome window under a fixed "beans" logo lockup. The only two
+  content changes (menu to game, game to game-over) are real app-state swaps,
+  not authored cuts, and the automated cut-detector missed both because the
+  luma delta on a mostly-black frame never cleared its threshold. The single
+  transferable idea is structural, not animated: pin the brand mark above a
+  live, unedited product demo and let the software's own state machine do all
+  the "editing."
+
+palette:
+  bg: "#000000"
+  ink: "#F4F4F4"
+  accent: "#D6FF3E"
+  support: ["#001830", "#003048", "#90C0A8", "#004848", "#FF3DA6", "#FF3B30"]
+  notes: >
+    Profile top-7 swatches (black 57.7%, #001830 22.5%, #003048 8.4%, sea-green
+    #90C0A8 8.3%, #004848 2.6%, plus two 0.2% near-black-red slivers
+    #180000/#180018) describe the diagonal teal/navy aurora-beam background
+    behind the browser-chrome window, not the UI accents — the neon
+    chartreuse-lime accent (score digits, "Start Game"/"Try Again" buttons)
+    and the small magenta/red life-icon dots occupy too few pixels to surface
+    in a dominant-colour extraction, exactly like the interpolated accent in
+    A_explainer-zhylar-crm-cpq. Ink is nominally black-on-white in the
+    browser-chrome toolbar and off-white body text on the black game field —
+    never pure white on pure black (headline/score text reads as #F4F4F4).
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.18
+  notes: >
+    This is app/UI type, not marketing display type, so it runs far under the
+    35-50% headline-share norm: "Bean Cat" title and "Game Over" sub-head are
+    both compact, centred, UI-scale strings. The "beans" wordmark (bold,
+    rounded geometric sans, sentence case, paired with a cat-face glyph as a
+    logotype icon) is the one piece of true brand type and stays fixed at the
+    same small size/position for all 989 frames. Score digits ("Beans N") are
+    bold and tabular. The end-card leaderboard ("TOP 10 SCORES", cat names,
+    point values) is small, upper-case, wide-tracked, two 5-row columns.
+
+structure:
+  - act: hook
+    t: [0.00, 1.02]
+    purpose: >
+      Open already inside the branded browser-chrome frame on the game's own
+      title screen — establish the product and its logo before any gameplay.
+    shots: [1]
+  - act: proof
+    t: [1.02, 14.50]
+    purpose: >
+      Let the real game run uninterrupted for 13.5s so the viewer watches an
+      actual build work end to end, not a mockup or highlight reel.
+    shots: [2]
+  - act: cta
+    t: [14.50, 16.48]
+    purpose: >
+      Land on the game's own game-over/leaderboard/"Try Again" screen as the
+      closing card — the product's native end-state doubles as the outro.
+    shots: [3]
+
+shots:
+  - n: 1
+    t: [0.00, 1.017]
+    frames: [0, 60]
+    layout: centre-stack
+    content: >
+      Dark aurora-beam background (teal/navy diagonal bands) frames a white
+      macOS-style browser-chrome window (red/amber/green traffic-light dots,
+      empty toolbar). Above the window sits the fixed "beans" wordmark + cat-
+      face icon logo. Inside the window, on a solid black field: title "Bean
+      Cat" in bold white sans, a sleeping cat-face icon with "z z" sleep marks
+      beneath it, a chartreuse-lime pill button "Start Game" with a small
+      superscript glyph, and a plain "Leaderboard" text link with a small icon
+      beneath that. The entire frame is bit-identical for frames 0-29 (0.48s)
+      per profile.md's frozen-stretch flag — this is a true dead hold, not a
+      sampling artefact.
+    moves: []
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.017, 14.50]
+    frames: [61, 869]
+    layout: full-bleed-ui
+    content: >
+      Instant swap (frame 61, motion-delta spike 5.78 per motion.csv — below
+      the 26.0 auto-cut threshold, which is why the detector missed it) from
+      the title screen to live gameplay inside the same browser-chrome window.
+      Persistent chrome: 3 small pink/magenta icon-dots top-left, a "Pause"
+      pill button top-centre, "Beans N" score counter top-right in bold lime
+      digits, and the instructional caption "Hit spacebar to eat the beans.
+      Use your arrow keys to move left and right." fixed at the bottom (per
+      keys.jpg). Round bean-shaped objects (blue comma-shapes, white ring/
+      teardrop shapes, yellow blobs) continuously spawn near the top at
+      varied x and fall to the bottom; a white cat-face sprite patrols the
+      bottom edge, moving left/right under (real, human, non-deterministic)
+      keyboard control, and the score increments by 1 on each successful
+      catch (0 to 6 over the shot). Around frame 534-544 (t 8.9-9.07s) the 3
+      top-left icon-dots instantly recolour from magenta/pink to solid red
+      with no visible transition frame at this sample rate — read as a
+      difficulty/urgency state flag, not a scored event (the counter does not
+      reset or change at that moment).
+    moves:
+      - move: physicsFall
+        target: falling bean/collectible objects (continuous spawn)
+        at_f: 0
+        params: {spawn_x: seeded per object index, accel_px_f2: 0.05, rotate_rate_deg_f: 1.5, despawn: on-collision-or-offscreen}
+      - move: colorStateSwap
+        target: 3 life/status icon-dots, top-left
+        at_f: 480
+        params: {from: "#FF3DA6", to: "#FF3B30", dur_f: 0 (observed as instant at 10f sampling)}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 0
+
+  - n: 3
+    t: [14.50, 16.483]
+    frames: [870, 988]
+    layout: centre-stack
+    content: >
+      Instant swap (frame 870, motion-delta spike 5.57) to the game-over
+      state, already fully formed by frame 874 (within 4f of the cut, i.e.
+      effectively no eased entrance at this sample rate). Cat-face icon
+      (neutral, no longer sleeping), headline "Game Over", sub-head "You
+      caught 6 beans!", a "TOP 10 SCORES" panel in two 5-row columns —
+      left: "1. KADSCAT 105", "2. COCOA", "3. TIGER", "4. MILA", "5. GERRY";
+      right: "6. BEANS", "7. GARFIELD", "8. BEANCAT", "9. RAGDAG", "10.
+      SNOWBALL" (exact point values illegible at sheet resolution beyond the
+      leader "105" and the player's own "6") — and a chartreuse-lime "Try
+      Again" pill button. Fully static from ~frame 878 to the end per
+      profile's final frozen-stretch flag; a single stray cursor glyph
+      becomes visible in the last ~4-14 frames (motion.csv spike of 10.61 at
+      frame 984, the single loudest event in the whole clip) — almost
+      certainly a mouse-move/recording-stop artefact rather than a designed
+      beat, so it is not modelled as a move.
+    moves: []
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 114
+
+techniques:
+  - id: browser-chrome-live-demo-frame
+    what: >
+      The full 989-frame video is one continuous, unedited screen recording
+      of the real, working game, permanently housed inside a mock macOS
+      browser-chrome window (rounded white toolbar, 3 coloured traffic-light
+      dots) with the "beans" logo lockup pinned above it for the entire
+      duration. There is no camera move, no cut within the gameplay itself,
+      and only two content changes, both driven by the app's own state
+      machine (menu-to-play, play-to-game-over) rather than by an editor.
+    where: entire video, frames 0-988
+    why_it_reads: >
+      The total absence of editing is itself the credibility device — for a
+      "we built this in 2 weeks" claim, an unedited capture reads as proof
+      the software genuinely runs, which a cut-together highlight reel would
+      undercut.
+    remotion_recipe: >
+      Composite the real product as the content layer — either an
+      <OffthreadVideo> of the actual screen capture, or (if reproducing the
+      live app) an <iframe>/embedded canvas — inside an absolutely-positioned
+      CSS "browser chrome" component: a white rounded-top toolbar div plus
+      three coloured <span> dots. Pin the brand-logo lockup as a sibling
+      header div above the chrome, both static for the whole composition
+      duration_in_frames. Do not add driftCamera/pushIn here — a frame that
+      is genuinely still is correct when the content inside it is already
+      animating itself; adding camera motion on top would compete with the
+      gameplay, violating principle 4's "one camera move per shot" via a
+      camera move that isn't needed at all.
+    difficulty: trivial
+
+  - id: physicsFall-collectibles
+    what: >
+      Collectible game objects spawn at randomised x near the top of the
+      play field and fall with an accelerating y-position plus a slow
+      constant rotation, disappearing on catch or on leaving the frame —
+      this is what keeps a 13.5s static-camera shot from ever reading as
+      dead per profile.md (loudest-tile mean 25.6, never frozen on all three
+      motion scales during this shot).
+    where: shot 2, frames 61-869
+    why_it_reads: >
+      It satisfies "nothing is ever still" for free — the ambient motion is
+      the actual simulation, not an authored loop, so it never repeats
+      identically and never needs an eased entrance/exit.
+    remotion_recipe: >
+      For each spawned object, store spawnFrame and a seeded (not
+      Math.random) spawn-x keyed to the object's index. y(f) = y0 + 0.5 *
+      accelPxF2 * (f - spawnFrame)^2 (or a simpler linear-with-increasing-
+      step approximation); rotate(f) = rotateRateDegF * (f - spawnFrame).
+      Remove the object from the render tree once y exceeds the play-field
+      height or an AABB collision test against the cat sprite's current x
+      range succeeds — no easing curve needed, this is physics, not a move.
+    difficulty: moderate
+
+  - id: off-palette-instant-state-swap
+    what: >
+      3 small persistent icon-dots recolour instantly from magenta/pink to
+      solid red partway through play (~frame 534-544), with no scale,
+      position, or opacity change accompanying the colour swap.
+    where: shot 2, ~frame 540
+    why_it_reads: >
+      A hard colour break on an otherwise-static element reads as "system
+      state changed" without spending any animation budget on it — cheap,
+      legible, and it does not compete with the falling-object motion that's
+      already carrying the shot.
+    remotion_recipe: >
+      As observed it's a single-frame CSS custom-property/class swap (no
+      interpolation). A more considered version: interpolateColors(frame,
+      [triggerFrame, triggerFrame + 6], [0, 1]) mapped between the two hex
+      values, driving the icon's fill/background over 6f instead of an
+      instant swap, so it reads as intentional rather than as a glitch.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 2
+  median_shot_f: 119
+  fastest_f: 61
+  slowest_f: 809
+  pattern: >
+    61f static title hold -> 809f (13.5s) continuously-simulated gameplay,
+    uncut -> 119f static game-over/leaderboard hold to end. Both transitions
+    are instant app-state swaps (0f), not eased or flashed. The automated
+    cut-detector (threshold 26.0) missed both real cuts — their luma-delta
+    spikes were 5.78 (frame 61) and 5.57 (frame 870) — because swapping
+    between two mostly-black UI states produces a small pixel delta despite
+    being a 100% content change.
+  beat_grid_f: null
+  energy_curve: flat
+
+transferable:
+  - Pin a logo lockup above a live, embedded, unedited product demo instead
+    of cutting between staged screenshots — the demo's own motion (gameplay,
+    live data, real interaction) supplies all the "nothing is ever still"
+    requirement without any authored moves.
+  - When the actual proof point is "it works," let the software's real state
+    transitions (menu to app to end-state) BE the edit; do not add flashCut/
+    hardCut treatment on top of a swap that's already instant and real.
+  - Reserve one off-palette colour exclusively for a single system-state
+    signal (here, a red icon recolour mid-game) rather than for a fixed
+    accent — the rarity is what makes it register.
+  - A native end-state screen (game-over + leaderboard + "Try again" CTA)
+    doubles as an outro card for free — design the product's real terminal
+    state to already look like a closing frame, instead of building a
+    separate outro.
+  - For gameplay/simulation content, model motion as physics (position as a
+    function of elapsed frames since spawn) rather than as an eased move —
+    it's cheaper, it's naturally non-repeating, and it's what actually
+    produces the on-screen result.
+
+avoid:
+  - The 0.48s fully dead-static open (frames 0-29) and the 114f dead-static
+    close are real violations of principle 4 ("every shot runs at least one
+    ambient move") — they read as bugs here, not choices. A code-native
+    version of this idea should add a barely-perceptible breathe (scale
+    1->1.015->1, period_f 120) on the title/game-over cards specifically to
+    avoid this, since the source has nothing to copy for those two shots.
+  - The cat sprite's left-right movement during gameplay is real, non-
+    deterministic recorded human input — this violates the "deterministic
+    only, no Math.random/Date.now" rendering rule outright. Do not try to
+    fake "natural-looking randomness" for a player-controlled element in a
+    reproduction; drive it from a seeded, scripted path (frame-indexed
+    keyframes or a deterministic noise function keyed on frame number)
+    instead.
+  - The score counter's per-catch increments are instant integer swaps, not
+    an eased counterUp sweep — do not force MOVE_VOCAB's counterUp onto this
+    pattern (it's built for a single 0->N reveal, not a repeated +1 tally).
+    If polish is wanted, add a quick popIn-style scale-pop (dur_f 6-8,
+    springSnap) per increment instead.
+  - Exact leaderboard point values and two of the ten cat names are
+    illegible at the sheet's downsampled resolution — do not treat the
+    transcribed leaderboard text as verbatim beyond "Game Over", "You caught
+    6 beans!", "TOP 10 SCORES", and the clearly legible names/lead score.
+
+new_moves:
+  - name: physicsFall
+    params: {spawn_x: seeded per index, accel_px_f2: 0.05, rotate_rate_deg_f: 1.5, despawn: on-collision-or-offscreen}
+    description: >
+      An object's position is driven by a simple accelerating-gravity
+      function of elapsed frames since its own spawn frame, plus a slow
+      constant rotation, rather than by an eased entrance/exit curve. Used
+      for falling collectibles, particles, or any "live simulation" content
+      that must look continuously alive without authored keyframes. Distinct
+      from driftCamera/breathe (which are periodic and bounded) because it
+      is monotonic and terminates on collision or leaving frame.
+  - name: colorStateSwap
+    params: {dur_f: 0-6, from: hex, to: hex}
+    description: >
+      A persistent UI element's fill/background colour changes to signal a
+      state transition, with no accompanying scale, position, or opacity
+      change. dur_f: 0 reproduces the observed instant CSS-class swap; dur_f
+      4-6 with interpolateColors is the recommended softened version for new
+      work. Distinct from popIn/scaleIn because the element itself never
+      leaves or re-enters, only its colour token does.
+
+convergence:
+  - technique: >
+      Reserving exactly one off-palette colour exclusively for a single
+      system-state signal (green success toast in A_explainer-zhylar-crm-cpq
+      vs. the red icon-dot recolour here) appears in both this designer's
+      work and the @byshubh_ corpus example, though the mechanism differs
+      (an animated pop-in toast vs. an instant colour swap on a persistent
+      element) — the underlying rule ("ration a state colour to exactly one
+      meaning, use it rarely") is the same and is confidently convergent.
+
+detection_notes: >
+  profile.md's cut-detector (threshold 26.0 luma delta) reported only 1 shot
+  covering the entire 989-frame clip. Cross-checking motion.csv against the
+  sheets shows this is a false negative, not a true single-shot video: two
+  real, 100%-content-swap hard cuts exist at frame 61 (title -> gameplay,
+  motion-delta 5.78) and frame 870 (gameplay -> game-over, motion-delta
+  5.57), both missed because swapping between two mostly-black UI states
+  produces a small pixel delta despite being a full state change confirmed
+  visually on sheet_01 (frames 54 vs 64) and sheet_03 (frames 864 vs 874).
+  This spec splits the profile's single reported shot into 3 shots on that
+  basis. A third, much larger motion.csv spike (10.61 at frame 984, the
+  loudest single event in the whole video) was investigated and is treated
+  as a stray cursor/recording-stop artefact rather than a fourth shot, since
+  the game-over screen is otherwise fully static per profile's own
+  frozen-stretch flag (878-984) and no new content appears on the sheet at
+  that frame beyond a small cursor glyph.

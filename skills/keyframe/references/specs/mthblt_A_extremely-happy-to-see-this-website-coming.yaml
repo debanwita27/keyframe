@@ -1,0 +1,535 @@
+id: mthblt_A_extremely-happy-to-see-this-website-coming
+source: "unknown — no capture URL in analysis folder; folder name implies an @mthblt X/Twitter post"
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "1116:720"
+  fps: 60
+  duration_s: 18.133
+  orientation: horizontal
+
+verdict: >
+  A full-bleed capture of a real (pinned-header, real-scrollbar) product page for AirPods,
+  where almost none of the "scroll" is a literal translateY — each capability section is a
+  pinned crossfade/zoom driven by scroll progress, and the single moment of true vertical
+  scroll is saved for the trailing footer card. The standout invention is a circular
+  iris-mask transition whose edge is pre-visualized by concentric ring strokes before the
+  mask itself arrives there.
+
+palette:
+  bg: "#D8D8D8"
+  ink: "#000000"
+  accent: "#D848D8"
+  support: ["#9018C0", "#4878C0", "#183018", "#7ED321"]
+  notes: >
+    Each capability section is duotone-coded rather than sharing one accent: magenta/violet
+    (#9018C0/#D848D8) for the spatial-audio section, green (#7ED321-ish, matches the real
+    AirPods case pairing LED) for the battery/charging section, blue-violet (#4878C0) for
+    the durability/running section. Neutral gray (#D8D8D8) and true black are the only
+    colours that recur across every section; the "three colours max" rule is deliberately
+    broken by rotating a fresh duotone in per act instead.
+
+typography:
+  family_look: geometric sans
+  weights: [semibold, bold]
+  case: sentence
+  tracking: tight
+  headline_frame_share: 0.34
+  notes: >
+    All headlines are 1-2 lines, centred, dead-centre of the pinned viewport. The hero
+    wordmark ("AirPods") runs smaller at roughly 0.16 frame width; every subsequent
+    capability line ("and longer battery life that charges up in a snap.") sits around
+    0.34-0.40. No line ever exceeds 2 lines or ~6 words per line.
+
+structure:
+  - act: hook
+    t: [0.0, 4.38]
+    purpose: establish the product name, then dissolve straight into a sensory hook via a circular mask reveal
+    shots: [1]
+  - act: reveal
+    t: [4.4, 8.45]
+    purpose: sell the spatial-audio capability against a lifestyle photo, then zoom/match-cut into the real product macro
+    shots: [2, 3, 4]
+  - act: capability
+    t: [8.47, 15.6]
+    purpose: chain EQ, physical charging-case interaction and battery life into one long pinned build
+    shots: [5]
+  - act: proof
+    t: [15.62, 16.28]
+    purpose: let the battery section fully settle to black before the next capability
+    shots: [6]
+  - act: proof
+    t: [16.3, 18.12]
+    purpose: durability proof via a running silhouette, payoff line, then tease the next section with a real scroll
+    shots: [7]
+
+shots:
+  - n: 1
+    t: [0.00, 4.38]
+    frames: [0, 263]
+    layout: full-bleed-ui
+    content: >
+      Real captured Apple.com-style AirPods (3rd generation) product page, native browser
+      chrome pinned at top (page title left, "Overview / Tech Specs / Compare / Order" tabs
+      right), thin native scrollbar visible at the right edge throughout. f0-54: static hero,
+      "AirPods" wordmark + "All-new with spatial audio" tagline + two text links, light gray
+      bg (#D8D8D8), earbuds product render top-left. f54-64: tagline and links fade out.
+      f64-94: "AirPods" wordmark colour-fades from black to transparent in place (no
+      transform). f84-114: "It's magic, remastered." crossfades up in the same spot.
+      f124-243: small violet ring/squiggle marks (6-8) appear scattered across the frame and
+      resolve into two clusters of concentric ring outlines (a sound-wave motif), converging
+      toward one centre point as the headline fades out. f244-296: the converged point
+      becomes a circular mask that expands from radius 0 to full frame coverage, revealing a
+      full-bleed magenta/violet duotone photo underneath; the concentric ring strokes stay
+      visible just outside the mask's current edge for the whole expansion, so the wipe's
+      future boundary is always pre-drawn.
+    moves:
+      - move: dissolveBlur
+        target: hero_subhead_and_links
+        at_f: 54
+        params: {opacity: [1, 0], blur_px: [0, 6], dur_f: 10, ease: expoIn}
+      - move: dissolveBlur
+        target: headline_AirPods_wordmark
+        at_f: 64
+        params: {opacity: [1, 0], dur_f: 30, ease: expoIn, note: "colour-fade in place, no transform"}
+      - move: unblurIn
+        target: headline_its_magic_remastered
+        at_f: 84
+        params: {blur_px: [10, 0], opacity: [0, 1], scale: [1.02, 1], dur_f: 30, ease: expoOut}
+      - move: soundRingConverge
+        target: ambient_ring_marks
+        at_f: 124
+        params: {mark_count: 8, dur_f: 120, ease: expoInOut, converge_to: "0.5, 0.62"}
+      - move: maskTransition
+        target: full_bleed_photo_layer
+        at_f: 244
+        params: {shape: circle, radius_pct: [0, 92], of: frame_height, dur_f: 52, ease: expoInOut, edge_preview: concentric_ring_strokes}
+    camera: {move: none, params: {note: "flat page capture, no virtual camera; all motion is content- or scroll-driven"}}
+    bg: {kind: flat, moves: [soundRingConverge]}
+    treatment: []
+    audio_cue: riser
+    transition_out: {move: maskTransition, params: {shape: circle, dur_f: 52}}
+    hold_f: 0
+
+  - n: 2
+    t: [4.40, 8.10]
+    frames: [264, 486]
+    layout: full-bleed-ui
+    content: >
+      f264-296: tail of the circular mask reveal completes, filling the frame with a
+      magenta-lit duotone photo of a person in profile wearing one AirPod. f334-424: copy
+      "With spatial audio that places sound all around you," fades in bottom-third; a
+      secondary set of 3 concentric rings pulses outward from the earbud in the photo,
+      looping roughly every 40f, visually anchoring "spatial audio" to the physical earbud.
+      f424-484: the frame pushes in toward the ear (scale 1→2.4) until the earbud fills most
+      of frame, then the pixel content is swapped for a pure-black-background studio product
+      render of the same earbud at the same screen position — a match cut on the earbud
+      itself. f454-464: a large bold numeral glyph (reads ambiguously as "9" or "3", likely
+      "3" for "3rd generation") sweeps left-to-right across the black background as a mask,
+      wiping between two earbud rotation angles.
+    moves:
+      - move: maskWipeUp
+        target: spatial_audio_copy
+        at_f: 70
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: soundRingPulse
+        target: earbud_in_photo
+        at_f: 100
+        params: {ring_count: 3, period_f: 40, opacity: [0.8, 0], radius_growth_pct: [0, 40]}
+      - move: dollyToUI
+        target: whole_frame
+        at_f: 160
+        params: {scale: [1, 2.4], focus_point: ear, dur_f: 60, ease: expoInOut}
+      - move: matchCut
+        target: ear_to_studio_earbud
+        at_f: 180
+        params: {align_shape: earbud_silhouette, note: "pixel content swaps once the ear exceeds ~60% of frame, masked by zoom velocity"}
+      - move: numeralWipeTransition
+        target: earbud_product_shot
+        at_f: 190
+        params: {glyph: "3", dur_f: 10, dir: left_to_right, ease: expoIn}
+    camera: {move: dollyToUI, params: {scale: [1, 2.4], ease: expoInOut, dur_f: 60}}
+    bg: {kind: flat, moves: [soundRingPulse]}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [8.12, 8.32]
+    frames: [487, 499]
+    layout: full-bleed-ui
+    content: >
+      Rapid angle-change flash cut on the earbud's microphone-mesh macro (verified against
+      keys 02_f492/03_f503: same subject, different crop/rotation), pure black background,
+      no copy on screen.
+    moves:
+      - move: rackFocus
+        target: mic_mesh_macro
+        at_f: 0
+        params: {dur_f: 13, front_blur_px: [0, 6], back_blur_px: [6, 0]}
+    camera: {move: pushIn, params: {scale: [1, 1.15], dur_f: 13, ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: flashCut, params: {dur_f: 2}}
+    hold_f: 0
+
+  - n: 4
+    t: [8.33, 8.45]
+    frames: [500, 507]
+    layout: full-bleed-ui
+    content: >
+      Second flash cut of the same mic-mesh macro at a closer crop, still on pure black,
+      completing the rapid-fire product-angle montage before settling into the EQ beat.
+    moves:
+      - move: pushIn
+        target: mic_mesh_macro
+        at_f: 0
+        params: {scale: [1, 1.3], dur_f: 8, ease: expoIn}
+    camera: {move: pushIn, params: {scale: [1, 1.3], dur_f: 8}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 5
+    t: [8.47, 15.60]
+    frames: [508, 936]
+    layout: full-bleed-ui
+    content: >
+      f514-534: black bg, copy "Adaptive EQ that tunes music to your ears," fades in top-half
+      while a single AirPod stem descends from the top edge. f544-604: both earbuds descend
+      and seat into an open charging case shown at a 3/4 angle. f604-654: the case lid rotates
+      shut around its rear hinge. f654-714: camera holds/pushes slightly on the closed case
+      (off-white bg now, page has scrolled — scrollbar thumb visibly lower, e.g. key 04_f687)
+      while a green pairing-status LED at the case's centre pulses on a loop. f714-774: cut to
+      a green lightning-bolt glyph scaling in on light gray bg. f774-834: a repeating diagonal
+      stripe pattern fills outward from the bolt's own silhouette, overflowing past the bolt
+      shape to cover the entire frame. f834-864: the identical stripe geometry crossfades its
+      own palette from light-green-on-gray to bright-green-on-near-black. f864-906: copy "and
+      longer battery life that charges up in a snap." fades up over the dark pattern and holds
+      through f936 (the automated cut detector split f907-936 into three ~10f "hot" shots
+      here; verified via keys 05_f911/06_f921/07_f931 to be near-duplicate frames of the same
+      static composition — no real cut, likely shimmer on the thin diagonal strokes — folded
+      into this shot, see detection_notes).
+    moves:
+      - move: maskWipeUp
+        target: adaptive_eq_copy
+        at_f: 6
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: slideStackIn
+        target: airpod_pair_into_case
+        at_f: 20
+        params: {y: [-40, 0], stagger_f: 4, dur_f: 20, ease: springSoft}
+      - move: hingeClose
+        target: case_lid
+        at_f: 100
+        params: {rotate_deg: [130, 0], transform_origin: bottom_edge, dur_f: 40, ease: expoInOut}
+      - move: breathe
+        target: pairing_led_dot
+        at_f: 150
+        params: {scale: [1, 1.4], opacity: [1, 0.4], period_f: 30}
+      - move: scaleIn
+        target: lightning_bolt_icon
+        at_f: 206
+        params: {scale: [0.6, 1], opacity: [0, 1], dur_f: 20, ease: backOut}
+      - move: diagonalPatternFill
+        target: lightning_bolt_icon
+        at_f: 226
+        params: {dur_f: 60, dir: center_outward, stripe_angle_deg: 60, overflow: "exceeds bolt silhouette to cover full frame by end"}
+      - move: paletteInvertCrossfade
+        target: full_pattern_bg
+        at_f: 300
+        params: {from_bg: "#F0F0F0", from_stripe: "#9AE86E", to_bg: "#0A140A", to_stripe: "#7ED321", dur_f: 20, ease: expoInOut}
+      - move: unblurIn
+        target: battery_life_copy
+        at_f: 326
+        params: {blur_px: [10, 0], opacity: [0, 1], dur_f: 20, ease: expoOut}
+    camera: {move: none, params: {}}
+    bg: {kind: grain, moves: [diagonalPatternFill]}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 20
+
+  - n: 6
+    t: [15.62, 16.28]
+    frames: [937, 977]
+    layout: full-bleed-ui
+    content: >
+      The dark stripe pattern and battery-life copy fade fully to black and hold on a near-
+      empty black frame for a short beat before the next section begins.
+    moves:
+      - move: dissolveBlur
+        target: pattern_and_copy
+        at_f: 0
+        params: {opacity: [1, 0], dur_f: 20, ease: expoIn}
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+  - n: 7
+    t: [16.30, 18.12]
+    frames: [978, 1087]
+    layout: full-bleed-ui
+    content: >
+      Cut to a blue-violet gradient bg with a backlit silhouette of a man mid-run/mid-stride
+      wearing an AirPod. f984-1004: copy "It shrugs off sweat and sprinkles," fades up.
+      f1024-1074: crossfades to "and delivers an experience that's simply magical." f1074-1087
+      (clip ends here, mid-motion): a white footer card carrying a pink radial-ring motif and
+      the caption "Taking sound in totally new directions." scrolls up from the bottom edge,
+      occupying roughly 0%→~40% of frame height by the last captured frame — this is the one
+      point in the whole reference where the page content genuinely translates vertically
+      rather than pinned-crossfading.
+    moves:
+      - move: unblurIn
+        target: runner_scene
+        at_f: 0
+        params: {blur_px: [16, 0], scale: [1.05, 1], opacity: [0, 1], dur_f: 24, ease: expoOut}
+      - move: maskWipeUp
+        target: shrugs_off_sweat_copy
+        at_f: 6
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: dissolveBlur
+        target: shrugs_off_sweat_copy
+        at_f: 40
+        params: {opacity: [1, 0], dur_f: 10}
+      - move: maskWipeUp
+        target: delivers_magical_copy
+        at_f: 46
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: scrollCardRise
+        target: next_section_footer_card
+        at_f: 96
+        params: {page_translateY_px: [0, -290], dur_f: "110+ (continues past clip end)", ease: expoOut, note: "genuine vertical scroll, not a pinned crossfade"}
+    camera: {move: none, params: {note: "the scroll itself is the only camera-like move in this shot; see technique pinned-scroll-not-translate"}}
+    bg: {kind: gradient-drift, moves: []}
+    treatment: []
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {note: "clip ends mid-scroll, footer card not fully revealed"}}
+    hold_f: 0
+
+techniques:
+  - id: iris-mask-transition-with-preview-rings
+    what: >
+      A circular clip-path mask expands from radius 0 to ~92% of frame height (centred
+      roughly at 50%, 62%) over 52f, expoInOut, revealing a full-bleed photo underneath a
+      flat gray UI layer. For the full 120f leading into the reveal, 2-3 concentric ring
+      strokes are already on screen, converging toward the mask's future centre point, so by
+      the time the mask starts expanding its eventual edge has effectively been pre-drawn.
+    where: shot 1, frames 124-296
+    why_it_reads: >
+      A plain iris wipe reads as a wipe. Pre-visualizing the mask's edge as ambient ring
+      graphics before it moves makes the expansion feel inevitable rather than mechanical —
+      the eye already expects a circle there.
+    remotion_recipe: >
+      Stack two full-frame layers: the outgoing flat UI (bottom) and the incoming photo
+      (top), with the photo layer's clip-path set to circle(R% at 50% 62%). Animate R from 0
+      to 92 over 52 frames with an expoInOut interpolation. Render the "preview" rings as an
+      absolutely-positioned SVG with 2-3 <circle> elements (stroke only, no fill) centred at
+      the same point, each with radius = currentR + [8, 20, 36]px and opacity [0.9, 0.5,
+      0.2], recomputed every frame from the same R driving the clip-path so the rings and
+      the mask edge are mathematically locked together.
+    difficulty: moderate
+
+  - id: pinned-scroll-not-translate
+    what: >
+      Across almost the entire 18s capture, "scrolling" a long product page is implemented
+      as a sequence of pinned (position:sticky) full-viewport sections, each entered/exited
+      via opacity, blur, scale or mask-radius crossfades driven by scroll progress — never by
+      translateY-ing the page content itself. The single exception is the final ~110f, where
+      a footer card genuinely translates the page content up by roughly -290px to reveal the
+      next section from below the fold.
+    where: whole video, explicit exception in shot 7 (frames 1074-1087)
+    why_it_reads: >
+      Sliding a whole page up past the viewport is legible but reads as "a document." Pinning
+      each section and crossfading/zooming its content in place reads as "an experience,"
+      because every capability gets to fully occupy the frame instead of sharing it mid-slide.
+    remotion_recipe: >
+      In a real site, wrap each section in a position:sticky container the height of the
+      viewport, and compute a 0-1 progress value per section from either an
+      IntersectionObserver or `animation-timeline: view()` / scroll-timeline; drive
+      opacity/blur/scale/clip-path off that progress instead of the section's own
+      translateY. In Remotion (no real scroll), this is just normal scene sequencing —
+      the point to steal is: default to crossfade/zoom/mask transitions between "sections,"
+      and reserve literal translateY for one deliberate footer/card-list moment, not the
+      whole piece.
+    difficulty: moderate
+
+  - id: match-cut-lifestyle-to-studio-product
+    what: >
+      A lifestyle photo (person wearing the earbud) zooms in on the ear (scale 1→2.4 over
+      60f) until the ear fills most of the frame, then the pixel content is swapped for a
+      pure-black-background studio product render of the same earbud at the same screen
+      position, continuing the zoom without an apparent cut.
+    where: shot 2, frames 424-484 (local f160-220)
+    why_it_reads: >
+      The zoom velocity and shared anatomical anchor point (the ear/earbud) hide the content
+      swap; the audience reads one continuous camera move from "worn in real life" to
+      "engineered object," which sells craftsmanship without a caption saying so.
+    remotion_recipe: >
+      Render both the lifestyle-photo layer and the studio-product layer full frame,
+      cropped/positioned so the earbud occupies identical screen coordinates in both. Scale
+      the top (lifestyle) layer from 1 to ~2.4 over 60f, expoInOut. At the frame where the
+      earbud exceeds ~60% of frame area, cut the lifestyle layer's opacity to 0 and the
+      product layer's opacity to 1 in a single frame — the swap is invisible because motion
+      blur/zoom blur on both layers is at its peak at that instant.
+    difficulty: moderate
+
+  - id: shape-clipped-capability-fill
+    what: >
+      A lightning-bolt glyph scales in, then a repeating diagonal-stripe pattern fills
+      outward from inside the bolt's own silhouette, deliberately overflowing past the bolt
+      shape to cover the entire frame, before the identical stripe geometry crossfades its
+      own palette from light-on-gray to bright-on-near-black.
+    where: shot 5, frames 714-864 (local f206-356)
+    why_it_reads: >
+      Using the capability's own icon as the origin/clip shape for a pattern that then
+      breaks its boundary reads as "the feature is so big it can't be contained by its own
+      icon" — a purely geometric way to sell scale that never needs a superlative in the copy.
+    remotion_recipe: >
+      Define the stripe pattern as an SVG <pattern> (or a CSS repeating-linear-gradient) at a
+      fixed 60deg angle. Clip it first to the bolt's SVG path via clip-path: path(...), then
+      animate a second, larger clip-path (a simple inset or circle) growing from the bolt's
+      bounding box out to 150% of the frame diagonal over ~60f, so the pattern reveal reads
+      as "starting inside the icon, then escaping it." For the palette swap, render two
+      identical pattern layers (light and dark colourways) stacked, and crossfade opacity
+      between them over 20f — do not recolour in place, since that requires re-rendering the
+      SVG per frame.
+    difficulty: moderate
+
+  - id: content-driven-idle-instead-of-camera-drift
+    what: >
+      During the ~200f static hold on the closed charging case, the only motion is a small
+      green pairing-status LED at the case's centre pulsing on a loop (scale 1→1.4, opacity
+      1→0.4, ~30f period) — there is no camera drift, breathing scale on the whole frame, or
+      background gradient motion.
+    where: shot 5, frames 654-714 (local f146-206)
+    why_it_reads: >
+      Because this is a flat screen-style capture (a real product photo/render, not a 3D
+      scene), a whole-frame camera drift would look like an artifact of the capture rather
+      than a deliberate effect. A single believable diegetic light (a real product's status
+      LED) satisfies "nothing is ever still" without breaking the photographic realism.
+    remotion_recipe: >
+      Render the LED as a small circle with a radial-gradient fill; drive its scale and
+      opacity off `Math.sin(frame / period * 2π)` (or a spring loop) rather than
+      `useCurrentFrame()`-agnostic CSS animation. Keep every other element in the shot
+      perfectly static — the contrast is what sells the LED as "alive."
+    difficulty: trivial
+
+rhythm:
+  cut_count: 6
+  median_shot_f: 110
+  fastest_f: 8
+  slowest_f: 429
+  pattern: >
+    long 264f hook (hero crossfade into iris reveal) then a 223f calm reveal shot, a 21f
+    two-part flash-cut burst on the product macro, a 429f capability mega-shot (EQ, case,
+    battery, pattern fill, near-static hold), a 41f black settle beat, then a 110f closing
+    proof shot that ends mid-scroll into the next section.
+  beat_grid_f: 0
+  energy_curve: wave
+
+transferable:
+  - Use an expanding circle clip-path (radius 0 to ~92% of frame height, ~50f expoInOut) as
+    a scene transition, and pre-draw 2-3 concentric ring outlines just outside its current
+    edge so the wipe's future boundary is visible before the mask arrives there.
+  - Build scroll as pinned per-section opacity/scale/mask crossfades (position:sticky +
+    scroll-progress variable), not as one continuous translateY of the whole page; reserve
+    literal translateY scroll for a single trailing footer/card reveal.
+  - Match-cut a lifestyle shot into a studio product shot by zooming into the exact point
+    shared by both (here, the ear) and swapping pixel content only once that point exceeds
+    ~60% of frame, so zoom blur hides the swap.
+  - Clip a capability's icon-shaped pattern fill so it starts inside the icon's own
+    silhouette and then overflows past it to cover the full frame — geometry selling scale
+    without adjectives.
+  - When a shot is a flat, photographic-style capture with no virtual camera, satisfy "never
+    static" with one small diegetic looping light/indicator instead of a whole-frame drift.
+  - Color-code each capability section with its own duotone accent instead of holding one
+    accent for the whole piece — the video's throughline is neutral gray + black, not a
+    single hue.
+
+avoid:
+  - The wordmark-to-headline crossfade (f64-114) is a bare opacity fade with no accompanying
+    transform, in place — technically breaks "opacity never animates alone." It only reads
+    fine here because the type is dead-centred and static; pair with a small blur or scale
+    if attempting this in a from-scratch build.
+  - Don't hand-key the numeral-glyph wipe frame by frame; use the glyph as a CSS mask-image
+    or SVG clipPath on the incoming layer and animate its position/translateX, not manual
+    rotoscoping of a bitmap.
+  - The three ~10f "hot" micro-shots the automated cut detector reported inside the pattern
+    hold (frames 907-936) are near-duplicate frames — shimmer on thin diagonal strokes, not
+    a real cut. Don't build the underlying line pattern with fine sub-pixel strokes if
+    targeting a clean re-encode; it will alias and read as flicker.
+
+new_moves:
+  - name: soundRingConverge
+    params: {mark_count: 8, dur_f: 120, ease: expoInOut, converge_to: "x%, y%"}
+    description: >
+      A scattered set of small ring/squiggle marks across the frame gradually resolve into
+      concentric ring outlines and drift toward a single convergence point, typically handing
+      off into a mask transition centred on that same point.
+  - name: soundRingPulse
+    params: {ring_count: 3, period_f: 40, opacity: [0.8, 0], radius_growth_pct: [0, 40]}
+    description: >
+      3 concentric ring strokes emanate outward on a loop from a fixed anchor point (e.g. an
+      earbud in a photo), each ring growing in radius while fading opacity, offset in phase
+      — a physical "sound is coming from here" indicator.
+  - name: numeralWipeTransition
+    params: {glyph: "3", dur_f: 10, dir: left_to_right, ease: expoIn}
+    description: >
+      A large bold numeral (or any single glyph) is used as a mask-image/clipPath on an
+      incoming layer; the glyph translates across the full frame width, revealing the
+      incoming layer only where the glyph currently overlaps, then the outgoing layer is
+      dropped entirely once the glyph exits.
+  - name: diagonalPatternFill
+    params: {dur_f: 60, dir: center_outward, stripe_angle_deg: 60, overflow: true}
+    description: >
+      A repeating diagonal-stripe pattern, initially clipped to an icon's own silhouette,
+      grows outward from the icon's centre and is allowed to overflow past the icon's
+      boundary until it covers the full frame.
+  - name: paletteInvertCrossfade
+    params: {from_bg: "#hex", from_stripe: "#hex", to_bg: "#hex", to_stripe: "#hex", dur_f: 20, ease: expoInOut}
+    description: >
+      Two identical-geometry pattern layers in different colourways (e.g. light-on-gray vs
+      bright-on-near-black) are crossfaded via opacity, giving the effect of a palette swap
+      without recolouring the pattern in place.
+  - name: hingeClose
+    params: {rotate_deg: [130, 0], transform_origin: bottom_edge, dur_f: 40, ease: expoInOut}
+    description: >
+      A lid/flap element rotates closed around a fixed edge (transform-origin pinned to that
+      edge, not the element's centre), used for product case lids, laptop lids, book covers.
+  - name: scrollCardRise
+    params: {page_translateY_px: [0, -290], dur_f: 110, ease: expoOut}
+    description: >
+      The one genuine vertical-scroll move in an otherwise pinned-crossfade page: the whole
+      page content translates up, bringing the next section's card into view from below the
+      frame, easing to a stop rather than running continuously.
+
+convergence:
+  - The ambient concentric-ring motif that converges before a reveal (soundRingConverge) and
+    pulses to indicate a source (soundRingPulse) is the same underlying idea as the
+    @byshubh_ corpus's radialRevealGlow — an ambient background element whose state is tied
+    to content-reveal progress rather than a fixed timer.
+  - The single pulsing pairing-LED used to keep a long static hold alive (see
+    content-driven-idle-instead-of-camera-drift) is the same "nothing is ever still" solution
+    as the byshubh corpus's `breathe` move on a hero element during a hold.
+
+detection_notes: >
+  Automated cuts at frames 907, 917, 927 (three consecutive ~10f "hot" shots) were verified
+  against keys 05_f911, 06_f921 and 07_f931: all three show the same dark diagonal-stripe
+  background and the same static headline text with no visible change. These are near-
+  duplicate frames, most likely triggered by shimmer/aliasing on the pattern's thin diagonal
+  strokes, not a real scene change — merged into shot 5 (frames 508-936). The cut at frame
+  264 is kept as a shot boundary (it is where the visual register flips from grayscale UI to
+  a full-colour duotone photo) but is driven by one continuous mask-radius animation started
+  at frame 244, not a hard scene cut — see technique iris-mask-transition-with-preview-rings.
+  Shots 3 (487-499) and 4 (500-507) were checked against keys 02_f492 and 03_f503 and are
+  genuine rapid angle-change cuts on the same product macro, not detector artifacts, despite
+  both falling under the 11f minimum-shot-length guidance.

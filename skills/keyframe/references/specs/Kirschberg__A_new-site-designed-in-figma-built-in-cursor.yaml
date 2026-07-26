@@ -1,0 +1,495 @@
+id: Kirschberg__A_new-site-designed-in-figma-built-in-cursor
+source: "unknown — no source URL captured in analysis assets (@Kirschberg_ portfolio-site walkthrough)"
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 60
+  duration_s: 29.0
+  orientation: horizontal
+
+verdict: >
+  A real screen recording of a live portfolio site, not motion-graphics: the interest comes
+  entirely from how the interaction is edited — a card cluster reflows into a heart-shaped
+  formation, a clicked tile expands match-cut style into a full-bleed case study, and a dense
+  16-tile mosaic cycles its own content mid-shot. Nothing here is keyframed by hand; it is
+  screen capture cut on interaction beats instead of a bpm grid.
+
+palette:
+  bg: "#F5F1EC"
+  ink: "#1A1A1A"
+  accent: "#4A7CFF"
+  support: ["#787878", "#604860", "#E0522A"]
+  notes: >
+    Site chrome stays neutral cream/grey throughout (#F0F0F0, #D8D8D8, #C0C0C0 dominate the
+    screen-share histogram). The Gemini-blue accent and a plum/purple tint only appear inside
+    the one case-study card and the mosaic project tiles — the accent is rationed to those two
+    pockets, never touching the homepage or About page. The one full inversion (light site chrome
+    to a near-black full-bleed case-study screen) happens once, at the frame-304 expand.
+
+typography:
+  family_look: geometric sans
+  weights: [regular, medium]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.34
+  notes: >
+    Two-line centred headline on both the homepage ("Work for today, sometimes for tomorrow, or
+    sometimes far in the future.") and the About page ("Work grounded in the present, with dreams
+    for the distant future."), small sentence-case caption copy beneath at roughly a third the
+    headline's size. Card labels inside the mosaic ("The Current", "KIRSCH BERG", "Discord Nitro")
+    use the same family at a smaller weight, no separate display face.
+
+structure:
+  - act: hook
+    t: [0.0, 2.68]
+    purpose: headline settles, a 4-5 card project row builds and refreshes once
+    shots: [1]
+  - act: capability
+    t: [2.68, 7.35]
+    purpose: >
+      the card row reflows into a heart-shaped cluster, then one tile is clicked and expands
+      into a full-bleed Gemini case-study intro
+    shots: [1]
+  - act: proof
+    t: [7.52, 11.87]
+    purpose: >
+      case-study detail scroll (diagram, type specimen, icon grid, phone mockup), then the
+      recording scrolls back up to the homepage and opens a "Latest Projects" panel
+    shots: [3]
+  - act: capability
+    t: [12.07, 21.37]
+    purpose: >
+      second project's mosaic grid cycles through many thumbnails in fixed positions —
+      the density peak of the piece — closing on a second Latest-Projects panel
+    shots: [4, 5]
+  - act: cta
+    t: [21.37, 29.0]
+    purpose: About page holds on the founder bio while small object icons drift through
+    shots: [7]
+
+shots:
+  - n: 1
+    t: [0.00, 7.33]
+    frames: [0, 440]
+    layout: centre-stack
+    content: >
+      Frame 0-24: blank cream canvas resolves into the two-line homepage headline, no cards yet.
+      Frame 24-114: a row of 4-5 flat project thumbnail cards (Meta Value, FruitFul, an SFSQ x
+      Collection splash, a black-and-white doodle icon, a blue Discord Nitro circle) pops in
+      beneath the headline and holds. Frame 124-174: the same card row swaps its content wholesale
+      to a different project set (a sparkle mark, a laptop photo, "Fluid Engine") while the
+      headline text never changes underneath. Frame 184-294: the cards animate off their grid
+      positions onto points along a heart-shaped curve, filling in as a dot-mosaic heart with a
+      "Gemini" tile and a "Make It Yours" phone tile visible inside it. Frame 304: the bottom-left
+      tile's rectangle begins expanding. Frame 314-354: that rectangle has filled the whole frame,
+      now a full-bleed near-black card with a converging sparkle-particle mark and case-study
+      caption text ("Gemini — Visual identity and branding for the most capable AI model"). Frame
+      404-414: the sparkle mark resolves into a large centred blue "Gemini" wordmark on a blurred
+      dark backdrop.
+    moves:
+      - move: maskWipeUp
+        target: homepage_headline
+        at_f: 4
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: staggerRise
+        target: subhead_caption
+        at_f: 20
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+      - move: scaleIn
+        target: project_card_row_v1
+        at_f: 30
+        params: {scale: [0.86, 1], opacity: [0, 1], stagger_f: 3, dur_f: 14, ease: backOut}
+      - move: cardContentSwap
+        target: project_card_row
+        at_f: 124
+        params: {dur_f: 12, ease: expoInOut, note: "cards keep their screen position, only the image/label inside each crossfades to a new project"}
+      - move: shapeClusterFormation
+        target: project_card_row
+        at_f: 184
+        params: {dur_f: 60, per_tile_stagger_f: 2, ease: springSoft, path: heart-curve, note: "each tile's centre travels from its grid slot to a point sampled along a parametric heart curve"}
+      - move: matchCut
+        target: clicked_tile_to_full_frame
+        at_f: 304
+        params: {dur_f: 50, ease: expoInOut, origin_rect_px: [~120, ~760, 340, 200], dest_rect_px: [0, 0, 1818, 1080]}
+      - move: particleConverge
+        target: gemini_sparkle_mark
+        at_f: 354
+        params: {dur_f: 40, ease: expoOut, particle_count: "~40, converge from scattered points to the mark's outline"}
+      - move: unblurIn
+        target: gemini_wordmark
+        at_f: 404
+        params: {blur_px: [18, 0], scale: [1.04, 1], dur_f: 20, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 300, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: flashCut, params: {dur_f: 10}}
+    hold_f: 0
+
+  - n: 2
+    t: [7.35, 7.50]
+    frames: [441, 450]
+    layout: full-bleed-ui
+    content: >
+      A 10-frame bright flash — the hot, linear-velocity cut the profile table isolates as its
+      own shot — bridging the Gemini hero card into the detail-scroll content.
+    moves:
+      - move: flashCut
+        target: full_frame
+        at_f: 0
+        params: {dur_f: 10, colour: white}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 60, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 3
+    t: [7.52, 11.47]
+    frames: [451, 687]
+    layout: split
+    content: >
+      Case-study detail, still inside the dark Gemini card: a woven double-line diagram (two
+      intertwining curves, like crossed brand-guideline paths) draws on inside a black panel next
+      to a light "Aa" type-specimen chip. This cuts to an icon/wireframe sitemap and a grid of small
+      UI icon tiles, then a tilted dark phone mockup reading "Gemini Models" untilts and enlarges to
+      face-on. The recording then scrolls back up past this content to the homepage — same heart
+      cluster and headline as shot 1 reappear, no hard cut, just a scroll — and a "Latest Projects"
+      dropdown panel (rows: Gemini, others) fades in over a blurred version of the homepage.
+    moves:
+      - move: drawOn
+        target: woven_line_diagram
+        at_f: 0
+        params: {dur_f: 24, ease: expoInOut}
+      - move: unblurIn
+        target: type_specimen_chip
+        at_f: 10
+        params: {blur_px: [14, 0], scale: [1.04, 1], dur_f: 20, ease: expoOut}
+      - move: staggerRise
+        target: icon_grid_tiles
+        at_f: 40
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 2, dur_f: 14, ease: springSoft}
+      - move: orbit3D
+        target: gemini_models_phone_mockup
+        at_f: 60
+        params: {rotateY_deg: [-12, 0], perspective_px: 1200, dur_f: 40, ease: expoInOut}
+      - move: dollyToUI
+        target: gemini_models_phone_screen
+        at_f: 100
+        params: {scale: [1, 2.4], dur_f: 36, ease: expoInOut}
+      - move: staggerRise
+        target: latest_projects_panel_rows
+        at_f: 190
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 200, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 4
+    t: [11.47, 11.85]
+    frames: [688, 711]
+    layout: centre-stack
+    content: >
+      A brief blank cream page (a small grey placeholder rectangle, top-centre) holds for a few
+      frames before the first tile of a new, differently-coloured project grid crossfades in.
+    moves:
+      - move: dissolveBlur
+        target: latest_projects_panel
+        at_f: 0
+        params: {blur_px: [0, 14], opacity: [1, 0], dur_f: 10}
+      - move: scaleIn
+        target: mosaic_grid_first_tile
+        at_f: 10
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 5
+    t: [11.87, 21.22]
+    frames: [712, 1273]
+    layout: grid
+    content: >
+      The single longest shot in the piece (562f / 9.4s): a fixed 4x4-ish grid of project tiles
+      for a second, more colourful project (an orange "FINAL SALE" poster, phone mockups, a "The
+      Current" card, a green line-art creature illustration, a "KIRSCH BERG" wordmark tile, a hand
+      photo, QR-code chips) where every cell keeps its screen position but its image content swaps
+      out on a fast, staggered interval — reads as flipping through a lookbook rather than any
+      camera movement. It ends with the grid dimming under a blur as a second "Latest Projects"
+      dropdown panel fades in on top, mirroring shot 3's panel.
+    moves:
+      - move: tileCycleGrid
+        target: mosaic_grid_16_tiles
+        at_f: 0
+        params: {grid: [4, 4], swap_interval_f: 20, per_tile_offset_f: 5, transition: hardSwap, dur_f: 500}
+      - move: dissolveBlur
+        target: mosaic_grid_16_tiles
+        at_f: 500
+        params: {blur_px: [0, 10], opacity: [1, 0.5], dur_f: 20}
+      - move: staggerRise
+        target: latest_projects_panel_rows_v2
+        at_f: 520
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 240, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: flashCut, params: {dur_f: 8}}
+    hold_f: 0
+
+  - n: 6
+    t: [21.23, 21.35]
+    frames: [1274, 1281]
+    layout: full-bleed-ui
+    content: >
+      An 8-frame flash cut, the piece's fastest shot, bridging the second Latest-Projects panel
+      into the About page.
+    moves:
+      - move: flashCut
+        target: full_frame
+        at_f: 0
+        params: {dur_f: 8, colour: white}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 60, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 7
+    t: [21.37, 29.00]
+    frames: [1282, 1739]
+    layout: centre-stack
+    content: >
+      About page: a centred two-line headline ("Work grounded in the present, with dreams for the
+      distant future.") and a paragraph bio settle in, mentioning Discord (with its logomark
+      appearing inline in the text). Small object icons drift through one corner of the frame over
+      the hold — a green diamond/square, a black fan-shaped die, a sticky note reading "UJ" — each
+      appearing then leaving before the next. The last 184 frames (1555-1739, 3.07s) are completely
+      frozen with no content change on any of the analyzer's three motion scales.
+    moves:
+      - move: maskWipeUp
+        target: about_headline
+        at_f: 0
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: staggerRise
+        target: about_bio_paragraph
+        at_f: 16
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, dur_f: 18, ease: springSoft}
+      - move: popIn
+        target: floating_object_icons
+        at_f: 60
+        params: {scale: [0, 1.08, 1], dur_f: 11, stagger_f: 80, ease: springSnap, note: "one object pops in roughly every 60-100f, holds, then flyOut before the next appears"}
+      - move: flyOut
+        target: floating_object_icons
+        at_f: 140
+        params: {y: [0, -60], opacity: [1, 0], stagger_f: 2, dur_f: 9, ease: expoIn}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 120}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 184
+
+techniques:
+  - id: heart-shape-cluster-formation
+    what: >
+      Five-plus flat project cards abandon their grid-row layout and travel individually to points
+      sampled along a parametric heart-curve, arriving as a dot-mosaic that reads as a heart shape
+      made of thumbnails rather than a list of cards.
+    where: shot 1, frames 184-294
+    why_it_reads: >
+      The eye recognises the emergent shape (a heart) before it registers the individual tiles,
+      so a plain content grid becomes a single legible symbol for a moment — a shape-driven layout
+      move standing in for what would otherwise need an SVG mask.
+    remotion_recipe: >
+      Precompute a heart-curve parametric path — x = 16sin(t)^3, y = 13cos(t) - 5cos(2t) -
+      2cos(3t) - cos(4t), t in [0, 2π] — sample N points evenly by arc length (N = number of
+      tiles), and interpolate each tile's transform: translate from its current grid (x,y) to its
+      assigned curve point, staggered 2f apart, springSoft. No masking involved — this is a FLIP
+      (First-Last-Invert-Play) layout transition on absolutely-positioned tiles.
+    difficulty: moderate
+
+  - id: expanding-tile-to-full-bleed-case-study
+    what: >
+      A single grid tile's bounding rectangle expands from its small on-grid size directly to the
+      full 1818x1080 frame, and by the time it fills the frame it has become the full-bleed
+      case-study intro card — no hard cut, one continuous rect growth.
+    where: shot 1, frames 304-354
+    why_it_reads: >
+      This is the strongest kind of transition per the craft rules — a shape matched across the
+      cut — and because the destination content is already the thing you clicked, it reads as
+      "opening" rather than "cutting to."
+    remotion_recipe: >
+      Measure the clicked tile's client rect at click time. Animate a single wrapper div's
+      clip-path: inset(...) (or width/height/top/left directly) from that rect to (0,0,100%,100%)
+      over ~50f with expoInOut. Render the destination case-study content inside that same wrapper
+      from frame 0 so it's already laid out full-size underneath — the clip-path is doing all the
+      work, nothing needs to reflow mid-transition.
+    difficulty: moderate
+
+  - id: fixed-grid-tile-content-cycling
+    what: >
+      A 4x4-ish grid of project-mosaic tiles keeps every cell in a fixed screen position for the
+      entire 562-frame shot while each cell's image swaps to a new piece of work on its own
+      staggered ~20f interval — no camera move, no layout change, only content substitution.
+    where: shot 5, frames 712-1273 (the piece's single longest and busiest shot)
+    why_it_reads: >
+      It compresses an entire body of work into one shot without ever needing a cut, and the
+      staggered (not synchronised) swap timing per cell reads as organic rather than a slideshow
+      advancing in lockstep.
+    remotion_recipe: >
+      Render an N-cell CSS grid once. For each cell, key its image source off
+      Math.floor((frame - cellOffset) / swapIntervalF) % imagesForThatCell.length, with cellOffset
+      a small per-index stagger (index * 5f). Hard-swap the source (no crossfade) — a hard swap at
+      staggered offsets is what gives it the "flipping through a stack" feel; crossfading every
+      cell would read as a slideshow.
+    difficulty: trivial
+
+  - id: sparkle-particle-mark-convergence
+    what: >
+      Roughly 40 small light particles, scattered across the dark card, converge along individual
+      paths onto the outline of the Gemini sparkle mark, assembling the logo from dust rather than
+      fading or scaling it in.
+    where: shot 1, frames 354-394
+    why_it_reads: >
+      Particle-convergence logo reveals read as "materialising" rather than "appearing," and it
+      is the one moment of genuine VFX inside an otherwise screen-recorded piece, so it earns its
+      one-time use as the case-study's opening flourish.
+    remotion_recipe: >
+      Precompute the mark's SVG path, sample ~40 points along it. Give each particle a random
+      start position within the frame (seeded by particle index, not Math.random) and animate
+      x/y from start to its assigned path point with individually offset start frames (0-15f
+      spread) and expoOut easing; fade particle opacity 0 to 1 over the first 4f of its own travel
+      so early-arriving particles don't pop.
+    difficulty: hard
+
+rhythm:
+  cut_count: 6
+  median_shot_f: 237
+  fastest_f: 8
+  slowest_f: 562
+  pattern: >
+    subtle 440f hero build-and-reflow (headline, card refresh, heart formation, expand-to-case-study)
+    -> 10f flash -> subtle 237f case-study read that loops back to the homepage mid-shot -> 24f
+    blank/reset -> the piece's single 562f density peak (mosaic tile-cycling) at 41-73% of runtime,
+    matching the "fastest cluster around 70%" law even though nothing here is a beat-cut -> 8f flash
+    -> 458f About-page hold that runs 3s past its own last content change. Energy is not carried by
+    cut frequency (only 6 real cuts in 29s) but by information density per held shot.
+  beat_grid_f: 0
+  energy_curve: wave
+
+transferable:
+  - >
+    Cut on interaction events (click, scroll-stop, panel-open/close), not a bpm grid, when the
+    source is a real screen recording — forcing UI footage onto a 15f beat grid fights the
+    footage; let the click/tap be the edit point instead, same way this piece's only 6 real cuts
+    all land on state changes.
+  - >
+    To compress this specific 29s piece to 25s: delete the 3.07s frozen tail (frames 1555-1739)
+    entirely — it is dead recording time after the About page finished settling, not a designed
+    hold.
+  - >
+    Cut the second "Latest Projects" panel appearance (shot 5's tail, frames ~1232-1273) — it is
+    the same panel already shown once in shot 3; showing it twice is exactly the repetition the
+    craft rules warn against, and removing it saves another ~0.7s.
+  - >
+    Speed up the mosaic tile-cycling in shot 5 (swap_interval_f 20 to 12) rather than trimming its
+    frame range — it is the single most information-dense and highest-energy shot in the piece;
+    protect its runtime and cut elsewhere.
+  - >
+    Reuse one wrapper's clip-path growth (the expanding-tile technique) as the default "open a
+    detail view" transition instead of a plain cross-dissolve — it is cheap to build and reads
+    as the strongest transition class per the craft rules.
+  - >
+    Never synchronise a multi-cell grid's content swaps to one shared timer — stagger each cell's
+    swap phase by index so simultaneous updates (which read as a slideshow) never happen.
+
+avoid:
+  - >
+    Do not attempt to literally re-record a live site interaction for a from-scratch film — the
+    interaction beats (click position, scroll velocity) are irregular and un-authorable by hand.
+    Substitute a scripted FLIP transition (measured rect to measured rect) driven by
+    useCurrentFrame(), not a captured cursor path.
+  - >
+    The heart-shaped cluster formation depends on hand-picking which project card lands on which
+    point of the curve for visual balance in After Effects; in code, sort tiles by their default
+    index and assign curve points by even arc-length sampling instead of eyeballing placement.
+  - >
+    The 3-second dead tail at the end is a capture artifact (recording left running), not a
+    technique — never intentionally add a long unchanging hold like this; if a shot needs 458f to
+    read, it needs an ambient move running the whole time, not a hold after all ambient moves stop.
+
+new_moves:
+  - name: shapeClusterFormation
+    params: {path: heart-curve, per_tile_stagger_f: 2, dur_f: 60, ease: springSoft}
+    description: >
+      A set of absolutely-positioned elements (cards, dots, icons) each animate their transform
+      from a current layout position to a point sampled along a named parametric curve (heart,
+      circle, spiral), staggered per element, so the emergent arrangement itself reads as a
+      recognisable shape. A FLIP-style layout move, not a mask.
+
+  - name: matchCut
+    params: {dur_f: 50, ease: expoInOut, origin_rect_px: [x, y, w, h], dest_rect_px: [0, 0, "100%", "100%"]}
+    description: >
+      Already named in MOVE_VOCAB.md as a transition concept ("align a shape across the cut");
+      documented here with a concrete geometry — a clicked element's measured bounding rect grows
+      via animated clip-path/inset to the full frame rect, with the destination content already
+      laid out underneath so no reflow happens mid-transition.
+
+  - name: cardContentSwap
+    params: {dur_f: 12, ease: expoInOut}
+    description: >
+      A grid of cards keeps its layout fixed while every card's inner image/label crossfades or
+      hard-swaps to a new piece of content simultaneously — used for a single wholesale content
+      refresh (distinct from tileCycleGrid's staggered continuous cycling).
+
+  - name: tileCycleGrid
+    params: {grid: [4, 4], swap_interval_f: 20, per_tile_offset_f: 5, transition: hardSwap}
+    description: >
+      A fixed NxM grid of tiles where each cell's image content hard-swaps to the next item in its
+      own list on a per-cell staggered interval, with no change to layout, scale, or camera —
+      compresses a large body of work into one continuous shot.
+
+  - name: particleConverge
+    params: {particle_count: 40, dur_f: 40, ease: expoOut, start_spread_f: 15}
+    description: >
+      N small particles start at scattered positions and travel along individual paths to points
+      sampled along a target SVG mark's outline, arriving staggered over a short start-frame
+      spread so the mark appears to assemble from dust rather than fade or scale in.
+
+convergence:
+  - >
+    staggerRise / scaleIn card entrances (shot 1, project card row) match byshubh's staggerRise
+    and scaleIn use for stat-card and list entrances in A_not-your-average-ui-animation.
+  - >
+    dropShadowSoft on floating card/panel UI throughout this piece matches byshubh's
+    dropShadowSoft treatment on the same reference's floating dashboard.
+  - >
+    The phone-mockup orbit3D/dollyToUI beat (shot 3) is the same family of move as byshubh's
+    flattenToIsometric flat-to-3D dashboard reveal — both tilt a flat UI element in 3D to sell
+    depth without a cut.
+  - >
+    particleConverge (Gemini sparkle mark) is the same genre of "materialise from motion" flourish
+    as byshubh's specularSweep outro flash — both are used exactly once, at a hero moment, never
+    repeated.
+
+detection_notes: >
+  Merged profile.md's detected shots 1 (0-97), 2 (98-135), and 3 (136-160) into this spec's shot 1
+  (0-440, which also absorbs profile shot 4, 161-440). The homepage headline text is pixel-identical
+  across frames 4 through ~354 with zero scene or camera change — the delta-based cut detector is
+  firing on the large luma swing caused by an entire card row's content swapping at once (~f97) and
+  by the cluster-to-heart reflow beginning (~f135-160), not on real hard cuts. Profile shots 5 (a
+  genuine 10f flash), 6, 7, 8, 9 (a genuine 8f flash), and 10 map directly onto this spec's shots
+  2, 3, 4, 5, 6, 7 with no further merging — those boundaries do correspond to real full-frame
+  flash cuts or content-context changes (case-study to homepage-scroll is inside one shot per the
+  table, which is plausible since it is a continuous scroll with no flash).

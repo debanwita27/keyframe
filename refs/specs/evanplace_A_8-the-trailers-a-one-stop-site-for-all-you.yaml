@@ -1,0 +1,372 @@
+id: evanplace_A_8-the-trailers-a-one-stop-site-for-all-you
+source: "local-reference (evanplace_A_8-the-trailers-a-one-stop-site-for-all-you.mp4)"
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "4:3"
+  fps: 60
+  duration_s: 9.933
+  orientation: horizontal
+
+verdict: >
+  A movie-trailer aggregator ("The Trailers") sells its hero template by never touching
+  the foreground chrome: the UI (logo, search, headline, card rail, trending rail) sits
+  pixel-locked on top of a blurred, autoplaying trailer video that does all the ambient
+  motion for free. The one edit event — a hard cut to 51 frames of true black, then a
+  slow staggered fade-up with text arriving before the image resolves — reads as a
+  deliberate breath rather than a glitch, and the background media then cycles through
+  several different trailer crops behind the still-frozen chrome to prove the template
+  works for any title, not just Mario.
+
+palette:
+  bg: "#05050A"
+  ink: "#F2F0EA"
+  accent: "#2ECC71"
+  support: ["#78C0C0", "#C0A8A8", "#786060"]
+  notes: >
+    Near-black (#000018-ish, 37.9% of frame per profile) is the UI chrome/scrim colour,
+    not a designed brand background — it's a dark gradient overlay laid over the blurred
+    hero video so white text stays legible. Off-white text is the only "ink." The single
+    controlled accent is the saturated green circular play glyph (~#2ECC71) on exactly
+    one card — the featured trailer — never repeated elsewhere. Every other hue on
+    screen (teal #78C0C0 from "The Little Mermaid" thumbnail and the blurred underwater
+    scene, warm pink/brown #C0A8A8/#786060 from Mario's skin tones) comes from
+    uncontrolled third-party poster art, not the site's own palette — the design's
+    discipline is in NOT fighting that chaos with more colour of its own.
+
+typography:
+  family_look: geometric sans
+  weights: [regular, bold]
+  case: mixed
+  tracking: wide
+  headline_frame_share: 0.55
+  notes: >
+    Logo lockup is two-line: thin small "The" stacked directly above bold tracked-out
+    "TRAILERS". Section labels ("TRENDING THIS WEEK", "COMING UP NEXT") are small,
+    uppercase, wide-tracked, each prefixed with an emoji/icon (fire, refresh-arrow).
+    The hero headline "THE SUPER MARIO BROS. MOVIE" is bold caps, one line, sitting
+    directly above the card rail; a small grey sentence-case credits line ("Aaron
+    Horvath   Michael Jelenic") sits directly above it at roughly 40% the headline's
+    weight. Poster-card labels below each thumbnail are small regular sentence-case
+    (title, date, a pill tag reading "Theater" / "Netflix" / "Paramount").
+
+structure:
+  - act: hook
+    t: [0.00, 2.70]
+    purpose: >
+      Establish the site's hero layout already fully assembled over a blurred,
+      slowly-zooming trailer video, so the first thing read is "this is a living
+      page," not a static screenshot.
+    shots: [1]
+  - act: reveal
+    t: [2.70, 3.13]
+    purpose: Punch the camera into the trailer footage with a fast zoom, then cut to black.
+    shots: [2]
+  - act: capability
+    t: [3.13, 9.933]
+    purpose: >
+      Hold on black as a breath, then reform the hero (text before image) and let the
+      background media cycle through several different trailer crops while the
+      foreground chrome stays perfectly still — proving the template is reusable, not
+      a one-off render.
+    shots: [3]
+
+shots:
+  - n: 1
+    t: [0.00, 2.70]
+    frames: [0, 161]
+    layout: full-bleed-ui
+    content: >
+      Full hero already assembled at frame 0: top-left logo "The" over "TRAILERS",
+      top-right pill search input "Search for a movie" with a magnifier icon, small
+      grey credits line "Aaron Horvath   Michael Jelenic", bold headline "THE SUPER
+      MARIO BROS. MOVIE". Below it a 4-card rail: card 1 is larger, ringed in white,
+      carries a centred green circular play button and label "The Super Mario...";
+      cards 2-4 are smaller, unadorned thumbnails labelled "Spider-Man: Across the
+      Universe", "The Little Mermaid", "Elemental". Below that, "🔥 TRENDING THIS
+      WEEK" heads a 6-poster rail: "Plane / Feb 17 / Theater", "Knock at the Cabin /
+      Jan 6 / Theater", "Jesus Revolution / April 7 / Theater", "Luther: The Fallen
+      Sun / Jan 13 / Theater", "Creed III / Feb 24 / Netflix", "John Wick IV / Jan 13
+      / Paramount". A "⟳ COMING UP NEXT" rail starts to peek in at the bottom edge.
+      The background behind all of this chrome is the actual Mario trailer, heavily
+      blurred, slowly zooming in on Mario's red cap over the full 161 frames — the
+      chrome itself never moves a pixel.
+    moves:
+      - move: bgVideoZoom
+        target: blurred hero background video
+        at_f: 0
+        params: {scale: [1.0, 1.18], dur_f: 161, ease: linear}
+    camera: {move: none, params: {note: "foreground chrome is pixel-locked all 161f; the only motion is the bg layer's own zoom (bgVideoZoom, see bg.moves) — never scale the UI layer with the camera"}}
+    bg: {kind: blurred-ui, moves: [bgVideoZoom]}
+    treatment: [vignette, dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: zoomBlurCut, params: {dur_f: 26, note: "shot 2 IS this transition, stretched to a full 26f beat rather than the vocab's usual 5f flash"}}
+    hold_f: 20
+
+  - n: 2
+    t: [2.70, 3.13]
+    frames: [162, 187]
+    layout: full-bleed-ui
+    content: >
+      Fast push-crop into the same composition: the whole frame (chrome included)
+      scales up together this time, clipping the logo/search bar and headline off
+      the top edge and cropping the card rail tighter as the blurred trailer footage
+      (a swinging wrecking-ball silhouette becomes visible, top-right) rushes past
+      underneath. Motion-magnitude data peaks here (frame ~168 = 44.6, the video's
+      single loudest frame) confirming this is the "hot" beat the profile flags.
+      Ends on an abrupt hard cut to solid black at frame 188 (luma drops from ~50 to
+      19 in one frame, motion measured at exactly 0.0 from f188).
+    moves:
+      - move: zoomBlurCut
+        target: full frame (chrome + bg together)
+        at_f: 0
+        params: {scale: [1.0, 1.42], radial_blur: true, dur_f: 26, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1.0, 1.42], ease: expoOut, dur_f: 26, note: "unlike shot 1, this push moves the WHOLE composition including chrome"}}
+    bg: {kind: blurred-ui, moves: [bgVideoZoom]}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 3
+    t: [3.13, 9.933]
+    frames: [188, 595]
+    layout: full-bleed-ui
+    content: >
+      True black hold, frames 188-238 (51f, luma flat at 19.0, motion 0.0 on all
+      three profile scales — this is the "frozen stretch" the profile flags as a
+      bug, but it is a deliberate held breath, not dead air: it's the payoff beat
+      after the hard zoom). From frame ~239 the frame slowly brightens (luma climbs
+      19->~90 over roughly the next 90f) as the hero reforms: the headline/logo/
+      search chrome reappears first (still against a near-black bg), then the
+      blurred background image resolves in behind it, then the 4-card rail and
+      6-poster trending rail stagger back in. Once fully reformed (~frame 304) the
+      chrome is pixel-locked again for the remaining ~290 frames while ONLY the
+      blurred background media keeps changing — cap close-up, to a full Mario
+      face/ear close-up, to the swinging-silhouette shot, cycling every 2-2.5s — so
+      the page reads as alive without a single UI element ever moving again. Ends
+      held on a reformed frame identical in layout to frame 0.
+    moves:
+      - move: dipToBlackHold
+        target: full frame
+        at_f: 0
+        params: {fade_out_f: 1, hold_f: 51, ease: expoIn, note: "cut IS the fade-out (1f), not a gradual dim"}
+      - move: maskWipeUp
+        target: "\"THE SUPER MARIO BROS. MOVIE\" headline + logo/search chrome"
+        at_f: 51
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: unblurIn
+        target: blurred hero background video
+        at_f: 51
+        params: {blur: [18, 0], scale: [1.04, 1], dur_f: 90, ease: expoOut, note: "deliberately slower than the text reveal so text arrives visibly before the image resolves — matches the ~90f luma ramp in motion.csv"}
+      - move: staggerRise
+        target: 4-card rail
+        at_f: 70
+        params: {y: [24, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: staggerRise
+        target: 6-poster trending rail
+        at_f: 100
+        params: {y: [24, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: bgReelCycle
+        target: blurred hero background video
+        at_f: 141
+        params: {segment_f: 130, crossfade_f: 24, sources: 3, ease: expoInOut}
+    camera: {move: none, params: {note: "chrome pixel-locked from ~f304 onward; all remaining motion is bgReelCycle on the bg layer"}}
+    bg: {kind: blurred-ui, moves: [bgVideoZoom, bgReelCycle]}
+    treatment: [vignette, dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 60
+
+techniques:
+  - id: frosted-glass-hero-locked-chrome
+    what: >
+      A blurred, autoplaying trailer video fills the frame as the hero background;
+      a dark scrim sits over it; sharp, never-blurred UI chrome (logo, search,
+      headline, card rails) is composited on top and never moves independently
+      of an explicit UI-level animation — all ambient "nothing is ever still"
+      motion comes from the background video's own content, for free.
+    where: shot 1, frames 0-161 (and again shots 3, frames ~304-595)
+    why_it_reads: >
+      Real, high-frequency video noise/detail under heavy blur reads as "alive" far
+      more convincingly than a synthetic gradientDrift or grainShift on a flat
+      colour, and it costs zero extra keyframing since the source footage supplies
+      the motion.
+    remotion_recipe: >
+      <AbsoluteFill> containing an <OffthreadVideo> (or <Video>) with style
+      {filter: 'blur(40px) brightness(0.6)', transform: 'scale(1.1)'} (the 1.1
+      overscale hides the blur's edge darkening/clipping). Stack a
+      linear-gradient(rgba(0,0,0,0)->rgba(0,0,0,0.85)) scrim <div> above it for text
+      contrast, then the chrome (logo/search/headline/cards) as a separate sibling
+      layer with no filter and no transform tied to the background layer at all —
+      the two layers must never share a transform origin/scale.
+    difficulty: trivial
+
+  - id: featured-thumbnail-cta-ring
+    what: >
+      Of four thumbnail cards in the top rail, only the first (the currently-playing
+      trailer) gets a white ring border and a centred green circular play glyph;
+      the other three are plain, unringed, glyph-less thumbnails.
+    where: shot 1, frames 0-161 (persists through shot 3)
+    why_it_reads: >
+      A single, consistently-placed accent-colour glyph on exactly one card is an
+      unambiguous "you are here" marker without needing a label — it's the accent
+      rationing rule (2-3 uses total) applied to UI state, not just marketing copy.
+    remotion_recipe: >
+      Conditional styling on the card component: isActive ? {border: '2px solid
+      #fff', boxShadow: '0 8px 24px rgba(0,0,0,0.35)'} : {}. The play glyph is an
+      absolutely-centred <div> (circle, background accent green) rendered only on
+      the active card, entering once with popIn (scale 0->1.08->1, springSnap) if
+      the card itself is ever swapped programmatically.
+    difficulty: trivial
+
+  - id: dip-to-black-text-before-image-reform
+    what: >
+      A hard cut to solid black holds for 51 frames (measured: luma flat at 19.0,
+      motion 0.0 on all three profile scales), then the frame brightens over roughly
+      90 frames as content reforms in two staggered waves: text/chrome first (a fast
+      ~16f maskWipeUp), background image second (a slow ~90f unblurIn), so the
+      viewer reads the sentence before the picture resolves under it.
+    where: shot 3, frames 188-320 (relative offsets 0-132 within the shot)
+    why_it_reads: >
+      Sequencing text ahead of image inverts the usual "image lands, caption
+      follows" order, which reads as considered/edited rather than a simple
+      crossfade — and the long black hold turns what could be a jarring cut-to-black
+      into a deliberate pause that raises anticipation for the reform.
+    remotion_recipe: >
+      A full-bleed black <AbsoluteFill> with opacity driven by two interpolate()
+      calls: 0->1 over 1f at the cut point, held at 1 for 51f, then 1->0 over the
+      first ~16f of the reform (interpolate(frame, [239,255],[1,0])). The headline/
+      chrome layer's maskWipeUp starts at the same frame the black layer begins
+      fading. The background <OffthreadVideo> layer's blur/scale (unblurIn) is
+      driven by a SEPARATE, longer interpolate (frame 239-329) so it visibly lags
+      the text — do not tie both reveals to one shared progress value.
+    difficulty: moderate
+
+  - id: bg-reel-crossfade-system
+    what: >
+      Once the hero fully reforms, the foreground chrome is pixel-locked for the
+      remaining ~290 frames while the blurred background media crossfades between
+      several different crops of the same trailer (a cap close-up, a face/ear
+      close-up, a swinging-silhouette shot) roughly every 2-2.5s.
+    where: shot 3, frames ~304-595
+    why_it_reads: >
+      Showing the identical UI shell survive several different pieces of content
+      without a single chrome element re-animating is what separates "this is a
+      reusable template/system" from "this is one bespoke hero render" — the
+      strongest way to demonstrate a design system in a short clip is to hold the
+      frame and change only the content.
+    remotion_recipe: >
+      An array of 3+ background video/still sources; segmentIndex =
+      Math.floor((frame - startFrame) / segmentLengthF) % sources.length. Render
+      the current and next source stacked, crossfading opacity over the last
+      crossfadeF frames of each segment via interpolate(frame % segmentLengthF,
+      [segmentLengthF - crossfadeF, segmentLengthF], [0,1]) on the next layer. The
+      chrome layer sits in a completely separate, static-mounted component tree so
+      re-renders of the bg reel can never touch its position/opacity.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 3
+  median_shot_f: 161
+  fastest_f: 26
+  slowest_f: 408
+  pattern: >
+    161f static-chrome-over-zooming-bg establish -> 26f hard push-crop (the video's
+    single loudest motion peak, ~f168) -> hard cut to 51f true black -> ~90f
+    staggered text-then-image reform -> long ~290f held/cycling close. Energy is a
+    single mid-video spike (wave), bracketed by two long, deliberately "still"
+    (chrome-static) holds — the opposite of a beat-driven multi-cut edit.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Composite sharp, never-blurred UI chrome over a heavily blurred autoplaying
+    video background (frosted-glass-hero-locked-chrome) — the video supplies all
+    required ambient motion for free; never animate the chrome layer's transform
+    together with the background's.
+  - Mark the single "active/featured" item in a card rail with a ring + one
+    accent-coloured glyph and nothing else in the rail gets that colour
+    (featured-thumbnail-cta-ring) — cheapest possible "you are here" signal.
+  - When you need a hard reset beat, cut to true black and hold for 40-50f before
+    reforming, rather than a quick flash — a longer black hold reads as a
+    deliberate pause, not a mistake, as long as something clearly better follows it.
+  - On reform after black, reveal text (fast, ~16f) distinctly ahead of the
+    background image (slow, ~90f) rather than crossfading both together
+    (dip-to-black-text-before-image-reform) — the stagger is what makes it feel
+    edited rather than merely faded.
+  - To sell "this is a template, not a one-off," hold the UI chrome perfectly still
+    for a long stretch while only the background media content changes
+    (bg-reel-crossfade-system) — motion without chrome movement reads as system,
+    not slideshow.
+  - Push the WHOLE composition (chrome included) during an intentional transition
+    beat (shot 2) but NEVER during a static hold (shots 1 and 3) — mixing the two
+    is what tells chrome-locked from chrome-moving apart.
+
+avoid:
+  - The blurred hero video's own zoom (bgVideoZoom, shot 1) is presumably native
+    camera movement in the source trailer footage, not something hand-animated —
+    substitute any embedded/stock video clip with its own motion; don't attempt to
+    Ken-Burns a static poster image to fake it, the real video's noise/detail sells
+    the blur.
+  - Do not treat the 51-frame black hold as a bug to "fix" with an ambient move —
+    the PRINCIPLES rule against static stretches exists for held UI elements, not
+    for a deliberate full-black transition breath; the two are visually and
+    functionally distinct events.
+  - The exact poster/thumbnail artwork (Mario, Spider-Verse, Little Mermaid,
+    Elemental, etc.) is third-party licensed key art — treat it as placeholder
+    content when rebuilding this layout, not as an asset to source.
+
+new_moves:
+  - name: bgVideoZoom
+    params: {scale: [1.0, 1.18], dur_f: whole shot, ease: linear}
+    description: >
+      A background media layer (video or image) slowly scales up independently of
+      the foreground chrome, which stays pixel-locked. Distinct from driftCamera
+      (which moves the WHOLE composition) — this move is scoped to the bg layer
+      only, so a UI overlay on top can stay perfectly still while the layer behind
+      it still reads as "alive." Ease can be linear since it's a continuous ambient
+      loop, in the same exception class as marquee/gradientDrift.
+  - name: dipToBlackHold
+    params: {fade_out_f: 1, hold_f: 51, ease: expoIn}
+    description: >
+      The whole composition cuts (or fades over 1-2f) to solid black, holds there
+      for hold_f frames with zero motion, then the subsequent content reforms
+      (typically via separate maskWipeUp/unblurIn moves layered on top, staggered
+      so text arrives before image). Use as a deliberate full-stop breath between
+      two states of the same scene, not as a shot transition between different
+      subjects — pair with a following reform move, never leave the hold as the
+      final frame.
+  - name: bgReelCycle
+    params: {segment_f: 130, crossfade_f: 24, sources: 3, ease: expoInOut}
+    description: >
+      A background media layer cycles through N sources (video clips or stills),
+      showing each for segment_f frames and crossfading to the next over the final
+      crossfade_f frames of each segment (index = floor(frame/segment_f) % N).
+      Used behind a pixel-locked foreground UI to demonstrate that a template/hero
+      supports many pieces of content rather than one — the foreground must not
+      re-render or shift when the background segment changes.
+
+convergence:
+  - technique: staggerRise used to populate a rail of UI cards after a state
+      change (Lead/Deals metric cards in zhylar shot 2; the 4-card rail and
+      6-poster trending rail here in shot 3) — same move, same "dashboard
+      populating" context, in two independent designers' work.
+  - technique: maskWipeUp used specifically for a headline reappearing/reforming
+      after an interruption (zhylar's per-word-group "Keeps all your critical
+      data" build; evanplace's headline reform after the black hold here) rather
+      than only for a first-appearance entrance.
+
+detection_notes: >
+  All 3 cuts detected by the profile correspond to real, visually distinct content
+  changes confirmed against both the sheets and motion.csv — no merge was needed.
+  Cut at f162 (shot1->shot2) is a genuine hard cut into a faster push-crop, not
+  continuous acceleration: motion.csv shows a jump from ~7-20 to a sustained
+  40-60+ band starting exactly at f162-168, peaking at f168 (44.6, the video's
+  single loudest frame). Cut at f188 (shot2->shot3) is an even harder discontinuity:
+  luma drops from 49.97 (f187) to 19.00 (f188) in one frame and motion.csv reads
+  exactly 0.0000 from f188 through f238 (51 frames), confirming true black, not a
+  gradual fade. The profile's flagged "frozen stretch" (f195-239) sits entirely
+  inside this black hold and is a deliberate transition device, not a bug — see the
+  dip-to-black-text-before-image-reform technique and the note under `avoid`.

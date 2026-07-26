@@ -1,0 +1,405 @@
+id: evanplace_B_the-latest-chapter-ive-joined-weareoffmenu
+source: https://x.com/evanplace/status/the-latest-chapter-ive-joined-weareoffmenu
+category: brand-loop
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 13.0
+  orientation: horizontal
+
+verdict: >
+  A pure grayscale abstract-icon build (sphere settling onto a rotating cube) snap-morphs
+  through an iris-sweep into a circle woven from horizontal bars with a square keyhole
+  punched through its centre, then that square breaks free and shatters into corner
+  fragments to reveal the wordmark card — which then holds, essentially unchanged, for
+  over 60% of the runtime. The shape choreography in the first 4 seconds is the whole
+  video; everything after is a held end card.
+
+palette:
+  bg: "#0A0A0A"
+  ink: "#FFFFFF"
+  accent: "#FFFFFF"
+  support: ["#303030", "#787878", "#A8A8A8"]
+  notes: >
+    Fully monochrome — no hue anywhere in the piece. The opening beats sit on a light
+    grey radial vignette (#B8B8B8 centre fading to near-black corners) that inverts to a
+    dark radial vignette (near-black centre, very subtle lighter falloff) once the bars-
+    circle appears at frame 52 and stays dark for the rest of the video. White is the only
+    "accent" — it is rationed to the object/graphic itself, never the background.
+
+typography:
+  family_look: geometric sans
+  weights: [bold]
+  case: sentence
+  tracking: tight
+  headline_frame_share: 0.34
+  notes: >
+    Two-line lockup only, no other copy in the video: "I've joined" (regular weight,
+    grey, smaller, line 1) over "OFFMENU" (extra-bold, white, larger, line 2), left-
+    aligned as a single wordmark block, centred in frame.
+
+structure:
+  - act: hook
+    t: [0.0, 1.57]
+    purpose: build an abstract icon (sphere settling onto a rotating cube) from nothing, establishing an object before any words appear
+    shots: [1]
+  - act: reveal
+    t: [1.57, 3.37]
+    purpose: snap-morph the icon through an iris sweep into a circle woven from bars with a square keyhole, hold on it as the single graphic "moment" of the video
+    shots: [2, 3]
+  - act: cta
+    t: [3.37, 13.0]
+    purpose: shatter the square out of the keyhole as a whip transition into the wordmark card, then hold the card for the remainder of the runtime
+    shots: [4, 5]
+
+shots:
+  - n: 1
+    t: [0.00, 1.57]
+    frames: [0, 46]
+    layout: centre-stack
+    content: >
+      Frame 0-11: blank light-grey radial-vignette canvas, no object. Frame 12: a single
+      small black square dot appears dead centre. Frame 13-27: the dot grows rapidly into
+      a dark rotated square (diamond orientation) with a white sphere emerging above/on
+      it, both scaling up together; square derotates toward axis-aligned as it grows.
+      Frame 28-33: the cube+sphere cluster overshoots slightly then rotates further,
+      shrinking a little as it settles (motion.csv shows a secondary velocity spike at
+      f31-32, the settle bounce). Frame 34-46: cube and sphere fade/dissolve away, two
+      small dots and a thin ring outline appear in their place, contracting toward centre
+      as a lead-in to the next shot's iris sweep.
+    moves:
+      - move: scaleIn
+        target: cube_and_sphere_cluster
+        at_f: 12
+        params: {scale: [0, 1], opacity: [0, 1], dur_f: 15, ease: backOut}
+      - move: rotate3dSettle
+        target: dark_square
+        at_f: 13
+        params: {rotate_deg: [45, 0], dur_f: 20, ease: springSoft, note: "overshoot bounce visible in motion.csv at f31-32"}
+      - move: dissolveBlur
+        target: cube_and_sphere_cluster
+        at_f: 34
+        params: {blur_px: [0, 10], opacity: [1, 0], dur_f: 8, ease: expoIn}
+      - move: scaleIn
+        target: lead_in_dots_and_ring
+        at_f: 37
+        params: {scale: [0.4, 1], opacity: [0, 1], dur_f: 9, ease: expoOut}
+    camera: {move: breathe, params: {scale: [1, 1.01], period_f: 46}}
+    bg: {kind: gradient-drift, moves: [radialRevealGlow]}
+    treatment: [filmGrain]
+    audio_cue: riser
+    transition_out: {move: whipPan, params: {dur_f: 6, motion_blur: heavy}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.57, 1.97]
+    frames: [47, 58]
+    layout: centre-stack
+    content: >
+      Frame 47: a wide dark V-shaped beam sweeps in from the right like a shutter/iris
+      opening, revealing a dashed vertical line of dots inside two concentric ring
+      outlines, with a solid black disc at the beam's origin on the right edge — reads as
+      a sonar/aperture sweep. Frame 48-51: the beam collapses toward centre and the dotted
+      line contracts. Frame 52-58: the sweep resolves into a circle built from ~19 stacked
+      horizontal white bars (widths tracing a circle profile), with the bars near the
+      vertical centre cut short on both sides, leaving a clean square-shaped negative-space
+      hole punched through the middle of the circle.
+    moves:
+      - move: irisSweepCollapse
+        target: aperture_beam_and_dotted_line
+        at_f: 0
+        params: {dur_f: 5, ease: expoIn}
+      - move: barredCircleFormIn
+        target: bar_stack
+        at_f: 5
+        params: {dur_f: 7, stagger_f: 0, ease: expoOut, note: "bars appear near-simultaneously, not staggered — reads as one snap"}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 12, axes: xy}}
+    bg: {kind: gradient-drift, moves: [radialRevealGlow]}
+    treatment: [filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 3
+    t: [1.97, 3.37]
+    frames: [59, 100]
+    layout: centre-stack
+    content: >
+      The circle-of-bars with its square keyhole holds near-static for 42 frames — the
+      single graphic "hero" moment of the video. Motion.csv shows small continuous
+      amplitude on the bars (a subtle in-place pulse/breathing of the bar widths) rather
+      than true stillness, which is what keeps this stretch off the profile's frozen list
+      even though nothing reads as moving to the eye.
+    moves:
+      - move: breathe
+        target: bar_stack
+        at_f: 0
+        params: {scale: [1, 1.015], period_f: 42, note: "reads as the shape holding its breath before the next morph"}
+    camera: {move: breathe, params: {scale: [1, 1.01], period_f: 90}}
+    bg: {kind: gradient-drift, moves: [radialRevealGlow]}
+    treatment: [filmGrain, vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 4
+    t: [3.37, 3.90]
+    frames: [101, 117]
+    layout: centre-stack
+    content: >
+      Frame 101-102: the square keyhole itself grows, its edges gaining a visible double
+      outline (a thin inner stroke plus a thicker outer stroke) while the surrounding bars
+      thin out and retract toward the frame edge. Frame 107-112: what's left is a bold
+      rotated square-outline "badge" (nested double stroke), spinning slowly in place with
+      the bars almost fully gone. Frame 117: the square shatters — only four short white
+      line fragments remain, one in each corner of the frame, pointing inward like the
+      corners of a viewfinder/reticle. This corner-fragment frame is the whip-cut into the
+      wordmark card.
+    moves:
+      - move: morphShape
+        target: square_keyhole_to_outline_badge
+        at_f: 0
+        params: {dur_f: 11, ease: expoInOut, note: "SVG path interpolation from bar-stack negative space to a closed rotated-square stroke path"}
+      - move: barredCircleFormIn
+        target: bar_stack
+        at_f: 0
+        params: {dur_f: 8, opacity: [1, 0], stagger_f: 1, ease: expoIn, note: "reverse of shot 2's formation — bars retract outward and fade"}
+      - move: shatterToFragments
+        target: square_outline_badge
+        at_f: 11
+        params: {dur_f: 5, ease: expoIn}
+    camera: {move: whipPan, params: {x_sweep_px: 40, dur_f: 6, motion_blur: heavy}}
+    bg: {kind: gradient-drift, moves: [radialRevealGlow]}
+    treatment: [filmGrain, chromaticEdge]
+    audio_cue: impact
+    transition_out: {move: zoomBlurCut, params: {scale: [1, 1.15], dur_f: 5}}
+    hold_f: 0
+
+  - n: 5
+    t: [3.90, 13.00]
+    frames: [118, 389]
+    layout: centre-stack
+    content: >
+      Frame 118-136: "I've joined / OFFMENU" wordmark materializes through a soft
+      vertical mask-wipe with a heavy glow bloom that settles down as the text sharpens.
+      Frame 137-257: the card holds, with a slow, barely-perceptible glow pulse behind the
+      wordmark (the source of the low but non-zero motion.csv values through this range).
+      Frame 258-389 (131f / 4.37s): fully frozen — profile.md flags this exact range as a
+      dead/frozen stretch with zero motion on all three scales. This is a static end card
+      held for over a third of the total runtime with no ambient move running at all.
+    moves:
+      - move: maskWipeUp
+        target: wordmark_two_lines
+        at_f: 0
+        params: {dur_f: 16, per_line_stagger_f: 4, ease: expoOut}
+      - move: unblurIn
+        target: wordmark_two_lines
+        at_f: 0
+        params: {blur_px: [20, 0], scale: [1.05, 1], dur_f: 18, ease: expoOut}
+      - move: breathe
+        target: background_glow
+        at_f: 18
+        params: {scale: [1, 1.02], period_f: 140, note: "stops entirely by f258 per profile's frozen-stretch flag — this is a bug per PRINCIPLES section 4, not a deliberate design choice"}
+    camera: {move: driftCamera, params: {amp_pct: 0, period_f: 0, note: "no camera move running during the frozen tail — flagged in avoid:"}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain, vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 131
+
+detection_notes: >
+  Cut-detector reported 7 shots; merged to 5 in this spec. (1) Frames 47-50, 51-54,
+  55-58 were reported as three separate 4f "hot" shots — each is under the 11f minimum
+  shot length, and the sheets/keys show they are one continuous graphic snap (iris sweep
+  collapsing into the bars-circle), not three distinct scenes. High per-frame luma delta
+  came from the fast shape morph itself, not real cuts. Merged into shot 2 (frames
+  47-58). (2) Frame range 101-104 was reported as its own 4f shot; sheets show it is the
+  start of the same continuous square-emerges-and-shatters morph that runs through frame
+  117, so it was folded into shot 4 (frames 101-117) rather than kept separate or grouped
+  with the following 285f mega-shot. (3) The remaining cut-detector "shot 7" (frames
+  105-389, 285f) actually contains two distinct beats — the shatter/reveal (105-117) and
+  the wordmark card (118-389) — split here into shots 4 and 5 because they are visually
+  and functionally different (transition vs. resting end card), even though no hard cut
+  exists between them in the source.
+
+techniques:
+  - id: barred-circle-square-keyhole-mask
+    what: >
+      A circle assembled from ~19 stacked horizontal white bars, where bar widths follow
+      a circle's width profile (width(y) = 2*sqrt(r^2 - y^2)), and the bars occupying the
+      vertical middle band are each cut into a left segment and a right segment with a
+      gap between them — the gaps align across all middle bars to form one clean square
+      hole punched through the exact centre of the circle. The mask IS the graphic; there
+      is no content sitting "under" it being revealed, the negative space itself is the
+      design.
+    where: shots 2-4, frames 52-107
+    why_it_reads: >
+      Reading a shape from stacked bars registers as a printed/optical illusion; the
+      instant the eye also parses a second, unrelated shape (a perfect square) hiding in
+      the negative space, the graphic reads as "engineered" rather than decorative. It's
+      the shape-vocabulary equivalent of a magic trick.
+    remotion_recipe: >
+      For row i of N (i centred on 0), compute y = i/N * 2 - 1 and barWidth =
+      2*sqrt(1 - y*y) * circleRadius. Render each bar as a div with that width, height
+      ~barRadius*0.08, border-radius 50% (ellipse cap), centred horizontally. For bars
+      whose |y| < squareHalfHeight/circleRadius, instead render TWO divs (left segment,
+      width = (barWidth - squareWidth)/2, right-aligned to the bar's left edge; right
+      segment mirrored) so a square gap of fixed width sits centred on every middle bar.
+      Animate the square gap's width via a single progress variable to grow the keyhole
+      (shot 4) — interpolate squareWidth from a small value up to barWidth so the gap
+      eats the whole bar and the circle silhouette reads as dissolving into a square
+      outline. This is a CSS-only technique, no SVG or canvas required.
+    difficulty: moderate
+
+  - id: aperture-sonar-sweep-transition
+    what: >
+      A dark wedge sweeps in from one edge like a slow shutter closing/opening, revealing
+      concentric ring outlines and a dashed vertical line of dots converging toward
+      centre, with a solid disc marking the sweep's pivot point at the frame edge.
+    where: shot 2, frames 47-51
+    why_it_reads: >
+      Borrows the visual grammar of a radar/sonar sweep or camera aperture, which reads
+      as "measuring" or "focusing" rather than an arbitrary wipe — it primes the eye for
+      the precise, engineered geometry of the bars-circle that follows immediately after.
+    remotion_recipe: >
+      Two overlapping triangular/conic-gradient divs using clip-path polygon or
+      conic-gradient(from angle at 50% 50%, transparent 0deg, black Xdeg, transparent
+      Ydeg) animate their angle to sweep the wedge across the frame in 4-5f. Layer a
+      radial concentric-ring background (repeating-radial-gradient or SVG circles) and a
+      column of dots whose y-position animates toward centre with staggered delay to read
+      as a converging dashed line.
+    difficulty: moderate
+
+  - id: shape-shatter-whip-transition
+    what: >
+      A rotated square-outline badge breaks apart into four short line fragments, one
+      per frame corner, pointing inward — a single-frame "reticle" composition — which
+      then whip-cuts directly into the next card.
+    where: shot 4, frames 112-118
+    why_it_reads: >
+      A shatter reads as more violent/energetic than a plain wipe or fade, giving the one
+      real "impact" beat of the video right before the calm, static end card — it's the
+      contrast that makes the long hold afterward feel like a landing rather than a stall.
+    remotion_recipe: >
+      Keep the square-outline's 4 corner segments as separate stroke paths (or 4
+      absolutely-positioned short divs) instead of one closed SVG rect from the start.
+      Animate their translate outward from the square's centre with heavy motion blur
+      (CSS filter: blur or a multi-sample trail) over 4-5f, synced with the camera's
+      whipPan so the fragments and camera move together and read as one snap rather than
+      two overlapping effects.
+    difficulty: moderate
+
+  - id: content-driven-vignette-pulse-through-a-long-hold
+    what: >
+      A soft radial glow behind the wordmark keeps a barely-visible breathing pulse
+      running from frame 118 to 257, before stopping completely for the final 131 frames
+      (258-389), which the profile explicitly flags as a dead/frozen stretch.
+    where: shot 5, frames 118-389
+    why_it_reads: >
+      This is a documented failure, not a technique to copy: the pulse buys ~4.6s of
+      "not dead" before running out, and the remaining 4.4s (more than a third of the
+      whole video) is genuinely inert. It's included here as a concrete example of
+      PRINCIPLES rule 4 being violated in a real, published piece.
+    remotion_recipe: >
+      The fix is trivial and should always be applied: drive the glow's scale/opacity
+      from a continuous `Math.sin(frame / period)` for the ENTIRE hold duration (not just
+      the first ~140f), so an ambient move is guaranteed to still be running at the last
+      frame regardless of how long the card is held.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 4
+  median_shot_f: 42
+  fastest_f: 12
+  slowest_f: 272
+  pattern: >
+    47f icon-build (subtle, ease-in-out+overshoot) -> 12f flash-morph montage (hot,
+    3 rapid snaps merged) -> 42f held bars-circle hero shape (medium, overshoot bounce)
+    -> 17f square-emerges-and-shatters whip (hot) -> 272f wordmark card, glow-pulsing for
+    ~140f then fully frozen for the final 131f. All of the real motion-design event
+    density is front-loaded into the first 3.9s (30% of runtime); the remaining 70% is a
+    single static card.
+  beat_grid_f: 0
+  energy_curve: front-loaded
+
+transferable:
+  - >
+    To compress this to 25-30s from a re-cut standpoint the ratio is backwards — at 13s
+    total this piece is already tight, but if it were scaled up naively to a 25-30s slot,
+    do NOT stretch the end-card hold to fill time — extend the front 3.9s of shape
+    choreography instead (add one more morph beat between the bars-circle and the square
+    reveal) and cap the final static card at 3-4s max regardless of total runtime.
+  - >
+    The "mask is the subject" idea — build a recognizable shape (circle) out of repeated
+    strips, then punch a second unrelated shape (square) through its negative space as a
+    keyhole. This is the shape-driven-masking technique this batch was specifically
+    asked to find — MOVE_VOCAB has nothing like it; see new_moves.
+  - Chain three cheap CSS-only shape morphs back to back (bars-circle -> square-outline
+    -> shatter) with no gaps between them; the density of shape change over ~1s of
+    footage is what makes a 13s piece feel eventful despite having almost no other
+    content.
+  - An ambient glow/vignette pulse must run for the FULL duration of a held end card, not
+    just the first few seconds — this piece proves the failure mode (131 frozen frames)
+    concretely, worth building as a lint check (loop the sine forever, never let it decay).
+  - A fully monochrome (zero-hue) palette is a legitimate stylistic choice for a
+    personal/brand announcement piece — it reads as considered rather than unfinished
+    specifically because every other value (contrast, shape precision, timing) is high.
+
+avoid:
+  - Do not hand-key the bars-circle's individual bar widths and gap positions frame by
+    frame; drive every bar's width and every middle-bar's gap from one shared formula
+    parameterised by y-position and a single progress value, so the whole shape can be
+    grown/shrunk/keyholed by animating one number.
+  - Do not leave the end-card hold with zero ambient motion for 4+ seconds like the
+    source does (frames 258-389) — always keep at least one continuous move (breathe,
+    gradientDrift, grainShift) running through the entire hold, per PRINCIPLES section 4.
+  - Do not attempt the iris-sweep/sonar transition as a pre-rendered video clip; it is
+    cheap to build live from a conic-gradient wedge plus a repeating-radial-gradient ring
+    field, which also makes its timing tunable to the beat grid instead of fixed.
+
+new_moves:
+  - name: barredCircleFormIn
+    params: {bar_count: 19, dur_f: 7, stagger_f: 0, ease: expoOut}
+    description: >
+      A circle silhouette assembled from N stacked horizontal bars whose widths trace
+      width(y) = 2*sqrt(r^2 - y^2). All bars scale in from zero width near-simultaneously
+      (stagger_f near 0) so the circle reads as one snap rather than a build. Reverse
+      (opacity/width to 0, stagger_f low) to retract the bars away.
+  - name: shapeKeyholeMask
+    params: {shape_outer: circle, shape_inner: square, inner_size_pct: [0, 1], centered: true}
+    description: >
+      A negative-space shape (e.g. a square) punched through the centre of a larger
+      shape built from repeated strips or a solid fill, by splitting any strip that
+      intersects the inner shape's bounds into two segments with a gap between them. The
+      inner shape's size is a single progress value driving all segment gaps at once, so
+      the keyhole can grow/shrink/dissolve the outer shape as one animated parameter. The
+      punched-out negative space is the design's subject, not a reveal window onto other
+      content underneath.
+  - name: irisSweepCollapse
+    params: {dur_f: 5, ease: expoIn, wedge_source: conic-gradient}
+    description: >
+      A dark wedge (conic-gradient or clip-path polygon) sweeps across the frame like a
+      closing aperture/shutter while concentric ring outlines and a converging dashed
+      line of dots resolve toward centre. Used as a fast (4-6f) transition between two
+      unrelated shape motifs, not as a content reveal.
+  - name: shatterToFragments
+    params: {dur_f: 5, ease: expoIn, fragment_count: 4, motion_blur: heavy}
+    description: >
+      A closed shape's edges/corners separate into N independent line/stroke fragments
+      that fly outward from the shape's centre with heavy motion blur, timed with a
+      camera whipPan so the shatter and the camera snap read as a single event. Used as
+      a high-energy whip transition into the next shot, not as an exit on its own.
+
+convergence:
+  - Background radial glow whose scale/opacity is tied to a content-reveal progress
+    value rather than a fixed timer, matching byshubh's growing-radial-halo technique
+    (both keep an otherwise-static composition from reading as dead).
+  - A held static end state deliberately engineered as the resting point of the piece —
+    byshubh resolves to a pixel-matching blank for a seamless loop; this piece resolves
+    to a static wordmark card, but both treat the final held frames as a designed
+    destination rather than an afterthought.
+  - Fast, string-of-snaps montage transitions (byshubh's specular-flash-outro-loop is a
+    single 7f sweep-and-fade; this piece chains three back-to-back sub-11f shape morphs)
+    both rely on treating very short beats as punctuation rather than full shots.

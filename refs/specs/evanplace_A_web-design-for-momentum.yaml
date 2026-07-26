@@ -1,0 +1,460 @@
+id: evanplace_A_web-design-for-momentum
+source: local-reference (evanplace_A_web-design-for-momentum.mp4)
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 60
+  duration_s: 12.267
+  orientation: horizontal
+
+verdict: >
+  A whole marketing-site scroll is compressed into six full-bleed, hard-cut "slides"
+  (hero, problem, feature-grid, testimonials, integrations+footer, loop-back-to-hero)
+  with zero scroll or parallax simulation anywhere — each section snaps fully built
+  in well under half a second, then holds static for 1.9-2.6s of pure read-time before
+  the next cut, and the tape loops by hard-cutting back to the opening hero frame.
+  Note: all `dur_f`/`at_f` values below are given in this source's NATIVE 60fps frame
+  count (matching the profile/sheets ground truth) — halve them for a 30fps build.
+
+palette:
+  bg: "#F4F4F6"
+  ink: "#181830"
+  accent: "#2FD9B0"
+  support: ["#7C3AED", "#F5A623", "#181830"]
+  notes: >
+    Off-white/light-grey product chrome (screen-share dominant colours #D8D8D8 47.9%,
+    #F0F0F0 30.6%) against a near-black navy ink (#181830, #303048) for headlines and
+    the footer panel. Mint/teal (~#2FD9B0, the "momentum" logo mark and the
+    "Automated Workflows" category label) is the only recurring accent. Purple
+    (~#7C3AED) shows up exactly twice: the Slack-notification card header bars and
+    the blurred gradient "aurora" blob behind the hero and testimonial sections.
+    Orange (~#F5A623) is used once, only for the second feature row's category label
+    ("Coaching & Discovery"), functioning as a second-category colour code rather than
+    a true accent.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.42
+  notes: >
+    Every headline is a 2-line sentence-case fragment, 4-6 words per line
+    ("Work your pipeline at / the speed of AI", "Manual admin and missing data are
+    slowing / your team down. Let's fix that."). Small uppercase-adjacent category
+    labels (e.g. "Automated Workflows", "Coaching & Discovery") sit above feature
+    headlines in the accent/support colours as row identifiers. Body copy is a
+    smaller weight of the same geometric sans at roughly 14px equivalent, capped at
+    2-3 lines, always followed by a "Learn more ->" text link where present.
+
+structure:
+  - act: hook
+    t: [0.00, 0.65]
+    purpose: Establish the "momentum" brand and headline value prop with a fanned product-screenshot hero.
+    shots: [1]
+  - act: problem
+    t: [0.67, 3.05]
+    purpose: Name the pain point ("manual admin and missing data") and immediately answer it with a real Slack notification screenshot.
+    shots: [2]
+  - act: capability
+    t: [3.07, 5.50]
+    purpose: Show the two headline product benefits as an alternating icon/text feature grid.
+    shots: [3]
+  - act: proof
+    t: [5.52, 7.80]
+    purpose: Back the claims with three customer-quote cards.
+    shots: [4]
+  - act: capability
+    t: [7.82, 10.37]
+    purpose: Show ecosystem breadth (integrations) and land on the site footer as an implicit "this is a real, finished site" beat.
+    shots: [5]
+  - act: cta
+    t: [10.38, 12.25]
+    purpose: Hard-cut back to the exact opening hero frame so the clip loops seamlessly on autoplay.
+    shots: [6]
+
+shots:
+  - n: 1
+    t: [0.00, 0.65]
+    frames: [0, 39]
+    layout: full-bleed-ui
+    content: >
+      Website hero, full viewport. Top nav: mint "momentum" logo mark + wordmark,
+      links "Product / Solutions / Customers / Resources / Pricing / Login", dark
+      pill button "Book a Demo". Centred headline "Work your pipeline at / the speed
+      of AI", subhead "Momentum captures sales call and email insights to activate
+      them across your rev stack for hyper-efficient workflows, automatic CRM
+      hygiene, and unprecedented pipeline visibility.", centred dark pill CTA
+      "Book a Demo". Below, a blurred multicolour (purple/orange/teal) gradient
+      blob sits behind a fanned stack of 3 overlapping product-screenshot cards:
+      a large top card ("Momentum | Guy <> Momentum | Intro Meeting" call-notes
+      panel) and two smaller cards peeking out lower-left/lower-right with purple
+      header bars ("Momentum: The N8 Lending Bank Corp call has been analyzed",
+      "Momentum: Kuzco not qualifying deal N8-DroneDeploy 1/2024"). The whole
+      composition is fully settled by frame ~24 (native) and holds to frame 39.
+    moves:
+      - move: staggerRise
+        target: "nav bar (logo mark, 6 nav links, 'Book a Demo' pill)"
+        at_f: 0
+        params: {y: [10, 0], opacity: [0, 1], stagger_f: 2, dur_f: 10, ease: springSoft}
+      - move: maskWipeUp
+        target: "headline 'Work your pipeline at / the speed of AI' (2 lines)"
+        at_f: 2
+        params: {dur_f: 16, per_line_stagger_f: 4, ease: expoOut}
+      - move: staggerRise
+        target: "subhead paragraph"
+        at_f: 10
+        params: {y: [14, 0], opacity: [0, 1], blur: [6, 0], dur_f: 12, ease: springSoft}
+      - move: popIn
+        target: "'Book a Demo' hero CTA pill"
+        at_f: 14
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: cardFanReveal
+        target: "3 overlapping product-screenshot cards"
+        at_f: 6
+        params: {count: 3, rotate_range_deg: [-6, 6], y: [50, 0], stagger_f: 4, z_offset: 10px, dur_f: 18, ease: springSoft}
+      - move: auroraBlobBackdrop
+        target: "blurred purple/orange/teal gradient blob"
+        at_f: 0
+        params: {blur_px: 60, opacity: [0, 1], dur_f: 20}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 220, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 15
+
+  - n: 2
+    t: [0.67, 3.05]
+    frames: [40, 183]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to centred headline "Manual admin and missing data are slowing /
+      your team down. Let's fix that." Below, a 2-column row: left, a Slack
+      notification screenshot card ("Momentum 8:00 AM — The N8 Lending Bank Corp
+      call has been analyzed", attendees list, call summary text, a green
+      "Actionable Insights on the call" reply thread pill); right, heading "Get
+      call details delivered right in Slack." with a testimonial quote below it
+      ("My aha moment was when our Sales Leadership uncovered an upcoming churn
+      in the summarized notes right after the AE's meeting ended" - Arpan Patel).
+      Per profile.md this shot is genuinely frozen (zero motion on all three
+      analysis scales) from frame 101-144 — a 0.72s dead read-hold, not an
+      artefact.
+    moves:
+      - move: maskWipeUp
+        target: "headline 'Manual admin and missing data are slowing / your team down. Let's fix that.'"
+        at_f: 0
+        params: {dur_f: 20, per_line_stagger_f: 5, ease: expoOut}
+      - move: scaleIn
+        target: "Slack notification card (left column)"
+        at_f: 8
+        params: {scale: [0.92, 1], opacity: [0, 1], dur_f: 18, ease: backOut}
+      - move: staggerRise
+        target: "'Get call details delivered right in Slack.' heading + testimonial quote (right column)"
+        at_f: 14
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 4, dur_f: 16, ease: springSoft}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 220, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 39
+  - n: 3
+    t: [3.07, 5.50]
+    frames: [184, 330]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to a 2-row alternating feature grid. Row 1: left, a colourful
+      abstract workflow-icon graphic (connector nodes + app-icon chip); right,
+      teal label "Automated Workflows", headline "Trigger workflows that are less
+      work, more flow", body copy, "Learn more ->". Row 2 (layout mirrors row 1):
+      left, orange label "Coaching & Discovery", headline "Take the stress out of
+      staying in the know", body copy, "Learn more ->"; right, a small UI card
+      with two coloured avatar chat-bubble icons. Profile.md flags a genuine
+      frozen dead zone at frames 238-291 (0.88s) inside this shot.
+    moves:
+      - move: scaleIn
+        target: "workflow-icon graphic (row 1, left)"
+        at_f: 4
+        params: {scale: [0.88, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: staggerRise
+        target: "'Automated Workflows' label + headline + body + 'Learn more ->' (row 1, right)"
+        at_f: 0
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+      - move: staggerRise
+        target: "'Coaching & Discovery' label + headline + body + 'Learn more ->' (row 2, left)"
+        at_f: 20
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+      - move: scaleIn
+        target: "avatar chat-bubble UI card (row 2, right)"
+        at_f: 24
+        params: {scale: [0.88, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 220, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 40
+  - n: 4
+    t: [5.52, 7.80]
+    frames: [331, 468]
+    layout: full-bleed-ui
+    content: >
+      Cut to centred headline "What revenue teams are saying" over a soft
+      pastel blurred gradient backdrop (green/purple/pink), with 3 testimonial
+      cards side by side below (avatar photo/icon, name, role, quote text) and
+      two small carousel pagination dots (one filled) beneath the cards,
+      implying this is one slide of a testimonial carousel component. Profile.md
+      flags a genuine frozen dead zone at frames 383-432 (0.82s) inside this shot.
+    moves:
+      - move: maskWipeUp
+        target: "headline 'What revenue teams are saying'"
+        at_f: 0
+        params: {dur_f: 14, ease: expoOut}
+      - move: staggerRise
+        target: "3 testimonial cards"
+        at_f: 8
+        params: {y: [24, 0], opacity: [0, 1], blur: [8, 0], stagger_f: 4, dur_f: 16, ease: springSoft}
+      - move: popIn
+        target: "carousel pagination dots (x2)"
+        at_f: 20
+        params: {scale: [0, 1], dur_f: 8, ease: springSnap}
+      - move: auroraBlobBackdrop
+        target: "soft pastel gradient backdrop"
+        at_f: 0
+        params: {blur_px: 70, opacity: [0, 1], dur_f: 16}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 220, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 36
+  - n: 5
+    t: [7.82, 10.37]
+    frames: [469, 622]
+    layout: full-bleed-ui
+    content: >
+      Cut to headline "Built to meet your teams where and how they work.", body
+      copy, dark pill button "See All Integrations" (left column); a grid of 7
+      integration logo chips - Salesforce, Slack, Google, Outreach, Zoom, Asana,
+      Notion - each icon paired with its wordmark (right column). Directly below,
+      already assembled in the same shot, the dark navy footer: "momentum"
+      logo + "Copyright + Social Links", and four link columns - PRODUCT (AI
+      Summaries, MEDDIC Autopilot, Ask Momentum, Spotless Follow Ups, AI Signals,
+      Backfill), INTEGRATIONS (Salesforce, Salesforce CPQ, Slack, Gong, Outreach,
+      Google Workspace), COMPANY (Case Studies, About, Blog, Elevate vs Momentum),
+      SUPPORT (Status Page, User Docs, Install Slack, Install AI in Gong, Install
+      AI in Zoom, Privacy Policy). Profile.md flags a genuine frozen dead zone at
+      frames 520-580 (1.00s, the longest hold in the video) inside this shot.
+    moves:
+      - move: staggerRise
+        target: "headline 'Built to meet your teams where and how they work.' + body copy"
+        at_f: 0
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+      - move: staggerRise
+        target: "7 integration logo chips"
+        at_f: 10
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 2, dur_f: 12, ease: springSoft}
+      - move: popIn
+        target: "'See All Integrations' button"
+        at_f: 14
+        params: {scale: [0, 1.05, 1], dur_f: 11, ease: springSnap}
+      - move: slideStackIn
+        target: "dark footer panel (logo, 4 link columns, copyright)"
+        at_f: 20
+        params: {y: [40, 0], stagger_f: 0, z_offset: 0px}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 220, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 41
+  - n: 6
+    t: [10.38, 12.25]
+    frames: [623, 735]
+    layout: full-bleed-ui
+    content: >
+      Hard cut back to the identical, already-fully-settled hero frame from
+      shot 1 ("Work your pipeline at the speed of AI" + fanned card stack) and
+      holds to the end of the video - the loop-close. No new entrance choreography
+      plays; it is a direct replay of shot 1's settled composition.
+    moves: []
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 220, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 113
+
+techniques:
+  - id: section-cut-slideshow
+    what: >
+      An entire scrolling marketing site is rendered as 6 fully-pre-built,
+      full-bleed frames (hero, problem, feature-grid, testimonials,
+      integrations+footer, loop-back-to-hero), each entering with a fast
+      sub-half-second stagger/mask build then holding fully static for
+      1.9-2.6s, joined only by hard cuts. There is no scroll transform, no
+      parallax, and no camera move of any kind simulating scrolling anywhere
+      in the video.
+    where: shots 1-6 (whole video)
+    why_it_reads: >
+      Showing each fold as a finished, fully-readable composition rather than
+      a moving scroll gives the eye complete read-time on real product copy;
+      the hard cuts read as "flipping through the finished site" rather than
+      "watching someone scroll," which suits a launch teaser meant to be
+      understood muted in a feed.
+    remotion_recipe: >
+      Render each site section as its own <Sequence> using the exact page
+      layout component from the live site, with zero scroll/translateY applied
+      to a "page" container. Enter each section's heading + content with one
+      staggerRise/maskWipeUp pass, hold the sequence static for
+      durationInFrames minus the entrance frames, then hardCut (0f) into the
+      next <Sequence>. No IntersectionObserver or scrollTo simulation is
+      needed - it is a slideshow of the site's fold states, not a scroll.
+    difficulty: trivial
+  - id: card-fan-hero-reveal
+    what: >
+      Three overlapping product-screenshot cards fan in behind the hero
+      headline: the largest sits topmost and centred, the other two are offset
+      down-left/down-right at roughly -6deg/+6deg rotation with a small
+      z-depth/shadow stack between them. All three land within ~18 native
+      frames (60fps, ~0.3s) of a spring settle.
+    where: shot 1, frames 6-24 (identically replayed in shot 6)
+    why_it_reads: >
+      A fanned stack of real product screenshots reads as "here is a live
+      product with real screens" in one glance; the small alternating
+      rotation (rather than a stacked-and-aligned pile) makes it feel curated
+      by hand rather than auto-generated.
+    remotion_recipe: >
+      Absolutely position 3 card components in a shared relatively-positioned
+      container. Give each a fixed target rotate (e.g. -6deg, 0deg, +6deg),
+      target translateY (top card 0px, others +30px/+40px) and z-index by
+      depth order. Animate each from {y: +50, opacity: 0, scale: 0.92} to its
+      target with spring({damping:200, mass:0.6, stiffness:100}), starting
+      each card's spring 4 frames after the previous one. Apply box-shadow:
+      0 18px 48px rgba(0,0,0,0.18) per card for the "fan of paper" depth cue.
+    difficulty: trivial
+  - id: gradient-aurora-blob-backdrop
+    what: >
+      A large, softly blurred multi-hue gradient shape (purple to orange to
+      teal, and separately a green/purple/pink variant behind the
+      testimonials) sits behind foreground UI content, filling roughly the
+      bottom 55-60% of the frame with heavily gaussian-blurred edges so it
+      reads as an ambient light wash rather than a hard shape.
+    where: shots 1, 4, 6
+    why_it_reads: >
+      Gives an otherwise flat white/navy UI a sense of light source and
+      warmth without competing with the mostly monochrome product content.
+      It is purely decorative in this reference - confirmed from the sheets
+      and motion.csv that it does not drive any reveal or clip; it is a
+      static (or near-static) backdrop layer, not a mask.
+    remotion_recipe: >
+      A single large <div> behind the content z-index using either a CSS
+      conic-gradient()/radial-gradient() stack or a pre-rendered blurred PNG,
+      with filter: blur(60-70px). Fade opacity 0 to 1 over ~16-20f on shot
+      entry alongside the other entrance moves. To fix the ambient-motion gap
+      this reference leaves on the table, drive background-position or a hue-
+      rotate CSS custom property slowly (gradientDrift, period_f 300-400)
+      instead of leaving it static once faded in.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 5
+  median_shot_f: 141
+  fastest_f: 40
+  slowest_f: 154
+  pattern: >
+    40f hero snap-in -> 144f frozen problem-statement hold -> 147f feature-grid
+    hold (containing an undetected soft cut around f330 that the delta-threshold
+    detector missed) -> 138f testimonial hold -> 154f integrations+footer hold
+    (longest single frozen dead zone in the video) -> 113f hard-cut loop back to
+    the opening hero. Every shot is entrance-then-static; there is no mid-shot
+    camera movement anywhere.
+  beat_grid_f: null
+  energy_curve: flat
+
+transferable:
+  - Compress a scrolling site into a hard-cut deck of its fold-states instead
+    of simulating scroll (technique section-cut-slideshow) - it is dramatically
+    cheaper to build than any scroll-camera rig and reads just as intentional.
+  - Fan 2-3 product screenshots at small alternating rotation angles for a
+    hero (technique card-fan-hero-reveal) instead of a single flat screenshot.
+  - Reserve two short category-label colours (teal, orange here) above
+    alternating feature-grid headlines so consecutive rows read as distinct
+    without needing distinct layouts.
+  - Mirror the icon/text column order between consecutive feature rows
+    (icon-left/text-right, then text-left/icon-right) purely via a flipped
+    grid-template, so two rows in a row don't look identical.
+  - Loop a launch video for free by hard-cutting back to the exact settled
+    hero frame at the very end - no new animation needed, it is the same
+    composition replayed.
+  - A blurred multi-hue gradient div (technique gradient-aurora-blob-backdrop)
+    behind a screenshot stack is a single filter:blur() layer, far cheaper
+    than a real glow/bloom pass, and reads expensive against flat UI.
+
+avoid:
+  - Four separate frames (frames 101-144, 238-291, 383-432, 520-580 per
+    profile.md) sit fully frozen for 0.7-1.0s each with zero ambient motion -
+    a straight slideshow hold, violating PRINCIPLES.md rule 4. Keep the same
+    read-time length in code-native work but run a `breathe` (scale
+    1->1.015) or `driftCamera` (~1% amp) under every hold instead of a truly
+    dead frame.
+  - The single global luma-delta cut detector (threshold 26.0) missed a real
+    content cut around frame 330-340 (feature-grid to testimonial carousel)
+    because the transition has no flash and low overall delta. Don't trust
+    one global threshold when auditing or generating scene cuts against a
+    reference - cross-check the sheets directly, as done here.
+  - The "aurora" gradient blob looks expensive but is not a shape-mask effect
+    despite this batch's brief to hunt for shape-driven masking - do not
+    over-engineer it as an animated SVG mask; a single blurred gradient div
+    is the entire technique.
+
+new_moves:
+  - name: cardFanReveal
+    params: {count: 3, rotate_range_deg: [-6, 6], y: [50, 0], stagger_f: 4, z_offset: 10px, dur_f: 18, ease: springSoft}
+    description: >
+      N overlapping cards (usually product screenshots) enter as a fanned
+      stack rather than a straight vertical pile: each card gets a fixed
+      target rotation spread evenly across rotate_range_deg, a shared y
+      travel distance, and a z_offset per depth layer, staggered stagger_f
+      frames apart, all resolved by one spring per card. Reads as a curated
+      "hand of cards" rather than an auto-stacked list. Distinct from
+      slideStackIn (which keeps all layers axis-aligned, no rotation).
+  - name: auroraBlobBackdrop
+    params: {blur_px: 60, opacity: [0, 1], dur_f: 20, drift_period_f: 350}
+    description: >
+      A large, heavily blurred multi-hue gradient shape placed behind
+      foreground content purely as an ambient light/colour wash - not a
+      reveal mechanism or mask. Fades in with a shot's other entrance moves
+      via opacity; optionally drifts slowly afterward (background-position or
+      hue-rotate over drift_period_f) to satisfy the "nothing is ever still"
+      rule, though the reference this move was extracted from leaves it
+      static once faded in.
+
+convergence:
+  - >
+    No confident convergence found against the one available @byshubh_
+    example spec (A_explainer-zhylar-crm-cpq): that reference is
+    icon/illustration-driven, top-down/vector-illustration heavy, with 3D
+    raked UI cards and green toast confirmations, while this reference is a
+    flat, non-3D, hard-cut website slideshow with no toasts, no word-cycle
+    text, and no 3D card entrances. Only generic shared vocabulary
+    (staggerRise, scaleIn, popIn, dropShadowSoft) overlaps - that is shared
+    grammar, not a specific reusable technique convergence.
+
+detection_notes: >
+  Split profile.md's shot 3 (frames 184-468, 4.75s) into two real content
+  shots here (shot 3: 184-330, feature grid; shot 4: 331-468, testimonial
+  carousel) after cross-checking the sheets: sheet_01 row 6 shows the feature
+  grid still on screen at frame 334 and the testimonial carousel already
+  fully on screen at frame 344, and the "loudest 8x8 tile" motion sparkline
+  in profile.md shows a small independent blip at frames ~308-330 that the
+  primary delta>26.0 cut detector did not register as a full shot boundary
+  (likely because the transition has no flash and a low full-frame delta).
+  All other profile shot boundaries (0/39, 40/183, 469/622, 623/735) were
+  confirmed correct against the sheets and required no merging - this
+  reference had an under-detection (a missed real cut), not the usual
+  over-detection (false-positive flash shots) seen in other references in
+  this library.

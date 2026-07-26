@@ -1,0 +1,598 @@
+id: jittervideo_B_recreating-this-fifa-logo-animation-took-j
+source: local-reference (jittervideo_B_recreating-this-fifa-logo-animation-took-j.mp4)
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "9:16"
+  fps: 30
+  duration_s: 52.699
+  orientation: vertical
+
+verdict: >
+  A talking-head tutorial that turns Jitter's AI "Superagent" chat into the hero: instead
+  of showing a finished logo animation, it screen-records a real prompt-to-result loop
+  (type a request, watch an expanding step list, watch the canvas update) four times in a
+  row, and the payoff effect itself — 18 copies of one identical vector silhouette scaled
+  to a geometric spread of sizes and re-stacked smallest-in-front — is a mask-is-the-subject
+  trick: no reveal, no clip-path, just concentric self-similar shapes whose scale delta
+  alone reads as a hypnotic portal around the static FIFA emblem.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#181818"
+  accent: "#7848D8"
+  support: ["#D8D8F0", "#7890D8", "#000000", "#181830", "#C81818", "#186830", "#78D818", "#3050C8"]
+  notes: >
+    Two completely separate palettes coexist and never blend. The UI chrome (chat panel,
+    layers list, property inspector, browser frame) is neutral: off-white #F0F0F0 panels,
+    near-black #181818/#000000 text and dark-mode surfaces (#181830, #181818), one
+    accent purple #7848D8 used only for selection outlines, the diagonal transition bars
+    between beats, and the "Duplicate/duplicate" highlighted phrase in prompts. The LOGO
+    ARTWORK itself carries its own fixed 8-swatch rainbow ramp (dark red -> dark green ->
+    bright green -> blue -> light blue, repeating) which is the actual subject-matter
+    palette and is never used anywhere in the chrome — the two systems are kept visually
+    distinct on purpose so the viewer always knows "product UI" vs "the thing being made."
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.3
+  notes: >
+    No headline card anywhere in the video — copy exists only as (a) chat-bubble prompt
+    text at UI scale, and (b) a burned-in single-bold-word caption in a white
+    rounded-rect chip, one word on screen at a time, swapped roughly every 5 frames in
+    sync with the voiceover ("Here's" / "how to" / "recreate" / "FIFA" / "logo" /
+    "animation" / "using" / "Jitter"). The word-chip is the only "typography as hero"
+    moment; everything else is functional product-UI type at 11-14px equivalent.
+
+structure:
+  - act: hook
+    t: [0.0, 4.13]
+    purpose: >
+      Cold open on the presenter naming the exact deliverable ("recreate this FIFA World
+      Cup logo animation with Superagents") while flash-cutting to glimpses of the
+      finished psychedelic result, so the payoff is promised before any process is shown.
+    shots: [1]
+  - act: capability
+    t: [4.13, 11.03]
+    purpose: >
+      Establish the starting assets (base silhouette, 8-color reference ramp, FIFA
+      emblem) already on the canvas, then open the AI assistant panel via a real
+      right-click menu.
+    shots: [2, 3]
+  - act: capability
+    t: [11.03, 23.9]
+    purpose: >
+      First and second AI prompts: duplicate the base shape 8x with a color per
+      duplicate, then duplicate the whole set again and fix draw order — shown as a real
+      chat exchange with a visible multi-step "thinking" trace, not a cut-to-result.
+    shots: [4, 5]
+  - act: reveal
+    t: [23.07, 38.03]
+    purpose: >
+      Third prompt asks the agent to scale all 18 copies to a distributed size range with
+      staggered overshoot easing; the agent narrates its plan back before the canvas
+      commits, then the concentric rainbow "portal" bursts open around the static logo —
+      the single most important visual beat in the video.
+    shots: [6, 7]
+  - act: proof
+    t: [38.03, 52.7]
+    purpose: >
+      A fourth prompt asks for a seamless loop (expand-hold-contract with mismatched
+      easing/timing so it doesn't look like a bounce); the tool offers a Version 1/Version
+      2 comparison, then the finished pulsing loop plays out to the end of the video.
+    shots: [8, 9, 10]
+
+shots:
+  - n: 1
+    t: [0.00, 4.13]
+    frames: [0, 124]
+    layout: split
+    content: >
+      Presenter talks to camera in a home office (yellow mug, plant shelf behind her).
+      A single-word caption chip builds the sentence beat by beat: "Here's" / "how to" /
+      "how to" / "recreate" / "FIFA" / "logo" / "animation" / "using" / "Jitter" / "new" /
+      "Superagents". Intercut every 5-12f with full-bleed flashes of a small square
+      preview: a black canvas holding the finished result mid-loop — concentric
+      dark-red/green/blue rings around the white FIFA emblem, cycling through 4-5 hue
+      states as if scrubbing the timeline.
+    moves:
+      - move: captionWordFlash
+        target: subtitle chip
+        at_f: 0
+        params: {swap_every_f: 5, style: "white pill, bold black text", crossfade_f: 2}
+      - move: flashCut
+        target: "full frame (talking-head <-> preview square)"
+        at_f: 32
+        params: {count: 8, interval_f: "5-12 (irregular, cut to the voiceover)", color: none}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 200, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [4.17, 8.03]
+    frames: [125, 241]
+    layout: full-bleed-ui
+    content: >
+      Full-bleed black square canvas (a Jitter project). On it: a vertical 5-band
+      rainbow color strip (reference swatches), one white two-lobe bracket/figure-8
+      silhouette ("the base shape" — the shape that will be duplicated 18x), and the
+      FIFA World Cup emblem (trophy + wordmark) sitting centred, already in place.
+      Selection handles (8 corner/edge dots) appear on the white shape as the presenter
+      narrates "the background... the main... logo shape... logo... logo... the
+      background" identifying each asset.
+    moves:
+      - move: popIn
+        target: selection handles on base shape
+        at_f: 12
+        params: {scale: [0, 1.05, 1], dur_f: 10, ease: springSnap}
+      - move: captionWordFlash
+        target: subtitle chip
+        at_f: 0
+        params: {swap_every_f: 5, style: "white pill, bold black text", crossfade_f: 2}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 200, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [8.07, 11.03]
+    frames: [242, 331]
+    layout: split
+    content: >
+      The canvas card keystones into 3D as if being grabbed by its corner and peeled
+      back (skew + rotateY), sliding left to reveal a browser chrome bar ("FIFA World
+      Cup") and a right-hand context menu: "Brainstorm / Resize / Rename layers / Open
+      chat". Cursor clicks "Open chat" (highlighted row). A right-side property
+      inspector panel (Position, Size, Fill, Color, Stroke, Shadow, Layer blur,
+      Background blur, Glass) slides in as the canvas settles face-on again.
+    moves:
+      - move: skewCardTransition
+        target: canvas panel
+        at_f: 0
+        params: {skew_deg: [0, 22], rotateY_deg: [0, -14], translate_x_pct: [0, -18], dur_f: 30, ease: expoInOut}
+      - move: staggerRise
+        target: context menu rows
+        at_f: 20
+        params: {y: [10, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft}
+      - move: maskWipeSide
+        target: right-hand property inspector panel
+        at_f: 55
+        params: {dur_f: 16, dir: "r→l", ease: expoInOut}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 200, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 4
+    t: [11.07, 17.87]
+    frames: [332, 536]
+    layout: split
+    content: >
+      A chat panel opens at the bottom of the screen: "Hi! I'm your design assistant.
+      What would you like to change?" A user prompt bubble builds: "Duplicate the shapes
+      8 times, keeping every duplicate in exactly the same position and with the same
+      dimensions as the original. For each duplicate, assign the fill color of one of
+      the reference rectangles, following their order." Below it a collapsible step
+      trace expands one line at a time: "Thinking..." -> "Inspecting selection and
+      artboard" -> "Searching the project..." -> "Reading shape and rectangle fills" ->
+      "Inspecting color-bearing fields" -> "Reading fillColor values" -> "Applied 16
+      changes." The canvas shape flashes through 5 of the reference colors in place
+      (red, near-black green, bright green, then settles dark red) since all 8 new
+      duplicates sit exactly on top of each other. Ends on the response: "I duplicated
+      the shape 8 times in the same position and size, each filled with a reference
+      rectangle's color in order (from Rectangle 1's dark red through Rectangle 8's
+      light blue)." A left Layers panel appears listing Shape 1-8, purple-highlighted.
+    moves:
+      - move: maskWipeUp
+        target: chat panel
+        at_f: 0
+        params: {dur_f: 16, ease: expoOut}
+      - move: typeOn
+        target: user prompt text
+        at_f: 6
+        params: {chars_per_f: 2.2, caret: false}
+      - move: staggerRise
+        target: step-trace lines (7 lines)
+        at_f: 40
+        params: {y: [10, 0], opacity: [0, 1], blur: [4, 0], stagger_f: 4, ease: springSoft}
+      - move: flashCut
+        target: canvas shape fill color
+        at_f: 130
+        params: {count: 5, interval_f: 5, color: "sequential swatch"}
+      - move: staggerRise
+        target: "Shape 1-8 layer rows"
+        at_f: 170
+        params: {y: [8, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 200, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 5
+    t: [17.9, 23.9]
+    frames: [537, 717]
+    layout: split
+    content: >
+      Canvas keystones again (same skewCardTransition as shot 3) revealing the full
+      Layers panel: Shape 1 through Shape 8, then a second duplication pass grows the
+      list to Shape 1-18 (renamed "Shape 16" ... down to "Shape 1" during reordering).
+      Presenter narrates "Now duplicate the whole set... select all the shapes." Cursor
+      marquee-highlights the full layer list (purple selection band covers the panel).
+      A new prompt is sent: "Smaller logos must always be in front of larger logos,"
+      appended to the running instruction thread; "18 selected" appears bottom-right of
+      the chat.
+    moves:
+      - move: skewCardTransition
+        target: canvas panel
+        at_f: 0
+        params: {skew_deg: [0, 18], rotateY_deg: [0, -10], translate_x_pct: [0, -14], dur_f: 24, ease: expoInOut}
+      - move: staggerRise
+        target: "Shape 9-18 new layer rows"
+        at_f: 30
+        params: {y: [8, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft}
+      - move: scaleIn
+        target: purple multi-select band over layer list
+        at_f: 90
+        params: {scale: [0.9, 1], opacity: [0, 0.8], dur_f: 14, ease: backOut}
+      - move: typeOn
+        target: "\"Smaller logos must always be in front of larger logos.\""
+        at_f: 110
+        params: {chars_per_f: 2, caret: false}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 200, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 6
+    t: [23.07, 32.03]
+    frames: [692, 961]
+    layout: split
+    content: >
+      Third prompt, the load-bearing instruction of the whole video: "Scale each layer
+      from 100% to its distributed target (945% [Layer 1] to 133% [Layer 18]) with a
+      1-frame stagger and Overshoot easing, is renamed to its scale percentage, and the
+      stack is reordered so smaller logos sit in front of larger ones (133% frontmost,
+      945% backmost)." The agent's reply is shown building word by word in the input
+      field itself ("cascading" / "scale" / "animation" / "with" / "a" / "one" / "frame"
+      / "stagger" / "and" / "an" / "overshoot" / "easing" / "Then" / "rename" / "layers"
+      / "and" / "organize" / "them" / "automatically"), simulating the assistant
+      thinking aloud before committing. Canvas stays on the flat single-shape view
+      throughout — this is a genuinely static hold (see detection_notes).
+    moves:
+      - move: typeOn
+        target: agent reply-in-progress text
+        at_f: 0
+        params: {chars_per_f: 1.4, caret: true, caret_blink_f: 15}
+      - move: captionWordFlash
+        target: bottom subtitle chip
+        at_f: 0
+        params: {swap_every_f: 5, style: "white pill, bold black text", crossfade_f: 2}
+    camera: {move: breathe, params: {scale: [1, 1.01, 1], period_f: 120}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 7
+    t: [32.07, 38.03]
+    frames: [962, 1141]
+    layout: full-bleed-ui
+    content: >
+      Payoff. The canvas plays the committed scale animation: starting from a small
+      near-collapsed state (tiny white FIFA emblem alone on black), 18 copies of the
+      base bracket-shape burst outward in concentric self-similar rings — dark red,
+      dark green, bright green, blue, light blue repeating — reading as a hypnotic
+      "portal" tunnel around the static logo. A scrub timeline with a moving red
+      playhead appears under the canvas; the presenter narrates "worked... really...
+      well... you can see... the cascading animation across every shape." The view then
+      cuts to a numeric side-list confirming the distributed scale values: 276%, 324%,
+      372%, 420%, 467%, 515%, 563%, 611%, 658%, 706%, 754%, 802%, 849%, 897%, 945%.
+    moves:
+      - move: concentricShapeBurst
+        target: 18 stacked bracket-shape layers
+        at_f: 0
+        params: {layers: 18, scale_from: 1.0, scale_to_range: [1.33, 9.45], stagger_f: 1, ease: backOut, order: "largest-scale-target starts first, smallest last"}
+      - move: staggerRise
+        target: scale-value list rows (right rail)
+        at_f: 90
+        params: {y: [6, 0], opacity: [0, 1], stagger_f: 1, ease: springSoft}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: [bloomGlow]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 8
+    t: [38.07, 47.37]
+    frames: [1142, 1421]
+    layout: split
+    content: >
+      Canvas flash-cuts through 3 solid colors again (black, red, blue — the same
+      "preview scrub" tic from shot 4) as a transition beat: "let's... make it... loop."
+      Fourth prompt is composed, first as the agent's own summary — "Done. Each layer
+      now scales from 100% to its distributed target (945%->133%) with a 1-frame
+      stagger and Overshoot easing... Make the loop seamless: keep the logos expanded
+      for longer, then animate them back to 100% with an impulse easing (no overshoot),
+      faster than the expansion, in a reversed cascade from the smallest logo to the
+      largest" — then the same instruction is retyped character-by-character into the
+      reply field ("100%" / "with" / "an" / "impulse" / "easing" / "faster" / "than" /
+      "the" / "expansion" / "and" / "in" / "reverse" / "order") confirming the request.
+    moves:
+      - move: flashCut
+        target: canvas shape fill color
+        at_f: 0
+        params: {count: 3, interval_f: 5, color: "black/red/blue"}
+      - move: typeOn
+        target: retyped instruction in reply field
+        at_f: 120
+        params: {chars_per_f: 1.3, caret: true, caret_blink_f: 15}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 200, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 9
+    t: [47.4, 50.9]
+    frames: [1422, 1526]
+    layout: split
+    content: >
+      Flash-cut transition (black/lime/blue) into a side-by-side "Version 1 / Version 2"
+      comparison card, letting the viewer see the seamless-loop rewrite against the
+      original scale-only version before accepting it. Cuts to the full concentric
+      portal again, now playing the improved loop (expand, hold, snap back faster with
+      no overshoot) while a scrub timeline plays underneath; captions read "turned...
+      out... exactly... as... expected."
+    moves:
+      - move: flashCut
+        target: canvas shape fill color
+        at_f: 0
+        params: {count: 3, interval_f: 5, color: "black/lime/blue"}
+      - move: scaleIn
+        target: "\"Version 1 / Version 2\" comparison card"
+        at_f: 20
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: concentricShapeBurst
+        target: 18 stacked bracket-shape layers
+        at_f: 55
+        params: {layers: 18, scale_from: 1.0, scale_to_range: [1.33, 9.45], stagger_f: 1, ease: backOut, order: "largest-scale-target starts first, smallest last"}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 10
+    t: [50.9, 52.7]
+    frames: [1527, 1579]
+    layout: full-bleed-ui
+    content: >
+      Final full-bleed play of the finished seamless loop: contract to near-black with
+      the small static FIFA emblem, then burst back out through the full 8-color
+      concentric ring stack, repeating — video ends mid-cycle on an expanded rainbow
+      frame rather than a title card or CTA.
+    moves:
+      - move: concentricShapeBurst
+        target: 18 stacked bracket-shape layers
+        at_f: 0
+        params: {layers: 18, scale_from: 1.0, scale_to_range: [1.33, 9.45], stagger_f: 1, ease: expoIn, order: "reversed cascade, smallest-scale layer first, impulse ease, faster than the expand phase"}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 120}}
+    bg: {kind: flat}
+    treatment: [bloomGlow]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+techniques:
+  - id: concentric-self-similar-shape-scale-burst
+    what: >
+      One identical vector silhouette (a two-lobe rounded bracket/figure-8 shape,
+      originally sized to match the FIFA wordmark's negative space) is duplicated 18
+      times, each copy given a fill from an 8-color rainbow ramp cycling in order, and
+      each copy scaled to a different target between 133% and 945% of its original size
+      with a 1-frame stagger between layers. The stack is z-ordered so the SMALLEST
+      scale sits frontmost and the LARGEST sits backmost. Because every layer shares
+      the exact same silhouette and centre point, the scale differences alone produce
+      concentric self-similar "rings" — a hypnotic portal/tunnel effect with no
+      traditional mask or reveal edge anywhere. The static FIFA emblem sits fixed in
+      the centre, untouched, the whole time. The loop is made seamless by holding the
+      expanded state, then animating every layer back to 100% with a faster,
+      no-overshoot ease in the REVERSE stagger order (smallest-scaled/frontmost layer
+      first, largest/backmost layer last).
+    where: shots 7, 9, 10 (frames 962-1141, 1477-1526, 1527-1579)
+    why_it_reads: >
+      The mask/shape IS the subject here, not a reveal device: there is no content
+      being uncovered, only one shape's scale multiplied across 18 instances. The eye
+      reads the concentric self-similarity as depth/motion (like a Droste zoom or a
+      camera dolly through a tunnel) even though nothing moves in 3D and no camera
+      exists — it's 18 flat 2D layers animating `transform: scale()` on independent
+      timers. Staggering by exactly 1 frame per layer is what turns a simultaneous pop
+      into a travelling "ripple" from the centre outward.
+    remotion_recipe: >
+      Render one <svg> path (or a CSS shape built from two overlapping rounded
+      rectangles with corner-radius cutouts) once. Mount it as 18 absolutely-positioned,
+      centre-anchored layers, indices i=0..17. Precompute an 18-length scale-target
+      array distributed between 1.33 and 9.45 (roughly geometric spacing looks closest
+      to the reference — do not use linear spacing, it reads flat). Assign
+      z-index = 17 - i so the layer with the SMALLEST target scale paints on top.
+      Assign fill = rainbowRamp[i % 8] from a fixed 8-swatch array. Drive each layer's
+      scale with interpolate(frame - i * 1, [0, 18], [1, scaleTarget[i]], {
+      easing: Easing.out(Easing.back(1.4)) }) for the expand phase (stagger_f = 1,
+      backOut-style overshoot). For the seamless-loop contraction, run a second phase
+      driven by interpolate(frame - holdEndF - (17 - i) * 1, [0, 10], [scaleTarget[i], 1],
+      { easing: Easing.in(Easing.cubic) }) — note the stagger index is INVERTED
+      (17 - i instead of i) and the duration is shorter (10f vs 18f) with zero overshoot,
+      which is what makes the return read as a snap rather than a bounce-back of the
+      same motion in reverse.
+    difficulty: moderate
+
+  - id: ai-chat-build-as-narrative-device
+    what: >
+      Instead of cutting straight to results, the video treats each capability as a
+      three-beat unit: (1) a prompt is composed in a chat bubble, (2) a collapsible
+      step-trace expands one line at a time ("Thinking...", "Inspecting selection and
+      artboard", "Searching the project...", "Reading shape and rectangle fills", ...,
+      "Applied N changes"), (3) the canvas updates and a "Current version, N changes"
+      pill appears as a de facto commit/checkpoint marker. A later beat adds a
+      "Version 1 / Version 2" side-by-side comparison before accepting a change.
+    where: shots 4, 5, 6, 8, 9 (frames 332-1526)
+    why_it_reads: >
+      Showing the AI's intermediate reasoning as a legible, staged list (not a spinner,
+      not raw logs) makes an opaque "magic" AI feature feel auditable and trustworthy —
+      exactly the thing a tool company needs to sell about an AI agent feature. The
+      version-compare beat additionally reframes the agent as collaborative/reversible
+      rather than a black box that overwrites your file.
+    remotion_recipe: >
+      Build the step-trace as an array of strings; reveal with staggerRise (y 10->0,
+      opacity 0->1, blur 4->0, stagger_f 4) one row at a time, each row's start frame
+      driven by a running index rather than by real elapsed "thinking" time. The
+      "Current version, N changes" pill is a simple scaleIn/popIn keyed to the same
+      commit frame as the canvas update, so the two always land together. The
+      Version 1/Version 2 comparator is two duplicate canvases in a split layout with a
+      shared vertical divider; no special masking needed.
+    difficulty: trivial
+
+  - id: skew-card-panel-transition
+    what: >
+      Between UI states (canvas -> properties panel, canvas -> layers panel), instead
+      of a hard cut or slide, the whole canvas card keystones in 3D — skewY and
+      rotateY animate together while the card translates sideways — as if a corner of
+      it is being peeled back, revealing the next panel underneath before the card
+      un-skews back to face-on.
+    where: shots 3, 5 (frames 242-331, 537-627)
+    why_it_reads: >
+      A flat slide/fade would read as two disconnected screens; the keystone motion
+      keeps the illusion that it is one continuous physical surface being turned, which
+      buys a beat of "something is happening" during what is otherwise a context-menu
+      click.
+    remotion_recipe: >
+      Wrap the canvas card in a container with CSS `perspective: 1000px`. Animate
+      `transform: rotateY(deg) skewY(deg) translateX(pct)` together over ~24-30f with
+      expoInOut, transform-origin at the card's left edge (the side it appears to pivot
+      from) so it reads as being peeled rather than just rotated in place. Reveal the
+      panel underneath as a simple staggerRise so it doesn't compete with the skew.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 10
+  median_shot_f: 158
+  fastest_f: 90
+  slowest_f: 270
+  pattern: >
+    124f talking-head hook (internally stutter-cut every 5-12f between presenter and
+    teaser flashes) -> three ~90-205f "type a prompt, watch it think, watch it commit"
+    beats -> a 180f payoff burst -> a 280f "make it loop" repeat of the prompt cycle ->
+    a 105f version-compare + replay -> a 53f final loop-out with no CTA card. The whole
+    video is built from exactly one repeating narrative unit (prompt -> trace -> result)
+    run four times, which reads as rhythm even though the literal cut lengths vary
+    widely.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Steal concentric-self-similar-shape-scale-burst (one silhouette, N copies, N
+    distributed scale targets, 1-frame stagger, smallest-in-front z-order) as the
+    default recipe any time a brief calls for a "portal/tunnel/hypnotic" background —
+    it needs zero masking, only transform:scale() and z-index.
+  - Make the loop's contraction phase use inverted stagger order + shorter duration +
+    zero overshoot vs. the expansion phase; symmetric reverse-of-the-same-easing reads
+    as a bounce, not a breath.
+  - Narrate an AI feature by showing its intermediate steps as a short, legible,
+    staggered checklist rather than a spinner — it is the single cheapest way to make
+    an AI capability demo feel trustworthy instead of magical.
+  - Use a "Current version, N changes" commit pill timed to land on the exact frame the
+    canvas updates, so chat and canvas always feel causally linked.
+  - A single-word, narration-synced caption chip (swap every ~5f) is a legitimate
+    alternative to a full subtitle line when the copy is a spoken sentence rather than
+    a design headline — keep it small and let the visual carry the frame.
+  - The skew/keystone card transition is a cheap way to make cutting between two flat
+    screenshots feel like one continuous surface — reserve it for panel-to-panel
+    transitions, not for every cut.
+
+avoid:
+  - Frames 184-194, 644-658, 882-893, and 1277-1288 are genuinely dead holds (flagged
+    by the analyzer as frozen on all three motion scales) that happen because the real
+    product UI has nothing to animate while "Thinking..." — if recreating this beat in
+    code, do NOT reproduce the dead air; add a low-amplitude breathe or a pulsing
+    "thinking" indicator so no frame is truly static.
+  - The chat bubble text and the step-trace lines are a real screen recording of a real
+    product, not hand-typed AE text animation — don't hand-key each character; drive
+    reveals purely from array index / frame math (typeOn's chars_per_f, staggerRise's
+    stagger_f) exactly as the source vocabulary already prescribes.
+  - The talking-head segment's webcam framing and lighting is unscripted (home office,
+    real face) — don't try to art-direct or relight this kind of shot; treat presenter
+    footage as a fixed input and spend the craft budget on the caption chip and the
+    cutaway timing instead.
+  - The exact FIFA-logo geometry (arced trophy silhouette, wordmark kerning) is a
+    licensed mark — the transferable asset is the "one shape, 18 scaled self-similar
+    copies" TECHNIQUE, not this specific silhouette or brand.
+
+new_moves:
+  - name: concentricShapeBurst
+    params: {layers: 18, scale_from: 1.0, scale_to_range: [1.33, 9.45], stagger_f: 1, ease: backOut, order: "outer-to-inner or reversed"}
+    description: >
+      N identical, centre-anchored copies of one silhouette, each scaled from 1.0 to
+      its own target in a precomputed target array spanning scale_to_range, staggered
+      by stagger_f frames per layer, z-ordered smallest-scale-frontmost. Colors cycle
+      through a fixed short palette array by layer index modulo palette length. Because
+      every copy shares one silhouette, the scale spread alone reads as concentric
+      rings/a portal — the mask/shape is the entire subject, not a reveal mechanism.
+      For a seamless loop, run a second pass back to 1.0 with inverted stagger order,
+      shorter duration, and a non-overshooting ease (expoIn/"impulse") so contraction
+      reads as a snap rather than the expansion in reverse.
+  - name: captionWordFlash
+    params: {swap_every_f: 5, style: "white pill, bold black text", crossfade_f: 2}
+    description: >
+      A single bold word inside a small white rounded-rect chip, swapped for the next
+      word in a fixed sentence array every swap_every_f frames, crossfaded over
+      crossfade_f frames rather than hard-cut. Used as a narration-synced subtitle
+      track when the copy is a spoken sentence rather than a design headline — distinct
+      from typeOn (continuous per-character) and wordCycleSettle (candidates
+      converging on one final word) because every word is final and none are discarded.
+
+convergence:
+  - staggerRise (list/row reveal with y+opacity+blur, 2-4f stagger) — identical
+    mechanism to A_explainer-zhylar-crm-cpq's metric-card and form-field reveals.
+  - scaleIn with backOut overshoot for cards/panels (comparison card, selection
+    handles) — same params class as the byshubh_ corpus's modal/card entrances.
+  - flashCut as a transition/energy-spike device between beats — used identically in
+    A_explainer-zhylar-crm-cpq's shot-1 and shot-2 punches.
+  - orbit3D-family "tilt a flat UI card in 3D perspective, then settle" — this
+    reference's skewCardTransition is a variant of the same raked-3D-card-flatten
+    idea documented in A_explainer-zhylar-crm-cpq's techniques.
+  - driftCamera as the default ambient move under an otherwise static UI shot.
+
+detection_notes: >
+  The raw 44-cut detection is almost entirely false positives from two sources that are
+  NOT real shot changes: (1) the burned-in single-word caption chip swapping every ~5
+  frames throughout the entire video (this alone accounts for the majority of "hot,
+  4-6f, linear/constant-velocity" entries in the profile's shot table — e.g. rows 2-8,
+  11, 15-18, 21, 23, 26-27, 29-31, 34-37, 40-41, 43), and (2) the chat-panel text
+  building/highlighting word-by-word inside an otherwise unchanged UI frame (rows 9-10,
+  12-14, 19-20, 22, 24, 28, 32, 38-39, 42, 44). None of these represent a real change of
+  subject, camera, or layout, so this spec merges all 44 detected cuts into 10 real
+  content shots keyed to genuine state changes: canvas-establish -> panel-open ->
+  prompt-1-result -> prompt-2-reorder -> prompt-3-composition -> scale-burst-payoff ->
+  prompt-4-composition -> version-compare-replay -> final-loop-out. The four confirmed
+  "frozen stretch" bugs (frames 184-194, 644-658, 882-893, 1277-1288) fall inside shots
+  2, 5, 6, and 8 respectively and are called out under `avoid` rather than merged away,
+  since they are genuine dead-air flaws in the source, not detection artifacts.

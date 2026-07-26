@@ -1,0 +1,783 @@
+id: jittervideo_B_you-dont-always-need-to-start-from-scratch
+source: local-reference (jittervideo_B_you-dont-always-need-to-start-from-scratch.mp4)
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "9:16"
+  fps: 30
+  duration_s: 67.699
+  orientation: vertical
+
+verdict: >
+  A talking-head tutorial that builds one hero poster ("CRAFTED SOUND") live inside
+  Jitter, and in doing so exposes three code-native gold mines: a real "Noise-Masked
+  Pixelate" effect (mosaic block-size + noise-field threshold, both frame-driven) used
+  as the title's entrance mask, a dense template grid kept legible by giving every
+  tile its own live counter instead of a static thumbnail, and a raked-3D timeline
+  panel with a purple "linked actions" highlight that makes an abstract keyframe
+  relationship visually concrete before a copy/paste.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#000018"
+  accent: "#A890C0"
+  support: ["#D8D8F0", "#F0D8F0", "#F0F0D8", "#D8D8D8"]
+  notes: >
+    Two registers that never mix in-frame: the app chrome is light-dominant
+    (F0F0F0/D8D8F0 greys and lavenders, ~53% of the frame) with a saturated
+    Jitter-purple (~#7B2FF7, interpolated — the header bar, selection highlights,
+    "New" pill, linked-action bars) rationed to interactive/selection states only.
+    The poster-in-progress ("CRAFTED SOUND") lives in its own dark register:
+    near-black navy (#000018) to mid blue-violet gradient, white display type, with
+    one hot-pink dither fill (~#F6B0EA) and one cyan gradient card (~#1C86E0) shown
+    briefly as alternate template colourways. Talking-head shot: warm yellow mug
+    accent against a cool purple-lit bookshelf background — the only place warm and
+    cool tones share a frame.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: mixed
+  tracking: tight
+  headline_frame_share: 0.46
+  notes: >
+    Poster headline "CRAFTED SOUND" is a bold condensed geometric sans, upper case,
+    tight tracking, two lines, ~46% of frame width — the actual deliverable being
+    taught, so it is the single largest text element in the video. Spoken captions
+    render as a small white pill with black text, sentence case, one to three words
+    at a time, bottom-third of frame — a live-caption style, not a designed headline.
+    In-app UI text (panel labels, layer names, parameter fields) is a small
+    geometric sans at ~11-13px equivalent, always inside a card/rail/tree, never
+    floating.
+
+structure:
+  - act: hook
+    t: [0.0, 5.47]
+    purpose: Presenter states the thesis in first person — you don't need to start from scratch — over a real-camera cold open.
+    shots: [1]
+  - act: reveal
+    t: [5.47, 9.57]
+    purpose: Cut straight to the finished hero poster resolving out of noise — show the destination before teaching the method.
+    shots: [2]
+  - act: capability
+    t: [9.57, 14.13]
+    purpose: Tour the template library and its effect catalogue to establish breadth of starting points.
+    shots: [3, 4]
+  - act: capability
+    t: [14.13, 23.9]
+    purpose: Show effect variety applied to other live templates, then drill into one template's layer structure.
+    shots: [5, 6, 7]
+  - act: capability
+    t: [23.9, 42.9]
+    purpose: Copy a linked animation from the template onto the new headline, then hand-tune its entrance curve.
+    shots: [8, 9, 10]
+  - act: capability
+    t: [42.9, 59.9]
+    purpose: Swap in a personal background image, tune the pixelate effect's intensity, then stack duplicates for a glitch.
+    shots: [11, 12]
+  - act: cta
+    t: [59.9, 67.7]
+    purpose: Add a settle-down scale entrance to the whole poster and hold on the finished result.
+    shots: [13, 14]
+
+shots:
+  - n: 1
+    t: [0.00, 5.43]
+    frames: [0, 163]
+    layout: centre-stack
+    content: >
+      Real camera: presenter at a desk (laptop, yellow mug, purple-lit bookshelf
+      behind her) speaking to camera. A white caption pill at the bottom swaps
+      word-by-word in sync with speech: "Sometimes" / "the" / "fastest" / "way to"
+      / "create" / "something" / "original" / "is not" / "starting" / "from" /
+      "scratch." / "Let me show" / "you" / "how".
+    moves:
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: "5-15 (per spoken word)", crossfade_f: 3, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoInOut}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: [filmGrain, vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [5.47, 9.53]
+    frames: [164, 286]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to the finished poster: dark navy-to-blue gradient background, a
+      headphone product photo, and the headline "CRAFTED SOUND" — both the photo
+      and the type resolve out of a blocky, noisy mosaic into a crisp final image
+      over the shot. Small print "ESCAPE THE NOISE" sits above, "LIMITED EDITION"
+      footer below. Caption pill continues: "I created" / "this" / "visual" /
+      "using" / "templates" / "and a" / "few" / "custom" / "effects."
+    moves:
+      - move: pixelNoiseReveal
+        target: "headphone photo + \"CRAFTED SOUND\" headline (poster hero)"
+        at_f: 0
+        params: {pixel_size: [100, 1], noise_scale: [4, 2], threshold: [0.5, 0.6], dur_f: 90, ease: expoOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 10, crossfade_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [filmGrain, vignette]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [9.57, 14.03]
+    frames: [287, 421]
+    layout: grid
+    content: >
+      Screen recording, phone-app chrome (purple header "My files"). "Templates"
+      panel: a 2-column grid of thumbnail cards — "Orbit Cards", "The Track:
+      Tagline", "We are never done.", "The Edit: Brand Promo", "Animated Search
+      Bar", "Simple Notification (iOS)", "The Track: Poster", "Jitter's ... to be
+      the best ... SHARE ... WORK". Cuts to a "New" section: 6 preset cards, each
+      a distinct colour-coded template with a number actively counting inside it
+      — red "Counter: Halftone Poster" (7), purple "Counter: Dotted Circle" (38),
+      grey "Counter: Frosted Glass", yellow "Counter: Bold Poster" (22→24→26→28→
+      32→34→36→38→42, counting up live), cyan "Counter: Pixel" (5→4→3, counting
+      down live), green "Counter: Progress Ring". Caption: "New" / "packed" /
+      "with" / "high" / "quality" / "animations".
+    moves:
+      - move: counterUp
+        target: "\"Counter: Bold Poster\" tile number"
+        at_f: 40
+        params: {from: 22, to: 42, dur_f: 90, ease: expoOut, monospace_digits: true}
+      - move: counterUp
+        target: "\"Counter: Pixel\" tile number (counting down)"
+        at_f: 40
+        params: {from: 5, to: 3, dur_f: 90, ease: expoOut, monospace_digits: true}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 40
+        params: {swap_every_f: 8, crossfade_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 4
+    t: [14.07, 16.93]
+    frames: [422, 508]
+    layout: grid
+    content: >
+      "Jitter AI" panel: a scrolling list of effect-preview tiles cycling through
+      thumbnails — "Grainy Color Clamp", "Threshold Effect", "Halftone Effect",
+      "Luma Dot Background", "Ring Scale: Animated Loop", "Gooey Effect". Caption:
+      "you can" / "copy" — then two live templates demonstrate the effects: a
+      poster reading "PARIS / NEW LIVE SHOW / MAY 26TH" with a purple "Threshold
+      Effect" resolving in, and a "RESONANCE" poster with a purple dot-matrix
+      "Luma Dot Background". Caption continues "and" / "customize".
+    moves:
+      - move: wordCycleSettle
+        target: 6 effect-preview thumbnails (Jitter AI list)
+        at_f: 0
+        params: {cycle_words_per_col: 6, swap_every_f: 8, settle_stagger_f: 0, ease: expoOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 10, crossfade_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 5
+    t: [16.97, 19.90]
+    frames: [509, 597]
+    layout: split
+    content: >
+      Two more live templates showcase effect variety: an "AI Summit San
+      Francisco / Nov. 2026" card on a hot-pink circular field, its "Dithering
+      Effect" resolving the circle from a smooth gradient into a visible dot
+      pattern via a "Pixel Dissolve Transition"; and a "Love wins." headline
+      card over a cyan-to-blue "Gradient Background Loop". Caption: "customize" /
+      "For" / "this" / "project." / "I'm" / "using".
+    moves:
+      - move: ditherReveal
+        target: pink circle logo (AI Summit card)
+        at_f: 4
+        params: {matrix: bayer8x8, coverage: [0, 1], dur_f: 24, ease: expoOut}
+      - move: gradientDrift
+        target: "\"Love wins.\" card background"
+        at_f: 40
+        params: {hue_rotate: "±6deg", period_f: 400}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 9, crossfade_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: gradient-drift}
+    treatment: [dropShadowSoft, bloomGlow]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 6
+    t: [19.93, 24.37]
+    frames: [598, 731]
+    layout: split
+    content: >
+      "Inward Echo Loop" template: a grayscale featureless head-bust that
+      pixelates and un-pixelates via "Pixelated Slideshow", paired with a bold
+      blue-on-white "LOVE / HATE / LOVE" kinetic-type tile that glitches between
+      the two words. A waterfall photo takes over the same "Pixelated Slideshow"
+      slot mid-shot. Caption: "using" / "this" / "text" / "animation" / "and" /
+      "pixelation" / "effect." / "Both" / "were" / "generated" / "with" / "jitter"
+      / "AI."
+    moves:
+      - move: pixelNoiseReveal
+        target: head-bust / waterfall photo (Pixelated Slideshow tile)
+        at_f: 0
+        params: {pixel_size: [40, 1], noise_scale: [3, 2], threshold: [0.5, 0.6], dur_f: 40, ease: expoInOut}
+      - move: wordCycleSettle
+        target: "\"LOVE / HATE\" glitch-text tile"
+        at_f: 20
+        params: {cycle_words_per_col: 2, swap_every_f: 4, settle_stagger_f: 0, ease: linear}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 9, crossfade_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 7
+    t: [24.40, 29.90]
+    frames: [732, 897]
+    layout: split
+    content: >
+      Cut into the template's editor: a layer-tree panel lists "Dithering
+      Duotone Effect" > Duotone > [Text, Buy Tickets, Logo Container, Earth
+      Video, Background] and Pixel > [Title, Small text, video.mp4]. A synthetic
+      cursor clicks down the tree, expanding rows, and selects the "Text" row
+      nested under Duotone (row highlights purple). Caption: "First," / "select"
+      / "the text" / "template." / "The linked".
+    moves:
+      - move: staggerRise
+        target: layer-tree rows (on panel open)
+        at_f: 0
+        params: {y: [12, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft}
+      - move: cursorDrag
+        target: synthetic cursor
+        at_f: 30
+        params: {path: "row-to-row down the tree", dur_f: 90, click_scale_dip: 0.9, ease: expoInOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 12, crossfade_f: 3, ease: expoOut}
+    camera: {move: dollyToUI, params: {scale: [1, 1.15], ease: expoInOut, dur_f: 40}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 8
+    t: [29.93, 33.60]
+    frames: [898, 1007]
+    layout: split
+    content: >
+      Timeline panel, shown tilted in shallow 3D perspective (raked, like a card
+      laid on a table): rows "Duotone · Warm Duotone", "Text · Noise-Masked
+      Pixel...", "Text · Appear", "Earth Video · Duotone Dither", "Earth Video ·
+      Play". The linked rows' bars light up purple together. A right-click
+      context menu appears (Copy / Group / Stagger / Delete); the cursor clicks
+      Copy, then Paste, dragging a duplicated purple bar onto the "CRAFTED SOUND"
+      headline row. Caption: "actions" / "will" / "highlight" / "in" / "purple."
+      / "Copy" / "them," / "then" / "paste" / "onto" / "your new" / "headline."
+    moves:
+      - move: staggerRise
+        target: linked timeline bars (purple highlight)
+        at_f: 0
+        params: {opacity: [0.3, 1], stagger_f: 3, ease: springSoft}
+      - move: cursorDrag
+        target: synthetic cursor (copy/paste)
+        at_f: 40
+        params: {path: "context-menu click, then drag bar to headline row", dur_f: 90, click_scale_dip: 0.9, ease: expoInOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 9, crossfade_f: 3, ease: expoOut}
+    camera: {move: rackFocus, params: {dur_f: 20}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 9
+    t: [33.63, 35.90]
+    frames: [1008, 1077]
+    layout: full-bleed-ui
+    content: >
+      Cut to poster preview: "CRAFTED SOUND" resolving in via the same
+      pixel-noise reveal, held a beat. Caption: "It" / "already" / "looks" /
+      "pretty" / "good," / "but" / "let's" / "make" / "the" / "entrance" / "more"
+      / "dramatic."
+    moves:
+      - move: pixelNoiseReveal
+        target: "\"CRAFTED SOUND\" headline"
+        at_f: 0
+        params: {pixel_size: [30, 1], noise_scale: [3, 2], threshold: [0.5, 0.6], dur_f: 30, ease: expoOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 6, crossfade_f: 3, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: gradient-drift}
+    treatment: [filmGrain, vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 10
+    t: [35.93, 42.03]
+    frames: [1078, 1261]
+    layout: split
+    content: >
+      Effects/Animate panel walkthrough: Custom tab lists Transform (Scale,
+      Rotate, Move), Style (Opacity, Color, Shadow), Effects (Layer Blur,
+      Background Blur, Glass). Cursor selects "Move", opening an Animate pane —
+      "Initial value" Move X/Y fields, "To" Move X/Y = 0, a "Curved path"
+      checkbox with Bezier-control toggle. Move Y initial value is typed up from
+      0 to 600 (entrance will travel 600px). A curve-preset grid appears —
+      Custom, Smooth, Natural, Slow down, Accelerate, Bounce, Elastic, Overshoot
+      — cursor picks "Slow down", opens its curve editor, drags the curve handle,
+      then drags an intensity slider from 50 to 100. Caption: "select" / "Move"
+      / "set" / "the initial value" / "to" / "600" / "Then" / "the initial" /
+      "value" / "much" / "lower" / "and" / "add an" / "intense" / "slow" /
+      "down".
+    moves:
+      - move: staggerRise
+        target: Transform/Style/Effects property rows (panel switch)
+        at_f: 0
+        params: {y: [10, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft}
+      - move: cursorDrag
+        target: synthetic cursor (typing Move Y value, picking curve preset, dragging handle + slider)
+        at_f: 20
+        params: {path: "field → curve grid → curve handle → intensity slider", dur_f: 280, click_scale_dip: 0.92, ease: expoInOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 12, crossfade_f: 3, ease: expoOut}
+    camera: {move: dollyToUI, params: {scale: [1, 1.2], ease: expoInOut, dur_f: 60}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 11
+    t: [42.07, 47.90]
+    frames: [1262, 1437]
+    layout: split
+    content: >
+      Poster preview resumes pixel-noise-revealing "CRAFTED SOUND" ("Now" /
+      "for" / "the" / "background."), then cuts to a source-image picker: a
+      vertical filmstrip list "06, 05, 04, 03, 02, 01" under an "IMG_06" node;
+      cursor selects "06" (row highlights purple) as the background source.
+      Caption continues: "Select" / "one of the" / "images" / "template."
+    moves:
+      - move: pixelNoiseReveal
+        target: "\"CRAFTED SOUND\" headline"
+        at_f: 0
+        params: {pixel_size: [30, 1], noise_scale: [3, 2], threshold: [0.5, 0.6], dur_f: 30, ease: expoOut}
+      - move: cursorDrag
+        target: synthetic cursor (selecting IMG_06 row)
+        at_f: 60
+        params: {path: "filmstrip row click", dur_f: 40, click_scale_dip: 0.9, ease: expoInOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 10, crossfade_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 12
+    t: [47.93, 59.97]
+    frames: [1438, 1797]
+    layout: split
+    content: >
+      Pasting the source image onto the poster's background layer, then a
+      "Noise-Masked Pixelate" effect panel: "Initial value" fields — Pixel Size,
+      Pixel Size Step, Noise Scale, Speed, Threshold, Noise Enabled — with a "To"
+      column (Pixel Size 1, Pixel Size Step 12, Noise Scale 2, Speed 1,
+      Threshold 0.6) and "Animation Duration 1s". Cursor scrubs the Pixel Size
+      initial-value field down through 100→60→48→46→35→31, watching the poster
+      preview get subtler each drag. Caption: "paste it onto your own background
+      layer. Reduce starting pixel size for a subtler effect, then duplicate it
+      twice and offset it slightly in the timeline for a stronger glitch
+      effect." Cursor then duplicates the effect layer bar twice in the
+      timeline, dragging each copy a few frames later than the last. Poster
+      preview intercuts showing "CRAFTED SOUND" glitching harder with each
+      duplicate.
+    moves:
+      - move: cursorDrag
+        target: synthetic cursor (scrubbing Pixel Size field)
+        at_f: 0
+        params: {path: "numeric field drag, 100→31", dur_f: 160, click_scale_dip: 0.9, ease: expoInOut}
+      - move: pixelNoiseReveal
+        target: "\"CRAFTED SOUND\" headline (glitch-stacked preview)"
+        at_f: 180
+        params: {pixel_size: [46, 1], noise_scale: [3, 2], threshold: [0.5, 0.6], dur_f: 24, ease: expoOut}
+      - move: slideStackIn
+        target: 2 duplicated effect-layer bars (timeline)
+        at_f: 260
+        params: {y: [0, 0], stagger_f: 6, z_offset: 4px}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 11, crossfade_f: 3, ease: expoOut}
+    camera: {move: dollyToUI, params: {scale: [1, 1.15], ease: expoInOut, dur_f: 40}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 13
+    t: [59.93, 64.13]
+    frames: [1798, 1923]
+    layout: split
+    content: >
+      Poster preview shows the stacked glitch effect resolving ("stronger" /
+      "glitch" / "effect."), then cuts to the Presets tab — three thumbnail
+      cards "Fade", "Scale", "Slide" — cursor picks Scale, opens a Custom panel:
+      "Initial value: From 140% To 100%", "Animation Duration 0.8s, Easing
+      Smooth". Caption: "Next," / "add a" / "scale" / "animation" / "to the" /
+      "video." / "Set" / "initial value" / "to" / "140%" / "so it" / "scales" /
+      "down" / "into place" / "smoothly."
+    moves:
+      - move: scaleIn
+        target: "\"CRAFTED SOUND\" poster (preview of the new entrance)"
+        at_f: 60
+        params: {scale: [1.4, 1.0], opacity: [1, 1], dur_f: 24, ease: expoOut}
+      - move: cursorDrag
+        target: synthetic cursor (Presets tab → Scale card → value fields)
+        at_f: 0
+        params: {path: "Presets tab click → Scale card → From/To fields", dur_f: 100, click_scale_dip: 0.9, ease: expoInOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 9, crossfade_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 14
+    t: [64.27, 67.70]
+    frames: [1924, 2029]
+    layout: full-bleed-ui
+    content: >
+      Final poster: "CRAFTED SOUND" scales down from 140% to 100% and settles
+      into place, full-bleed on the dark navy-to-blue gradient with the
+      headphone product shot. Caption: "and" / "that's" / "it." Holds static to
+      the end.
+    moves:
+      - move: scaleIn
+        target: "\"CRAFTED SOUND\" poster (final settle)"
+        at_f: 0
+        params: {scale: [1.4, 1.0], opacity: [1, 1], dur_f: 20, ease: backOut}
+      - move: captionSwap
+        target: bottom caption pill
+        at_f: 0
+        params: {swap_every_f: 10, crossfade_f: 3, ease: expoOut}
+      - move: breathe
+        target: whole poster composition
+        at_f: 24
+        params: {scale: [1, 1.015, 1], period_f: 120}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [filmGrain, vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 40
+
+techniques:
+  - id: noise-masked-pixel-dissolve-reveal
+    what: >
+      The video's single most-used entrance: an image or headline resolves from
+      an unreadable mosaic into a crisp final frame. It is not a fade — the
+      on-screen effect panel (frames 1532-1617) names it exactly:
+      "Noise-Masked Pixelate", with parameters Pixel Size, Pixel Size Step,
+      Noise Scale, Speed, Threshold, Noise Enabled, animating from an Initial
+      value (Pixel Size ~100, Noise Scale 4, Speed 1, Threshold 0.5) to a To
+      value (Pixel Size 1, Pixel Size Step 12, Noise Scale 2, Speed 1,
+      Threshold 0.6) over an Animation Duration of 1s.
+    where: shots 2, 6, 9, 11, 12 — every appearance of the "CRAFTED SOUND" poster and the "Pixelated Slideshow" template tiles
+    why_it_reads: >
+      Because the reveal mask is itself irregular (noise-driven, not a straight
+      edge or simple circle), the eye reads it as the image "developing" or
+      "materialising" rather than being wiped or faded — it borrows the
+      language of a Polaroid developing or a signal resolving out of static,
+      which suits a headline about audio/sound product.
+    remotion_recipe: >
+      Render the source (photo or text-as-image) into an offscreen canvas at
+      full resolution. Each frame, derive pixelSize = interpolate(frame,
+      [0,durF], [100,1], {easing: Easing.out(Easing.exp)}) and threshold =
+      interpolate(frame, [0,durF], [0.5,0.6]). For each pixelSize×pixelSize
+      block: (1) average its source colour to get the mosaic look; (2) sample a
+      deterministic 2D value-noise field at the block's grid coordinate, seeded
+      by a fixed integer (never Date.now/Math.random) plus a slow phase term
+      driven by frame*speed/30 so the noise itself drifts; (3) draw the block
+      only if noise(blockX, blockY, phase) > threshold, else leave it
+      transparent/background-coloured. As pixelSize shrinks and threshold
+      rises, more, smaller, sharper blocks become visible until the image reads
+      as fully resolved. Implement as a single WebGL/Canvas2D shader-like pass
+      driven by useCurrentFrame(); do this with a fragment shader (GLSL) for
+      performance if targeting >200px images, or a coarse-grid Canvas2D loop
+      (~2500 blocks max) if not.
+    difficulty: moderate
+
+  - id: dithering-duotone-halftone-reveal
+    what: >
+      A circular logo/photo resolves from a flat gradient into a visible
+      ordered-dither halftone pattern, remapped into two tones (duotone). The
+      panel is explicitly labelled "Dithering Effect" / "Dithering Duotone
+      Effect" in the layer tree (Duotone > Text/Buy Tickets/Logo
+      Container/Earth Video/Background).
+    where: shot 5, frames 509-597 (AI Summit pink-circle card)
+    why_it_reads: >
+      A fixed, recognisable dither grain (Bayer matrix) reads as "printed" or
+      "screen-printed" rather than digital, which sells the duotone poster
+      aesthetic instantly and cheaply — no photographic detail is needed, just
+      luminance.
+    remotion_recipe: >
+      Precompute an 8x8 Bayer threshold matrix (values 0-63, normalised
+      0-1). Per source pixel, compute luminance, remap it through a two-colour
+      gradient map (duotone), then reveal it only if a coverage value
+      (interpolated 0→1 over dur_f with expoOut, driven by frame) exceeds
+      bayerMatrix[x % 8][y % 8]. This is a single shader pass; no per-pixel
+      randomness, fully deterministic and reproducible frame-to-frame.
+    difficulty: moderate
+
+  - id: live-ticking-template-grid
+    what: >
+      A dense 2x3 grid of template preview tiles ("New" section) stays legible
+      not by enlarging or sequencing them, but by giving every tile a distinct
+      colour and exactly one moving element — usually a number counting up or
+      down at its own rate (7, 22→42, 5→3, 38, plus a spinning progress ring).
+    where: shot 3, frames 327-421
+    why_it_reads: >
+      Nothing needs to be read in order — each tile is legible in isolation via
+      colour-coding, and the simultaneous but independently-timed motion (no
+      shared stagger) reads as "many live examples," proving variety in one
+      glance instead of a slow one-by-one carousel.
+    remotion_recipe: >
+      Render N tiles in a CSS grid. Give each tile a fixed accent colour and
+      one animated primitive: interpolate(frame, [tileStartF, tileStartF+durF],
+      [fromN, toN]) for the counters (monospace_digits, per MOVE_VOCAB
+      counterUp), driven at a different durF per tile (e.g. 60f, 90f, 45f) so
+      they visibly desync — this desync is the point, don't align them to one
+      shared clock.
+    difficulty: trivial
+
+  - id: raked-3d-linked-action-timeline
+    what: >
+      A timeline/properties panel is shown tilted in shallow 3D perspective
+      (as if laid on a table), and rows that share a linked animation
+      (Duotone, Text·Noise-Masked-Pixelate, Text·Appear, Earth Video·Duotone
+      Dither, Earth Video·Play) light up in the same purple simultaneously
+      before being copy/pasted onto a different layer.
+    where: shot 8, frames 898-1007
+    why_it_reads: >
+      "These five things are linked" is an abstract claim about the tool's
+      data model; making the linked rows glow the identical purple at the
+      identical moment turns it into something you see rather than something
+      you're told. The raked 3D entrance is the same trick as Zhylar's
+      invoice/email card entrances — see convergence.
+    remotion_recipe: >
+      Wrap the panel in a container with CSS perspective: 1000px, animate
+      rotateX from ~10deg to 0 over ~20f (expoInOut) so it "lands flat" — this
+      is orbit3D from MOVE_VOCAB applied to a 2D panel instead of a product
+      card. For the linked-row highlight, keep an array of linkedRowIds; set
+      each matching row's background-color and its animation-bar fill to the
+      same accent purple with opacity interpolated 0.3→1 over a short
+      staggerRise (stagger_f 2-3) so they arrive together, not row-by-row.
+    difficulty: moderate
+
+  - id: cursor-driven-parameter-scrub
+    what: >
+      A synthetic cursor repeatedly grabs a single numeric field (Move Y,
+      Pixel Size, an easing-curve handle, an intensity slider) and drags it
+      live, with the poster/effect preview updating in real time as the value
+      changes — the choreography IS the tutorial content, not a decoration on
+      top of it.
+    where: shots 7, 8, 10, 11, 12, 13 — every UI-configuration beat
+    why_it_reads: >
+      Per PRINCIPLES.md's "Choreograph a synthetic cursor" rule: a fake
+      pointer can land on a beat grid and its drag gestures can be timed to
+      match voiceover exactly, which a real screen recording never can. It
+      also visually proves cause-and-effect (drag this number, this pixel
+      changes) instead of just claiming the tool is "customisable."
+    remotion_recipe: >
+      Define a cursorDrag move: an absolutely-positioned cursor icon
+      interpolates position along 2-4 key points (arrive at field → click-dip
+      scale 0.9 over 4f springSnap → drag along an axis while a bound numeric
+      value interpolates in lockstep → release, scale back to 1 with a small
+      overshoot). Bind the "live value" text and any dependent visual (e.g. the
+      poster's pixelSize) to the same interpolated value so cursor motion and
+      on-screen effect are mathematically the same driver, never two separate
+      animations that merely look synced.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 13
+  median_shot_f: 135
+  fastest_f: 34
+  slowest_f: 330
+  pattern: >
+    5.4s real-camera talking-head hook -> 4s hard-cut poster cold-open (pays off
+    the whole video's destination up front) -> five 87-166f UI-tour shots
+    establishing breadth (template grid, effects catalogue, two more templates,
+    layer tree) -> a 330f deep-dive UI-tutorial dwell (splitting this run's
+    shots 8-10 in the raw analysis) configuring one entrance curve by hand,
+    the slowest and most static stretch in the video -> a re-acceleration
+    through background-swap, pixel-size tuning and duplicate-offset glitch
+    stacking -> a closing settle-scale beat and a long static hold on the
+    finished poster. Energy dips hard mid-video during the curve-editor
+    tutorial and climbs back for the glitch-stack and final reveal.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Steal the Noise-Masked Pixelate reveal (technique noise-masked-pixel-dissolve-reveal)
+    as a default hero-title/logo entrance whenever the product has any connection
+    to audio, signal, or "clarity from noise" messaging — it's a threshold test
+    against a deterministic noise field, not a shader mystery.
+  - Steal the live-ticking numeric counters inside a dense preview grid
+    (technique live-ticking-template-grid) any time you need to show "many
+    templates/presets exist" without a slow one-by-one carousel — colour-code
+    each tile and desync their animation clocks.
+  - Steal the raked-3D-panel-plus-linked-highlight (technique
+    raked-3d-linked-action-timeline) whenever a claim about hidden data
+    relationships ("these are connected") needs to be shown, not said.
+  - Steal cursor-driven parameter scrubbing (technique
+    cursor-driven-parameter-scrub) for any tutorial-style capability beat —
+    bind the cursor's drag value and the visible effect to the same
+    interpolated number so they can never desync.
+  - The caption pill that swaps one to three words at a time (never a full
+    sentence at once) is the correct way to subtitle a talking-head hook —
+    reuse captionSwap instead of a typewriter or a static lower-third.
+  - Steal the duplicate-and-timeline-offset pattern for any "glitch/echo"
+    effect — stack 2-3 copies of one effect layer at small time offsets rather
+    than hand-building a multi-layer glitch shader from scratch.
+
+avoid:
+  - The real-camera talking-head cold open (shot 1) is live footage, not
+    something to fake convincingly with 3D/CSS — substitute a synthetic
+    voiceover-only cold open or a text-card hook if no real presenter exists;
+    don't attempt a fake human.
+  - The word-by-word caption sync (captionSwap) must be driven off a
+    pre-timed transcript array (word, startFrame), never hand-keyframed per
+    word — eyeballing sync in a timeline is exactly the manual-keyframing
+    trap this system exists to avoid.
+  - The 330f curve-editor tutorial dwell (shot 10) only works because a
+    synthetic cursor is continuously doing visible work (typing, opening
+    menus, dragging a handle) for the entire duration — never replicate a
+    hold this long in a pure marketing cut without equivalent continuous
+    on-screen activity, or it reads as dead air per PRINCIPLES.md rule 4.
+  - Don't attempt the Noise-Masked Pixelate or dithering effects as a cheap
+    opacity crossfade — a bare fade shares none of the "resolving out of
+    noise" read; budget for an actual per-block/per-pixel shader pass.
+
+new_moves:
+  - name: captionSwap
+    params: {swap_every_f: "5-15 (per spoken word)", crossfade_f: 3, ease: expoOut}
+    description: >
+      A single caption pill holds one to three words at a time; its text
+      content is swapped (not accumulated) roughly on each spoken word,
+      crossfading over crossfade_f frames rather than a hard cut. Distinct
+      from typeOn (continuous per-character with caret) and wordCycleSettle
+      (multiple parallel columns that converge) — this is one slot, one
+      value at a time, driven by a pre-timed transcript array of
+      {word, startFrame} pairs, for subtitling a talking-head or voiceover
+      hook.
+  - name: pixelNoiseReveal
+    params: {pixel_size: [100, 1], noise_scale: [4, 2], threshold: [0.5, 0.6], dur_f: 30, ease: expoOut}
+    description: >
+      An image or text-as-image resolves from an unreadable mosaic into a
+      crisp final frame. Divide the source into pixel_size×pixel_size blocks
+      (pixel_size animates large→small); each block is visible only where a
+      deterministic 2D noise field (seeded, not random per-frame) sampled at
+      that block's coordinates exceeds a threshold value that also animates
+      over the same duration. The mask shape is the noise field itself, not a
+      geometric primitive — this is the shape-driven-masking case where the
+      mask literally IS the reveal's visual identity, not a hidden wipe.
+  - name: ditherReveal
+    params: {matrix: bayer8x8, coverage: [0, 1], dur_f: 20, ease: expoOut}
+    description: >
+      An image resolves into a fixed ordered-dither (Bayer matrix) halftone
+      pattern remapped through a two-colour duotone gradient map. A single
+      coverage value animates 0→1; a pixel is revealed once coverage exceeds
+      the corresponding cell of the tiled Bayer matrix. Deterministic and
+      grain-like rather than noisy — reads as "printed," pairs well with
+      pixelNoiseReveal on adjacent elements for visual variety without
+      inventing a third mask language.
+  - name: cursorDrag
+    params: {path: "2+ key points", dur_f: 40, click_scale_dip: 0.9, ease: expoInOut}
+    description: >
+      A synthetic cursor icon moves along 2 or more key points to simulate a
+      real interaction: arrive at a control, dip scale to click_scale_dip on
+      "click" (springSnap, ~4f), drag along an axis while a bound numeric
+      value or panel state interpolates in exact lockstep with cursor
+      position (never a separately-timed animation), release with a small
+      scale-overshoot settle. The cursor's motion and the UI's response must
+      share one interpolation driver so they can't visibly desync.
+
+convergence:
+  - counterUp — both corpora use live-ticking monospace numbers inside UI
+    cards as proof of "it's working" (Zhylar's Lead/Deals metric cards vs.
+    Jitter's six "New" template-grid counters).
+  - raked-3D UI panel entrance (perspective + rotateX/Y animating to 0) —
+    Zhylar tilts invoice/email cards flat on entrance; Jitter tilts its
+    timeline/properties panel the same way before the linked-action
+    highlight (technique raked-3d-linked-action-timeline here vs.
+    raked-3d-ui-card-flatten in A_explainer-zhylar-crm-cpq).
+  - dropShadowSoft on every floating UI card/panel in both corpora — a
+    single soft shadow, never a stacked or hard-edged one, is the shared
+    default for "this UI is a physical object above the background."
+
+detection_notes: >
+  The raw profile detected 22 cuts; five of them are 4-5f "hot, linear"
+  entries (frames 419-423, 898-901, 1259-1263, 1798-1801, 1924-1927) that sit
+  inside otherwise-continuous UI or poster footage on the sheets — these are
+  encoder/compression flicker or single-frame UI redraws, not real cuts, and
+  are folded into the neighbouring shot in this spec (they fall under the 11f
+  minimum-shot-length rule in MOVE_VOCAB.md). Conversely, the profile's shot 9
+  (frames 595-897, 303f, logged as one "subtle" shot) actually contains four
+  visually distinct UI panels on the sheets — the AI Summit/Love-wins template
+  pair, the Inward-Echo/LOVE-HATE template pair, and the layer-tree editor —
+  which the cut detector missed because the screen-recording's luma delta
+  between panel swaps stayed below its 26.0 threshold. This spec splits that
+  range into shots 5, 6 and 7 to keep each distinct panel documented
+  separately. Shot 10 in this spec (frames 1078-1261, 184f) is similarly a
+  single detector-shot that spans several real UI states (property-tab switch,
+  Move-value entry, curve-picker grid, curve-handle drag, intensity slider) —
+  kept as one shot here because it is one continuous, uninterrupted screen
+  capture, but documented as a multi-beat tutorial dwell in the rhythm pattern
+  and in technique cursor-driven-parameter-scrub.

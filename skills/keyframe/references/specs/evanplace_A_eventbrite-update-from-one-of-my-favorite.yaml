@@ -1,0 +1,1040 @@
+id: evanplace_A_eventbrite-update-from-one-of-my-favorite
+source: local-reference (evanplace_A_eventbrite-update-from-one-of-my-favorite.mp4)
+category: launch-video
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 52.966
+  orientation: horizontal
+
+verdict: >
+  A 53-second brand-relaunch reel that treats the identity itself as the hero: a
+  9-swatch colour catalogue slides past like paint chips, a photo collage snaps into
+  an irregular grid that turns out to be a lit jumbotron, and the mark's own
+  silhouette is used as a hard clip for a cycling photo-texture fill. The dozen or
+  so lifestyle/proof photos in between are ordinary hardCut B-roll — the craft
+  budget is spent entirely on the system-level moments (swatches, grid, mask,
+  outline-to-gradient icon fills), not on any single cut.
+
+palette:
+  bg: "#F5F0E6"
+  ink: "#181818"
+  accent: "#F0A8D8"
+  support: ["#6078F0", "#D84830", "#D8F0D8", "#6090C0", "#D8D890"]
+  notes: >
+    Cream (#F5F0E6) and near-black (#181818) alternate as the base canvas roughly
+    every other shot — the single "invert once" moment happens repeatedly, on
+    purpose, because the video's real subject is a 9-colour brand system, not a
+    fixed 3-colour palette. Pink (#F0A8D8) dominates screen-time (17.2% measured)
+    and functions as the "primary" accent, but eight other named swatches (Glow
+    Brite ~#F0F5D0, Extra Brite ~#D4FF3D, Matcha ~#7C8C4A, Sky Dive ~#7B85F0, Sea
+    Glass ~#C8F0E0, Light Rose ~#F4C2DC, Lipstick ~#E31C3D, Fine Wine ~#5C1830,
+    Brite Orange ~#FF5A2B) get equal named billing in shot 3's swatch conveyor and
+    are re-used as the highlight-chip colours behind headline text throughout the
+    film. Rationing rule here is "one colour per beat," not "one accent for the
+    whole film."
+
+typography:
+  family_look: grotesk
+  weights: [bold]
+  case: upper
+  tracking: tight
+  headline_frame_share: 0.55
+  notes: >
+    Headlines are short (2-5 words), always upper-case, always built one clause at
+    a time with a solid-colour "highlighter" block sitting directly behind/around
+    each line rather than a background card. Body/UI copy inside phone mockups
+    uses the same grotesk at small sizes, sentence case. The wordmark "eventbrite"
+    is set in a heavier rounded grotesk, always lower-case, paired with the abstract
+    swirl/droplet mark to its left.
+
+structure:
+  - act: hook
+    t: [0.00, 1.93]
+    purpose: Ask the audience's own question ("Looking for something new to do?") in their own idiom before naming the brand.
+    shots: [1]
+  - act: reveal
+    t: [1.97, 6.37]
+    purpose: Land the wordmark and show it being chosen/typed into an app, personalising the reveal.
+    shots: [2]
+  - act: capability
+    t: [6.40, 15.93]
+    purpose: Show the rebrand as a system — a colour catalogue, an app-icon picker, and a two-line tagline.
+    shots: [3, 4, 5]
+  - act: proof
+    t: [15.97, 26.07]
+    purpose: Prove the brand lives across real culture (sport, nature, nightlife) then reveal it in the wild as a lit billboard.
+    shots: [6, 7]
+  - act: capability
+    t: [26.10, 31.13]
+    purpose: Show the system extending to social content, merch, and category iconography.
+    shots: [8, 9, 10, 11]
+  - act: capability
+    t: [30.97, 39.10]
+    purpose: Let two mascot/icon illustrations slowly gain full colour — the brand's illustration layer at rest.
+    shots: [12, 13]
+  - act: proof
+    t: [39.13, 48.43]
+    purpose: Walk the actual product flow (onboarding to ticket-secured) and show the brand mascot in a real-world action photo.
+    shots: [14, 15, 16]
+  - act: cta
+    t: [48.50, 52.97]
+    purpose: Show the content library as a scrolling grid, sign off with the tagline, then let the mark cycle its own colour system down to a single dot.
+    shots: [17, 18]
+
+shots:
+  - n: 1
+    t: [0.00, 1.93]
+    frames: [0, 58]
+    layout: centre-stack
+    content: >
+      Black bg. "LOOKING" pops in on a solid blue highlight chip (f18), "FOR
+      SOMETHING" adds below on a lime chip (f27), then "NEW TO DO?" adds a third
+      line on a pink chip (f37), building the full question "LOOKING FOR SOMETHING
+      NEW TO DO?" by f52. Hard flash to a solid periwinkle-blue full frame (f53-58).
+    moves:
+      - move: markerHighlightReveal
+        target: "\"LOOKING\""
+        at_f: 18
+        params: {dur_f: 9, ease: backOut, highlight_color: "#6078F0", text_color: "#FFFFFF"}
+      - move: markerHighlightReveal
+        target: "\"FOR SOMETHING\""
+        at_f: 27
+        params: {dur_f: 9, ease: backOut, highlight_color: "#D8D890", stagger_from_prev_f: 9}
+      - move: markerHighlightReveal
+        target: "\"NEW TO DO?\""
+        at_f: 37
+        params: {dur_f: 9, ease: backOut, highlight_color: "#F0A8D8", stagger_from_prev_f: 10}
+      - move: flashCut
+        target: full frame
+        at_f: 53
+        params: {color: "#6078F0", dur_f: 6}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 150, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: flashCut, params: {dur_f: 6}}
+    hold_f: 5
+
+  - n: 2
+    t: [1.97, 6.37]
+    frames: [59, 191]
+    layout: centre-stack
+    content: >
+      White bg: the "eventbrite" wordmark + swirl mark cycles through ~6 fast
+      colour/bg-invert states (orange icon on white, white icon on black, lime
+      icon on black, pastel icon on black) over f59-84, then dims to a flat grey
+      mono lockup. Hard cut to a hand holding a phone against a wood surface — the
+      screen shows a diagonal gradient (peach to lime to lavender) that resolves as
+      a finger taps it (ripple), then the app's splash screen builds "e" -> "event"
+      -> "eventbrite" letter by letter under a small orange mark icon.
+    moves:
+      - move: paletteCycle
+        target: wordmark + swirl mark lockup
+        at_f: 0
+        params: {swap_every_f: 4, n_states: 6, ease: linear}
+      - move: dissolveBlur
+        target: wordmark (colour to grey)
+        at_f: 26
+        params: {blur: [0, 6], opacity: [1, 0.5], dur_f: 10}
+      - move: unblurIn
+        target: hand + phone
+        at_f: 40
+        params: {blur: [14, 0], scale: [1.04, 1], dur_f: 16}
+      - move: gradientDrift
+        target: phone screen fill
+        at_f: 46
+        params: {hue_rotate: "±30deg", period_f: 40}
+      - move: popIn
+        target: finger-tap ripple
+        at_f: 70
+        params: {scale: [1, 1.6], opacity: [0.5, 0], dur_f: 11, ease: springSnap}
+      - move: typeOn
+        target: "\"eventbrite\" wordmark on splash screen"
+        at_f: 93
+        params: {chars_per_f: 1.2, caret: false}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 160, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 3
+    t: [6.40, 12.10]
+    frames: [192, 362]
+    layout: full-bleed-ui
+    content: >
+      A horizontal conveyor of 9 solid-colour panels, each labelled with its paint
+      name in bold upper-case: GLOW BRITE, EXTRA BRITE, MATCHA, SKY DIVE, SEA
+      GLASS, LIGHT ROSE, LIPSTICK, FINE WINE, BRITE ORANGE — 2-3 panels visible at
+      once, sliding left so a new one enters as the oldest exits (f192-301). Holds
+      on BRITE ORANGE, then the swirl mark icon rapid-cuts through ~7 different
+      bg/icon colour pairings (cream/orange, black/cream, red/pink, lime/maroon,
+      green/lime, maroon/pink) at roughly one pairing per 5-10 frames (f302-362).
+    moves:
+      - move: swatchConveyor
+        target: 9 colour-name panels
+        at_f: 0
+        params: {panel_w_pct: 33, slide_speed_px_f: 14, dur_f: 110, label_case: upper, ease: linear}
+      - move: paletteCycle
+        target: mark icon on solid bg
+        at_f: 110
+        params: {swap_every_f: 7, n_states: 7, ease: linear}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 150, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 4
+    t: [12.10, 13.17]
+    frames: [363, 395]
+    layout: full-bleed-ui
+    content: >
+      Real phone, handheld, lying in grass. iOS "Change app icon" system sheet is
+      open, showing the eventbrite mark rendered as 6 rounded-square app-icon
+      colourways (red, orange-red, black, blue, dark red, green). A checkmark
+      selection moves across three of the icons in sequence before the cut.
+    moves:
+      - move: popIn
+        target: selection checkmark (1st landing)
+        at_f: 4
+        params: {scale: [0, 1.1, 1], dur_f: 10, ease: springSnap}
+      - move: popIn
+        target: selection checkmark (2nd landing)
+        at_f: 15
+        params: {scale: [0, 1.1, 1], dur_f: 10, ease: springSnap}
+      - move: popIn
+        target: selection checkmark (3rd landing)
+        at_f: 24
+        params: {scale: [0, 1.1, 1], dur_f: 10, ease: springSnap}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 150, axes: xy}}
+    bg: {kind: blurred-ui, moves: [grainShift]}
+    treatment: [filmGrain, vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 5
+    t: [13.20, 15.93]
+    frames: [396, 478]
+    layout: centre-stack
+    content: >
+      A soft-focus vertical gradient column (blue to pink) sweeps horizontally
+      across the frame as backdrop. "FROM A LOGO" builds on a lime highlight chip
+      (f396), then "ON A TICKET..." adds a second line (f416). Hard cut to a
+      pink-to-orange gradient sweep: "TO A PLACE" builds on a red chip (f436), then
+      "TO DISCOVER." adds a cream-chip second line, holding to f478.
+    moves:
+      - move: markerHighlightReveal
+        target: "\"FROM A LOGO\""
+        at_f: 4
+        params: {dur_f: 10, ease: backOut, highlight_color: "#D8D890"}
+      - move: markerHighlightReveal
+        target: "\"ON A TICKET...\""
+        at_f: 20
+        params: {dur_f: 10, ease: backOut, highlight_color: "#D8D890", stagger_from_prev_f: 16}
+      - move: hardCut
+        target: bg gradient swap blue-to-pink
+        at_f: 40
+        params: {}
+      - move: markerHighlightReveal
+        target: "\"TO A PLACE\""
+        at_f: 44
+        params: {dur_f: 10, ease: backOut, highlight_color: "#D84830"}
+      - move: markerHighlightReveal
+        target: "\"TO DISCOVER.\""
+        at_f: 60
+        params: {dur_f: 10, ease: backOut, highlight_color: "#F5F0E6", stagger_from_prev_f: 16}
+      - move: specularSweep
+        target: vertical gradient column bg
+        at_f: 0
+        params: {dur_f: 83}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 150, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 6
+    t: [15.97, 22.40]
+    frames: [479, 672]
+    layout: full-bleed-ui
+    content: >
+      Rapid-cut, colour-graded lifestyle montage, one still or short clip per
+      ~10-30f beat: soccer-team legs/socks (f479), dog + hiker selfie with
+      trekking poles (f489), sunset silhouettes by a lifeguard tower (f499),
+      open-water relay swimmers on a floating dock (f509), a chess game / intimate
+      close-up (f528), a curly-haired surfer walking with friends by a lake
+      (f538), three chefs cooking together (f546), boots walking on gravel
+      (f563), a red-lit silhouette in a foggy corridor (f572), a singer with
+      blonde curls performing through pink confetti bokeh (f601), then three 4f
+      colour-flash frames (f632, 636, 640, merged — see detection_notes) before
+      the mosaic assembly begins.
+    moves:
+      - move: hardCut
+        target: soccer legs
+        at_f: 0
+        params: {}
+      - move: hardCut
+        target: dog + hiker selfie
+        at_f: 10
+        params: {}
+      - move: hardCut
+        target: sunset silhouettes
+        at_f: 20
+        params: {}
+      - move: hardCut
+        target: swimmers on dock
+        at_f: 30
+        params: {}
+      - move: hardCut
+        target: chess / couple close-up
+        at_f: 49
+        params: {}
+      - move: hardCut
+        target: surfer group walking
+        at_f: 59
+        params: {}
+      - move: hardCut
+        target: chefs cooking
+        at_f: 67
+        params: {}
+      - move: hardCut
+        target: boots walking
+        at_f: 84
+        params: {}
+      - move: hardCut
+        target: red-lit silhouette corridor
+        at_f: 93
+        params: {}
+      - move: hardCut
+        target: singer with confetti bokeh
+        at_f: 122
+        params: {}
+      - move: flashCut
+        target: full frame
+        at_f: 153
+        params: {color: accent, dur_f: 4}
+      - move: flashCut
+        target: full frame
+        at_f: 157
+        params: {color: accent, dur_f: 4}
+      - move: flashCut
+        target: full frame
+        at_f: 161
+        params: {color: accent, dur_f: 4}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain, vignette]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 7
+    t: [22.43, 26.07]
+    frames: [673, 782]
+    layout: grid
+    content: >
+      Fragments of the preceding montage photos fly inward and lock into an
+      irregular rectangular grid (roughly 4x3, unequal cell sizes) that resolves
+      into one poster-like graphic; a lime "eventbrite" wordmark tile and a
+      "THERE'S MORE NEW TO DO" tagline tile lock in last. Once complete, the
+      camera pulls back to reveal the grid is a lit jumbotron/billboard mounted
+      above a dark street at night, with a small silhouette walking on an
+      illuminated strip below it.
+    moves:
+      - move: gridMosaicAssemble
+        target: 9-12 photo/colour tiles
+        at_f: 0
+        params: {grid: "irregular 4x3", tile_stagger_f: 3, fly_from: scattered, dur_f: 34, ease: backOut}
+      - move: breathe
+        target: billboard glow
+        at_f: 0
+        params: {scale: [1, 1.01, 1], period_f: 90}
+    camera: {move: pullOut, params: {scale: [1.3, 1], ease: expoInOut}}
+    bg: {kind: 3d-set, moves: [grainShift]}
+    treatment: [filmGrain, vignette, bloomGlow]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 8
+    t: [26.10, 27.47]
+    frames: [783, 824]
+    layout: split
+    content: >
+      A hand holds a phone at a raked angle against a saturated green gradient
+      backdrop. Screen shows an Instagram-Story-style vertical graphic: "COOKING.
+      BAKING. COCKTAIL MAKING." over a collaged photo, then cuts to a second story,
+      "OUTDOOR MARKET SEASON," over a green foliage photo.
+    moves:
+      - move: orbit3D
+        target: phone (handheld sway)
+        at_f: 0
+        params: {rotateY: [8, -4], rotateX: [4, -2], perspective: 1000px, dur_f: 42}
+      - move: hardCut
+        target: "story 1 -> story 2 (\"OUTDOOR MARKET SEASON\")"
+        at_f: 24
+        params: {}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 150, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 9
+    t: [27.50, 28.17]
+    frames: [825, 845]
+    layout: centre-stack
+    content: >
+      An orange tote bag hangs from a tree branch outdoors. Its canvas is printed
+      with a stacked typographic list of event categories — "WETLAND HIKING CLUB
+      DISCO DAYDREAMS SUNSET SKATE PRE-SEASON FREERIDE" — each word set in a
+      different swatch colour from shot 3's system. Two quick full-frame colour
+      flashes (lime, blue) punctuate the end of the shot.
+    moves:
+      - move: breathe
+        target: tote bag on branch
+        at_f: 0
+        params: {scale: [1, 1.015, 1], period_f: 100}
+      - move: flashCut
+        target: full frame
+        at_f: 16
+        params: {color: "#D8D890", dur_f: 4}
+      - move: flashCut
+        target: full frame
+        at_f: 20
+        params: {color: "#6078F0", dur_f: 4}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: flashCut, params: {dur_f: 4}}
+    hold_f: 2
+
+  - n: 10
+    t: [28.20, 29.10]
+    frames: [846, 873]
+    layout: centre-stack
+    content: >
+      Deep wine-red full-bleed bg. "WE'VE GOT" builds on a pink highlight chip
+      (f846), extends to "WE'VE GOT WHAT YOU" (f855), then completes as "WE'VE GOT
+      WHAT YOU LIKE." with a cream chip on the third line, holding to f873 — the
+      static stretch the profile flags at frames 858-872 is this held final line,
+      not a bug (see detection_notes).
+    moves:
+      - move: markerHighlightReveal
+        target: "\"WE'VE GOT\""
+        at_f: 0
+        params: {dur_f: 9, ease: backOut, highlight_color: "#F0A8D8"}
+      - move: markerHighlightReveal
+        target: "\"WHAT YOU\""
+        at_f: 9
+        params: {dur_f: 9, ease: backOut, highlight_color: "#F0A8D8", stagger_from_prev_f: 9}
+      - move: markerHighlightReveal
+        target: "\"LIKE.\""
+        at_f: 18
+        params: {dur_f: 9, ease: backOut, highlight_color: "#F5F0E6", stagger_from_prev_f: 9}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 120}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 11
+    t: [29.13, 30.93]
+    frames: [874, 928]
+    layout: centre-stack
+    content: >
+      Cream bg. Three custom illustrated emoji-style glyphs cut rapidly, each a
+      visual stand-in for an event category: a UFO abducting a globe (f874), two
+      strawberries (f894), two hot dogs (f911) — rendered in the same rounded,
+      saturated illustration style as the mascot seen later in the film.
+    moves:
+      - move: popIn
+        target: UFO glyph
+        at_f: 0
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: hardCut
+        target: strawberries glyph
+        at_f: 20
+        params: {}
+      - move: popIn
+        target: strawberries glyph
+        at_f: 20
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: hardCut
+        target: hotdogs glyph
+        at_f: 37
+        params: {}
+      - move: popIn
+        target: hotdogs glyph
+        at_f: 37
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 12
+    t: [30.97, 32.93]
+    frames: [929, 988]
+    layout: split
+    content: >
+      Small swirl mark icon top-left of a cream frame, beside a tiny palm-tree +
+      golf-ball glyph. The mark's exact silhouette is filled with a moving
+      photo/collage texture (fragments of the earlier lifestyle photos, visible
+      only inside the swirl's hard outline), which then crossfades to a smooth
+      two-tone gradient fill (orange to pink to lavender) as the shape holds. Cut
+      to a phone held against a blue sky; its screen shows the same mark, large,
+      beside the copy "NEW IN NASHVILLE: LIVE MUSIC."
+    moves:
+      - move: logoMaskContentFill
+        target: swirl mark silhouette
+        at_f: 0
+        params: {clip: mark-swirl-path, fill_content: photo-collage-loop, dur_f: 20, then_crossfade_to: gradient-fill, crossfade_dur_f: 14, ease: expoInOut}
+      - move: unblurIn
+        target: phone against sky
+        at_f: 30
+        params: {blur: [16, 0], scale: [1.05, 1], dur_f: 18}
+      - move: maskWipeUp
+        target: "\"NEW IN NASHVILLE: LIVE MUSIC\""
+        at_f: 50
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 150, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 13
+    t: [32.97, 39.10]
+    frames: [989, 1173]
+    layout: centre-stack
+    content: >
+      Cream bg. Two brand illustration icons hold centre-frame in sequence — a
+      martini-glass/fish-bird hybrid mascot, then (from f1019) a flower-with-bee
+      mascot — each starting as thin outline-only line art and very slowly gaining
+      a full gradient colour fill over most of the shot's 185 frames, with a small
+      continuous ambient bubble/leaf-particle drift keeping the hold alive. This is
+      the longest shot in the video and profile shows no frozen stretch inside it —
+      the fill genuinely animates end to end rather than holding static.
+    moves:
+      - move: outlineColorFill
+        target: fish/glass mascot icon
+        at_f: 0
+        params: {dur_f: 80, ease: expoInOut, fill_from: outline, fill_to: "gradient(#F0A8D8,#D8F0D8)"}
+      - move: hardCut
+        target: flower + bee mascot icon
+        at_f: 90
+        params: {}
+      - move: outlineColorFill
+        target: flower + bee mascot icon
+        at_f: 90
+        params: {dur_f: 80, ease: expoInOut, fill_from: outline, fill_to: "gradient(#D84830,#D8D890)"}
+      - move: breathe
+        target: whole icon composition
+        at_f: 0
+        params: {scale: [1, 1.015, 1], period_f: 120}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 14
+    t: [39.13, 42.40]
+    frames: [1174, 1272]
+    layout: split
+    content: >
+      Pink full-bleed bg. UI screens fan in from the right in an overlapping deck:
+      "Can we get your number? We'll use your phone number to verify your
+      Eventbrite account and find your friends." (with flower/bee icon) is joined
+      by "Let's find your friends. We'll access your contacts to find your friends
+      on Eventbrite. Sync contacts" (fish-hand icon), then by "Your order is
+      confirmed. See your ticket!" with an event thumbnail and "View your tickets"
+      button — each new card slides in from the right while earlier cards recede
+      slightly, like a hand of cards being fanned.
+    moves:
+      - move: slidePush
+        target: "\"Let's find your friends\" card"
+        at_f: 30
+        params: {dur_f: 16, ease: expoInOut, incoming_x: [100, 0]}
+      - move: scaleOut
+        target: background cards recede
+        at_f: 30
+        params: {scale: [1, 0.94], dur_f: 16, ease: expoIn}
+      - move: slidePush
+        target: "\"Your order is confirmed.\" card"
+        at_f: 55
+        params: {dur_f: 16, ease: expoInOut, incoming_x: [100, 0]}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 150, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 15
+    t: [42.43, 45.43]
+    frames: [1273, 1363]
+    layout: split
+    content: >
+      A hand holds a phone against a blue sky and building silhouette. The
+      "Your order is confirmed." screen dissolves into a full-bleed green-to-red
+      gradient card reading "TICKETS," which completes as "TICKETS SECURED"
+      centred in bold type.
+    moves:
+      - move: dissolveBlur
+        target: order-confirmed screen
+        at_f: 0
+        params: {blur: [0, 12], opacity: [1, 0], dur_f: 12}
+      - move: gradientDrift
+        target: phone-screen gradient card
+        at_f: 12
+        params: {hue_rotate: "±20deg", period_f: 60}
+      - move: maskWipeUp
+        target: "\"TICKETS\""
+        at_f: 20
+        params: {dur_f: 14, ease: expoOut}
+      - move: maskWipeUp
+        target: "\"SECURED\""
+        at_f: 34
+        params: {dur_f: 14, per_line_stagger_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 140, axes: xy}}
+    bg: {kind: blurred-ui, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 16
+    t: [45.47, 48.47]
+    frames: [1364, 1454]
+    layout: full-bleed-ui
+    content: >
+      A gradient-coloured illustrated fox-like brand mascot (orange head, pink
+      body, white gloved hands/feet) is composited mid-kick over a real outdoor
+      photo of a woman playing soccer on a park field, timed to sync with her kick.
+    moves:
+      - move: scaleIn
+        target: mascot character
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: breathe
+        target: mascot
+        at_f: 14
+        params: {scale: [1, 1.015, 1], period_f: 90}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 17
+    t: [48.50, 50.47]
+    frames: [1455, 1514]
+    layout: split
+    content: >
+      Close crop of a tattooed arm/leg beside a small branded pouch printed with
+      the swirl mark and a mascot sticker, on a black bg. Cuts to the same pouch
+      beside a pastel green-and-pink bucket hat.
+    moves:
+      - move: hardCut
+        target: pouch + tattoo -> pouch + bucket hat
+        at_f: 30
+        params: {}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft, vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 18
+    t: [50.50, 52.97]
+    frames: [1515, 1587]
+    layout: grid
+    content: >
+      A grid of dozens of marketing-graphic thumbnails, tilted ~15 degrees, fills
+      the frame and pans continuously diagonally like scrolling a wall of a
+      content calendar (f1515-1548). Hard cut to a red-to-yellow-green gradient
+      card: a UFO mascot sits centred as "SEE YOU" builds on a cream highlight
+      chip, completing as "SEE YOU OUT THERE." with a lime second-line chip
+      (f1549-1577). Cut to black: the swirl mark icon rapid-cycles through 4
+      gradient colour pairings (orange/lime, lime/pink, pink/lavender,
+      white-outline-only), then shrinks to a single dot and fades to black.
+    moves:
+      - move: diagonalMarquee
+        target: tilted content grid
+        at_f: 0
+        params: {angle_deg: 15, x: [0, "-40%"], y: [0, "25%"], period_f: 34, ease: linear}
+      - move: hardCut
+        target: cut to "SEE YOU" card
+        at_f: 34
+        params: {}
+      - move: markerHighlightReveal
+        target: "\"SEE YOU\""
+        at_f: 38
+        params: {dur_f: 10, ease: backOut, highlight_color: "#F5F0E6"}
+      - move: markerHighlightReveal
+        target: "\"OUT THERE.\""
+        at_f: 48
+        params: {dur_f: 10, ease: backOut, highlight_color: "#D8D890", stagger_from_prev_f: 10}
+      - move: hardCut
+        target: cut to black, mark icon
+        at_f: 63
+        params: {}
+      - move: paletteCycle
+        target: mark icon
+        at_f: 63
+        params: {swap_every_f: 3, n_states: 4, ease: linear}
+      - move: scaleOut
+        target: mark icon shrinks to dot
+        at_f: 71
+        params: {scale: [1, 0.05], opacity: [1, 0], dur_f: 9, ease: expoIn}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow, filmGrain]
+    audio_cue: riser
+    transition_out: {move: dissolveBlur, params: {dur_f: 9}}
+    hold_f: 2
+
+techniques:
+  - id: swatch-conveyor-colour-catalogue
+    what: >
+      A horizontal belt of solid-colour panels, each labelled with its paint name
+      in bold upper-case type, with 2-3 panels visible at once; the belt slides
+      left continuously so a new named colour enters as the oldest exits, and the
+      whole system (9 colours) is shown in ~3.5 seconds.
+    where: shot 3, frames 192-301
+    why_it_reads: >
+      Naming every colour turns an abstract palette into a concrete, memorable
+      catalogue (like paint chips at a hardware store) — it sells "we thought
+      about every one of these colours" without needing 9 separate slides.
+    remotion_recipe: >
+      Absolutely-position N panels in a flex row inside a fixed-width viewport with
+      overflow:hidden. Drive the row's translateX with
+      -frame*slideSpeedPxPerFrame so it scrolls continuously (linear, like
+      marquee); each panel is a fixed-width div with background:swatchColor and a
+      centred label. No easing on the scroll itself — the "reveal" comes purely
+      from panels entering/exiting the viewport edge. Snap-hold on the last panel
+      by freezing translateX past a target frame.
+    difficulty: trivial
+
+  - id: grid-mosaic-billboard-reveal
+    what: >
+      Photo fragments from the preceding montage fly inward and lock into an
+      irregular, unequal-cell grid that reads as one finished ad graphic (logo
+      tile + tagline tile included); the camera then pulls back to reveal the
+      grid was actually a lit jumbotron above a real street, with a figure walking
+      beneath it.
+    where: shot 7, frames 673-782
+    why_it_reads: >
+      It answers "what does this rebrand look like in the world" in one motion —
+      the grid-assembly makes the graphic itself feel constructed from the brand's
+      real content, and the pull-back re-contextualises a flat graphic as an
+      environmental object, which is a stronger brand-in-context proof than any
+      static mockup.
+    remotion_recipe: >
+      Define a CSS grid with named, unequal track sizes (grid-template-columns/
+      rows with mixed fr values) matching the target poster's layout. Each tile is
+      a positioned img cropped via object-fit:cover; give each tile a random
+      off-grid starting transform (translate + slight rotate) seeded by its grid
+      index, and spring/expoOut it to translate:(0,0) rotate:0 with a per-tile
+      stagger (tile_stagger_f). Once settled, wrap the whole grid element in a
+      second container and animate that container's scale from 1.3 to 1
+      (pullOut) while compositing it onto a night-street photo/plate as a
+      billboard surface (perspective-corrected via a CSS 3D transform or a simple
+      skew if the billboard is near-frontal) — the "reveal" is just changing what
+      is drawn behind/around the same grid element.
+    difficulty: hard
+
+  - id: mask-is-the-logo-content-fill
+    what: >
+      The brand mark's exact silhouette is used as a fixed clip region; the
+      content visible inside that clip is not a solid fill but a looping
+      photo/collage texture, which then crossfades to a smooth two-tone gradient.
+      The shape itself never moves or morphs — only what's inside it changes.
+    where: shot 12, frames 929-949
+    why_it_reads: >
+      A recognisable logo shape filled with the brand's own photography reads as
+      "this mark contains everything the brand is" in a single glance — it's a
+      shape-driven mask where the mask is the subject, not a reveal device, which
+      is rare and reads immediately as more considered than a flat icon fill.
+    remotion_recipe: >
+      clip-path: path('...') or a CSS mask-image using an SVG of the mark
+      (mask-image: url(mark.svg); mask-size: contain; mask-repeat: no-repeat) on a
+      container. Inside that container, render a looping video/canvas of cropped
+      collage photography positioned with object-fit:cover — the mask hard-clips
+      it to the mark's exact swirl. To crossfade to a gradient, stack a second
+      absolutely-positioned div (background: linear-gradient(...)) with the same
+      mask-image applied, and animate its opacity 0->1 over crossfade_dur_f while
+      the photo layer's opacity goes 1->0. No morphing SVG path needed since the
+      mask geometry is constant — only the masked content changes.
+    difficulty: moderate
+
+  - id: outline-to-gradient-icon-fill
+    what: >
+      A line-art icon (stroke-only, no fill) slowly gains a smooth gradient fill
+      over an extended, deliberately slow duration (80f/~2.7s) rather than
+      snapping to colour — used back-to-back on two different mascot icons across
+      a single 185-frame shot.
+    where: shot 13, frames 989-1173
+    why_it_reads: >
+      Slowing the fill down past what feels "instant" makes an idle hold shot feel
+      intentional rather than static — it gives the eye a very low-amplitude event
+      to track for the full duration, satisfying the "nothing is ever still" rule
+      without adding a camera move.
+    remotion_recipe: >
+      Render the icon as an SVG with stroke set and fill:none initially. Overlay a
+      second identical SVG with the target gradient fill (fill: url(#grad)) and
+      animate its opacity from 0 to 1 across dur_f with an expoInOut interpolate —
+      cheaper and more reliable than trying to animate an SVG fill colour/gradient
+      stop directly. Keep the stroke layer visible throughout (opacity 1) so the
+      linework never disappears, only gains colour underneath it.
+    difficulty: trivial
+
+  - id: highlighter-chip-headline-build
+    what: >
+      Headline text builds one line at a time, each new line landing with a
+      solid-colour rectangular "highlighter" block sized tightly to that line's
+      text (not the whole card), using a different swatch colour per line, and
+      previous lines' chips stay visible as later lines are added.
+    where: shots 1, 5, 10, 18
+    why_it_reads: >
+      The highlight block does double duty as emphasis and as a second, hidden
+      colour-system showcase (every named swatch from shot 3 reappears here as a
+      text-highlight colour) — it reads as "considered graphic design" rather than
+      a plain text card, at zero extra production cost over a mask reveal.
+    remotion_recipe: >
+      Render each line as an inline-block span with a ::before-style absolutely
+      positioned block behind it sized to the span's measured offsetWidth/Height
+      plus a small padding. Animate the highlight block's scaleX from 0 to 1
+      (transform-origin: left) with backOut easing over dur_f, then crossfade the
+      text span's opacity in over the back half of the same window so the text
+      appears to be "revealed" by the highlighter sweeping under it. Stagger
+      additional lines by stagger_from_prev_f. This is a rectangular clip-reveal
+      variant already covered by maskWipeSide in spirit, but the highlight block
+      persists as visible colour after the reveal instead of disappearing.
+    difficulty: trivial
+
+  - id: diagonal-grid-scroll-library
+    what: >
+      A tilted (~15 degree) grid of many small content thumbnails fills the frame
+      and pans continuously along both axes, reading as a scrolling wall of a
+      content library/calendar rather than a single flat grid.
+    where: shot 18, frames 1515-1548
+    why_it_reads: >
+      The tilt plus diagonal pan direction (vs. a flat horizontal marquee) sells
+      "there is far more of this than fits on screen" — it implies volume and
+      variety of brand content in 1.1 seconds without needing to hold on any
+      single thumbnail long enough to be read.
+    remotion_recipe: >
+      Build the grid as a large absolutely-positioned CSS grid (many more cells
+      than fit in frame) inside a viewport with overflow:hidden and
+      transform:rotate(15deg) applied to the grid's parent container (not the
+      viewport, so edges stay hidden). Animate the grid's own translate(x, y)
+      linearly frame*speed on both axes simultaneously so the pan reads as
+      diagonal within the rotated frame. Repeat/tile the thumbnail set so the pan
+      can loop seamlessly if extended.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 18
+  median_shot_f: 78
+  fastest_f: 21
+  slowest_f: 194
+  pattern: >
+    58f text hook -> 133f logo/app reveal -> 171f colour-system reel -> two short
+    UI/tagline beats (33f, 83f) -> 194f rapid lifestyle montage (itself ~14
+    sub-10-30f cuts) -> 110f mosaic-to-billboard reveal -> a cluster of
+    short-to-medium capability beats (42f, 21f, 28f, 55f, 60f) -> the 185f longest
+    shot (idle icon colour-fill) -> three medium product/proof beats (99f, 91f,
+    91f) -> a short merch beat (60f) -> 73f outro (grid scroll -> tagline ->
+    logo colour-cycle-to-dot). Energy is a wave: quiet hook, a mid-film peak of
+    fast cuts through the montage and mosaic (shots 6-7), a deliberately slow
+    idle mid-point (shot 13), then a second smaller peak at the outro.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - >
+    Steal the swatch-conveyor (technique swatch-conveyor-colour-catalogue) for any
+    brand video that needs to show a colour system as a system — it's a scrolling
+    row of labelled divs, not a slideshow of colour cards.
+  - >
+    Use the mask-is-the-logo-content-fill technique whenever a static logo mark
+    needs to feel like it "contains" the brand's content — a constant clip-path
+    or mask-image with a swappable layer underneath, no path morphing required.
+  - >
+    Slow down an icon's colour fill deliberately (outline-to-gradient-icon-fill,
+    80f+) instead of snapping it, to give an otherwise-idle hold shot something to
+    track — cheaper than adding a camera move and reads as more considered.
+  - >
+    Reuse the same named colour swatches as both background fills AND
+    text-highlight chips throughout a video (highlighter-chip-headline-build) so
+    the palette reveal pays off again every time text appears.
+  - >
+    For a rebrand/relaunch reel, budget almost zero craft on stock B-roll cuts
+    (hardCut + a gentle pushIn is enough) and spend the entire effort budget on
+    system-level moments — colour catalogue, grid, mask, icon fills — since those
+    are what a viewer actually remembers.
+  - >
+    The grid-mosaic-to-billboard pull-back (grid-mosaic-billboard-reveal) is a
+    reusable two-step pattern for any "show the brand in the real world" beat:
+    assemble a graphic from fragments, then reveal it was already sitting inside
+    an environment.
+
+avoid:
+  - >
+    The 14-cut lifestyle montage (shot 6, frames 479-672) is licensed/shot stock
+    footage with no bespoke motion design beyond a hardCut and a 3% pushIn — do
+    not attempt to hand-recreate the photography or add per-cut flourishes; the
+    montage's value is its edit rhythm (one cut every ~10-30f), not any individual
+    frame.
+  - >
+    The grid-mosaic-to-billboard shot (shot 7) implies a perspective-corrected
+    composite of a flat grid onto a photographed street plate — this needs either
+    a pre-warped billboard plate or a real CSS 3D transform matched to the plate's
+    vanishing point; don't attempt freehand corner-pinning per frame.
+  - >
+    The mascot character animation (shot 16, fox-like figure kicking a ball) is a
+    pre-made illustrated asset composited over real footage and timed to a real
+    person's motion — treat it as a static/simple-transform overlay (scaleIn +
+    breathe), not something to rig and re-animate.
+  - >
+    The two colour-flash bursts inside shots 6 and 9 (4f each) are transition
+    punctuation, not content — budget them as a flashCut treatment layer on the
+    neighbouring shot, never as their own scene.
+
+new_moves:
+  - name: markerHighlightReveal
+    params: {dur_f: 9, ease: backOut, highlight_color: "#F0A8D8", stagger_from_prev_f: 9}
+    description: >
+      A line of text is revealed together with a solid-colour rectangular block
+      sized tightly to that line (like a highlighter marker), which scales in on
+      the x-axis from 0 to 1 (transform-origin: left) as the text crossfades in
+      over the back half of the same window. Multiple lines can stack, each on a
+      different highlight_color, with each new line's start offset by
+      stagger_from_prev_f from the previous line's start. Distinct from
+      maskWipeUp (no vertical translate, no overflow clip) and from maskWipeSide
+      (the highlight block persists as visible colour after the reveal instead of
+      disappearing).
+  - name: paletteCycle
+    params: {swap_every_f: 4, n_states: 6, ease: linear}
+    description: >
+      A single element (a logo, icon, or full-bleed background) cycles through
+      n_states discrete colour/bg pairings at a fixed rate of swap_every_f frames
+      per state, hard-cutting or very-short-crossfading between states. Used to
+      showcase a brand's colour system on one fixed shape rather than one flash
+      transition — the content of the cycle is the "reveal," not a device to get
+      to the next scene.
+  - name: swatchConveyor
+    params: {panel_w_pct: 33, slide_speed_px_f: 14, dur_f: 110, label_case: upper, ease: linear}
+    description: >
+      N solid-colour panels (each labelled with its colour name) sit in a
+      horizontal row inside a fixed-width, overflow-hidden viewport and scroll
+      continuously left at slide_speed_px_f pixels/frame, so 2-3 panels are
+      visible at any time and new ones enter as old ones exit. A named-colour
+      catalogue shown as a continuous belt rather than discrete cards.
+  - name: gridMosaicAssemble
+    params: {grid: "irregular 4x3", tile_stagger_f: 3, fly_from: scattered, dur_f: 34, ease: backOut}
+    description: >
+      Multiple image/colour tiles, each pre-assigned to a cell in an irregular
+      (unequal-size) CSS grid, start from randomised off-grid positions/rotations
+      and animate into their grid cell with a per-tile stagger, so the final grid
+      reads as one composed graphic rather than a slideshow. Distinct from
+      slideStackIn (which is a single-axis vertical stack) — tiles arrive from
+      scattered, per-tile-random origins into fixed 2D grid slots.
+  - name: logoMaskContentFill
+    params: {clip: mark-swirl-path, fill_content: photo-collage-loop, dur_f: 20, then_crossfade_to: gradient-fill, crossfade_dur_f: 14, ease: expoInOut}
+    description: >
+      A brand mark or icon's silhouette is used as a constant clip-path/mask-image
+      region. The content rendered inside that fixed clip (a looping photo
+      collage, a video, or a gradient) is swapped or crossfaded over time while
+      the mask geometry itself never changes shape. The mask is the subject, not
+      a wipe/reveal device — use whenever a logo needs to visually "contain" other
+      brand content.
+  - name: outlineColorFill
+    params: {dur_f: 80, ease: expoInOut, fill_from: outline, fill_to: "gradient(#F0A8D8,#D8F0D8)"}
+    description: >
+      A stroke-only line-art icon gains a solid or gradient fill by crossfading in
+      a second, fully-filled copy of the same SVG on top of the always-visible
+      stroke layer, over an intentionally slow dur_f (60-90f) so an otherwise
+      idle/hold shot has a continuous low-amplitude event to track.
+  - name: diagonalMarquee
+    params: {angle_deg: 15, x: [0, "-40%"], y: [0, "25%"], period_f: 34, ease: linear}
+    description: >
+      A large tiled grid of thumbnails, rotated angle_deg within its viewport,
+      pans linearly along both x and y simultaneously so the visible motion reads
+      as diagonal scrolling rather than a flat horizontal marquee. Used to imply a
+      large scrollable library/calendar of content in a short shot.
+
+convergence:
+  - >
+    Both this corpus's byshubh_ example (A_explainer-zhylar-crm-cpq) and this
+    evanplace reference budget short (<11f) colour/flash cuts as a flashCut
+    treatment layer on the neighbouring shot rather than as their own scene —
+    documented independently in both specs' detection_notes, suggesting this is a
+    genuine cross-designer convention, not house style.
+  - >
+    Both build a multi-clause headline progressively, one clause/line per
+    landing, held complete at the end, rather than typing it or revealing it in
+    one piece — zhylar's shot 3 uses maskWipeUp per word-group ("Keeps all" ->
+    "...your critical data"); evanplace's shots 1/5/10/18 use
+    markerHighlightReveal per line. Different mechanism, same structural pattern:
+    assemble the sentence in front of the viewer rather than presenting it whole.
+
+detection_notes: >
+  The analyzer's raw cut detector fired 64 shots at delta>26.0; most of these are
+  not standalone content beats. Merged into this spec's 18 shots as follows: (1)
+  frames 53-58 (6f flash) merged into shot 1 as its exit flashCut. (2) frames
+  59-84, 85-133, 134-191 merged into shot 2 — one continuous logo-reveal-to-phone
+  beat; the detector split it on the paletteCycle's fast internal colour swaps and
+  on the hard cut to the phone. (3) frames 192-237 through 342-362 (17 raw cuts)
+  merged into shot 3 — nearly all of these are individual swatch-conveyor slides
+  or individual paletteCycle states, i.e. sub-events of one continuous system
+  reveal, not separate scenes. (4) frames 396-435 and 436-478 merged into shot 5
+  — one two-beat tagline build split by the detector at the bg gradient hard cut.
+  (5) frames 479-672 (raw cuts 26-40, 15 shots) merged into shot 6 — each is a
+  genuinely distinct photo, but none carries any motion-design beyond a hardCut
+  and ambient pushIn, so they are modelled as one montage shot with an enumerated
+  hardCut sequence rather than 15 near-identical entries; the three 4f cuts at
+  632-643 are true flash punches folded into the sequence. (6) frames 673-724 and
+  725-782 merged into shot 7 (mosaic-assemble is inseparable from the billboard
+  pull-back it feeds into). (7) frames 783-824 (raw 43-47, including two 4f local
+  "text/counter" shots) merged into shot 8 — the local-motion flags are the
+  Instagram-story text swap, not a bug. (8) frames 825-873 (raw 48) split across
+  this spec's shots 9-10 at the visual scene change (tote bag -> text card) that
+  the single-shot detector missed. (9) frames 929-988 and 989-1173 kept as
+  separate shots 12-13 per the detector, since they are genuinely distinct scenes
+  (mark-mask-fill vs. idle icon holds). The 185f shot 13 (frames 989-1173)
+  corresponds to the profile's longest/subtlest entry and was verified against
+  the sheets to be a continuous slow colour-fill, not a frozen error — no frozen
+  stretch is flagged inside this range. (10) frames 1174-1198, 1199-1213,
+  1214-1272 merged into shot 14 (one onboarding-card-cascade beat). (11) frames
+  1273-1306 through 1323-1363 merged into shot 15 (one phone-in-hand
+  tickets-secured beat). (12) frames 1364-1367, 1368-1371, 1372-1454 merged into
+  shot 16 (two 4f flashes folding into the mascot-composite beat). (13) frames
+  1455-1458 (4f) merged into the start of shot 17. (14) frames 1459-1514 and
+  1515-1587 kept separate as shots 17-18 (merch photography vs. grid-scroll
+  outro), with the outro's internal sub-beats (grid scroll -> tagline ->
+  logo-cycle) enumerated as moves within shot 18 rather than split further. The
+  three profile-flagged frozen stretches (0-18f, 858-872f, 1345-1355f) all land
+  on intentional held text/UI states already described above (the hook's opening
+  black frame, the "WE'VE GOT WHAT YOU LIKE." hold, and a UI-card hold inside
+  shot 15) — none are bugs.

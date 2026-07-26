@@ -114,6 +114,38 @@ Composition problems invisible in motion are obvious in a still grid. Always loo
 - Master with **two-pass `loudnorm`, `linear=true`**. Single-pass applies dynamic
   gain and flattens a deliberate mix (measured: loudness range 14.9 → 3.4 LU).
 
+## Jitter → Remotion
+
+There is no official joint documentation, but the handoff works and is worth
+knowing: **Jitter exports Lottie**, and `@remotion/lottie` plays it. Verified
+end-to-end in `template/src/compositions/lottie-bridge.tsx`.
+
+The division of labour that makes it worth doing:
+
+- **Jitter** for fiddly hand-authored vector work — easing curves you want to feel
+  out by hand, shape animation, anything faster to drag than to type.
+- **Remotion** for everything Jitter cannot do: content driven by data, per-locale
+  copy, N variants from a spreadsheet, beat-locked sequencing against a real
+  track, and the analyzer feedback loop.
+
+Remotion **drives** the Lottie by frame rather than letting it run on its own
+clock, so the composite stays deterministic. Our own treatment stack (grain,
+gradient drift, vignette) composites over the imported asset normally.
+
+Caveats, in order of how often they bite:
+
+1. `@remotion/lottie` renders through lottie-web, so anything lottie-web does not
+   support will silently not appear — blend modes and some effects are the gaps.
+2. **Keep text in Remotion, not in the Lottie.** Lottie text depends on player
+   font handling and is the most common source of drift between the Jitter preview
+   and the render.
+3. **Match the frame rate.** A 60fps Jitter export inside a 30fps composition
+   plays at half speed unless you resample on export.
+
+The alternative bridge is transparent video — Jitter exports WebM and ProRes 4444
+with alpha (paid tiers) which Remotion composites via `<OffthreadVideo>`. Use it
+for anything Lottie cannot express; it costs resolution independence.
+
 ## Licensing
 
 - Music: check the tier. Free tiers almost never cover a company's launch video,

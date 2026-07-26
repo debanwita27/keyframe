@@ -1,0 +1,587 @@
+id: mthblt_B_after-an-amazing-4-years-at-apple-im-happy
+source: https://x.com/mthblt
+category: brand-loop
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 15.533
+  orientation: horizontal
+
+verdict: >
+  A farewell/portfolio reel built almost entirely from real Apple.com screen captures cut
+  on a fast beat grid, proving that scroll itself — not hand-keyframed animation — is the
+  camera move: pages crossfade imagery in place at fixed scroll checkpoints, and two
+  recurring icon-shape mask-scale transitions (a lightning bolt, a house) do the heavy
+  lifting of moving between chapters without a single wipe or dissolve.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#000000"
+  accent: "#4CFF3C"
+  support: ["#FF5A3C", "#FF9500", "#D83CA0", "#3C78D8"]
+  notes: >
+    Base chrome is neutral (near-white product pages, near-black immersive panels) —
+    #000000 28.8%, #D8D8D8 28.7%, #F0F0F0 23.0% of total screen time per the profile.
+    Unlike a single-accent brand film, each "chapter" gets its own accent tied to the
+    product being shown: red for AirPods Max editorial, green for the AirPods 3
+    fast-charge glyph, orange for the Home app glyph, magenta/blue for the AirPods 3
+    campaign photography, blue for the Vision Pro entertainment swirl. The accent never
+    mixes across a cut — one color owns one chapter, then is fully retired.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.4
+  notes: >
+    Apple's own site typography (SF Pro) throughout, untouched — this reel's craft is in
+    the edit and the transitions, not in custom type. Headline cards ("A higher
+    definition of TV", "and longer battery life that charges up in a snap.", "The
+    foundation for a smarter home.") run 1-2 lines, centered or left-aligned to match
+    the source page's own layout.
+
+structure:
+  - act: hook
+    t: [0.0, 3.57]
+    purpose: establish breadth — three flagship product pages (AirPods Max, Vision Pro) in one unbroken scroll-and-crossfade rhythm, bridged by a 3D icon-room vignette
+    shots: [1, 2, 3]
+  - act: capability
+    t: [3.6, 9.4]
+    purpose: show a real scroll-driven hero transition (Apple TV) then a high-energy tilted-grid campaign montage (AirPods 3) proving range across both restrained and maximalist site styles
+    shots: [4, 5, 6, 7, 8]
+  - act: reveal
+    t: [9.4, 12.5]
+    purpose: two icon-shape mask-scale transitions (bolt, house) used as the connective tissue between chapters — the signature move of this edit
+    shots: [9, 10, 11, 12]
+  - act: proof
+    t: [12.53, 14.9]
+    purpose: close on Vision Pro's most immersive material — face-lit-by-headset, then the ultimate-theater copy over ambient room footage
+    shots: [13]
+  - act: cta
+    t: [14.9, 15.533]
+    purpose: end on a tactile, personal note — a hand holding an iPad, dragging to orbit a 3D product render on its screen, video ends mid-gesture
+    shots: [13]
+
+shots:
+  - n: 1
+    t: [0.00, 1.30]
+    frames: [0, 38]
+    layout: full-bleed-ui
+    content: >
+      AirPods Max product page. f0-19: static hero, "AirPods Max" wordmark over the
+      product shot, nav bar visible top. f20-26: page content crossfades in place to an
+      editorial red diptych (arm raised against red ear-cushion macro) with no scroll
+      indicator movement — a scroll-linked image swap, not a slide. f27-31: crossfades
+      again to a dark teal-lit portrait of a woman wearing the headphones. f32-38:
+      crossfades to a black "Hear every detail" spec panel with an ear-cushion product
+      render and body copy.
+    moves:
+      - move: scrollLinkedCrossfade
+        target: hero_imagery_stack
+        at_f: 20
+        params: {swap_count: 3, hold_f: [7, 5, 6], crossfade_f: 4, ease: expoInOut, note: "each image swap coincides with a virtual scroll checkpoint; no imagery translates, only opacity-crossfades in place"}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 160, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [grainShift]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.30, 2.90]
+    frames: [39, 87]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to the Vision Pro product page — white hero with red "Watch the film /
+      Watch the event" links (f39-46). The page then runs the same scroll-linked
+      crossfade pattern as shot 1: a dark two-panel industrial-design detail spread
+      (f47-53), a side-profile photo of a person wearing the headset with body-copy
+      column (f54-61), an isolated product render with a "Take a closer look" CTA pill
+      (f62-72), and a dark "Revolutionary dual-chip performance" panel showing M2/R1 chip
+      graphics (f73-87).
+    moves:
+      - move: scrollLinkedCrossfade
+        target: hero_imagery_stack
+        at_f: 47
+        params: {swap_count: 4, hold_f: [7, 8, 11, 15], crossfade_f: 4, ease: expoInOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 160, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [grainShift]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 3
+    t: [2.93, 3.57]
+    frames: [88, 107]
+    layout: 3d-set
+    content: >
+      Cut to a fully 3D-rendered room (blurred furniture, warm practical lighting) with
+      a grid of macOS/iOS app icons (Safari, Photos, Notes, Messages, FaceTime, App
+      Store, Mail, Home) floating in mid-air at a shallow perspective tilt, each icon
+      lit and casting a soft shadow as if physically suspended. The icon cluster drifts
+      slowly diagonally across the frame.
+    moves:
+      - move: driftCamera
+        target: whole_comp
+        at_f: 0
+        params: {amp_pct: 1.2, period_f: 60, axes: xy, note: "faster and larger than the standard ambient drift — reads as a real slow pan across the room, not idle noise"}
+    camera: {move: driftCamera, params: {amp_pct: 1.2, period_f: 60, axes: xy}}
+    bg: {kind: 3d-set, moves: [parallaxLayers]}
+    treatment: [dropShadowSoft, filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 4
+    t: [3.60, 5.13]
+    frames: [108, 154]
+    layout: full-bleed-ui
+    content: >
+      Apple TV 4K product page. f108-121: static hero, black Apple TV box + Siri Remote
+      on white. f122-141: a pinned-scroll hero move — the row of streaming-service app
+      icons (Apple TV, Disney+, Music, a fourth partly cropped) translates upward and
+      off the top of the viewport past the nav bar, while the headline "A higher
+      definition of TV" translates up from below into the vacated space beneath the
+      product shot, which itself settles slightly smaller. f143-154: hold on the settled
+      layout before the cut.
+    moves:
+      - move: scrollPinnedSwap
+        target: icon_row_and_headline
+        at_f: 122
+        params: {icon_row_translateY_px: [0, -180], headline_translateY_px: [40, 0], dur_f: 23, ease: expoInOut, peak_velocity_at_pct: 0.35, note: "velocity peaks at f123-125, ~35% into the move, per motion.csv — classic ease-in-out scroll settle, not linear"}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [grainShift]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 5
+    t: [5.17, 5.37]
+    frames: [155, 161]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to an Apple TV+ promo card — "Beastie Boys Story" title treatment in bold
+      condensed type over a black-and-white photo of the pair mid-jump. Undetected by
+      the automated cut-finder as a distinct shot (folded into raw shot 12); confirmed as
+      a real cut by the sheet grid — different product, different page chrome.
+    moves:
+      - move: scaleIn
+        target: title_card
+        at_f: 155
+        params: {scale: [0.96, 1], opacity: [0, 1], dur_f: 6, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain, vignette]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 6
+    t: [5.40, 5.97]
+    frames: [162, 178]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to macro product photography of AirPods (regular, wired-look stem) —
+      three consecutive extreme close-ups of the earbud silhouette and mesh grille
+      against white, each held ~5-6f, reading as a rapid-fire product-beauty sequence
+      rather than a page.
+    moves:
+      - move: unblurIn
+        target: airpod_macro
+        at_f: 162
+        params: {blur_px: [10, 0], scale: [1.03, 1], dur_f: 8, ease: expoOut, stagger_f: 6, repeat: 3}
+    camera: {move: driftCamera, params: {amp_pct: 0.6, period_f: 40, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 7
+    t: [5.97, 6.90]
+    frames: [179, 206]
+    layout: full-bleed-ui
+    content: >
+      Cut to the AirPods (3rd generation) hero page (white, "AirPods / All-new with
+      spatial audio"), which crossfades to a full-bleed "It's magic, remastered."
+      spatial-audio graphic — thin concentric ring doodles scattered at three corners,
+      slowly rotating/drifting to sell "sound in space."
+    moves:
+      - move: scrollLinkedCrossfade
+        target: hero_imagery_stack
+        at_f: 202
+        params: {swap_count: 1, crossfade_f: 5, ease: expoInOut}
+      - move: orbitRing
+        target: spatial_audio_doodles
+        at_f: 202
+        params: {rotate_deg: [0, 20], period_f: 300, children_counter_rotate: false}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [grainShift]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 8
+    t: [6.90, 9.40]
+    frames: [207, 281]
+    layout: 3d-set
+    content: >
+      The longest and hottest-energy shot in the edit (75f, "hot" per the analyzer). A
+      wall of tilted iPhone mockups (~15-20° perspective skew) and thin ring-doodle
+      graphics fills the frame, showing the AirPods-3 campaign creative ("Sprinkles? No
+      sweat." / "Bass hits an all-time high." / "It shrugs off sweat and sprinkles,")
+      alongside a dancer's silhouette lit magenta and blue. The whole tilted grid pans
+      diagonally as if craning across a wall of screens, tightening progressively toward
+      a single phone before punching into an isolated AirPod-stem macro, then a giant
+      numeral "9" fills the frame edge-to-edge as a battery-hours stat card, then two
+      more AirPods-case macro shots close the sequence.
+    moves:
+      - move: parallaxLayers
+        target: phone_wall
+        at_f: 0
+        params: {depth: [0.3, 0.6, 1.0], amp_px: 40, note: "grid pans diagonally across ~75f, tightening in scale from 1.0 to ~1.35 by the final frame"}
+      - move: popIn
+        target: numeral_9_card
+        at_f: 65
+        params: {scale: [0, 1.06, 1], dur_f: 9, ease: springSnap}
+    camera: {move: dollyToUI, params: {scale: [1, 1.35], ease: expoInOut, dur_f: 75}}
+    bg: {kind: 3d-set, moves: [parallaxLayers]}
+    treatment: [chromaticEdge, filmGrain, vignette]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 9
+    t: [9.40, 10.43]
+    frames: [282, 313]
+    layout: centre-stack
+    content: >
+      Still on the AirPods (3rd gen) page. A small green lightning-bolt glyph (the
+      fast-charge icon) sits centered on the grey product-page background, then scales
+      up continuously — slowly at first, then accelerating sharply — until its silhouette
+      exceeds the frame bounds and the visible area is entirely filled with the bolt's
+      flat green fill color. Per motion.csv the delta stays under 0.2 for the first ~15f
+      (imperceptible growth) then climbs steadily from f298 (0.56) to f312 (1.23) before
+      a hard spike at f313 (27.6) marking the moment the shape's edge crosses out of
+      frame — textbook expoIn (slow-then-fast) scale curve.
+    moves:
+      - move: iconMaskScale
+        target: fast_charge_bolt_icon
+        at_f: 282
+        params: {scale: [1, 55], transform_origin: center, dur_f: 31, ease: expoIn, fill_color: "#4CFF3C"}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow]
+    audio_cue: riser
+    transition_out: {move: morphShape, params: {dur_f: 5}}
+    hold_f: 0
+
+  - n: 10
+    t: [10.47, 11.10]
+    frames: [314, 333]
+    layout: full-bleed-ui
+    content: >
+      The green fill from shot 9 explodes into the bolt's internal diagonal linework
+      rendered as a radiating stripe pattern (green-on-black, ~6 parallel diagonal bands
+      per corner, converging toward center like light rays) — this is the same glyph's
+      outline, now used as a background texture rather than a mask. Headline "and longer
+      battery life that charges up in a snap." fades in centered over the pattern and
+      holds for ~10f, then a hard cut to a single dancer-silhouette card (magenta bg).
+      Raw auto-detected shots 16/17/18 merged here — the 5f and 5f "local" sub-cuts are
+      the stripe pattern settling and the text fade-in, not separate camera events.
+    moves:
+      - move: maskWipeSide
+        target: stripe_pattern
+        at_f: 314
+        params: {dur_f: 4, dir: center-out, ease: expoOut, note: "pattern radiates outward from center in ~4f, not a literal side wipe — closest vocab match"}
+      - move: staggerRise
+        target: headline_text
+        at_f: 318
+        params: {y: [12, 0], opacity: [0, 1], dur_f: 8, stagger_f: 0, ease: springSoft}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: flat, moves: [gradientDrift]}
+    treatment: [bloomGlow, chromaticEdge]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 11
+    t: [11.13, 11.40]
+    frames: [334, 341]
+    layout: split
+    content: >
+      Two more dancer-silhouette campaign cards side by side (orange/magenta duo, then a
+      blue-tinted single figure) — quick beats extending the AirPods-3 campaign montage
+      before the chapter turns over to Home app.
+    moves:
+      - move: flyOut
+        target: dancer_card_pair
+        at_f: 334
+        params: {y: [0, -20], opacity: [1, 0], stagger_f: 3, ease: expoIn, dur_f: 6}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 60, axes: x}}
+    bg: {kind: flat, moves: []}
+    treatment: [chromaticEdge]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 12
+    t: [11.40, 12.53]
+    frames: [342, 375]
+    layout: centre-stack
+    content: >
+      A second, slower instance of the same icon-mask-scale move: an orange house glyph
+      (the Home app icon) scales up from icon-size to fill the frame, this time with a
+      visible mid-transition wobble (motion.csv peaks at 16.4 around f352 before
+      continuing to climb) rather than one clean acceleration — reads as the icon
+      "landing" with a small overshoot partway through the scale-up. It resolves into the
+      Home app product page: "The foundation for a smarter home." headline with a row of
+      device mockups (iPhone/iPad/HomePod) sliding up into place beneath it.
+    moves:
+      - move: iconMaskScale
+        target: home_app_icon
+        at_f: 342
+        params: {scale: [1, 60], transform_origin: center, dur_f: 30, ease: expoInOut, fill_color: "#FF9500", overshoot_pct: 4, note: "unlike shot 9's clean expoIn, this pass shows a mid-curve settle/overshoot before continuing to grow — the two instances are not identical presets"}
+      - move: slideStackIn
+        target: device_mockup_row
+        at_f: 366
+        params: {y: [40, 0], stagger_f: 3, z_offset_px: 6, ease: springSoft, dur_f: 14}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 13
+    t: [12.53, 15.533]
+    frames: [376, 464]
+    layout: full-bleed-ui
+    content: >
+      Closing Vision Pro sequence. f376-391: a person's face lit only by the headset's
+      external display in a dark room. f392-417: crossfades to "Entertainment / The
+      ultimate theater. Wherever you are." copy over a dim, blurred living-room video
+      with a blue holographic swirl accent sweeping across it. f418-436: cuts to the
+      Vision Pro webpage proper — side-profile product photo, "Head Band" strap-fit copy.
+      f437-464: cuts to a hand holding an iPad in portrait, itself displaying the Vision
+      Pro configurator page (a browser-chrome header visible on the iPad's own screen —
+      device-within-a-device framing); a thumb drags across the iPad's screen to orbit a
+      3D render of the Vision Pro headset through several angles as the video ends
+      mid-gesture, unresolved.
+    moves:
+      - move: scrollLinkedCrossfade
+        target: vision_pro_closing_stack
+        at_f: 392
+        params: {swap_count: 2, crossfade_f: 6, ease: expoInOut}
+      - move: dragOrbit3D
+        target: headset_3d_render_on_ipad
+        at_f: 437
+        params: {rotateY_deg: [0, 140], perspective_px: 900, dur_f: 27, ease: linear, driven_by: simulated_pointer_drag, note: "orbit rate is uneven/hand-driven, not a clean easing curve — jitter matches a real drag gesture"}
+    camera: {move: rackFocus, params: {blur front layer: 0, note: "n/a - see techniques"}, }
+    bg: {kind: blurred-ui, moves: [driftCamera]}
+    treatment: [dropShadowSoft, vignette, filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+detection_notes: >
+  Automated detector found 24 cuts; this spec consolidates to 13 shots. Merges (false
+  positives — same page, scroll-linked crossfade not a real cut): raw shots 1+2+3
+  (f0-38) → shot 1; raw shots 4+5+6+7+8 (f39-87) → shot 2; raw shots 10+11 (f108-154) →
+  shot 4; raw shots 16+17+18 (f314-333) → shot 10; raw shots 21+22+23+24 (f376-464) →
+  shot 13. One correction in the other direction — an under-detected cut: raw shot 12
+  (f155-178, reported as one 24f shot) actually contains two distinct pages ("Beastie
+  Boys Story" promo card f155-161, then AirPods macro photography f162-178) with no
+  qualifying luma delta between them because both are high-contrast black/white
+  compositions; split into shots 5 and 6.
+
+techniques:
+  - id: icon-shape-mask-scale-transition
+    what: >
+      A flat, small UI/app icon (a lightning bolt, a house) sitting on its normal page
+      background scales up around its own center — not the whole page, just the icon —
+      until its silhouette exceeds the viewport, at which point only its fill color is
+      visible full-bleed. The icon's shape briefly IS the mask: everything outside its
+      outline is still the old page for the first portion of the move, and only the
+      icon's fill is visible once it has grown past frame edges.
+    where: shots 9 and 12 (bolt f282-313, house f342-375)
+    why_it_reads: >
+      Because the icon is already legible brand iconography from the page you were just
+      looking at, growing it into a full-bleed color card feels like "zooming into the
+      meaning of the icon" rather than an arbitrary wipe — the transition is motivated by
+      content, not decoration. Using it twice with different easing (clean expoIn for the
+      bolt, an overshoot-then-continue curve for the house) confirms it's a reusable
+      template, not a one-off effect.
+    remotion_recipe: >
+      Render the icon as an inline SVG (not a raster PNG) so its path can be used as a
+      CSS clip-path or SVG <clipPath>. Animate a single `scale` transform on a wrapper
+      div containing the SVG, transform-origin at the icon's visual center, from scale(1)
+      to a large value (40-60x, enough that the shape's outline crosses every viewport
+      edge well before scale completes) driven by an expoIn (or expoInOut with a
+      deliberate mid-curve dip, per shot 12) easing over ~30f. Do NOT crossfade a second
+      "filled" layer on top — the illusion depends on the SAME element's fill simply
+      exceeding the frame, so the fill color is on the icon shape itself from frame 0.
+      Cut to the next scene the instant the shape's bounding box fully covers the
+      viewport (verify per-frame, don't hardcode a duration that might undershoot at
+      different aspect ratios).
+    difficulty: moderate
+
+  - id: scroll-linked-imagery-crossfade
+    what: >
+      Across every real Apple.com page capture in this reel (AirPods Max, Vision Pro,
+      AirPods 3), the "scroll" is not a translating camera — it is a sequence of hero
+      images crossfading in place at fixed scroll checkpoints while the page chrome
+      (nav bar) stays static. Each image holds 5-15f, crossfades over ~4-6f, and the
+      layout never moves.
+    where: shots 1, 2, 7, 13
+    why_it_reads: >
+      It reproduces exactly how Apple's own scroll-jacked product pages behave (pinned
+      section, content swaps as you scroll past breakpoints) so the reel reads as
+      authentic screen capture rather than an edited slideshow, even though structurally
+      it is one.
+    remotion_recipe: >
+      Stack N absolutely-positioned image/content layers in one container. Drive a
+      single discrete `activeIndex` off frame number (or off a virtual scrollY value if
+      you want the metaphor literal), and crossfade opacity between activeIndex and
+      activeIndex+1 over a fixed 4-6f window centered on each checkpoint frame — plain
+      opacity crossfade, no transform on the images themselves. This is the one
+      legitimate case in the whole vocabulary where "opacity animates alone" is
+      acceptable, because the page chrome around it is static and unmoving, giving the
+      opacity change a fixed frame of reference.
+    difficulty: trivial
+
+  - id: pinned-scroll-hero-swap
+    what: >
+      The Apple TV hero: a row of app icons translates straight up and off the top of
+      the viewport (past the nav bar) while the headline copy translates up from below
+      into the space the icons vacated, and the product shot beneath settles to a
+      slightly smaller scale. Motion.csv shows the velocity peaking at f123-125 (~35%
+      into a 23f window starting f118), i.e. an ease-in-out curve, not linear.
+    where: shot 4, frames 118-141
+    why_it_reads: >
+      This is the one moment in the reel where scroll genuinely reads as a camera move
+      rather than a crossfade — two layers translate on independent but synchronized
+      paths, which is exactly what a real pinned-scroll hero does, and reproducing the
+      eased velocity (not linear) is what sells it as intentional rather than a
+      scrollbar drag.
+    remotion_recipe: >
+      Two absolutely-positioned layers (icon row, headline block) inside one pinned
+      section. Drive both off the same progress value p (0-1, expoInOut, 23f): icon row
+      `translateY: interp(p, [0,1], [0,-180])`, headline `translateY: interp(p, [0,1],
+      [40,0])` + `opacity: interp(p, [0,0.4], [0,1])`. Use the SAME progress value and
+      SAME easing curve for both layers so they feel physically linked to one scroll
+      gesture rather than two separate animations that happen to run concurrently.
+    difficulty: trivial
+
+  - id: device-within-device-orbit
+    what: >
+      The closing shot frames a hand holding an iPad in portrait; the iPad's own screen
+      shows a website (Vision Pro's product configurator, complete with its own browser
+      chrome), and a thumb visibly drags across that inner screen to orbit a 3D product
+      render through ~140° of rotation before the video ends mid-gesture.
+    where: shot 13, frames 437-464
+    why_it_reads: >
+      Nesting a screen inside a screen, held by a visible hand, makes the whole reel's
+      preceding full-bleed captures retroactively feel like "a website, being used by a
+      person" rather than abstract motion graphics — it's the one shot that breaks the
+      full-bleed convention on purpose, and doing it last makes it the takeaway image.
+    remotion_recipe: >
+      Composite: (1) a locked photo/video plate of a hand holding an iPad frame at a
+      fixed angle (~8° from vertical) with a soft ambient shadow under the device; (2)
+      the "inner screen" content rendered separately and warped/positioned via a CSS 3D
+      transform or a perspective homography to sit exactly inside the iPad's screen
+      bezel in the plate. Drive the 3D product render's rotateY with a slightly jittery,
+      non-eased (near-linear but with small random-walk perturbation seeded from frame
+      index, NOT Math.random()) curve to simulate an uneven hand-drag rather than a
+      programmatic easing — the imperfection is what sells "someone is actually touching
+      this."
+    difficulty: hard
+
+rhythm:
+  cut_count: 13
+  median_shot_f: 33
+  fastest_f: 7
+  slowest_f: 75
+  pattern: >
+    two long scroll-and-crossfade page reads (58f, 49f) → a short 3D-room bridge (20f) →
+    one genuine scroll-camera hero (47f) → two rapid-fire product beats (7f, 17f) →
+    a hero+graphic page (28f) → the single longest, hottest-energy shot in the edit, a
+    tilted-grid campaign montage (75f) → two icon-mask-scale reveal beats (32f, 8f, 34f)
+    → a long closing Vision Pro sequence that ends unresolved mid-gesture (88f).
+  beat_grid_f: 0
+  energy_curve: rising
+
+transferable:
+  - Use an icon's own SVG path as the mask/subject of a scale transition between chapters
+    instead of a generic wipe — scale it from icon-size to 40-60x around its own center
+    so its fill becomes the next scene's full-bleed background color.
+  - Reproduce a real product page's scroll behavior as opacity-crossfading stacked
+    layers with a static nav chrome, not as a sliding/translating camera — this is the
+    one place a bare opacity crossfade is earned.
+  - When you do need scroll to read as a literal camera move (not a crossfade), drive
+    two or more layers off one shared progress value and one shared easing curve so they
+    feel physically linked, not independently animated.
+  - Vary the easing signature of a repeated signature move (clean expoIn vs. an
+    overshoot-then-continue curve) between its two uses in an edit so a recurring
+    technique doesn't read as a copy-pasted preset.
+  - Close a reel on an unresolved gesture (a drag mid-rotation) rather than a settled
+    hold — it reads as "keep imagining this" rather than "the end."
+  - Let each chapter fully own one accent color and retire it completely at the cut —
+    never blend two chapters' accents across a transition.
+
+avoid:
+  - Hand-animating the icon-to-fullscreen transition as two separate elements (an icon
+    that fades out, a color card that fades in); it must be one scaling element so the
+    edge-crossing-frame moment happens for free, at whatever point the math produces it.
+  - Treating the 75f tilted-grid montage shot as one hand-tuned After Effects camera
+    move; build it as a 3D-transformed grid of planes with a single shared
+    perspective/rotation driven by one progress value, same principle as the isometric
+    dashboard technique in the byshubh_ corpus.
+  - Simulating the iPad-drag rotation with a clean spring or bezier; a real hand-drag has
+    uneven velocity, and a mathematically smooth curve there reads as fake immediately.
+
+new_moves:
+  - name: iconMaskScale
+    params: {scale: [1, 55], transform_origin: center, dur_f: 30, ease: expoIn, fill_color: "#hex", overshoot_pct: 0}
+    description: >
+      A single flat icon (rendered as SVG so its outline is a true path, not a raster)
+      scales up around its own center from its normal in-page size to 40-60x, so its
+      silhouette exceeds the viewport bounds partway through the move. The icon's fill
+      color becomes the full-bleed background of the next beat the instant its edges
+      cross the frame. No separate crossfade layer — the mask IS the icon.
+  - name: scrollLinkedCrossfade
+    params: {swap_count: 3, hold_f: [8, 8, 8], crossfade_f: 5, ease: expoInOut}
+    description: >
+      A stack of absolutely-positioned hero images/content blocks inside one static-chrome
+      page section, crossfading opacity between adjacent layers at fixed intervals to
+      simulate a scroll-jacked pinned section, with no layer translating.
+  - name: scrollPinnedSwap
+    params: {icon_row_translateY_px: [0, -180], headline_translateY_px: [40, 0], dur_f: 23, ease: expoInOut, peak_velocity_at_pct: 0.35}
+    description: >
+      Two (or more) layers within a pinned scroll section translate on independent paths
+      driven by one shared progress value and easing curve — one element exits (e.g.
+      upward, off-frame) while another enters into the vacated space — reproducing a real
+      website's scroll-triggered hero handoff.
+  - name: dragOrbit3D
+    params: {rotateY_deg: [0, 140], perspective_px: 900, dur_f: 27, ease: linear, driven_by: simulated_pointer_drag}
+    description: >
+      A 3D object's rotateY is driven by a near-linear but frame-seeded, slightly
+      irregular curve (not a clean bezier/spring) to simulate a human dragging a pointer
+      across a touchscreen to orbit a product render — the imperfection is the point.
+
+convergence:
+  - technique: dropShadowSoft on floating/macro product shots (shots 6, 13)
+    matches: the byshubh_ corpus's standard `dropShadowSoft` treatment on any floating UI
+    confidence: high — identical treatment-layer usage (0 18px 48px rgba(0,0,0,0.18)-class shadow) on isolated product renders
+  - technique: staggerRise-style headline entrance under the battery-life card (shot 10)
+    matches: byshubh_'s `staggerRise` (y+opacity, springSoft) used for text-over-graphic cards
+    confidence: medium — the vertical translate-and-fade signature matches, though this reference's version has no blur component
+  - technique: slideStackIn on the Home app device-mockup row (shot 12)
+    matches: byshubh_'s `slideStackIn` used for stacked UI/card layers (see A_not-your-average-ui-animation.yaml's card_grid_cards_1_2)
+    confidence: medium — same y-translate-with-stagger-and-z-offset shape, applied to device mockups instead of stat cards

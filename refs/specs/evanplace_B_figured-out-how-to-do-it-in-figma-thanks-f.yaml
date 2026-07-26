@@ -1,0 +1,173 @@
+id: evanplace_B_figured-out-how-to-do-it-in-figma-thanks-f
+source: "unknown (X/Twitter post by @evanplace, caption references figuring the technique out in Figma; folder name preserves the original post's caption text)"
+category: brand-loop
+product_type: brand-only
+
+format:
+  aspect: "1:1"
+  fps: 30.0
+  duration_s: 6.0
+  orientation: square
+
+verdict: >
+  A photoreal flocked/fuzzy 3D fruit-character mascot sits perfectly still
+  while a matching fuzzy green "spike" erupts from behind it and grows
+  continuously toward the upper-right corner for the entire 6-second clip --
+  the growing shape itself is the only motion and the only subject. The
+  reusable idea is a single directional mask whose length is the whole
+  animation; everything else in frame never moves.
+
+detection_notes: >
+  profile.md's shot detector reports a single shot (0-179f, no luma-delta cut
+  above 26.0) -- zero cuts, one continuous take. The analyzer classifies the
+  velocity profile as "linear/constant velocity" and the motion centre as
+  "right-top," both of which match the sheets directly: the fuzzy spike is
+  the only thing that changes frame to frame, it grows at a visually
+  consistent rate the whole clip (sheet_01: barely a nub at f7, reaching the
+  frame's upper-right corner by f27, still lengthening at f177), and its
+  growth axis points up and to the right. Only 3/179 frames register as
+  frozen on all three motion scales, meaning the growth truly never pauses.
+  There is exactly one shot; no merges needed.
+
+palette:
+  bg: "#787878"
+  ink: "#609018"
+  accent: "#F0703C"
+  support: ["#304800", "#609030", "#304818", "#789060", "#306000"]
+  notes: >
+    Flat mid-grey studio background (52% screen share) frames a saturated
+    green flocked-fur character and its growing green fur "spike" (the
+    #609018/#304800 family covers nearly all remaining screen share). The
+    only non-green, non-grey color is the small orange-and-white produce
+    sticker on the character's cheek (under 1% screen share, not large
+    enough to register in the top palette rows) -- the accent is rationed to
+    a single tiny badge.
+
+typography:
+  family_look: "rounded sans (sticker numeral only)"
+  weights: [bold]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.03
+  notes: >
+    The only text in the piece is "#404" in a small bold rounded sans, set
+    inside an orange-and-white oval produce-sticker badge on the character's
+    cheek, alongside a tiny mini-apple icon. It never moves or changes.
+
+structure:
+  - act: hook
+    t: [0.00, 0.90]
+    purpose: establish the static, cute mascot character before the growth becomes noticeable.
+    shots: [1]
+  - act: capability
+    t: [0.90, 6.00]
+    purpose: demonstrate a continuously growing fuzzy material spike as the sole, sustained visual event of the loop.
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 5.90]
+    frames: [0, 177]
+    layout: centre-stack
+    content: >
+      A fuzzy, flocked-texture 3D-rendered green fruit/produce mascot with
+      cartoon googly eyes, a stem and leaf, and a small orange "#404" produce
+      sticker on its cheek, floats centred against a flat mid-grey backdrop.
+      From behind its top, a matching fuzzy green spike erupts and
+      continuously elongates diagonally toward the upper-right, starting as a
+      barely-visible nub at frame 7 and extending off-frame by the shot's end
+      -- the character's face and body never move or change across any
+      sampled frame.
+    moves:
+      - move: growMask
+        target: furSpike
+        at_f: 0
+        params: {length: "2%->140%", angle_deg: 38, dur_f: 177, ease: linear}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 0
+
+techniques:
+  - id: directional-growing-fur-spike-mask
+    what: >
+      A single long, thin, organic-edged shape (a "spike"/plume) grows in
+      length along a fixed diagonal axis for the entire shot, revealing more
+      of a noise-textured flocked-fur fill as it extends. The mask's length
+      is the entire visible motion of the piece.
+    where: shot 1, full 177f runtime
+    why_it_reads: >
+      Because the growth never eases or pauses and the character underneath
+      never moves, all of the viewer's attention is funneled onto one simple,
+      continuously-changing shape -- an efficient way to make a static hero
+      asset feel alive without animating the asset itself.
+    remotion_recipe: >
+      This is the reference the source caption calls out as "figured out how
+      to do it in Figma" -- almost certainly built by masking/duplicating a
+      pre-rendered 3D flocked-fur pass (from a fur/particle-capable renderer)
+      inside Figma's prototyping or Smart Animate tooling, not with any
+      procedural code. The code-native substitute: 1) procedurally generate a
+      seamless "flocked noise" texture (a canvas of small green dots at
+      randomized positions/sizes, seeded from particle index, not frame, so
+      it never flickers); 2) clip that texture to a single growing SVG path
+      (a bezier "spike" polygon whose control points scale outward from a
+      fixed origin on the character's silhouette as a function of frame) so
+      the growth is one parametric length value driven by useCurrentFrame();
+      3) add a small procedural jitter on the path's control points (a
+      low-amplitude sine perturbation, 1-2% of shape size) so the growth
+      reads as organic rather than a rigid scale transform.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 177
+  fastest_f: 177
+  slowest_f: 177
+  pattern: >
+    One continuous 177f shot: a static hero character with a single
+    continuously growing directional mask as the entire animated event. No
+    cuts, no secondary beats.
+  beat_grid_f: none
+  energy_curve: flat
+
+transferable:
+  - Animate exactly one simple growing shape against an otherwise perfectly
+    static hero asset -- constraining the motion budget to a single element
+    makes even a plain linear growth read as deliberate rather than
+    unfinished.
+  - >
+    Treat a noise/flock texture as a maskable fill -- clip a procedurally
+    generated dot-noise pattern to a growing path instead of trying to
+    animate hundreds of individual "fur" particles.
+  - Anchor a growth axis diagonally toward a frame corner (here upper-right)
+    rather than straight up/down/sideways -- it reads as more dynamic and
+    leaves the character's face fully unobstructed.
+  - Ration a brand/identity accent (the "#404" sticker) to a single tiny,
+    completely static badge inside an otherwise fully animated composition.
+
+avoid:
+  - This exact effect is a design-tool-native technique, not a code
+    technique -- do not attempt to hand-keyframe fur growth frame by frame in
+    a code pipeline the way it was likely built in Figma. The code-native
+    substitute is one parametric growing clip-path over a procedurally
+    generated (not hand-placed) noise texture, described above.
+  - The true photoreal flocked/velvet shading (individual-fiber highlight and
+    shadow falloff visible in keys/00_f81.png) needs a real fur/hair renderer
+    or a pre-baked normal+noise texture map -- a flat 2D noise-dot canvas
+    texture is the acceptable lower-fidelity code substitute, not a full
+    fur simulation; flag any request for literal photoreal parity as
+    needing an offline 3D render pass, not a Remotion-native technique.
+  - The growth is measured as strictly linear/constant-velocity by the
+    motion analyzer, which technically violates the "nothing is linear"
+    principle -- when reproducing in code, prefer a very gentle easeInOut or
+    a barely-perceptible sinusoidal rate variation so the growth still reads
+    as organic and continuous without being mechanically constant-velocity.
+
+convergence:
+  - >
+    No confident match was found in the single available @byshubh_ example
+    spec (B_chromatic-logo-2d3d.yaml) -- that reference's material/mask work
+    is CG chrome and vector guide-lines, not a noise-textured growth mask, so
+    no convergence is claimed here.

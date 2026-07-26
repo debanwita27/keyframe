@@ -1,0 +1,1274 @@
+id: mthblt_B_jitter-2024-powered-by-jittervideo-magic
+source: https://x.com/mthblt/status/jitter-2024-powered-by-jittervideo-magic
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:10"
+  fps: 30
+  duration_s: 33.4
+  orientation: horizontal
+
+verdict: >
+  A 43-cut, 1000-frame product reel that never lets a capability sit still for more than
+  ~1.3s: every UI feature (curved paths, easing curves, gradients, keyframe scrubbing) is
+  demonstrated by making the ON-SCREEN WORD PERFORM ITS OWN EFFECT, and every scene
+  transition is a genuine masking trick (blob wipe, venetian-blind strips, bubble pop, paper
+  fold) rather than a hard cut or cross-dissolve. It is the strongest shape-masking and
+  self-demonstrating-typography reference in the batch.
+
+palette:
+  bg: "#000000"
+  ink: "#F0F0F0"
+  accent: "#29A9FF"
+  support: ["#6E4FFF", "#D8D8D8", "#90C0D8"]
+  notes: >
+    Scene backgrounds alternate hard between pure black (transitions, outro) and flat
+    light-gray/white UI-panel cards (#F0F0F0/#D8D8D8) — almost no mid-gray. Jitter's brand
+    blue #29A9FF (read directly off the on-screen color-picker swatch) is the single
+    recurring accent across UI chrome, badges and the curved-path scene. Purple
+    (#6E4FFF-ish) is reserved for two beats only — the "New" feature badge and the
+    Product-Hunt "Design tool of the year" award scene — a textbook accent-rationing case.
+    The final CTA pill breaks the whole-video palette rule on purpose: it cycles
+    green→yellow→pink→purple→blue as a one-time "look how many colors this tool can do"
+    flourish on the very last shot.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: mixed
+  tracking: tight
+  headline_frame_share: 0.5
+  notes: >
+    Two lines max, e.g. "Motion design / made simple", "Curved / paths". Scream-case
+    (SWOOSH, POP, BLUR, MOOOOOOOOOOOOTH) is reserved for the outro capability names that
+    perform their own effect — normal headlines stay sentence/mixed case.
+
+structure:
+  - act: hook
+    t: [0.0, 1.53]
+    purpose: brand-mark open, memoji avatar goes "live" to establish this is a real-time collaborative tool
+    shots: [1, 2, 3, 4]
+  - act: capability
+    t: [1.53, 9.97]
+    purpose: rapid-fire feature demos — import, text presets, style swap, live collaboration cards, award badge
+    shots: [5, 6, 7, 8, 9, 10]
+  - act: capability
+    t: [6.93, 11.17]
+    purpose: motion-editor internals — easing curve library, elastic spring stretch, bezier graph draw-on
+    shots: [11, 12, 13, 14]
+  - act: capability
+    t: [9.07, 16.83]
+    purpose: template gallery, masked reveals, and a folder/collaboration workflow
+    shots: [15, 16, 17, 18, 19, 20, 21]
+  - act: capability
+    t: [15.77, 24.97]
+    purpose: sharing, boomerang effect, Figma-Jitter integration lockup, teams feature, awards title
+    shots: [22, 23, 24, 25, 26, 27]
+  - act: capability
+    t: [24.97, 29.63]
+    purpose: curved-path animation feature, color/gradient editor, keyframe percentage scrubber, mobile stat card
+    shots: [28, 29, 30, 31, 32]
+  - act: cta
+    t: [29.63, 33.4]
+    purpose: capability names literally perform their own preset (Swoosh/Pop/Blur), then hold on the URL
+    shots: [33, 34, 35, 36, 37]
+
+shots:
+  - n: 1
+    t: [0.00, 0.90]
+    frames: [0, 26]
+    layout: centre-stack
+    content: >
+      Frame 0: "Welcome" on a light-blue gradient card. Frame ~4-14: second line "to Jitter"
+      lands to complete "Welcome to Jitter", small dotted orbit-ring decoration settling
+      bottom-centre. Frames 16-26: static hold on the completed lockup.
+    moves:
+      - move: maskWipeUp
+        target: line_2_to_jitter
+        at_f: 4
+        params: {dur_f: 10, ease: expoOut}
+      - move: drawOn
+        target: bottom_orbit_ring_decoration
+        at_f: 6
+        params: {dur_f: 14, ease: expoInOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 140, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 2
+    t: [0.90, 1.53]
+    frames: [27, 45]
+    layout: centre-stack
+    content: >
+      Hard cut to a 3D memoji avatar (purple beanie) inside a dotted confetti ring on black.
+      8f later a "LIVE" pill badge pops onto the ring's edge, signalling real-time presence.
+    moves:
+      - move: popIn
+        target: memoji_avatar
+        at_f: 0
+        params: {dur_f: 11, ease: springSnap}
+      - move: popIn
+        target: live_badge
+        at_f: 11
+        params: {scale: [0, 1.1, 1], dur_f: 8, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 3
+    t: [1.53, 2.60]
+    frames: [46, 78]
+    layout: full-bleed-ui
+    content: >
+      Hard cut to a floating browser-style card (white chrome, no address bar) containing a
+      family photo, on a dark purple bg. Card pops in with a visible spring overshoot
+      (motion.csv frame46 spike 39.9 → decays to near-zero by f52, a second smaller bounce
+      f53-60, settle by f69), then a faint parallax drift continues through f70-77 before
+      the hard cut out at f78 (spike 39.7).
+    moves:
+      - move: scaleIn
+        target: photo_import_card
+        at_f: 0
+        params: {scale: [0.85, 1.04, 1], dur_f: 14, ease: springSoft, overshoot_pct: 4}
+    camera: {move: driftCamera, params: {amp_pct: 1.2, period_f: 60, axes: xy}}
+    bg: {kind: flat, moves: [driftCamera]}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: matchCut, params: {}}
+    hold_f: 6
+
+  - n: 4
+    t: [2.63, 3.23]
+    frames: [79, 97]
+    layout: full-bleed-ui
+    content: >
+      A jet-black irregular polygon (angular blob, roughly 6-8 straight edges, no curves)
+      grows to fill the entire frame in ~4f, holds full-black for 2f with a small dark
+      paper-plane/cursor-arrow triangle sitting centre-frame as the only visible shape, then
+      the polygon recedes to a pure white frame, exposing the next scene underneath.
+    moves:
+      - move: shapeWipeTransition
+        target: full_frame
+        at_f: 0
+        params: {shape: irregular_polygon, vertices: 7, dur_f: 8, hold_f: 3, ease: expoInOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 90, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: maskTransition, params: {dur_f: 8}}
+    hold_f: 2
+
+  - n: 5
+    t: [3.27, 4.97]
+    frames: [98, 148]
+    layout: full-bleed-ui
+    content: >
+      Inside the Jitter editor canvas: "Motion design made" builds on a white card, a blue
+      selection box with corner/edge resize handles wraps the text (revealing this is a live
+      editable object, not a video), then "simple" lands in blue to complete the line. The
+      whole lockup tilts into an italic/skewed kinetic variant, a small paper-plane cursor
+      icon flies a straight diagonal line (linear velocity, per profile.md shot 8) across the
+      frame toward the next scene, landing on a blue gradient "Import from Figma" panel.
+    moves:
+      - move: maskWipeUp
+        target: headline_line_1
+        at_f: 0
+        params: {dur_f: 12, per_line_stagger_f: 3, ease: expoOut}
+      - move: scaleIn
+        target: selection_box_overlay
+        at_f: 10
+        params: {dur_f: 8, ease: backOut}
+      - move: maskWipeUp
+        target: word_simple
+        at_f: 22
+        params: {dur_f: 10, ease: expoOut}
+      - move: styleSwapTilt
+        target: full_headline
+        at_f: 30
+        params: {skew_deg: [0, -8], dur_f: 14, ease: expoInOut}
+      - move: whipPan
+        target: paperplane_cursor_icon
+        at_f: 40
+        params: {dur_f: 10, ease: linear, motion_blur: light}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 6
+    t: [4.97, 6.27]
+    frames: [149, 187]
+    layout: split
+    content: >
+      Blue gradient "Import from Figma" app-window panel pops in with overshoot and settles.
+      Four capability chips stagger in one at a time to its right/below — "New" (gradient
+      badge) + "Animate together", then "Live collaboration" (with avatar stack), then
+      "Multiplayer timeline" (with a red playhead scrubber) — a plain capability-card grid.
+    moves:
+      - move: scaleIn
+        target: import_from_figma_panel
+        at_f: 0
+        params: {scale: [0.88, 1], dur_f: 14, ease: springSoft, overshoot_pct: 5}
+      - move: staggerRise
+        target: capability_chips_1_to_4
+        at_f: 14
+        params: {y: [24, 0], opacity: [0, 1], stagger_f: 4, dur_f: 16, ease: springSoft}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 7
+    t: [6.27, 6.93]
+    frames: [188, 207]
+    layout: centre-stack
+    content: >
+      Hard cut to a dark purple radial-gradient background. "Design tool" assembles by word,
+      then "of the year" lands beneath it with a laurel-wreath icon drawing on either side —
+      a Product Hunt "Golden Kitty Awards 2023" badge with the Product Hunt logo at the base.
+    moves:
+      - move: maskWipeUp
+        target: headline_design_tool
+        at_f: 0
+        params: {dur_f: 10, per_line_stagger_f: 3, ease: expoOut}
+      - move: drawOn
+        target: laurel_wreath_icons
+        at_f: 8
+        params: {dur_f: 12, ease: expoInOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 100, axes: xy}}
+    bg: {kind: gradient-drift, moves: [radialRevealGlow]}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: flashCut, params: {}}
+    hold_f: 3
+
+  - n: 8
+    t: [6.93, 7.50]
+    frames: [208, 224]
+    layout: full-bleed-ui
+    content: >
+      A cluster of three rapid, jittery flash-frames (6f/4f/7f, all classed "hot" energy in
+      profile.md) whip-zooms from the award badge into the motion-editor's easing-curve panel,
+      landing on a duration slider mid-drag reading "25". This reads as one deliberate strobe
+      transition, not three separate readable shots.
+    moves:
+      - move: zoomBlurCut
+        target: full_frame
+        at_f: 0
+        params: {scale: [1, 1.35], radial_blur: heavy, dur_f: 17, ease: expoIn}
+    camera: {move: whipPan, params: {dur_f: 17, motion_blur: heavy}}
+    bg: {kind: flat, moves: []}
+    treatment: [chromaticEdge]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 9
+    t: [7.50, 7.97]
+    frames: [225, 238]
+    layout: centre-stack
+    content: >
+      Giant scream-case "MOOOOOOOOOOOOTH" (from "smooth") fills a solid yellow card, each
+      letter squashing/stretching with an extreme spring overshoot as the word snaps into its
+      final width — the elastic-easing preset demonstrated by applying it to the word itself.
+    moves:
+      - move: elasticStretchIn
+        target: headline_moooooth
+        at_f: 0
+        params: {scaleX: [0.3, 1.25, 1], dur_f: 14, ease: springSnap, overshoot_pct: 20}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 90, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 10
+    t: [7.97, 9.03]
+    frames: [239, 271]
+    layout: full-bleed-ui
+    content: >
+      Cut to a blue gradient card. A single line draws on diagonally straight, then the same
+      stroke re-draws itself curving into an S-shape easing graph (stroke morphs from a linear
+      ramp to an ease-in-out bezier), settling with a small overshoot wobble at the S's ends —
+      literally drawing the curve it represents.
+    moves:
+      - move: drawOn
+        target: straight_line_baseline
+        at_f: 0
+        params: {dur_f: 10, ease: expoOut}
+      - move: morphShape
+        target: line_to_s_curve
+        at_f: 10
+        params: {dur_f: 18, ease: springSoft, overshoot_pct: 4}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 11
+    t: [9.07, 9.40]
+    frames: [272, 281]
+    layout: centre-stack
+    content: "\"Start from templates\" headline lands on white, the word templates in blue italic."
+    moves:
+      - move: maskWipeUp
+        target: headline
+        at_f: 0
+        params: {dur_f: 10, per_line_stagger_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 12
+    t: [9.40, 10.70]
+    frames: [282, 320]
+    layout: centre-stack
+    content: >
+      A stack of 3 poster templates fans open from behind the headline like a hand of cards
+      (rotate + offset per layer), then two of the posters swap content (a festival flyer
+      becomes a "Spring/Summer" fashion poster) — a template-shuffle idle loop.
+    moves:
+      - move: slideStackIn
+        target: poster_stack
+        at_f: 0
+        params: {y: [40, 0], stagger_f: 3, z_offset_px: 10, ease: springSoft, dur_f: 16}
+      - move: crossfadeSwap
+        target: poster_2_content
+        at_f: 24
+        params: {dur_f: 12}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 13
+    t: [10.70, 11.17]
+    frames: [321, 334]
+    layout: centre-stack
+    content: >
+      SHAPE-MASK MOMENT. "Try it for free" sits on a dark purple bg. A large lavender
+      rounded-blob shape (roughly a superellipse, ~55% of frame width) slides in from the left
+      and settles centred over the text, its fill briefly cut out with the letterforms visible
+      through it before the blob's own fill color takes over — the mask reveals, then becomes,
+      the subject.
+    moves:
+      - move: blobMaskReveal
+        target: headline_try_it_for_free
+        at_f: 0
+        params: {shape: superellipse, coverage_pct: 55, translateX_pct: [-30, 0], dur_f: 12, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 14
+    t: [11.17, 12.37]
+    frames: [335, 384]
+    layout: full-bleed-ui
+    content: >
+      SHAPE-MASK MOMENT (strips). Cut to a flat gray card. 4 vertical rectangular strips,
+      alternating offset top/bottom by ~15% of frame height, slide open from a closed seam
+      like venetian blinds to reveal a video thumbnail underneath (a monochrome-duotone still
+      of a person indoors, "Vendredi Society" branding bottom-left with a play button).
+    moves:
+      - move: venetianBlindWipe
+        target: video_thumbnail
+        at_f: 0
+        params: {strip_count: 4, strip_offset_pct: 15, dur_f: 20, stagger_f: 2, ease: expoInOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 15
+    t: [12.83, 13.27]
+    frames: [385, 397]
+    layout: centre-stack
+    content: >
+      "SHARE YOUR WORK" scream-case title over a black bg with a colorful poster cutout
+      collage and a creator handle/avatar credit ("Fana Moro") bottom-left.
+    moves:
+      - move: maskWipeUp
+        target: headline
+        at_f: 0
+        params: {dur_f: 10, per_line_stagger_f: 2, ease: expoOut}
+      - move: staggerRise
+        target: poster_collage_pieces
+        at_f: 2
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 3, dur_f: 14, ease: springSoft}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 16
+    t: [13.27, 14.93]
+    frames: [398, 447]
+    layout: full-bleed-ui
+    content: >
+      A single continuous 50f LINEAR-velocity move (profile.md flags this shot as
+      "linear/constant velocity" — the one deliberate exception to the no-linear-easing rule,
+      matching MOVE_VOCAB's note that linear is reserved for loops/mechanical moves): a
+      textured orange/red tile peels back at one corner at constant speed like a page turning,
+      revealing a "Rico Supply" branded layer beneath.
+    moves:
+      - move: cornerPeelWipe
+        target: full_frame
+        at_f: 0
+        params: {corner: top-right, peel_angle_deg: 35, dur_f: 50, ease: linear}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 17
+    t: [14.93, 16.10]
+    frames: [448, 482]
+    layout: centre-stack
+    content: >
+      Two puzzle-piece logo lockups (Figma icon piece slotting into a Jitter icon piece) —
+      first on a light lavender bg, cut to the same lockup on a light blue bg — then a fast
+      flash-transition into "Jitter for Teams" title with a "Beta" tag.
+    moves:
+      - move: slideStackIn
+        target: puzzle_piece_figma
+        at_f: 0
+        params: {x: [-30, 0], dur_f: 12, ease: springSoft, z_offset_px: 6}
+      - move: slideStackIn
+        target: puzzle_piece_jitter
+        at_f: 3
+        params: {x: [30, 0], dur_f: 12, ease: springSoft, z_offset_px: 6}
+      - move: flashCut
+        target: full_frame
+        at_f: 25
+        params: {dur_f: 2}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 18
+    t: [16.10, 16.83]
+    frames: [483, 504]
+    layout: centre-stack
+    content: >
+      "Jitter for Teams" kinetic-type lockup on a near-black bg: each "o" in "Jitter" and
+      "Teams" is replaced in place by a small animated 3D memoji face (different face per
+      letter), popping in with a spring as the rest of the word settles.
+    moves:
+      - move: maskWipeUp
+        target: headline
+        at_f: 0
+        params: {dur_f: 10, per_line_stagger_f: 3, ease: expoOut}
+      - move: popIn
+        target: memoji_letter_substitutions
+        at_f: 6
+        params: {stagger_f: 3, dur_f: 10, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 19
+    t: [16.83, 18.13]
+    frames: [505, 543]
+    layout: full-bleed-ui
+    content: >
+      Editor canvas: a frame/artboard is selected (blue selection outline), a purple
+      "Frame 1 / Copy" context tooltip pops up above it, the cursor clicks "Copy" — a literal
+      product-usage demo of copying an animated frame, not a metaphor shot.
+    moves:
+      - move: scaleIn
+        target: copy_tooltip
+        at_f: 4
+        params: {scale: [0.9, 1], dur_f: 10, ease: backOut}
+      - move: popIn
+        target: cursor_click_ripple
+        at_f: 30
+        params: {dur_f: 8, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 20
+    t: [18.13, 18.77]
+    frames: [544, 562]
+    layout: full-bleed-ui
+    content: >
+      Cloud photo lands on the canvas with a "Pasted from Figma ✓" toast; the animation-layers
+      panel below is visible with "Text bounce" and "Group · Move" rows and a scrub timeline —
+      showing the tool's own layer/keyframe UI as proof of depth.
+    moves:
+      - move: scaleIn
+        target: pasted_photo_layer
+        at_f: 0
+        params: {scale: [0.94, 1], dur_f: 10, ease: springSoft}
+      - move: maskWipeSide
+        target: pasted_from_figma_toast
+        at_f: 6
+        params: {dur_f: 10, dir: "l-to-r", ease: expoInOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 21
+    t: [18.77, 19.93]
+    frames: [563, 597]
+    layout: split
+    content: >
+      Sidebar UI: "My team" workspace header, then a "+ New folder" row pops in with the
+      cursor, then a "Design system" folder gets renamed inline — a plain collaboration/
+      file-organisation demo.
+    moves:
+      - move: maskWipeUp
+        target: my_team_header
+        at_f: 0
+        params: {dur_f: 10, ease: expoOut}
+      - move: staggerRise
+        target: folder_list_rows
+        at_f: 10
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, dur_f: 14, ease: springSoft}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 22
+    t: [19.93, 21.70]
+    frames: [598, 650]
+    layout: split
+    content: >
+      Longest single shot in the reel (53f). Folder rows build one at a time (Client project,
+      Design system, Social media, For review, Drafts), each sliding in and pushing the list
+      down, then the panel widens into a "Team folders" grid view with a purple "+ Create new
+      file" button and folder-card thumbnails.
+    moves:
+      - move: staggerRise
+        target: folder_rows_sequential
+        at_f: 0
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 5, dur_f: 16, ease: springSoft}
+      - move: slidePush
+        target: panel_width_expand
+        at_f: 35
+        params: {dur_f: 16, ease: expoInOut}
+      - move: scaleIn
+        target: folder_card_grid
+        at_f: 40
+        params: {stagger_f: 2, dur_f: 12, ease: backOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 140, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 23
+    t: [21.70, 23.03]
+    frames: [651, 690]
+    layout: centre-stack
+    content: >
+      "Boomerang" title over an orange-to-pink gradient bg, a portrait photo card in front
+      rocks gently forward-back (a boomerang ping-pong replay implied by the wobble) with a
+      spring overshoot on each direction change.
+    moves:
+      - move: maskWipeUp
+        target: headline_boomerang
+        at_f: 0
+        params: {dur_f: 10, ease: expoOut}
+      - move: boomerangWobble
+        target: portrait_photo_card
+        at_f: 6
+        params: {rotate_deg: [-2, 2, -2], period_f: 34, ease: springSoft, overshoot_pct: 5}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 34}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 24
+    t: [23.03, 24.97]
+    frames: [691, 748]
+    layout: split
+    content: >
+      A "Showreel" project card pops in, then a share modal opens: light-UI "Share" panel
+      cuts to a dark-UI variant of the same panel (theme swap on the same layout — a light/
+      dark contrast beat), showing link-permission toggles and an "Export" button.
+    moves:
+      - move: scaleIn
+        target: showreel_card
+        at_f: 0
+        params: {scale: [0.9, 1.05, 1], dur_f: 14, ease: springSoft, overshoot_pct: 5}
+      - move: crossfadeSwap
+        target: share_panel_theme
+        at_f: 20
+        params: {dur_f: 10, note: "light-panel content swaps to dark-panel content mid-shot, same layout"}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 25
+    t: [24.97, 26.57]
+    frames: [749, 814]
+    layout: grid
+    content: >
+      "Join us on Discord" then "Meet the team" text beats, with a fast-cascading collage of
+      small colored marketing tiles sliding in from frame edges — a photo in a yellow frame,
+      a green checkmark badge, a "FAST" tag, a globe icon, dollar-sign badges, placeholder-copy
+      jokes ("THIS" / "IS" / "A" / "TEXT").
+    moves:
+      - move: maskWipeUp
+        target: headline_lines
+        at_f: 0
+        params: {dur_f: 10, per_line_stagger_f: 3, ease: expoOut}
+      - move: staggerRise
+        target: marketing_tile_collage
+        at_f: 8
+        params: {y: [0], x: [40, 0], opacity: [0, 1], stagger_f: 2, dur_f: 12, ease: springSoft}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 26
+    t: [25.97, 26.57]
+    frames: [779, 796]
+    layout: centre-stack
+    content: >
+      Hard cut to black. Small white vector icon shapes (browser, device, layout glyphs)
+      scatter in with light confetti dots, then "CREATOR TOOLS AWARDS" assembles — the letters
+      visibly start jumbled/glitched out of order for ~4f and snap into correct reading order,
+      a trophy icon and "Powered by Contra" sublogo settle beneath.
+    moves:
+      - move: scrambleToOrder
+        target: headline_creator_tools_awards
+        at_f: 0
+        params: {jumble_f: 4, dur_f: 14, ease: expoOut}
+      - move: popIn
+        target: trophy_icon
+        at_f: 10
+        params: {dur_f: 8, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: [grainShift]}
+    treatment: [filmGrain]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 27
+    t: [26.57, 27.17]
+    frames: [797, 814]
+    layout: centre-stack
+    content: >
+      CAMERA/PATH MOMENT. "Curved paths" title on dark purple, a thin circular guide ring
+      draws on around it (strokeDashoffset, full 360°), two small node/handle dots sit on the
+      ring's circumference, and a tiny paper-plane cursor-arrow travels along the ring's
+      circumference rather than in a straight line — the editor's own path-follow feature
+      demonstrated by making the cursor use it.
+    moves:
+      - move: drawOn
+        target: circular_guide_ring
+        at_f: 0
+        params: {dur_f: 14, ease: expoInOut}
+      - move: orbitAlongPath
+        target: paperplane_cursor_icon
+        at_f: 4
+        params: {path: circle, radius_pct_of_frame: 32, arc_deg: [200, 260], dur_f: 14, ease: expoInOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 28
+    t: [27.17, 27.77]
+    frames: [815, 832]
+    layout: full-bleed-ui
+    content: >
+      "Curved paths" text gets a selection-box overlay (proving it's an editable path
+      object), then cuts to a "Showreel" panel with placeholder "HELLO" text and a memoji
+      avatar circle, file-selection chrome visible ("1 file selected", "Move to another folder").
+    moves:
+      - move: scaleIn
+        target: selection_box_overlay
+        at_f: 0
+        params: {dur_f: 8, ease: backOut}
+      - move: maskWipeUp
+        target: hello_placeholder_text
+        at_f: 10
+        params: {dur_f: 8, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 29
+    t: [27.77, 28.80]
+    frames: [833, 863]
+    layout: split
+    content: >
+      Color/gradient editor panel: Solid/Linear/Radial tabs, a blue gradient swatch fills a
+      preview box, a rainbow hue slider is dragged live while the hex readout updates in real
+      time ("29A9FF 100%") — a literal live-value-scrub demo, not a static screenshot.
+    moves:
+      - move: scaleIn
+        target: gradient_editor_panel
+        at_f: 0
+        params: {scale: [0.94, 1], dur_f: 10, ease: springSoft}
+      - move: counterUp
+        target: hex_value_readout
+        at_f: 8
+        params: {retrigger: true, monospace_digits: true, note: "hex string updates in step with hue-slider drag position, not a timed count"}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 30
+    t: [28.80, 29.63]
+    frames: [864, 907]
+    layout: full-bleed-ui
+    content: >
+      KEYFRAME-SCRUBBER MOMENT. Split yellow/white background with a thin horizontal line; a
+      small blue square keyframe marker slides left to right along it while a percentage
+      counter beside it climbs in lockstep (0%→2%→7%→8%→9%) — the counter is driven by the
+      marker's x-position, not an independent timer. Cuts to a purple app-icon tile, an Apple
+      Wallet card with a QR code, and a rainbow-gradient "Search" bar placeholder cycling
+      hue, then a red bg with a pulsing checkmark and an "Export" pill.
+    moves:
+      - move: keyframeScrubSync
+        target: keyframe_marker_and_percent
+        at_f: 0
+        params: {x_pct: [3, 55], percent: [0, 9], dur_f: 24, ease: expoOut, monospace_digits: true}
+      - move: scaleIn
+        target: app_icon_and_card_showcase
+        at_f: 26
+        params: {stagger_f: 4, dur_f: 10, ease: backOut}
+      - move: gradientDrift
+        target: search_bar_placeholder_text
+        at_f: 36
+        params: {hue_rotate_deg: 40, period_f: 20}
+      - move: popIn
+        target: checkmark_success_icon
+        at_f: 40
+        params: {dur_f: 8, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 120, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 31
+    t: [29.63, 30.27]
+    frames: [908, 926]
+    layout: centre-stack
+    content: >
+      iPhone device-frame mockup (the only true device mockup in the whole reel) showing a
+      "Plays 4.20M ↑40% vs last month" stat card, a circular loading spinner mid-spin over it
+      before the numbers finish resolving.
+    moves:
+      - move: unblurIn
+        target: iphone_mockup
+        at_f: 0
+        params: {blur_px: [10, 0], scale: [1.03, 1], dur_f: 12, ease: expoOut}
+      - move: counterUp
+        target: plays_stat_value
+        at_f: 8
+        params: {dur_f: 10, ease: expoOut, monospace_digits: true}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 100, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 32
+    t: [30.90, 31.23]
+    frames: [927, 937]
+    layout: centre-stack
+    content: >
+      Scream-case "SWOOSH" on dark purple: the word's own drop-shadow duplicates and offsets
+      diagonally into a 3-step trailing stack as it settles, visually performing a swoosh/
+      motion-trail on itself.
+    moves:
+      - move: motionTrailTextIn
+        target: headline_swoosh
+        at_f: 0
+        params: {echoes: 3, offset_px: [10, 6], opacity: [0.3, 0.6, 1], dur_f: 10, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 80, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 1
+
+  - n: 33
+    t: [31.23, 31.83]
+    frames: [938, 955]
+    layout: centre-stack
+    content: >
+      MASK-IS-THE-SUBJECT MOMENT. "POP" on light blue: a translucent iridescent soap-bubble
+      (~18% of frame width, centred over the O) grows for ~6f then pops/vanishes in 2f, the
+      pop itself acting as the reveal that snaps the letterforms into full opacity/sharpness.
+    moves:
+      - move: bubblePopReveal
+        target: headline_pop
+        at_f: 0
+        params: {bubble_radius_pct: 18, grow_dur_f: 6, pop_dur_f: 2, ease: expoOut}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 80, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 34
+    t: [31.87, 32.60]
+    frames: [956, 978]
+    layout: centre-stack
+    content: >
+      "BLUR" on black: the word resolves from a heavy gaussian blur (illegible smear) to full
+      sharpness over ~20f, sharpening gradually rather than in one step, then itself dissolves
+      back into blur and fades — the word blurs and unblurs to demonstrate the blur preset.
+    moves:
+      - move: unblurIn
+        target: headline_blur
+        at_f: 0
+        params: {blur_px: [24, 0], dur_f: 14, ease: expoOut}
+      - move: dissolveBlur
+        target: headline_blur
+        at_f: 16
+        params: {blur_px: [0, 20], opacity: [1, 0], dur_f: 7}
+    camera: {move: driftCamera, params: {amp_pct: 0.4, period_f: 80, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 35
+    t: [32.63, 33.4]
+    frames: [979, 999]
+    layout: centre-stack
+    content: >
+      "Now available." fades in small and centred, then a gradient-filled "jitter.video" pill
+      button appears with a hovering cursor, its fill continuously hue-cycling
+      green→yellow→pink→purple→blue for the remaining hold — the video's final frame.
+    moves:
+      - move: staggerRise
+        target: now_available_text
+        at_f: 0
+        params: {y: [10, 0], opacity: [0, 1], blur_px: [4, 0], dur_f: 10, ease: springSoft}
+      - move: popIn
+        target: jitter_video_cta_pill
+        at_f: 8
+        params: {dur_f: 9, ease: springSnap}
+    camera: {move: driftCamera, params: {amp_pct: 0.3, period_f: 90, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 12
+    new_moves_used: [gradientDrift]
+
+techniques:
+  - id: self-demonstrating-preset-names
+    what: >
+      Instead of describing a text-animation preset, the reel names it and makes the word
+      perform the effect on itself — "SWOOSH" gets a motion-trail, "POP" is revealed by a
+      bubble popping, "BLUR" resolves from heavy blur to sharp, "MOOOOOOOOOOOOTH" (smooth,
+      stretched) gets an extreme elastic squash-stretch. Four separate capability beats, one
+      reusable pattern.
+    where: shots 9, 32, 33, 34
+    why_it_reads: >
+      Zero abstraction gap between claim and proof — the viewer never has to imagine what
+      the preset looks like, because the label IS the demo. This is the single highest-value,
+      most-copyable idea in the whole reference for any tool/feature reel.
+    remotion_recipe: >
+      Build one <PresetDemoWord name="SWOOSH" effect="motionTrail" /> component whose
+      `effect` prop switches which transform/filter function is applied to its own text
+      node — motionTrail duplicates the text 3x with staggered opacity/offset, blur applies
+      an animated CSS filter:blur(), pop wraps the text in an SVG circle mask whose r animates
+      then snaps to 0. Reuse the same component and swap only the word + effect prop per shot.
+    difficulty: moderate
+
+  - id: irregular-polygon-shape-wipe
+    what: >
+      A jet-black irregular 7-sided polygon (not a rectangle, not a circle) grows to cover
+      the entire frame in 4f, holds 3f with a small paper-plane icon centred as the only
+      visible shape, then recedes to white — a scene transition where the wipe shape itself
+      is the visual event, not a straight-edge clip-path.
+    where: shot 4
+    why_it_reads: >
+      A rectangular wipe reads as a slide transition; an irregular angular polygon reads as
+      a deliberate brand mark (echoes the "torn paper" / "cut shape" language used elsewhere
+      in the reel) while still functioning as a full-coverage mask.
+    remotion_recipe: >
+      Define the polygon as an SVG <clipPath> with a fixed odd-vertex point list (e.g. 7
+      points at irregular radii from centre, precomputed once). Animate the clip-path's
+      `transform: scale()` from 0 to a value large enough to cover the frame diagonal
+      (~1.5x max dimension), transform-origin at the polygon's centroid, expoInOut ease. On
+      the receding half, either reverse the scale or crossfade to a second differently-shaped
+      polygon clip-path to avoid the wipe looking mechanically symmetric.
+    difficulty: moderate
+
+  - id: blob-mask-becomes-subject
+    what: >
+      A rounded superellipse/blob shape slides in and settles centred over the headline
+      "Try it for free", covering roughly 55% of frame width. For a few frames the text is
+      visible cut into the blob's fill; then the blob's own flat color becomes the dominant
+      visual and the text reads as sitting on top of it — the mask transitions from "revealing
+      device" to "background shape" without a hard cut.
+    where: shot 13
+    why_it_reads: >
+      Most masked reveals discard the mask once the reveal completes. Keeping it on screen as
+      a background element instead of cutting it away reads as one continuous idea rather
+      than a wipe-then-forget effect.
+    remotion_recipe: >
+      Render the blob as an absolutely-positioned <div> with border-radius set via a
+      superellipse/squircle CSS approximation (or an inline SVG <path> with a fixed blob
+      path). Animate translateX from -30% to 0 (expoOut, ~12f). Do NOT clip the text through
+      the blob with mix-blend-mode trickery — simplest and most robust is to z-index the text
+      ABOVE the blob from frame 0, so the blob visually "arrives under" the text rather than
+      needing a real mask; reserve true mask-image only if the brief specifically needs the
+      text cut BY the blob's edge.
+    difficulty: trivial
+
+  - id: venetian-blind-strip-reveal
+    what: >
+      4 vertical rectangular strips, alternating a small (~15% of frame height) vertical
+      offset top/bottom, slide open from a closed seam to reveal a full-bleed video thumbnail
+      underneath, staggered ~2f apart, expoInOut.
+    where: shot 14
+    why_it_reads: >
+      A single wipe reveals content in one direction; alternating-offset strips reveal it in
+      pieces that resolve almost simultaneously, reading as more mechanical/premium (blinds,
+      shutter) than a single clip-path inset ever could.
+    remotion_recipe: >
+      Split the reveal image into N equal vertical <div> slices, each with
+      overflow:hidden and the full image inside translated to align (background-position
+      trick, or a shared absolutely-positioned image with each slice's clip-path: inset()
+      restricting to its own column). Animate each slice's own translateY — even slices
+      -15%→0, odd slices +15%→0 — with stagger_f 2 between slices, expoInOut, so they land
+      at very slightly different times but converge fast.
+    difficulty: moderate
+
+  - id: bubble-pop-reveal
+    what: >
+      A translucent iridescent bubble (~18% of frame width) grows over 6f centred on the
+      headline "POP", then pops/vanishes in 2f — that pop event is the trigger that snaps the
+      letterforms beneath it to full opacity, i.e. the mask's destruction IS the reveal.
+    where: shot 33
+    why_it_reads: >
+      Inverts the usual mask logic (mask shrinks to reveal) — here the mask GROWS then
+      violently disappears, which reads as a pop/snap rather than a wipe, matching the word
+      on screen exactly.
+    remotion_recipe: >
+      Render an SVG circle with a radial-gradient fill (white-to-transparent, plus a thin
+      lighter rim stroke to sell "bubble") whose r animates 0→1 over 6f (springSoft). On the
+      pop frame, don't shrink it back to 0 — instead crossfade its opacity to 0 over 2f while
+      simultaneously scaling it up 1.3x (bubbles pop by expanding-then-vanishing, not
+      shrinking). The text underneath is present at full opacity the entire time; the bubble
+      merely occludes it until it's gone.
+    difficulty: trivial
+
+  - id: linear-velocity-corner-peel
+    what: >
+      A single 50-frame transition where a textured tile peels back from one corner at
+      constant (non-eased) velocity, revealing a branded layer underneath — profile.md
+      explicitly classifies this shot's velocity profile as "linear/constant", the one
+      deliberate break from the reel's otherwise-universal easing.
+    where: shot 16
+    why_it_reads: >
+      A page-peel is a physical, mechanical action (like a page turning at a fixed reading
+      speed) rather than an accelerating UI element, so linear velocity reads as correct
+      here rather than as the "amateur tell" it would be on a UI card entrance.
+    remotion_recipe: >
+      Use a CSS 3D transform on a triangular clip-path segment (the "peeling corner"):
+      transform-origin at the opposite corner, rotateY/rotateX driven linearly (no easing
+      function, straight interpolate(frame, [0,50], [0,180])) with perspective on the parent.
+      Add a soft drop-shadow under the peeling corner that grows as it lifts, to sell
+      thickness. This is the one place in the whole spec where `ease: linear` on a transform
+      is correct per MOVE_VOCAB's stated exception for mechanical/physical motion.
+    difficulty: hard
+
+  - id: cursor-follows-curved-path
+    what: >
+      A circular guide ring draws on around the words "Curved paths", and the small
+      paper-plane cursor icon that recurs throughout the reel travels along the ring's
+      circumference (a 60° arc) instead of in a straight line — literally demonstrating the
+      path-follow animation feature by making the video's own recurring cursor motif use it.
+    where: shot 27
+    why_it_reads: >
+      The cursor icon has already taught the viewer "this is how things move" via straight
+      whip-pans in earlier shots (shot 5); bending its motion onto a circle here is a payoff,
+      not a new idea.
+    remotion_recipe: >
+      Parametrize position as x = cx + r*cos(θ), y = cy + r*sin(θ), animate θ over the arc
+      range (e.g. 200°→260°) with expoInOut via interpolate(frame,...). Draw the guide ring
+      itself as an SVG <circle> with strokeDashoffset animating 1→0 for the draw-on. Keep the
+      cursor icon's own rotation locked tangent to the path (rotate = θ + 90°) so it reads as
+      "flying along" rather than sliding sideways.
+    difficulty: moderate
+
+  - id: keyframe-marker-percent-sync
+    what: >
+      A small square keyframe marker slides along a horizontal timeline while a percentage
+      counter beside it climbs in exact lockstep (0%→9%) — one value drives both the marker's
+      x-position and the counter's displayed number.
+    where: shot 30
+    why_it_reads: >
+      A counter ticking up on its own reads as decoration; tying it to a marker's literal
+      screen position makes the number legible as "where we are on the timeline", which is
+      exactly the feature (a keyframe/progress scrubber) being sold.
+    remotion_recipe: >
+      Derive a single progress value p = interpolate(frame,[0,24],[0,1],{easing:Easing.out}).
+      Drive the marker's left:`${p*52}%` and the counter's displayed integer from the same p
+      (Math.round(p*9)) — never animate the two off separate timers, or they will visibly
+      drift out of sync on any future duration change.
+    difficulty: trivial
+
+  - id: scramble-to-order-title
+    what: >
+      "CREATOR TOOLS AWARDS" enters with its own letters visibly jumbled/out of reading order
+      for ~4 frames before snapping into the correct sequence — a kinetic-type moment used
+      exactly once, per MOVE_VOCAB's "one per-letter moment per video" rule.
+    where: shot 26
+    why_it_reads: >
+      A plain fade-in for an awards-title card is the flattest possible choice; letters
+      visibly reordering themselves signals "assembled live" and buys a half-second of
+      genuine surprise for very little rendering cost.
+    remotion_recipe: >
+      Precompute a fixed pseudo-random permutation of letter x-offsets (seeded by letter
+      index, not Math.random()) for frame 0, then interpolate each letter's x from its
+      scrambled offset to its correct in-line position over ~10f with a slight stagger
+      per letter (1-2f), backOut easing so letters overshoot slightly as they land in place.
+    difficulty: moderate
+
+  - id: capability-chip-grid-stagger
+    what: >
+      Small square/rectangular feature chips (New / Animate together / Live collaboration /
+      Multiplayer timeline) stagger into a loose grid beside a hero UI panel, 4f apart,
+      springSoft.
+    where: shots 6, 25
+    why_it_reads: >
+      Groups several one-word capability claims into a single readable beat instead of a
+      separate shot per feature, keeping the edit's pace up without losing legibility.
+    remotion_recipe: >
+      Absolutely-position each chip at its final grid coordinate from frame 0; animate only
+      opacity 0→1 and translateY 24→0 per chip with stagger_f driven by array index times a
+      constant (4f), springSoft. Do not reflow layout during the animation — chips must not
+      move each other.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 43
+  median_shot_f: 20
+  fastest_f: 4
+  slowest_f: 73
+  pattern: >
+    Fast, front-loaded hook (4 cuts in 45f) into a long dense capability-demo midsection
+    (median cut ~20f) with one hard 17f strobe-whip cluster around the two-thirds mark
+    (frames 208-224), a 53f longest single shot mid-reel (folder/team UI, frames 598-650),
+    then a 73f multi-beat outro (frames 927-999) that itself contains 5 internal sub-beats
+    (Swoosh/Pop/Blur/Now-available/CTA) the automated cut-detector did not split, because
+    each sub-beat is a soft dissolve rather than a hard luma-delta cut.
+  beat_grid_f: 0
+  energy_curve: wave
+
+detection_notes: >
+  profile.md lists frames 208-213, 214-217 and 218-224 as three separate shots (6f, 4f, 7f,
+  all "hot" energy). Cross-checked against sheet_02/sheet_03 content and the motion.csv
+  spike at f207 (60.9) and f224 (131.4): this is one continuous whip-zoom/strobe transition
+  from the Product-Hunt award card into the "MOOOOOOOOOOOOTH" elastic-text card, not three
+  independently readable shots — merged into spec shot 8 as a single zoomBlurCut/whipPan
+  cluster (17f total, still above the 11f minimum as a unit). Conversely, profile.md shows
+  frames 927-999 (73f) as ONE shot, but the content visibly changes background and subject
+  five times in that range (SWOOSH purple bg → POP light-blue bg → BLUR black bg → "Now
+  available." → jitter.video CTA) per sheet_06 — the automated detector missed these cuts
+  because each is a soft dissolve rather than a hard luma spike. Split into spec shots
+  32-35 accordingly, with frame boundaries estimated proportionally from sheet cell density
+  since no individual cut-delta values exist to pin them exactly.
+
+transferable:
+  - >
+    Make the on-screen WORD perform the effect it names (Swoosh/Pop/Blur/Smooth) instead of
+    describing the effect in a caption — zero-abstraction-gap capability demos.
+  - >
+    Keep a recurring cursor/pointer motif (the paper-plane icon) traveling in a straight line
+    in early shots, then bend its path onto a circle later as a payoff for the same visual
+    element, instead of introducing path-following with a brand-new object.
+  - >
+    Use linear (non-eased) velocity deliberately for exactly one shot type: a physical,
+    mechanical action like a page/corner peel, where constant speed reads as correct rather
+    than robotic.
+  - >
+    Drive a percentage counter and a position-based UI element (slider, keyframe marker) off
+    the SAME progress variable rather than two separately timed animations, so they cannot
+    visibly drift apart.
+  - >
+    When a mask reveal finishes, consider leaving the mask shape on screen as a background
+    element rather than cutting it away — it reads as one continuous idea instead of a
+    wipe-then-forget trick.
+  - >
+    For a feature-dense product reel, let 3-4 shots run under the 11f minimum as a single
+    deliberate strobe/whip-pan cluster between two calmer shots, rather than trying to make
+    each frame count individually readable.
+
+avoid:
+  - >
+    Hand-drawing or rotoscoping the scramble-to-order title letters frame by frame; use a
+    fixed pseudo-random seeded offset array and interpolate each letter's position with a
+    slight stagger, backOut easing.
+  - >
+    Keyframing the venetian-blind strip reveal by manually animating each strip in an NLE;
+    split the source image into N CSS-clipped slices sharing one background layer and drive
+    each slice's translateY off a shared stagger function.
+  - >
+    Building the bubble-pop reveal as a pre-rendered video asset; it is a single SVG radial-
+    gradient circle animated in code, cheaper to tune and to re-time than a baked clip.
+
+new_moves:
+  - name: shapeWipeTransition
+    params: {shape: irregular_polygon, vertices: 7, dur_f: 8, hold_f: 3, ease: expoInOut}
+    description: >
+      A non-rectangular polygon shape (fixed odd-vertex point list) scales from 0 to full-
+      frame coverage as a clip-path/mask, holds briefly at full coverage, then recedes or
+      crossfades to reveal the next scene — a scene-transition wipe where the wipe shape
+      itself is the visual event rather than a straight edge.
+  - name: blobMaskReveal
+    params: {shape: superellipse, coverage_pct: 55, translateX_pct: [-30, 0], dur_f: 12, ease: expoOut}
+    description: >
+      A rounded blob/superellipse slides in to settle over a headline, transitioning from
+      "revealing mask" to "background shape" without being discarded — the mask persists as
+      set dressing after its reveal function completes.
+  - name: venetianBlindWipe
+    params: {strip_count: 4, strip_offset_pct: 15, dur_f: 20, stagger_f: 2, ease: expoInOut}
+    description: >
+      N vertical strips of a full-bleed image, alternating a small vertical offset top/bottom,
+      slide closed-to-open with a small per-strip stagger to reveal the image beneath, reading
+      as a shutter/blinds mechanism rather than a single wipe direction.
+  - name: bubblePopReveal
+    params: {bubble_radius_pct: 18, grow_dur_f: 6, pop_dur_f: 2, ease: expoOut}
+    description: >
+      A translucent circular "bubble" (radial-gradient fill, thin rim highlight) grows over a
+      headline then expands-and-vanishes (not shrinks) in a short pop, with the text beneath
+      present at full opacity throughout — the bubble's destruction is the reveal trigger.
+  - name: cornerPeelWipe
+    params: {corner: top-right, peel_angle_deg: 35, dur_f: 50, ease: linear}
+    description: >
+      A triangular corner segment of the current frame lifts via 3D rotateX/rotateY at
+      constant (linear) velocity, transform-origin at the opposite corner, revealing the next
+      layer underneath — used for a page-turn/physical-peel feel where linear velocity is
+      correct rather than an easing-rule violation.
+  - name: orbitAlongPath
+    params: {path: circle, radius_pct_of_frame: 32, arc_deg: [200, 260], dur_f: 14, ease: expoInOut}
+    description: >
+      An element's position is parametrized in polar coordinates around a defined path
+      (circle here, but generalizes to any SVG path via getPointAtLength) rather than moving
+      linearly between two points, with rotation locked tangent to the path direction.
+  - name: keyframeScrubSync
+    params: {x_pct: [3, 55], percent: [0, 9], dur_f: 24, ease: expoOut, monospace_digits: true}
+    description: >
+      A position value (marker x) and a displayed number (percent counter) are both derived
+      from one shared progress variable rather than independently timed, guaranteeing they
+      never visually drift apart regardless of later duration edits.
+  - name: elasticStretchIn
+    params: {scaleX: [0.3, 1.25, 1], dur_f: 14, ease: springSnap, overshoot_pct: 20}
+    description: >
+      A headline scales in on X only (not uniform scale) with an exaggerated spring overshoot
+      (15-25%, well above the standard 3-6% overshoot law), used exactly once to visually
+      demonstrate an "elastic" easing preset by applying it to the preset's own name.
+  - name: scrambleToOrder
+    params: {jumble_f: 4, dur_f: 14, ease: expoOut}
+    description: >
+      Letters of a title start at fixed pseudo-random (seeded, not Math.random) offset
+      positions and interpolate to their correct in-line position with a slight per-letter
+      stagger and backOut overshoot, reading as letters "finding their place" rather than a
+      plain fade or mask reveal.
+  - name: motionTrailTextIn
+    params: {echoes: 3, offset_px: [10, 6], opacity: [0.3, 0.6, 1], dur_f: 10, ease: expoOut}
+    description: >
+      A word's own drop-shadow/duplicate copies offset diagonally into a trailing stack as
+      it settles into place, at increasing opacity toward the final frontmost copy — used to
+      make a word visually perform a "swoosh"/motion-trail preset on itself.
+  - name: styleSwapTilt
+    params: {skew_deg: [0, -8], dur_f: 14, ease: expoInOut}
+    description: >
+      A settled headline transitions into an italic/kinetic variant by animating CSS skew on
+      the whole text block, used to demonstrate a "style preset" swap without re-triggering
+      a full entrance animation.
+  - name: boomerangWobble
+    params: {rotate_deg: [-2, 2, -2], period_f: 34, ease: springSoft, overshoot_pct: 5}
+    description: >
+      A photo/card element rocks a few degrees forward then back on a fixed period with a
+      small spring overshoot at each direction change, implying a boomerang/ping-pong replay
+      without actually needing a reversed video asset.
+
+convergence:
+  - >
+    Capability-chip/card stagger entrances (springSoft, 3-4f stagger, translateY 20-28px) —
+    matches the byshubh_ corpus's staggerRise/slideStackIn pattern for card grids closely
+    enough to be confident this is a shared, not coincidental, technique.
+  - >
+    Floating UI panels with a single soft drop-shadow (dropShadowSoft) and no competing
+    shadow layers, appearing throughout both this reference and the byshubh_ example spec's
+    stat-card dashboard.
+  - >
+    springSoft/springSnap easing reserved for physical UI objects (panels, cards, badges)
+    while bezier/expo easing is reserved for text and camera — the same easing-family
+    discipline documented in the byshubh_ example's isometric-dashboard technique.
+  - >
+    A counter value tied to something other than a fixed timer (here, a slider/marker
+    position; in the byshubh_ corpus, a content-reveal-progress fraction) — same underlying
+    principle of driving numeric displays off real state rather than wall-clock time.

@@ -1,6 +1,8 @@
 import React from "react";
 import { Composition } from "remotion";
 import { PRODUCT_OS_DURATION, ProductOSLaunch } from "./compositions/product-os";
+import { LottieBridge } from "./compositions/lottie-bridge";
+import { MaskSmoke } from "./compositions/mask-smoke";
 import { ThreeSmoke } from "./compositions/three-smoke";
 
 export const RemotionRoot: React.FC = () => (
@@ -12,6 +14,25 @@ export const RemotionRoot: React.FC = () => (
       fps={30}
       width={1920}
       height={1080}
+    />
+    {/* Jitter -> Lottie -> Remotion handoff, composited under our own treatment. */}
+    <Composition
+      id="LottieBridge"
+      component={LottieBridge}
+      durationInFrames={60}
+      fps={30}
+      width={1280}
+      height={720}
+    />
+    {/* Verifies the shape-mask family renders in headless Chromium — clip-path
+        circle/polygon, SVG stroke-dash and transform-box all differ there. */}
+    <Composition
+      id="MaskSmoke"
+      component={MaskSmoke}
+      durationInFrames={60}
+      fps={30}
+      width={1600}
+      height={900}
     />
     {/* Verifies the three.js path renders headlessly; base for the `needs-3d` specs. */}
     <Composition

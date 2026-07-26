@@ -1,0 +1,222 @@
+id: evanplace_B_sound-on-logo-animation-we-did-for-chatprd
+source: "unknown (X/Twitter post by @evanplace; folder name preserves the original post's caption text)"
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 29.97
+  duration_s: 5.939
+  orientation: horizontal
+
+verdict: >
+  A near-instant blur-spin flourish resolves into two simple overlapping
+  circles, which thicken/interlock into ChatPRD's final two-arch chain mark by
+  frame 50 -- then absolutely nothing moves again except a slow full-bleed
+  gradient swirl for the remaining 4.3 seconds. The reusable idea is that the
+  mask/reveal mechanism IS the mark's own outline changing shape, with zero
+  separate wipe or clip element.
+
+detection_notes: >
+  profile.md's shot detector reports a single shot (0-177f, no luma-delta cut
+  above 26.0) -- zero hard cuts in the whole clip. The two shots below are a
+  narrative subdivision of that one continuous take, not real cuts. The
+  motion.csv confirms the two-phase read directly: an absolute peak of 6.39 at
+  frame 6 (the fastest single-frame delta in the clip, matching the blurred
+  spin visible in sheet_01 row 1) followed by a second, spatially-localized
+  bump peaking at motion_localmax 47.97 at frame 48 (matching the circles
+  thickening into the final interlocked shape in sheet_01 row 2, cols 4-6).
+  After frame 50 motion drops and never returns near either peak -- "frames
+  frozen on ALL THREE scales: 1/177" confirms the background gradient keeps
+  the frame technically alive for the entire hold, it just never spikes again.
+
+palette:
+  bg: "gradient (no flat color -- full-bleed radial/conic pink-orange-purple swirl)"
+  ink: "#FFFFFF"
+  accent: "#F090A8"
+  support: ["#F07860", "#D878C0", "#D86090", "#F0C0C0"]
+  notes: >
+    There is no flat background color at all -- the swirling gradient itself
+    functions as the piece's entire color identity and its only ambient
+    accent. The mark is pure white line art throughout; it never picks up any
+    of the background hue. Brightness stays pinned light-dominant (min 172 /
+    max 179) for the whole clip.
+
+typography:
+  family_look: "n/a"
+  weights: []
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.0
+  notes: >
+    No wordmark or any text appears anywhere in the sampled frames -- this is
+    a pure mark-only ident, unlike the OpenAI reference in this same batch
+    which pairs its mark with a wordmark reveal.
+
+structure:
+  - act: reveal
+    t: [0.00, 1.668]
+    purpose: resolve the mark out of a fast blur-spin flourish, through simple circles, into the final interlocked chain shape.
+    shots: [1]
+  - act: cta
+    t: [1.668, 5.939]
+    purpose: hold the finished mark completely still while the gradient background keeps the frame alive, selling it as a calm, confident brand ident.
+    shots: [2]
+
+shots:
+  - n: 1
+    t: [0.00, 1.668]
+    frames: [0, 50]
+    layout: centre-stack
+    content: >
+      Frame 0 already shows the mark mid-motion, slightly soft -- the trailing
+      edge of a very fast blur-spin flourish that peaks at frame 6 (motion
+      6.39, the highest single-frame value in the clip). The blur decays
+      through a tiny transient squiggle/stroke artifact around frame 14, then
+      resolves into two simple thin overlapping circles by frames 17-24 (key
+      sheet_01 row 2, cols 2-3). Those two circles then thicken and interlock
+      into the final two-arch chain mark through a second, localized motion
+      bump peaking at frame 48.
+    moves:
+      - move: motionTrail
+        target: mark
+        at_f: 0
+        params: {echoes: 4, opacity: [0.3, 0.2, 0.15, 0.1], offset_f: 1}
+      - move: drawOn
+        target: "baseCircles (x2, simple overlapping rings)"
+        at_f: 14
+        params: {strokeDashoffset: "1->0", dur_f: 10, ease: expoInOut}
+      - move: morphShape
+        target: mark
+        at_f: 24
+        params: {dur_f: 26, ease: expoInOut, note: "two-circle paths interpolate into the final two-arch interlocking chain shape"}
+    camera: {move: static, params: {}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: none, params: {note: "settles directly into the hold, shot 2, no cut"}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.668, 5.939]
+    frames: [50, 178]
+    layout: centre-stack
+    content: >
+      The finished mark holds perfectly static for the remaining 128 frames
+      (4.3s) while the full-bleed pink/orange/purple gradient continues a
+      slow swirling drift as the sole motion in the frame.
+    moves:
+      - move: gradientDrift
+        target: bg
+        at_f: 0
+        params: {hue_rotate: "+-10deg", period_f: 220}
+    camera: {move: static, params: {}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 14
+
+techniques:
+  - id: circle-to-interlocking-mark-shape-morph
+    what: >
+      A fast motion-blurred spin resolves into two simple overlapping circles,
+      which then thicken and interlock into the final two-arch chain mark --
+      the entire reveal mechanism is the shape's own outline changing, with no
+      separate wipe, clip, or mask element ever introduced.
+    where: shot 1, frames 0-50
+    why_it_reads: >
+      Because the "mask" and the "subject" are the same object, the reveal
+      never looks like a UI trick sitting on top of the logo -- it looks like
+      the logo is drawing itself into existence.
+    remotion_recipe: >
+      Draw two circles via strokeDashoffset (drawOn). Fake the opening
+      blur-spin with 4 trailing echoes of the mark at decaying opacity
+      (motionTrail) rather than a true shutter-angle blur. Path-morph
+      (flubber or d3-interpolate-path) from the two-circle paths to the final
+      two-arch interlocking paths over ~26f with expoInOut.
+    difficulty: moderate
+
+  - id: swirling-gradient-as-sole-accent-layer
+    what: >
+      A full-bleed, continuously animated pink/orange/purple gradient is the
+      entire background and color identity of the piece for its whole
+      runtime -- there is no flat background color anywhere.
+    where: whole piece
+    why_it_reads: >
+      The moving gradient keeps the frame from ever reading as a dead static
+      screenshot during the 4-second hold, without adding a single extra
+      graphic element -- it does the "nothing is ever still" job for free.
+    remotion_recipe: >
+      Layer 3-4 radial-gradient circles at different positions/colors;
+      animate their positions and opacities slowly with sine functions on
+      different periods (gradientDrift, ~220-400f period) to fake fluid
+      gradient motion. Drive one stop's hue/saturation from a real analyzed
+      audio-amplitude value if genuine "sound on" reactivity is wanted.
+    difficulty: trivial
+
+  - id: instant-then-settle-energy-curve
+    what: >
+      All of the clip's motion happens in the first 50 of 178 frames; nothing
+      but the background moves for the remaining 76% of the runtime.
+    where: whole piece
+    why_it_reads: >
+      An extreme front-loaded curve is appropriate for a short logo sting --
+      it reads as confident and finished rather than restless, because the
+      "work" of the reveal is clearly done and the hold is a deliberate,
+      unhurried brand moment.
+    remotion_recipe: >
+      Sequence the transformation moves entirely within the first ~1.7s,
+      then hand off to a single ambient move (gradientDrift) for the
+      remainder -- do not add any secondary event or camera move during the
+      hold, the stillness of the mark itself is the point.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 89
+  fastest_f: 50
+  slowest_f: 128
+  pattern: >
+    50f blur-spin-into-shape-morph transformation -> 128f static hold on the
+    finished mark with only the background gradient moving. Zero hard cuts.
+  beat_grid_f: none
+  energy_curve: front-loaded
+
+transferable:
+  - Make the reveal mechanism the mark's own shape changing (circle -> final
+    form via path morph) instead of a separate wipe/mask sitting on top of a
+    static mark -- it reads as the logo drawing itself.
+  - Front-load 100% of a logo ident's motion into the first third of the
+    runtime, then hold completely still except for one ambient background
+    move for the rest -- confident, not restless.
+  - Use a slow, continuously animated gradient as the entire background AND
+    the sole ambient/accent layer, skipping a flat background color
+    altogether.
+  - Fake a fast blur-spin entrance with 3-5 decaying-opacity trailing echoes
+    (motionTrail) rather than attempting a true per-frame motion blur filter.
+
+avoid:
+  - The fast blur-spin entrance depends on true motion blur / frame
+    accumulation, which a plain CSS transform+opacity fade will not
+    reproduce -- use motionTrail echoes, not a single blurred frame.
+  - Do not literally sync anything to audio waveform data guessed from
+    stills -- if genuine "sound on" reactivity is wanted, drive the
+    gradient's phase/saturation from an actual analyzed audio-amplitude
+    array, not an assumed sine wave.
+  - Path-morphing two plain circles into a two-arch interlocking chain needs
+    matched point ordering between the source and target SVG paths or the
+    interpolation will visibly cross/tangle -- do not attempt a naive linear
+    point-lerp without a proper morph library.
+
+convergence:
+  - >
+    morphShape (SVG path interpolation between two states of the same object)
+    is convergent with B_chromatic's "bloom-invert-morph-transition"
+    technique, which likewise interpolates a path from one silhouette to
+    another as its connective transition instead of a hard cut.
+  - >
+    drawOn (strokeDashoffset reveal of simple outline shapes) is convergent
+    with B_chromatic's "blueprint-construction-reveal" technique, which also
+    uses stroke-based line drawing as the first stage of a mark's
+    construction.
