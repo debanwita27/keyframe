@@ -165,8 +165,9 @@ export const S2_Typing: React.FC = () => (
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
       <PromptCard
         text="i have a rough idea. where do i even start?"
-        typedFrom={0}
+        typedFrom={b(0.5)}
         activateAtF={62}
+        entrance
         placeholder="ask product os anything…"
       />
     </AbsoluteFill>
@@ -177,8 +178,8 @@ export const S2_Typing: React.FC = () => (
 
 export const S3_Submit: React.FC = () => {
   const frame = useCurrentFrame();
-  const flash = t(frame, 22, 5, "expoIn");
-  const collapse = t(frame, 13, 14, "expoIn");
+  const flash = t(frame, 25, 5, "expoIn");
+  const collapse = t(frame, 20, 12, "expoIn");
   return (
     <DarkBase driftContent={false}>
       <AbsoluteFill
@@ -195,7 +196,8 @@ export const S3_Submit: React.FC = () => {
       <Cursor
         path={[
           { x: 1120, y: 830, atF: 0 },
-          { x: 1521, y: 627, atF: 11, click: true },
+          // arrival sits on a half-beat so the click SFX can land with it
+          { x: 1521, y: 627, atF: b(1), click: true },
         ]}
         color="#F4F1FA"
       />

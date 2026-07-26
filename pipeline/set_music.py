@@ -42,8 +42,10 @@ from analyze_audio import (  # noqa: E402
 # one shape move, and an even cut rhythm across both is what makes a text-heavy
 # product video feel rushed. Visual beats stay at 3-4; text-heavy ones get 5.
 SHOT_BEATS = [
-    3,   # 1  blank prompt
-    5,   # 2  the real question types in
+    # The blank-prompt beat was cut: shot 1 now owns the card entrance AND the
+    # typing, which tightens the open and makes the wordmark underline the first
+    # whoosh in the film.
+    5,   # 1  card enters, the real question types in
     2,   # 3  submit
     4,   # 4  title
     5,   # 5  reframe — struck-through line + three role chips

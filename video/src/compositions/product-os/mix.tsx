@@ -20,8 +20,8 @@ const CUTS = BEAT_DURATIONS.reduce<number[]>(
 const at = (shotIndex: number) => CUTS[shotIndex];
 
 /** Frame the title flash lands on. */
-export const DROP_F = at(3);
-export const END_CARD_F = at(12);
+export const DROP_F = at(2);
+export const END_CARD_F = at(11);
 export const TOTAL_F = CUTS[CUTS.length - 1];
 
 type Hit = { file: string; f: number; vol: number; label: string };
@@ -32,51 +32,52 @@ type Hit = { file: string; f: number; vol: number; label: string };
  * shot list by eye.
  */
 export const HITS: Hit[] = [
-  // ── open: sparse. The narrative is someone typing, so almost nothing.
-  { file: "tick", f: at(1) - 2, vol: 0.14, label: "cursor focus" },
+  // Shot indices after the blank-prompt beat was cut:
+  //   0 typing · 1 submit · 2 title · 3 reframe · 4 rail
+  //   5..10 capability beats · 11 end card
 
-  // ── the drop. A riser fills the last bar of the quiet section, the impact
-  //    lands exactly on the flash frame, and a whoosh covers the cut itself.
+  // ── open: the only sound is the click, and it is scored to the exact frame
+  //    the cursor reaches the send button (S3_Submit, arrival at b(0.5) = 8f).
+  { file: "tick", f: at(1) + 16, vol: 0.3, label: "cursor clicks send" },
+
+  // ── the drop. A riser fills the bar before the title; the impact lands on the
+  //    flash frame. NO whoosh on this cut — it sat 21 frames before the underline
+  //    whoosh and the two read as one doubled sound.
   { file: "riser", f: DROP_F - 31, vol: 0.5, label: "riser into title" },
   { file: "impact-deep", f: DROP_F, vol: 0.62, label: "title flash" },
-  { file: "whoosh-hard", f: DROP_F - 5, vol: 0.3, label: "cut into title" },
+  // the first whoosh in the film, on the accent underline one beat later
+  { file: "whoosh-soft", f: DROP_F + 16, vol: 0.36, label: "Product OS underline draws" },
 
-  // the accent underline sweeping in under the wordmark — one beat after the cut
-  { file: "whoosh-soft", f: DROP_F + 16, vol: 0.34, label: "Product OS underline draws" },
+  // ── reframe: three role pills landing
+  { file: "whoosh-soft", f: at(3), vol: 0.2, label: "cut to reframe" },
+  { file: "tick", f: at(3) + 31, vol: 0.13, label: "pill 1" },
+  { file: "tick", f: at(3) + 34, vol: 0.13, label: "pill 2" },
+  { file: "tick", f: at(3) + 37, vol: 0.13, label: "pill 3" },
 
-  // ── reframe: three role chips landing
-  { file: "whoosh-soft", f: at(4), vol: 0.2, label: "cut to reframe" },
-  { file: "tick", f: at(4) + 31, vol: 0.13, label: "chip 1" },
-  { file: "tick", f: at(4) + 34, vol: 0.13, label: "chip 2" },
-  { file: "tick", f: at(4) + 37, vol: 0.13, label: "chip 3" },
-
-  // ── lifecycle rail: one soft tick per stage node as the accent line passes
-  { file: "whoosh-soft", f: at(5), vol: 0.2, label: "cut to rail" },
+  // ── lifecycle rail: one soft tick per stage as the accent line passes it
+  { file: "whoosh-soft", f: at(4), vol: 0.2, label: "cut to rail" },
   ...[0, 1, 2, 3, 4].map((i) => ({
     file: "tick",
-    f: at(5) + 20 + Math.round((i * 64) / 5),
+    f: at(4) + 16 + Math.round((i * 70) / 5),
     vol: 0.12,
     label: `rail node ${i + 1}`,
   })),
 
-  // ── capability beats: a whoosh on every cut, alternating soft/hard so six
-  //    cuts in a row don't sound identical
-  // Only the first capability cut and the mid-sequence light/dark flip get a
-  // whoosh. The other four cuts land on the beat, so the track's own transient
-  // already marks them — six identical whooshes in a row is what makes motion
-  // design audio sound generic.
-  { file: "whoosh-soft", f: at(6), vol: 0.24, label: "into the capability sequence" },
-  { file: "whoosh-hard", f: at(9), vol: 0.2, label: "mid-sequence flip to dark" },
-  // the accents inside individual beats
-  { file: "tick", f: at(6) + 34, vol: 0.2, label: "idea ticked" },
-  { file: "impact-soft", f: at(7) + 22, vol: 0.22, label: "competitor card lifts" },
-  { file: "impact-soft", f: at(8) + 14, vol: 0.26, label: "chips snap into order" },
-  { file: "tick", f: at(9) + 26, vol: 0.16, label: "metric lands" },
-  { file: "impact-soft", f: at(11) + 20, vol: 0.2, label: "wireframe solidifies" },
+  // ── capability beats. Only two cuts get a whoosh: the cuts are beat-locked, so
+  //    the track's own transient marks the rest. Six identical whooshes in a row
+  //    is what makes motion-design audio sound generic.
+  { file: "whoosh-soft", f: at(5), vol: 0.24, label: "into the capability sequence" },
+  { file: "whoosh-hard", f: at(8), vol: 0.2, label: "mid-sequence flip to dark" },
+  // accents on things that would plausibly make a sound
+  { file: "tick", f: at(5) + 31, vol: 0.2, label: "idea ticked" },
+  { file: "impact-soft", f: at(6) + 24, vol: 0.22, label: "competitor card lifts" },
+  { file: "impact-soft", f: at(7) + 16, vol: 0.26, label: "chips snap into order" },
+  { file: "tick", f: at(8) + 24, vol: 0.16, label: "metric lands" },
+  { file: "impact-soft", f: at(10) + 20, vol: 0.2, label: "wireframe solidifies" },
 
   // ── end card
   { file: "impact-deep", f: END_CARD_F, vol: 0.42, label: "end card" },
-  { file: "sub-drop", f: END_CARD_F + 44, vol: 0.3, label: "outro sub" },
+  { file: "sub-drop", f: END_CARD_F + 47, vol: 0.3, label: "outro sub" },
 ];
 
 const Hit: React.FC<Hit> = ({ file, f, vol }) => (

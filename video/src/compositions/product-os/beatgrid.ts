@@ -9,7 +9,7 @@ export const MUSIC = {
   bpm: 120.19,
   beatConfidence: 0.81,
   /** where in the ORIGINAL track this window starts, in seconds */
-  sourceStartSec: 127.5281,
+  sourceStartSec: 127.5156,
   sourceSection: "--at 127.3s",
 } as const;
 
@@ -24,19 +24,19 @@ export const BEAT_F = 14.98;
 export const b = (beats: number) => Math.round(beats * BEAT_F);
 
 /** Beats per shot — the edit's rhythmic intent, independent of tempo. */
-export const SHOT_BEATS = [3, 5, 2, 4, 5, 6, 4, 3, 5, 4, 6, 4, 6];
+export const SHOT_BEATS = [5, 2, 4, 5, 6, 4, 3, 5, 4, 6, 4, 6];
 
-/** Cut positions in frames, relative to film start (length 58). */
-export const CUT_FRAMES = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 329, 344, 359, 374, 389, 404, 419, 434, 449, 464, 479, 494, 509, 524, 539, 554, 569, 584, 599, 614, 629, 644, 659, 674, 689, 704, 719, 734, 749, 764, 779, 794, 809, 824, 839, 854];
+/** Cut positions in frames, relative to film start (length 55). */
+export const CUT_FRAMES = [0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165, 180, 195, 210, 225, 240, 255, 270, 285, 300, 315, 329, 344, 359, 374, 389, 404, 419, 434, 449, 464, 479, 494, 509, 524, 539, 554, 569, 584, 599, 614, 629, 644, 659, 674, 689, 704, 719, 734, 749, 764, 779, 794, 809];
 
 /** Shot durations in frames, derived from CUT_FRAMES. */
-export const BEAT_DURATIONS = [45, 75, 30, 60, 75, 89, 60, 45, 75, 60, 90, 60, 90];
+export const BEAT_DURATIONS = [75, 30, 60, 75, 89, 60, 45, 75, 60, 90, 60, 90];
 
-export const FILM_FRAMES = 854;
+export const FILM_FRAMES = 809;
 
 /**
  * Ducking gains, derived from THIS track's own dynamics rather than hand-tuned.
- * The music already supplies 1.4 dB of open→body contrast, so the
+ * The music already supplies 1.6 dB of open→body contrast, so the
  * envelope only makes up the difference to 15 dB.
  */
-export const DUCK = {"open": 0.209, "preRise": 0.355, "dip": 0.094, "body": 1.0, "outro": 0.34} as const;
+export const DUCK = {"open": 0.214, "preRise": 0.364, "dip": 0.096, "body": 1.0, "outro": 0.34} as const;

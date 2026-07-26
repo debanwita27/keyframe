@@ -248,6 +248,12 @@ even cut rhythm across both is what makes a text-heavy product video feel rushed
 Visual beats get 3–4; text-heavy ones get 5–6. Because it is expressed in beats,
 a slower track automatically grants more reading time.
 
+The opening was also cut down: a separate blank-prompt beat was removed and the
+card entrance folded into the typing shot. That reaches the wordmark in 3.7s
+instead of 5.2s, and makes the accent underline's whoosh the first one in the
+film — previously a whoosh on the title cut sat 21 frames before it and the two
+read as one doubled sound.
+
 ### Mixing
 
 Layering happens in Remotion (`product-os/mix.tsx`), not ffmpeg — every hit needs
@@ -255,6 +261,11 @@ a specific *frame*, and the mix stays versioned next to the edit. `HITS` is a fl
 data array so it can be read and retimed without touching JSX. SFX are
 **synthesised** by `make_sfx.py` (filtered noise sweeps, pitch-dropping sub
 thumps) — deterministic and licence-free.
+
+Every sound is scored to a specific frame, and where a sound has an on-screen
+cause the two must be the same frame — the synthetic cursor's click SFX sits on
+its exact arrival frame (`at(1) + b(1)`), not near it. Cursor travel is a full
+beat: half a beat across 400px read as a jump rather than a move.
 
 SFX are used sparingly on purpose. Once cuts are beat-locked, the track's own
 transient marks most of them — a whoosh on all six capability cuts read as a

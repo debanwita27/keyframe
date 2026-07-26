@@ -4,7 +4,6 @@ import { Film, Shot, auditShots, filmDuration } from "../../lib/film";
 import { BEAT_DURATIONS, MUSIC } from "./beatgrid";
 import { Mix } from "./mix";
 import {
-  S1_Blank,
   S2_Typing,
   S3_Submit,
   S4_Title,
@@ -29,7 +28,8 @@ import {
  * long held end card over the outro.
  */
 const RENDER: React.FC[] = [
-  S1_Blank,
+  // S1_Blank is intentionally not in the film — the card entrance moved into
+  // S2_Typing so the open is tighter. The component stays for reuse.
   S2_Typing,
   S3_Submit,
   S4_Title,
@@ -45,8 +45,7 @@ const RENDER: React.FC[] = [
 ];
 
 const NAMES = [
-  "1 · blank prompt",
-  "2 · the real question",
+  "1 · the real question",
   "3 · submit",
   "4 · title",
   "5 · reframe",
