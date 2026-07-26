@@ -262,6 +262,21 @@ data array so it can be read and retimed without touching JSX. SFX are
 **synthesised** by `make_sfx.py` (filtered noise sweeps, pitch-dropping sub
 thumps) — deterministic and licence-free.
 
+**A sound that is inaudible is worse than no sound.** The cursor's click was
+scored to the exact right frame and still read as badly mistimed, because the
+generic `tick` measured only **1.2x above the music bed** — so the ear paired the
+cursor with the nearest loud transient, which was the music's own hit landing as
+the cursor began to move. Fixing the timing could never have worked; the fix was
+a dedicated broadband `click` (bright HF spike + mid body + low thud) at 0.95,
+which measures **7.7x** and reads correctly. Verify SFX audibility against the
+bed, not just their frame numbers:
+
+```
+onset in the 2-4kHz band around the click frame:
+  tick  @ 0.30   1.2x above bed   inaudible
+  click @ 0.95   7.7x above bed   reads
+```
+
 Every sound is scored to a specific frame, and where a sound has an on-screen
 cause the two must be the same frame — the synthetic cursor's click SFX sits on
 its exact arrival frame (`at(1) + b(1)`), not near it. Cursor travel is a full
@@ -286,6 +301,21 @@ DROP           -17.2 dB   ← +9.3 dB, which is what makes the cut land
 capability     -14.3 dB
 end card       -18.0 dB
 ```
+
+## Masking a specular sweep
+
+`SpecularSweep` lays a gradient band across a rectangular box — right for a glass
+card, wrong for type: you see the band's straight edges crossing the letters
+instead of light travelling along them. `ShineText` renders the text twice, solid
+underneath and gradient on top with `background-clip: text`, so the highlight only
+exists inside the glyphs.
+
+Two things that make it actually visible:
+
+- The base colour must sit **below** white. A white shine over near-white type has
+  nothing to be brighter than, so the sweep disappears even though it is working.
+- Give the highlight tinted flanks (`flank`), not just a white core. A single hard
+  band reads as a wipe; a core with falloff reads as a curved reflective surface.
 
 ## Reading the reference library
 

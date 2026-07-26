@@ -36,9 +36,13 @@ export const HITS: Hit[] = [
   //   0 typing · 1 submit · 2 title · 3 reframe · 4 rail
   //   5..10 capability beats · 11 end card
 
-  // ── open: the only sound is the click, and it is scored to the exact frame
-  //    the cursor reaches the send button (S3_Submit, arrival at b(0.5) = 8f).
-  { file: "tick", f: at(1) + 16, vol: 0.3, label: "cursor clicks send" },
+  // ── open: one sound, on the cursor's exact arrival frame — which is also a
+  //    beat, so the click reinforces the track rather than fighting it.
+  //    Measured: the old `tick` sat at 1.2x the music bed, i.e. inaudible, so the
+  //    ear paired the cursor with the music hit that lands as it starts moving
+  //    and the click read as badly mistimed. Loud + broadband fixes that.
+  { file: "click", f: at(1) + 16, vol: 0.95, label: "cursor clicks send" },
+  { file: "impact-soft", f: at(1) + 16, vol: 0.2, label: "click body" },
 
   // ── the drop. A riser fills the bar before the title; the impact lands on the
   //    flash frame. NO whoosh on this cut — it sat 21 frames before the underline

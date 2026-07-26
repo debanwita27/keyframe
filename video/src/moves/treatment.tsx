@@ -202,6 +202,78 @@ export const SpecularSweep: React.FC<{
 };
 
 /**
+ * shineText — a specular sweep CLIPPED TO THE GLYPHS.
+ *
+ * `SpecularSweep` lays a gradient band over a rectangular box, which is correct
+ * for a glass card but wrong for type: on a wordmark you see the band's straight
+ * edges crossing the letters instead of light travelling along them. This renders
+ * the text twice — solid underneath, gradient on top with `background-clip: text`
+ * — so the highlight only exists inside the letterforms.
+ */
+export const ShineText: React.FC<{
+  text: string;
+  color: string;
+  startF?: number;
+  durF?: number;
+  /** width of the highlight band, in % of the text box */
+  widthPct?: number;
+  angleDeg?: number;
+  shine?: string;
+  flank?: string;
+  style?: React.CSSProperties;
+}> = ({
+  text,
+  color,
+  startF = 0,
+  durF = 34,
+  widthPct = 18,
+  angleDeg = 100,
+  shine = "#FFFFFF",
+  /**
+   * Tint either side of the highlight core. Without it a white shine over
+   * near-white type is invisible — there is nothing for the highlight to be
+   * brighter *than*. Keep the base colour a touch below white and let this carry
+   * the sense of a curved, reflective surface.
+   */
+  flank = "rgba(181,124,255,0.75)",
+  style,
+}) => {
+  const frame = useCurrentFrame();
+  const p = t(frame, startF, durF, "expoInOut");
+  const pos = at(p, -30, 130);
+  const h = widthPct / 2;
+  const grad =
+    `linear-gradient(${angleDeg}deg,` +
+    ` transparent ${pos - widthPct}%,` +
+    ` ${flank} ${pos - h}%,` +
+    ` ${shine} ${pos}%,` +
+    ` ${flank} ${pos + h}%,` +
+    ` transparent ${pos + widthPct}%)`;
+  return (
+    <span style={{ ...style, position: "relative", display: "inline-block", color }}>
+      {text}
+      <span
+        aria-hidden
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+          whiteSpace: "pre",
+          backgroundImage: grad,
+          WebkitBackgroundClip: "text",
+          backgroundClip: "text",
+          color: "transparent",
+          opacity: p > 0 && p < 1 ? 1 : 0,
+          pointerEvents: "none",
+        }}
+      >
+        {text}
+      </span>
+    </span>
+  );
+};
+
+/**
  * noiseField — dithered organic background using @remotion/noise. This is the
  * one place we reach past CSS: gradients alone cannot make an *organic* field,
  * and a full GLSL pass is overkill.

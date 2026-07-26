@@ -91,6 +91,42 @@ def tick(dur=0.09, seed=4, hz=2600):
     return y
 
 
+def click(dur=0.055, seed=21):
+    """
+    A mouse click that survives a busy mix.
+
+    The generic `tick` failed here: its 2.6kHz sine sat in the same band as the
+    music and measured 1.2x above the bed, i.e. inaudible, so the loud impact
+    half a second later got heard as the click instead. This is deliberately
+    broadband with a very sharp edge — a bright HF spike for the "tac", a short
+    mid body so it reads as physical, and a tiny low thud for weight.
+    """
+    n = int(dur * SR)
+    hi = _onepole_hp(_noise(n, seed), 6500) * _env(n, 0.0002, 0, 40.0)
+    mid = _onepole_hp(_onepole_lp(_noise(n, seed + 1), 4200), 1200) * _env(n, 0.0004, 0, 26.0)
+    t = np.arange(n) / SR
+    low = np.sin(2 * np.pi * 190 * t) * _env(n, 0.0006, 0, 30.0) * 0.5
+    return hi * 1.0 + mid * 0.8 + low
+
+
+def click(dur=0.055, seed=21):
+    """
+    A mouse click that survives a busy mix.
+
+    The generic `tick` failed here: its 2.6kHz sine sat in the same band as the
+    music and measured only 1.2x above the bed — inaudible — so the ear paired the
+    cursor with the nearest loud transient instead. This is deliberately broadband
+    with a very sharp edge: a bright HF spike for the "tac", a short mid body so it
+    reads as physical, and a little low thud for weight.
+    """
+    n = int(dur * SR)
+    hi = _onepole_hp(_noise(n, seed), 6500) * _env(n, 0.0002, 0, 40.0)
+    mid = _onepole_hp(_onepole_lp(_noise(n, seed + 1), 4200), 1200) * _env(n, 0.0004, 0, 26.0)
+    t_ = np.arange(n) / SR
+    low = np.sin(2 * np.pi * 190 * t_) * _env(n, 0.0006, 0, 30.0) * 0.5
+    return hi + mid * 0.8 + low
+
+
 def keystroke(dur=0.05, seed=5):
     """One key press. Layered under TypeOn at the real character rate."""
     n = int(dur * SR)
@@ -136,6 +172,8 @@ SOUNDS = {
     "impact-soft":  lambda: stereo(impact(0.45, 12, 68, 0.3), 0.2),
     "riser":        lambda: stereo(riser(1.05, 3), 0.4),
     "tick":         lambda: stereo(tick(0.09, 4), 0.15),
+    "click":        lambda: stereo(click(0.055, 21), 0.08),
+    "click":        lambda: stereo(click(0.055, 21), 0.08),
     "keystroke":    lambda: stereo(keystroke(0.05, 5), 0.1),
     "sub-drop":     lambda: stereo(sub_drop(1.3, 6), 0.0),
 }

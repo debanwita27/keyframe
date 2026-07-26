@@ -14,7 +14,7 @@ import {
   OrbitRing,
   PushIn,
   ScaleIn,
-  SpecularSweep,
+  ShineText,
   StaggerRise,
   TiltIdle,
   TypeOn,
@@ -178,8 +178,8 @@ export const S2_Typing: React.FC = () => (
 
 export const S3_Submit: React.FC = () => {
   const frame = useCurrentFrame();
-  const flash = t(frame, 25, 5, "expoIn");
-  const collapse = t(frame, 20, 12, "expoIn");
+  const flash = t(frame, 23, 5, "expoIn");
+  const collapse = t(frame, 18, 12, "expoIn");
   return (
     <DarkBase driftContent={false}>
       <AbsoluteFill
@@ -195,7 +195,9 @@ export const S3_Submit: React.FC = () => {
       </AbsoluteFill>
       <Cursor
         path={[
-          { x: 1120, y: 830, atF: 0 },
+          // starts 3f after the cut, so the music hit at the cut is not read as
+          // the click; arrival lands on the next beat at b(1)
+          { x: 1120, y: 830, atF: 3 },
           // arrival sits on a half-beat so the click SFX can land with it
           { x: 1521, y: 627, atF: b(1), click: true },
         ]}
@@ -788,19 +790,23 @@ export const S8_End: React.FC = () => {
     <DarkBase grain={0.06}>
       <PushIn from={1.04} to={1} durF={85}>
         <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-          <SpecularSweep startF={b(1.5)} durF={34} style={{ borderRadius: 8, padding: "0 12px" }}>
-            <MaskWipeUp
-              startF={0}
-              durF={22}
-              perLineStaggerF={4}
-              style={{ textAlign: "center" }}
-              lines={[
-                <span key="a" style={{ ...TYPE.hero, fontSize: 148, color: C.onDark }}>
-                  Product OS
-                </span>,
-              ]}
-            />
-          </SpecularSweep>
+          <MaskWipeUp
+            startF={0}
+            durF={22}
+            perLineStaggerF={4}
+            style={{ textAlign: "center" }}
+            lines={[
+              <ShineText
+                key="a"
+                text="Product OS"
+                // a shade under white so the sweep has something to be brighter than
+                color="#D8D2E6"
+                startF={b(1.5)}
+                durF={34}
+                style={{ ...TYPE.hero, fontSize: 148 }}
+              />,
+            ]}
+          />
           <div style={{ marginTop: 26, textAlign: "center" }}>
             <MaskWipeUp
               startF={b(1.5)}
