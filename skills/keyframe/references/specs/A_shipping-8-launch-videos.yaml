@@ -1,0 +1,526 @@
+id: A_shipping-8-launch-videos
+category: saas-explainer
+product_type: text-heavy-tool
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 3.667
+  orientation: horizontal
+
+verdict: >
+  An 11-beat, 8-frame-per-beat montage where almost every "shot" is a dead-static
+  hold and the cut itself carries all the motion — this is how you make a
+  sentence-by-sentence explainer feel kinetic without animating anything inside
+  the frame. The pipeline section reuses one vertical list and just moves a
+  highlight ring down it, which reads as "step 3 of 5" with zero new geometry.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#1A1A1A"
+  accent: "#8B5CF6"
+  support: ["#D8C0F0", "#C0C0F0", "#C0A8C0"]
+  notes: >
+    Near-white flat bg for ~91% of pixels; accent purple rationed to UI chrome
+    (video-card fills, chat bubbles, chips, avatar rings, kanban card headers)
+    and to a single underlined keyword per sentence. Manager beat briefly dips
+    brightness (bg luma 226 vs 240-246 elsewhere) as the palette shifts toward
+    the lavender metric-bubble cluster.
+
+typography:
+  family_look: geometric sans
+  weights: [regular, medium]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.55
+  notes: >
+    One sentence per beat, single line, centered or left-aligned near a supporting
+    graphic. Exactly one keyword per sentence is styled as a link (accent color +
+    underline) — "real estate agents", "YouTube", "matters", "overwhelming",
+    "Content Management System (CRM)" — no other emphasis (no bold, no size jump).
+    Persona labels ("The Strategist" etc.) are small caption-weight text under an
+    avatar, not headline type.
+
+structure:
+  - act: hook
+    t: [0.0, 0.29]
+    purpose: name the audience and their unmet need
+    shots: [1]
+  - act: problem
+    t: [0.29, 1.29]
+    purpose: >
+      concede video matters, then visualize the overload of metrics and
+      unanswered questions that make it feel impossible
+    shots: [2, 3, 4]
+  - act: reveal
+    t: [1.29, 1.62]
+    purpose: flash the payoff (a real inquiry turning into channel value) before explaining how
+    shots: [5]
+  - act: capability
+    t: [1.62, 3.29]
+    purpose: walk the fixed 5-role production pipeline that does the work for the user
+    shots: [6, 7, 8, 9, 10]
+  - act: cta
+    t: [3.29, 3.667]
+    purpose: name-drop the product and show its real UI
+    shots: [11]
+
+shots:
+  - n: 1
+    t: [0.00, 0.29]
+    frames: [0, 7]
+    layout: left-rail
+    content: >
+      Three circular real-estate-agent headshots stacked vertically, top-left.
+      Headline beside/below: "Most real estate agents struggle with YouTube"
+      (YouTube icon inline before the word, "real estate agents" and "YouTube"
+      both styled as underlined accent links).
+    moves:
+      - move: slideStackIn
+        target: headshot-stack
+        at_f: 0
+        params: {y: [40, 0], stagger_f: 2, z_offset: 8px, dur_f: 6, ease: springSoft}
+      - move: staggerRise
+        target: headline
+        at_f: 0
+        params: {y: [16, 0], opacity: [0, 1], blur: [6, 0], stagger_f: 0, ease: backOut, dur_f: 6}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 2
+    t: [0.29, 0.62]
+    frames: [8, 15]
+    layout: split
+    content: >
+      Two offset rows of purple video-thumbnail cards (play-triangle icon,
+      rounded rect) sandwiching centered text "They know that video matters"
+      ("matters" underlined). Rows are horizontally offset from each other,
+      staged as a frozen mid-scroll video wall.
+    moves:
+      - move: staggerRise
+        target: video-card-row-top
+        at_f: 0
+        params: {y: [-16, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft, dur_f: 6}
+      - move: staggerRise
+        target: video-card-row-bottom
+        at_f: 0
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft, dur_f: 6}
+      - move: maskWipeUp
+        target: headline
+        at_f: 1
+        params: {dur_f: 6, per_line_stagger_f: 0, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: [marquee]}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 3
+    t: [0.62, 0.96]
+    frames: [16, 23]
+    layout: full-bleed-ui
+    content: >
+      Flat white bg with small floating pill-chips of YouTube metrics
+      ("Audience Retention", "Subscribers", "Videos/Shorts/Live", "Views",
+      "Click-Through Rate (CTR)", "Watch Time") scattered top-right and
+      bottom-left. Centered text: "but creating content that actually works
+      feels overwhelming." ("overwhelming" underlined).
+    moves:
+      - move: popIn
+        target: metric-chips
+        at_f: 0
+        params: {scale: [0, 1.08, 1], stagger_f: 1, ease: springSnap, dur_f: 6}
+      - move: chipFloat
+        target: metric-chips
+        at_f: 6
+        params: {amp: 3px, period_f: 24}
+      - move: staggerRise
+        target: headline
+        at_f: 1
+        params: {y: [16, 0], opacity: [0, 1], ease: backOut, dur_f: 6}
+    camera: {move: driftCamera, params: {amp: "1.5%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 1
+
+  - n: 4
+    t: [0.96, 1.29]
+    frames: [24, 31]
+    layout: centre-stack
+    content: >
+      Central circular agent avatar with three purple chat bubbles arranged
+      radially around it: "What do you post?", "How do you get it seen?",
+      "How do you turn views into clients?"
+    moves:
+      - move: radialChatCluster
+        target: question-bubbles
+        at_f: 0
+        params: {radius: 140px, angles_deg: [200, 260, 320], stagger_f: 2, ease: backOut, dur_f: 6}
+      - move: popIn
+        target: agent-avatar
+        at_f: 0
+        params: {scale: [0.9, 1.04, 1], dur_f: 6, ease: springSnap}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 5
+    t: [1.29, 1.62]
+    frames: [32, 39]
+    layout: split
+    content: >
+      Payoff flash: an inbox-style card "I'm interested in a property" over a
+      property photo, linked to a "Your Channel" stat panel showing "$1,423,234"
+      and a row of video thumbnails with a "Views" counter.
+    moves:
+      - move: scaleIn
+        target: inquiry-card
+        at_f: 0
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 6, ease: backOut}
+      - move: counterUp
+        target: dollar-value
+        at_f: 1
+        params: {from: 0, to: 1423234, dur_f: 6, ease: expoOut, monospace_digits: true}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 6
+    t: [1.62, 1.96]
+    frames: [40, 47]
+    layout: split
+    content: >
+      Start of the pipeline relay: "The Strategist" (avatar + label, active/
+      color, ringed) top of a vertical persona list, paired with a
+      content-planning panel of "Content Idea" kanban columns.
+    moves:
+      - move: stepRelayAdvance
+        target: persona-list
+        at_f: 0
+        params: {index: 0, row_h: 110px, dur_f: 0, ease: hardCut}
+      - move: scaleIn
+        target: content-idea-panel
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 6, ease: backOut}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 7
+    t: [1.96, 2.29]
+    frames: [48, 55]
+    layout: split
+    content: >
+      "The Strategist" fades to grayscale above; "The Designer" — no, "The
+      Writer" becomes the active, ringed entry; paired panel swaps to a
+      document/"Script" preview (lines of body text on a card).
+    moves:
+      - move: stepRelayAdvance
+        target: persona-list
+        at_f: 0
+        params: {index: 1, row_h: 110px, dur_f: 0, ease: hardCut}
+      - move: dissolveBlur
+        target: content-idea-panel
+        at_f: 0
+        params: {blur: [0, 14], opacity: [1, 0], dur_f: 4}
+      - move: scaleIn
+        target: script-panel
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 6, ease: backOut}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 8
+    t: [2.29, 2.62]
+    frames: [56, 63]
+    layout: split
+    content: >
+      "The Writer" fades to grayscale above; "The Designer" active/ringed;
+      panel swaps to a design tool: left icon rail (select, rect, pen, link),
+      an image placeholder with selection handles + cursor, and a "Layers"
+      panel listing "Image 1..4".
+    moves:
+      - move: stepRelayAdvance
+        target: persona-list
+        at_f: 0
+        params: {index: 2, row_h: 110px, dur_f: 0, ease: hardCut}
+      - move: dissolveBlur
+        target: script-panel
+        at_f: 0
+        params: {blur: [0, 14], opacity: [1, 0], dur_f: 4}
+      - move: scaleIn
+        target: design-tool-panel
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 6, ease: backOut}
+      - move: popIn
+        target: cursor-icon
+        at_f: 2
+        params: {scale: [0, 1.1, 1], dur_f: 4, ease: springSnap}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 9
+    t: [2.62, 2.96]
+    frames: [64, 71]
+    layout: split
+    content: >
+      "The Designer" fades to grayscale; "The Editor" active/ringed; panel
+      swaps to a video-editing scrubber/progress bar.
+    moves:
+      - move: stepRelayAdvance
+        target: persona-list
+        at_f: 0
+        params: {index: 3, row_h: 110px, dur_f: 0, ease: hardCut}
+      - move: dissolveBlur
+        target: design-tool-panel
+        at_f: 0
+        params: {blur: [0, 14], opacity: [1, 0], dur_f: 4}
+      - move: scaleIn
+        target: edit-timeline-panel
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 6, ease: backOut}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 10
+    t: [2.96, 3.29]
+    frames: [72, 79]
+    layout: split
+    content: >
+      "The Editor" fades to grayscale; "The Manager" active/ringed; panel
+      swaps to a floating metric-bubble cluster around a central play icon —
+      "SEO Ranking", "Published", "$10/CPM", "$14/CPM".
+    moves:
+      - move: stepRelayAdvance
+        target: persona-list
+        at_f: 0
+        params: {index: 4, row_h: 110px, dur_f: 0, ease: hardCut}
+      - move: dissolveBlur
+        target: edit-timeline-panel
+        at_f: 0
+        params: {blur: [0, 14], opacity: [1, 0], dur_f: 4}
+      - move: popIn
+        target: metric-bubbles
+        at_f: 0
+        params: {scale: [0, 1.08, 1], stagger_f: 1, ease: springSnap, dur_f: 6}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 1
+
+  - n: 11
+    t: [3.29, 3.667]
+    frames: [80, 87]
+    layout: centre-stack
+    content: >
+      Payoff/CTA: headline "Your Own Content Management System (CRM)" ("Content
+      Management System (CRM)" underlined) over a real kanban board UI with
+      columns "Planning", "Scripting", "Designing", "Editing", "Published",
+      each holding stacked content cards.
+    moves:
+      - move: maskWipeUp
+        target: headline
+        at_f: 0
+        params: {dur_f: 6, per_line_stagger_f: 0, ease: expoOut}
+      - move: staggerRise
+        target: kanban-columns
+        at_f: 1
+        params: {y: [24, 0], opacity: [0, 1], blur: [8, 0], stagger_f: 1, ease: springSoft, dur_f: 6}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 1
+
+techniques:
+  - id: step-relay-list
+    what: >
+      A vertical list of persona rows (avatar + name caption), one per pipeline
+      stage. Exactly one row is "active": full color, 2px accent ring, ink-dark
+      label, slightly scaled up. Adjacent rows (previous/next stage) are
+      grayscale, dimmed to ~50% opacity, and partially cropped at the frame
+      edge. Each cut advances the active index by exactly one row; the list
+      itself never leaves the frame or restructures.
+    where: shots 6-10 (frames 40-79)
+    why_it_reads: >
+      The eye never has to relocate — same list, same position, only the
+      color/ring value moves. It reads instantly as "step N of 5" and gives a
+      free progress indicator without a progress bar, narration, or new
+      geometry per beat.
+    remotion_recipe: >
+      One absolutely-positioned flex column of N fixed-height rows
+      (rowHeight, e.g. 110px). Container translateY = -activeIndex * rowHeight
+      + centerOffset, snapped per shot (no interpolation — measured motion is
+      ~0 between cuts, so drive it off `frame` with a step function keyed to
+      shot boundaries, not a spring). Inactive rows: `filter: grayscale(1)
+      brightness(0.9); opacity: 0.5`. Active row: `filter: none; opacity: 1;
+      border: 2px solid var(--accent); transform: scale(1.04)`. Cross-fade the
+      adjacent detail panel (kanban / script / design-tool / timeline / metric
+      cluster) with a 4f blur-out + 6f scale-in on the incoming panel, keyed to
+      the same shot boundary.
+    difficulty: moderate
+
+  - id: overwhelm-chip-cluster
+    what: >
+      Small purple pill-chips, each labeling one abstract metric name
+      (Audience Retention, CTR, Watch Time...), popped in and scattered
+      asymmetrically around empty white space with a slow floating idle.
+    where: shot 3 (frames 16-23)
+    why_it_reads: >
+      Turns an abstract claim ("content creation has too many variables to
+      track") into a literal, countable cluster of objects the viewer can scan
+      in under half a second — concrete nouns standing in for an abstract
+      feeling.
+    remotion_recipe: >
+      Hard-code an array of {label, x, y, rotate} per chip (don't randomize at
+      runtime — reference values are fixed, not physics-simulated). Entrance:
+      popIn per chip staggered 1f apart. Idle: apply a per-chip sinusoidal
+      translate (amplitude ~3px, period ~24f, phase offset = index * 0.3) via
+      `Math.sin(frame/period*2*Math.PI + phase) * amp` on transform, so no two
+      chips move in sync.
+    difficulty: trivial
+
+  - id: radial-question-bubbles
+    what: >
+      Three chat bubbles positioned at fixed polar coordinates (radius,
+      angle) around a single central avatar, each holding one unanswered
+      question.
+    where: shot 4 (frames 24-31)
+    why_it_reads: >
+      Radial placement around a person reads as "these questions surround/
+      pressure this one person" — a spatial metaphor for being overwhelmed
+      that a straight vertical list of the same three lines would not convey.
+    remotion_recipe: >
+      x = cx + radius*cos(angle), y = cy + radius*sin(angle) computed once per
+      bubble at fixed angles (e.g. 200°, 260°, 320°) — no runtime physics.
+      Stagger entrance by angle order (closest-to-vertical first) using popIn,
+      2f apart.
+    difficulty: trivial
+
+  - id: single-keyword-link-styling
+    what: >
+      In every headline, exactly one noun phrase gets accent-color +
+      underline; every other word stays plain ink-colored sans. No bold, no
+      size change, no color elsewhere.
+    where: all text shots (1, 2, 3, 11)
+    why_it_reads: >
+      Emphasis budget of "one link per sentence" trains the eye to always
+      know where to look next without shouting — cheaper and calmer than
+      animating the whole headline in a different color.
+    remotion_recipe: >
+      Render headline as an array of {text, isLink} spans; isLink spans get
+      `color: var(--accent); text-decoration: underline` applied statically
+      (not animated in) — the entrance move (maskWipeUp/staggerRise) is what
+      carries the motion, the styling itself never transitions.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 10
+  median_shot_f: 8
+  fastest_f: 8
+  slowest_f: 8
+  pattern: >
+    Uniform 8-frame beat grid (0.333s at 24fps) for all 11 shots: hardCut →
+    ~6f snappy entrance (pop/scale/mask-wipe with slight overshoot) → 1-2f
+    static hold → next hardCut. Per-frame motion data shows near-zero delta
+    inside every shot and a single spike (22-28 luma-delta) exactly at each
+    boundary — the cut carries ~100% of the perceived motion, not the shot.
+  beat_grid_f: 8
+  energy_curve: wave
+
+detection_notes: >
+  profile.md's cut detector (delta > 26.0) found only 2 shots, splitting at
+  frame 32 — that is the single largest luma-delta spike in the clip (27.65,
+  matching the radial-chat-bubbles → inquiry-card layout change) and is real.
+  But motion.csv shows 9 more spikes of comparable-but-sub-threshold magnitude
+  (22.99 @ f7, 22.37 @ f15, 23.14 @ f23, then smaller ~1-15 magnitude spikes at
+  f39, f47, f55, f63, f71, f79) each aligned with a full content swap visible
+  in sheet_01.jpg (new headline, new persona, new panel). These were UNDER-
+  detected, not over-detected — the algorithm's single threshold conflates
+  "big layout change" cuts with "same-template, swap-content" cuts, which
+  differ in area-of-frame-changed but not in narrative significance. This spec
+  treats all 10 boundaries as real shot cuts (11 shots total, uniform 8f beat
+  grid), per the sheet's frame-numbered content and the motion.csv spike list
+  above.
+
+transferable:
+  - Build entire beat structure on a fixed frame-grid (here 8f @ 24fps) tied
+    to a metronome — every shot is hardCut-in, snappy 6f entrance, 1-2f hold,
+    hardCut-out. This is what makes a slideshow-paced piece feel kinetic
+    instead of like PowerPoint.
+  - For any "team/pipeline/steps" narrative, use one persistent vertical list
+    with a traveling highlight (step-relay-list) instead of a new graphic per
+    step — cheaper to build and reads as clearer progress.
+  - Turn every abstract noun (a metric, a feeling, a question) into a
+    concrete, countable on-screen object (chip, bubble, avatar) rather than
+    describing it only in text.
+  - Ration text emphasis to exactly one styled keyword per sentence; let
+    the entrance move (not extra color/weight) carry the energy.
+  - Flash the payoff/result once, briefly, before explaining the mechanism —
+    shot 5 previews the $ value before the pipeline that produces it is shown.
+
+avoid:
+  - The persona-relay panel swaps look like they could be one continuous
+    AE-keyframed morph — they are not; motion.csv shows near-zero motion
+    inside each shot. Build each panel as an independent React component
+    swapped on a step function keyed to `frame`, not interpolated between.
+  - Don't hand-tune per-chip scatter positions as "organic" random placement;
+    the reference clearly uses a small fixed set of coordinates. Hard-code an
+    array, don't call Math.random() at render time (breaks SSR determinism
+    and reference-matching).
+  - The offset double-row of video cards in shot 2 looks like it wants
+    scroll-jacked AE precomps; instead render it as a real CSS `marquee`-style
+    infinite-loop track (translateX modulo track width) so it tiles for any
+    duration without hand placement.
+
+new_moves:
+  - name: stepRelayAdvance
+    params: {index: int, row_h: number_px, dur_f: 0, ease: hardCut}
+    description: >
+      Snaps a vertical list of fixed-height rows so that `index` is centered
+      and marked active (full color, ringed, scaled 1.04); all other rows are
+      grayscale/dimmed. No interpolation — driven as a step function of shot
+      number, matching reference footage where in-shot motion is ~0.
+  - name: chipFloat
+    params: {amp_px: number, period_f: number, phase_offset_per_item: number}
+    description: >
+      Continuous small-amplitude idle drift for a cluster of independent
+      elements (chips, bubbles): per-item sinusoidal offset with a phase
+      offset scaled by item index so the group never moves in visual unison.
+  - name: radialChatCluster
+    params: {radius_px: number, angles_deg: [number], stagger_f: number, ease: string, dur_f: number}
+    description: >
+      Positions N children at fixed polar coordinates around a center point
+      (x = cx + r·cos(θ), y = cy + r·sin(θ)), entrance-staggered by angle
+      order. Used for "questions/pressure surrounding a subject" beats.

@@ -1,0 +1,445 @@
+id: B_trippy-abstract-type
+source: "local — no source URL captured in intake for this reference"
+category: kinetic-type
+product_type: brand-only
+
+format:
+  aspect: "9:16"
+  fps: 30
+  duration_s: 7.699
+  orientation: vertical
+
+verdict: >
+  A fixed-camera 3D chrome logo that never moves but constantly re-skins itself
+  (material swap every 4-11f) reads as "alive" without a single tracked camera
+  move — the glitch IS the animation budget. Kinetic type is stacked as locked
+  per-line blocks, never per-letter, which keeps five lines of all-caps copy
+  legible inside 0.9s of screen time.
+
+palette:
+  bg: "#000000"
+  ink: "#F2F2F2"
+  accent: "#C0C0C0"
+  support: ["#181830", "#789090", "#A8A878", "#001800"]
+  notes: >
+    81% pure black. No fixed accent hue — the "accent" is an animated hue-rotate
+    sweep (magenta→gold→green→cyan) applied to metallic/chrome surfaces (the A0
+    hood-logo, the skull). Silver #C0C0C0 is the resting/neutral chrome state
+    between hue-shifted frames. Colour is used as a glitch signal, not branding.
+
+typography:
+  family_look: grotesk
+  weights: [black]
+  case: upper
+  tracking: tight
+  headline_frame_share: 0.95
+  notes: >
+    Two distinct type layers. (1) A persistent bottom-safe-area logotype "A0"
+    (custom geometric wordmark, the "0" rendered as a slashed zero) present in
+    almost every frame frame 0-229 as a static brand lockup, ~0.35 frame-width,
+    bottom third. (2) A five-line kinetic statement "WE / STIL / DONT / TRUST /
+    YOU" (verbatim on-screen spelling, missing double-letters is intentional
+    stylised typo, not a transcription error) in a bold compressed grotesk,
+    each line full-bleed edge-to-edge (right edge of "TRUST" and "STIL" clips
+    off-frame by ~2-4% at the trailing stroke). Lines stack top-to-bottom,
+    each landing as one rigid block — no per-letter independence anywhere in
+    this reference.
+
+structure:
+  - act: hook
+    t: [0.0, 1.13]
+    purpose: establish the A0 chrome logotype as a tactile, glitching object before any words appear
+    shots: [1]
+  - act: reveal
+    t: [1.13, 2.87]
+    purpose: kinetic-type callout drops over the still-morphing logo
+    shots: [2]
+  - act: proof
+    t: [2.87, 4.73]
+    purpose: rapid archival-photo montage (Mercedes CLK-GTR) simulates a "clip inside a clip" found-footage cutaway
+    shots: [3]
+  - act: capability
+    t: [4.73, 5.93]
+    purpose: meme-format cutaway (chromatic skull + fake AR tracker) — comic-relief beat, same visual grammar (hue-cycle + glitch) reused on a new subject
+    shots: [4]
+  - act: cta
+    t: [5.93, 7.699]
+    purpose: ring-wipe transition back into the A0 chrome logo for a seamless loop point
+    shots: [5]
+
+shots:
+  - n: 1
+    t: [0.00, 1.13]
+    frames: [0, 34]
+    layout: centre-stack
+    content: >
+      Fixed camera, centre-framed 3D chrome "A"-shaped hood/helmet object (the
+      A0 brand mark, abstracted) on black. Static "A0" wordmark held bottom
+      third throughout. The object's surface material re-skins on nearly every
+      sampled frame: clean chrome (f4) → clean chrome mirrored highlight (f13)
+      → dark mechanical panel-line skin with red accent gash (f18) → dark-red
+      "A" negative-space letterform revealed inside the hood (f23) → back to
+      clean chrome (f27,32) → glitch-corrupted chrome with datamosh blocks (f58
+      onward, bleeding into shot 2). Camera itself never moves.
+    moves:
+      - move: unblurIn
+        target: A0-hood-object
+        at_f: 0
+        params: {blur: [18, 0], scale: [1.04, 1], dur_f: 10, ease: expoOut}
+      - move: glitchMaterialMorph
+        target: A0-hood-object
+        at_f: 0
+        params: {dur_f: 35, variant_count: 6, swap_interval_f: [4, 5, 5, 5, 4, 5, 7], hold_camera: true}
+    camera: {move: driftCamera, params: {amp: 0.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, chromaticEdge, vignette]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.13, 2.87]
+    frames: [35, 86]
+    layout: centre-stack
+    content: >
+      Same chrome A0 object continues morphing/glitching behind type (still no
+      camera move). ~10f of held black after the shot 1→2 cut, then a 5-line
+      all-caps statement stacks in: "WE" (f47) / "STIL" (f52) / "DONT" (f57) /
+      "TRUST" (f62, right edge clipped off-frame) / "YOU" (f77, small, bottom
+      of stack). Datamosh corruption blocks and flickering corrupted "ghost"
+      OCR-style text fragments (illegible except recurring string "Notre Dame
+      700") layer over the lower two-thirds from ~f91 onward, spilling past
+      this shot boundary into shot 3.
+    moves:
+      - move: perLineTypeStackReveal
+        target: headline-5-line
+        at_f: 12
+        params: {lines: 5, per_line_stagger_f: 5, dur_f_per_line: 8, ease: backOut, hold_after_complete_f: 9}
+      - move: glitchMaterialMorph
+        target: A0-hood-object
+        at_f: 0
+        params: {dur_f: 52, variant_count: 4, swap_interval_f: 6}
+      - move: datamoshOverlay
+        target: full-frame
+        at_f: 20
+        params: {block_count: [3, 8], reroll_every_f: 4, opacity: [0.15, 0.6], ghost_text: "Notre Dame 700"}
+    camera: {move: driftCamera, params: {amp: 0.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, chromaticEdge, vignette]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 9
+
+  - n: 3
+    t: [2.87, 4.73]
+    frames: [87, 141]
+    layout: split
+    content: >
+      A smaller letterboxed "clip inside a clip" rectangle (roughly 70% frame
+      width, vertically centred, black bars above/below) rapid-cuts through 6
+      archival photos/video stills of a Mercedes-Benz CLK-GTR — trackside pan
+      (f122), static studio 3/4 (f127), pit-lane profile (f132), pink-lit
+      studio turntable (f137), front-on trackside (f147), rear 3/4 on a hill
+      climb (f151), nose-on Le Mans grid shot (f157), modern hypercar at dusk
+      (f159). The chrome A0 silhouette + datamosh + "Notre Dame 700" ghost text
+      continue to bleed through in the black margin around the inset frame.
+      This is a genuine rapid-cut photo montage, not a glitch false-positive —
+      6-8 real content swaps inside one continuous compositional treatment.
+    moves:
+      - move: scaleIn
+        target: inset-frame
+        at_f: 0
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 10, ease: backOut}
+      - move: newMove-photoSwapMontage
+        target: inset-frame-content
+        at_f: 10
+        params: {swap_count: 7, swap_interval_f: [10, 11, 20, 4, 4, 6, 12], transition: hardCut}
+      - move: datamoshOverlay
+        target: full-frame
+        at_f: 0
+        params: {block_count: [2, 6], reroll_every_f: 5, opacity: [0.1, 0.4], ghost_text: "Notre Dame 700"}
+    camera: {move: driftCamera, params: {amp: 0.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, chromaticEdge, vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 4
+    t: [4.73, 5.93]
+    frames: [142, 177]
+    layout: centre-stack
+    content: >
+      Meme cutaway: a chromatic/iridescent metallic skull (profile view, ~55%
+      frame height) with a jittery machine-vision "face tracker" rig overlaid —
+      4 white square anchor boxes connected by thin white trace lines,
+      repositioning slightly every few frames as if a broken detector is
+      re-locking. Fake diagnostic text "C:\PROGRAM FILES (X86)\COMMON
+      FILES\SKULL RGB..." (clipped, right edge bleeds off-frame) sits above the
+      skull; caption copy "ME WHEN A MINOR REPLIES WITH \"ILY\"" sits below it,
+      static for the whole shot. The skull's material hue-rotates continuously:
+      violet/magenta (f143) → gold/amber (f147,151,155,159) → back to
+      violet/pink (f163,168). One large dashed ring is visible top-of-frame
+      throughout, barely rotating. Profile flags 8 "hot" 4f cuts here (f142-177)
+      — these are false positives from the hue-cycle + tracker-jitter, not
+      real cuts: the skull composition, caption, and diagnostic text never
+      change, only colour and box position. Treated as ONE shot.
+    moves:
+      - move: unblurIn
+        target: skull-object
+        at_f: 0
+        params: {blur: [12, 0], scale: [0.96, 1], dur_f: 8, ease: expoOut}
+      - move: newMove-hueCycleMaterial
+        target: skull-object
+        at_f: 0
+        params: {dur_f: 36, hue_deg: [0, 260], period_f: 36, saturate: 1.4}
+      - move: newMove-jitterTrackerRig
+        target: tracker-overlay
+        at_f: 0
+        params: {anchors: 4, reroll_every_f: 4, jitter_px: 14, line_style: "1px solid white"}
+      - move: orbitRing
+        target: dashed-ring-bg
+        at_f: 0
+        params: {rotate: [0, 40], period_f: 600, children_counter_rotate: false}
+    camera: {move: driftCamera, params: {amp: 0.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [filmGrain, chromaticEdge, bloomGlow]
+    audio_cue: none
+    transition_out: {move: maskTransition, params: {dur_f: 14, ease: expoInOut, shape: expanding-dashed-circle}}
+    hold_f: 0
+
+  - n: 5
+    t: [5.93, 7.699]
+    frames: [178, 229]
+    layout: centre-stack
+    content: >
+      Continuation of shot 4's skull (f182-197, same hue-cycle/tracker rig)
+      until ~f200, then 2-3 concentric dashed rings rapidly expand to fill/
+      exceed frame (f202-207), wiping the skull out. Rings contract back
+      (f212-217, skull briefly visible again through the rings — a soft
+      cross-fade beat) and resolve into the shot-1 chrome A0 hood object,
+      now brighter/overexposed (f222,227), functioning as a loop point back to
+      frame 0. Profile's 52f-long shot boundary (178-229) is accurate — this
+      really is one continuous move, not multiple cuts.
+    moves:
+      - move: newMove-jitterTrackerRig
+        target: tracker-overlay
+        at_f: 0
+        params: {anchors: 4, reroll_every_f: 4, jitter_px: 14, line_style: "1px solid white"}
+      - move: orbitRing
+        target: dashed-ring-bg
+        at_f: 4
+        params: {rotate: [0, 60], period_f: 600, scale: [1, 3.4], dur_f: 30, ease: expoInOut}
+      - move: dissolveBlur
+        target: skull-object
+        at_f: 24
+        params: {blur: [0, 14], opacity: [1, 0], dur_f: 12}
+      - move: unblurIn
+        target: A0-hood-object
+        at_f: 34
+        params: {blur: [10, 0], scale: [0.98, 1.04], dur_f: 18, ease: expoOut}
+      - move: breathe
+        target: A0-hood-object
+        at_f: 44
+        params: {scale: [1, 1.03, 1], period_f: 120}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, bloomGlow, chromaticEdge, vignette]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+techniques:
+  - id: glitch-material-morph-static-camera
+    what: >
+      A single static-camera 3D object whose surface material/texture pass
+      swaps every 4-7f (chrome → panel-line dark skin → red-gash accent →
+      negative-space letterform), while the silhouette and camera framing
+      never change. Reads as constant transformation for near-zero animation
+      cost — no rig, no camera keyframes.
+    where: shot 1 (frames 0-34), recurs shot 2 (35-86)
+    why_it_reads: >
+      The eye reads "this thing is alive/unstable" purely from surface-level
+      flicker; because silhouette and camera hold rock-still, the brain never
+      registers it as a hard cut, only as material glitch — cheaper than any
+      camera move and reads as more expensive.
+    remotion_recipe: >
+      Render (or pre-bake in three.js/R3F) 5-6 material variants of the SAME
+      static mesh + camera. In Remotion, stack them as absolutely-positioned
+      <Img>/<video> layers sharing one container; drive visibility with
+      `const variant = noise2D(frame, 0) * variantCount | 0` reseeded every
+      4-7 frames (use a stepped `Math.floor(frame / interval)` index into a
+      seeded shuffle array, not raw frame, so swaps look chaotic not periodic).
+      Crossfade over 1-2f (opacity) to hide the swap; add a CSS
+      `filter: contrast(1.1) saturate(0.9)` per-variant to sell "different
+      material" even if it's the same base mesh with different textures.
+    difficulty: moderate
+
+  - id: per-line-locked-block-type-stack
+    what: >
+      A multi-line all-caps statement revealed one full line at a time, each
+      line entering as one rigid block (scale+opacity pop, backOut), never
+      per-letter or per-word-within-line. 5 lines land across ~42f at a ~5f
+      stagger, then the complete stack holds frozen for ~9f before cut.
+    where: shot 2 (frames 35-86), lines land at f47/52/57/62/77 (~5f-sampled contact sheet, ±2f)
+    why_it_reads: >
+      Locked-block delivery keeps five words legible at speed — per-letter
+      cascade at this pace would be unreadable. The reader gets one whole idea
+      per beat instead of parsing individual glyphs.
+    remotion_recipe: >
+      Split copy into an array of line strings. Render each line as one
+      absolutely-positioned <div> (full block, not per-char spans). Wrap in a
+      <Sequence> per line with `from = baseFrame + i * 5`. Animate each line's
+      own local frame with `spring({fps, frame: localFrame, config: {damping: 12, stiffness: 180, mass: 0.6}})`
+      driving `scale: interpolate(spring, [0,1], [0.88,1])` and
+      `opacity: interpolate(spring, [0,1], [0,1])`. Do not stagger opacity of
+      individual characters — one spring per line only.
+    difficulty: trivial
+
+  - id: datamosh-ghost-text-overlay
+    what: >
+      Intermittent rectangular blocks of corrupted/noise pixels (2-8 per
+      reroll) plus low-opacity flickering "OCR-glitch" text fragments (a
+      recurring nonsense string, here "Notre Dame 700") layered over live
+      footage/3D content, re-rolling position/size every 4-5f.
+    where: shots 2-3 (frames ~91-141), lighter pass in shot 1 tail
+    why_it_reads: >
+      Genuine datamoshing requires corrupted video codecs; this fakes the
+      signature (blocky rect noise + garbled text) cheaply and renders
+      identically every time, unlike real codec corruption.
+    remotion_recipe: >
+      Canvas or SVG layer: on every Nth frame (reroll_every_f = 4-5), generate
+      2-8 rects with `seededRandom(frame)` for x/y/w/h, fill with
+      `hsl(seededRandom()*360, 70%, 60%)` or a striped noise pattern via
+      `<canvas>` `putImageData` of random bytes, blend-mode `screen` or
+      `difference`. For ghost text: absolutely-position a monospace <span>
+      with the fixed string, opacity toggled via
+      `Math.random() > 0.6 ? someOpacity : 0` reseeded per interval (use
+      `random(`ghost-${Math.floor(frame/5)}`)` from `remotion` for determinism),
+      occasionally offset x by ±4px to fake tracking-line jitter.
+    difficulty: moderate
+
+  - id: hue-cycle-plus-jitter-tracker-rig
+    what: >
+      An iridescent/chrome hero object (skull) has a continuous CSS hue-rotate
+      sweep (0→260deg over 36f, looping) layered with saturate(1.4), while a
+      separate "AR tracker" overlay (4 anchor boxes + connecting trace lines)
+      re-picks new anchor positions every 4f with small jitter, simulating a
+      broken machine-vision detector.
+    where: shots 4-5 (frames 142-210)
+    why_it_reads: >
+      The hue sweep alone would look like a colour-grade toy; adding a
+      glitchy machine-vision rig on top reframes it as "the computer is
+      trying and failing to understand this object," which is funnier and
+      reads as more technical than color grading alone.
+    remotion_recipe: >
+      `filter: hue-rotate(${(frame % 36) / 36 * 260}deg) saturate(1.4)` on the
+      skull layer (image, video, or WebGL render). Tracker overlay: an SVG
+      with 4 `<rect>` anchors whose x/y are
+      `anchorBase[i] + (noise2D(frame_bucket, i) * jitterPx)` where
+      `frame_bucket = Math.floor(frame / 4)` (so it holds for 4f then jumps,
+      not continuous drift); connect anchors pairwise with `<line>` elements
+      recomputed each render. Add 2-3 large `<circle>` with
+      `stroke-dasharray` and a slow `rotate()` transform for the background
+      ring motif.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 5
+  median_shot_f: 52
+  fastest_f: 34
+  slowest_f: 55
+  pattern: >
+    35f static-cam logo-morph hook → 52f kinetic-type stack over continuing
+    glitch → 55f rapid archival-photo montage (genuine sub-cuts inside one
+    treatment) → 36f meme/skull hue-cycle cutaway → 52f ring-wipe back into
+    the logo for a loop. Profile's raw 22-cut detection collapses to 5 real
+    shots once bright-flash/hue-cycle/material-morph false positives are
+    merged (see detection_notes).
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Keep the camera 100% static and cycle the SUBJECT's material/texture
+    instead — cheaper than any camera move and reads as more alive.
+  - Reveal multi-line kinetic type as whole rigid lines (spring per line, not
+    per letter) when the pace is fast (<10f between lines) — per-letter
+    cascade becomes noise above ~3-4 words/sec.
+  - Let a background treatment (datamosh blocks, ghost text, hue-cycle) run
+    continuously UNDER a real content montage so the montage never feels like
+    a plain slideshow.
+  - A CSS `hue-rotate` sweep on a single glossy/chrome asset is a full color
+    treatment for near-zero cost — no regrade, no multiple renders.
+  - Use a fake "machine-vision tracker" overlay (jittering anchor boxes +
+    trace lines) as a cheap way to add technical/glitch character to any
+    static hero asset.
+
+avoid:
+  - The skull/logo assets themselves appear to be pre-rendered 3D/photo
+    source, not something to hand-key in AE — treat them as fixed input
+    assets and put all the "animation" budget into the code-native overlay
+    layers (material-swap index, hue-rotate, datamosh, tracker jitter) instead
+    of trying to recreate the 3D renders.
+  - Do not hand-keyframe the datamosh blocks frame-by-frame in AE — use a
+    seeded-random rect generator re-rolled every 4-5f (see technique
+    datamosh-ghost-text-overlay); it's non-repeating and trivial in code.
+  - Do not treat the profile's 22 "cuts" as 22 real shots — half are bright
+    flashes/hue-cycle frames inside continuous shots (see detection_notes);
+    building 22 discrete Sequences would massively over-fragment the timeline.
+
+new_moves:
+  - name: glitchMaterialMorph
+    params: {dur_f: 35, variant_count: 6, swap_interval_f: "array of per-swap durations, 4-7f each", hold_camera: true}
+    description: >
+      Static camera on a fixed-silhouette 3D/2D object; the object's surface
+      material or texture pass hard-swaps between N pre-rendered variants at
+      an irregular 4-7f interval (seeded-random index, not periodic), while
+      camera framing and silhouette never move. Reads as constant
+      transformation for the cost of layered image/video swaps.
+  - name: newMove-photoSwapMontage
+    params: {swap_count: "int", swap_interval_f: "array, 4-20f each", transition: hardCut}
+    description: >
+      A smaller inset "clip inside a clip" frame within the main comp rapid-
+      cuts through N real photos/stills at irregular 4-20f intervals via
+      hardCut, while the surrounding full-bleed background treatment
+      continues uninterrupted. Distinguishes genuine content montage from
+      glitch-flash false positives.
+  - name: newMove-hueCycleMaterial
+    params: {dur_f: 36, hue_deg: [0, 260], period_f: 36, saturate: 1.4}
+    description: >
+      Continuous CSS-style hue-rotate sweep (0→~260deg, looping every
+      period_f) plus a saturation boost applied to a glossy/chrome/iridescent
+      hero asset. Cheap full-color-cycle treatment with no regrade or
+      multi-render needed.
+  - name: newMove-jitterTrackerRig
+    params: {anchors: 4, reroll_every_f: 4, jitter_px: 14, line_style: "1px solid white"}
+    description: >
+      Fake machine-vision/AR overlay: N anchor boxes connected by straight
+      trace lines, positions re-rolled (held for reroll_every_f frames, then
+      jump, not continuous drift) with small jitter around base anchor
+      points. Used to add glitchy "the computer is scanning this" character
+      to a static hero object.
+
+detection_notes: >
+  Automated cut detection reported 22 cuts in 7.699s (230f); cross-checking
+  against sheet_01.jpg/sheet_02.jpg and all 22 keys/*.png collapses this to 5
+  real shots. Merges made: (1) profile shots 1-6 (frames 0-34, individually
+  0-10/11-15/16-20/21-25/26-29/30-34) are ONE continuous static-camera shot of
+  the A0 chrome hood object — keyframes at f4,13,18,23,27,32 show identical
+  camera framing and silhouette, only the surface material/texture pass
+  changes (glitchMaterialMorph), which the delta-based cut detector
+  misreads as hard cuts → merged into shot 1 (0-34). (2) profile shot 7
+  (35-86, 52f) already correctly detected as one shot — kept as shot 2.
+  (3) profile shots 8-13 (frames 87-141: 87-96/97-107/108-127/128-131/
+  132-135/136-141) are genuine content swaps (different car photos each time)
+  inside one continuous background treatment (datamosh + ghost A0 silhouette)
+  → grouped into ONE spec shot (3, frames 87-141) with the individual photo
+  swaps documented as an internal newMove-photoSwapMontage rather than 6
+  top-level shots, since most are sub-11f (flash-length per the vocab's
+  timing law, not full shots). (4) profile shots 14-21 (frames 142-177: eight
+  rows of 4-7f "hot" cuts) are false positives from the hue-rotate sweep and
+  jittering tracker rig on the skull — keyframes at f143,147,151,155,159,163,
+  168 show identical composition/caption/diagnostic text, only hue and box
+  position change → merged into shot 4 (142-177). (5) profile shot 22
+  (178-229, 52f) already correctly detected as one shot (ring-wipe transition
+  + return to A0) — kept as shot 5.

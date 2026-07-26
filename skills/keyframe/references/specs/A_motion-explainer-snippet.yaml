@@ -1,0 +1,325 @@
+id: A_motion-explainer-snippet
+category: brand-loop
+product_type: brand-only
+
+detection_notes: >
+  Profile's shot table lists exactly 2 shots (0-53, 54-195) from 1 detected cut.
+  Verified against sheets: the single cut at f53->f57 is a real hard event — a
+  near-blank/white transitional frame (f57) matching the sparkline's one energy
+  spike (peak 26.1 at the same position). Everything from f54-195 is genuinely
+  one unbroken take, not under-detected cuts: the wireframe-globe formation,
+  the orbit arc, and the final macro push are all continuous motion under one
+  slow ambient push-in camera, with zero further luma-delta spikes in the
+  sparkline. Spec keeps the profile's 2-shot ground truth and represents the
+  4 internal narrative beats inside shot 2 as sequential moves with at_f
+  offsets, not as extra shots.
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 8.167
+  orientation: horizontal
+
+verdict: >
+  Zero on-screen text — the entire idea (an object falls in, gets transformed,
+  emerges to orbit a world, and is revealed as the hero mark) is carried by one
+  persistent orb moving through four physically-motivated beats under a single
+  continuous camera, never cutting away. It works as a wordless capability
+  metaphor precisely because nothing new enters the frame after frame 13; the
+  same orb is the whole vocabulary.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#000000"
+  accent: "holographic — orb cycles through #F0D8D8 (pink) / #D8F0D8 (mint) / #F0F0D8 (gold) as a soft animated gradient-noise fill, never a flat hue"
+  support: ["#D8D8D8", "#C0F0C0"]
+  notes: >
+    Background is a near-white pastel gradient (mint top-left to warm grey)
+    that never darkens; #000000 (7% of frame) is used only for the canyon
+    silhouette in shot 1 and never returns. The orb is the single saturated,
+    multi-hue element in an otherwise monochrome-pastel frame — that contrast
+    is the entire accent strategy.
+
+typography:
+  family_look: none
+  weights: []
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.0
+  notes: >
+    No on-screen copy anywhere in this snippet — it is a pure visual-metaphor
+    bumper (likely a cutaway/loop insert within a larger explainer), not a
+    text-carrying shot in itself. Flagging this explicitly since the batch
+    brief expects words to carry the load; here the object itself does.
+
+structure:
+  - act: hook
+    t: [0.0, 1.04]
+    purpose: >
+      Establish a quiet, empty pastel sky, then a black twin-peak canyon
+      silhouette snaps up from the bottom edge in 9f — an opening/gap appears
+      where none existed.
+    shots: [1]
+  - act: problem
+    t: [1.04, 2.25]
+    purpose: >
+      A small iridescent orb drops from off-screen top, decelerates and
+      bounce-settles right at the notch of the canyon, then continues down
+      through the gap and vanishes — the subject is swallowed by the gap.
+    shots: [1]
+  - act: reveal
+    t: [2.25, 4.04]
+    purpose: >
+      A near-white flash cut marks the transformation. The orb re-emerges from
+      the bottom, launching upward on a flame-like trail while translucent
+      color-chip glitches flicker at the frame edges — reads as "processing".
+    shots: [2]
+  - act: capability
+    t: [4.04, 6.88]
+    purpose: >
+      A wireframe globe grows in beneath the settled orb; the orb then arcs in
+      a partial orbit over the globe's surface while the whole scene slowly
+      pushes in — the transformed subject now has global/systemic reach.
+    shots: [2]
+  - act: cta
+    t: [6.88, 8.167]
+    purpose: >
+      Camera dolly-zooms hard into the orb until it fills the frame, ending on
+      its swirling gradient surface as a hero mark / loop point.
+    shots: [2]
+
+shots:
+  - n: 1
+    t: [0.00, 2.208]
+    frames: [0, 53]
+    layout: centre-stack
+    content: >
+      Blank pastel gradient sky (mint upper-left to warm grey). A jagged
+      black twin-peak silhouette (canyon/crevice, white mountain peak visible
+      nested in the gap) snaps up from the bottom edge by f9. A small
+      holographic orb (pink/mint/gold gradient, sparkle texture) falls from
+      off-screen top starting ~f13, decelerating into the canyon's notch by
+      f33 with a small settle-bounce, holds there, then continues falling
+      through the gap and vanishes by f53 with a puff of dust particles at
+      the exit point. No text.
+    moves:
+      - move: silhouetteRise
+        target: canyon-silhouette
+        at_f: 0
+        params: {dur_f: 9, ease: backOut, scaleY: [0, 1], anchor: bottom}
+      - move: gravityDropBounce
+        target: orb
+        at_f: 13
+        params: {dur_f: 20, from_y: "-60%", to_y: "canyon-notch", ease: expoIn, bounces: 2, bounce_decay: [0.12, 0.04]}
+      - move: vanishThroughGap
+        target: orb
+        at_f: 41
+        params: {dur_f: 12, ease: expoIn, clip_by: canyon-silhouette, exit_particles: {count: 5, dur_f: 8, opacity: [1, 0]}}
+    camera: {move: driftCamera, params: {amp: 1.0, period_f: 180, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [grainShift]
+    audio_cue: whoosh
+    transition_out: {move: flashCut, params: {dur_f: 4, color: white}}
+    hold_f: 6
+
+  - n: 2
+    t: [2.25, 8.167]
+    frames: [54, 195]
+    layout: centre-stack
+    content: >
+      Post-flash, the orb re-emerges bottom-centre (f57) launching straight up
+      on a tapering orange flame-trail (f57-97) while translucent green/orange/
+      pink glitch-chips flicker in staggered bursts along the sides (f73-97,
+      fading out ~f101). The orb settles centre-frame, then a wireframe globe
+      (orange grid, additive glow) grows up from a horizon bloom beneath it
+      (f105-129). The orb holds briefly atop the globe, then arcs in a ~140°
+      partial orbit over the globe's surface — right, down past the visible
+      limb, and back up over the top (f129-189) — while the whole composition
+      slowly pushes in throughout. In the final 7 frames the camera dolly-
+      zooms hard into the orb until its swirling gradient surface fills the
+      frame, ending the video there (loop point). No text at any point.
+    moves:
+      - move: flareLaunch
+        target: orb
+        at_f: 3
+        params: {dur_f: 40, ease: expoOut, from_y: "110%", to_y: "38%", trail: {shape: taper-flame, color: "#F0A050", length_f: 24}}
+      - move: confettiGlitch
+        target: bg-chips
+        at_f: 19
+        params: {dur_f: 24, chip_count: 8, stagger_f: 3, opacity_pulse: [0, 0.8, 0], colors: ["#D8F0D8", "#F0F0D8", "#F0D8D8"], seed: frame}
+      - move: globeFormRise
+        target: globe
+        at_f: 51
+        params: {dur_f: 24, ease: expoOut, scale: [0, 1], anchor: horizon, wireframe_color: "#F0A050", glow: bloomGlow}
+      - move: orbitRing
+        target: orb
+        at_f: 75
+        params: {arc_deg: 140, radius: "sphere_r+6%", period_f: 96, dur_f: 60, ease: expoInOut, children_counter_rotate: true, start_angle: apex}
+      - move: heroPushMacro
+        target: camera
+        at_f: 135
+        params: {dur_f: 8, ease: expoIn, scale: [1, 12], focus: orb-centre}
+    camera: {move: pushIn, params: {scale: [1, 1.15], ease: expoInOut, dur_f: "whole shot"}}
+    bg: {kind: gradient-drift, moves: [gradientDrift, breathe]}
+    treatment: [bloomGlow, motionTrail, grainShift]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+techniques:
+  - id: wireframe-globe-orbit
+    what: >
+      A translucent wireframe sphere grows in via uniform scale from a horizon
+      bloom, then a small hero object travels a partial great-circle arc
+      (~140°) around it at fixed radius while the camera slowly pushes in on
+      the whole scene.
+    where: shot 2, f105-189
+    why_it_reads: >
+      A sphere plus one orbiting point instantly reads as "system / global
+      reach / continuous cycle" without any label — orbital motion is a
+      pre-loaded mental model, so the metaphor needs zero explanation text.
+    remotion_recipe: >
+      Three.js/R3F: <mesh><sphereGeometry/><meshBasicMaterial wireframe color="#F0A050"/></mesh>
+      scaled 0->1 with a spring or expoOut interpolation on `frame`. The orb is
+      a second mesh (or DOM element with a CSS 3D transform if avoiding WebGL)
+      positioned each frame at
+      x = r*sin(theta), y = r*cos(theta)*cos(tilt), z = r*cos(theta)*sin(tilt)
+      where theta = interpolate(frame, [startF,endF], [0, arcRad]) with an
+      expoInOut easing on theta itself (not on x/y/z separately) so the arc
+      reads as constant-feel motion. Counter-rotate the orb's own rotation by
+      -theta each frame so its internal gradient noise doesn't visibly spin.
+      Camera: R3F <PerspectiveCamera> position.z interpolated for the push-in,
+      or if 2D, wrap the whole scene in a container with CSS scale() driven by
+      the same expoInOut curve.
+    difficulty: needs-3d
+
+  - id: flash-flare-confetti-transform-beat
+    what: >
+      A 4-frame near-white flash cut, followed immediately by the hero object
+      re-entering on a tapering flame trail while randomized translucent color
+      chips flicker in staggered bursts at the frame edges for ~24f, then fade.
+    where: shot 1->2 boundary, f53-101
+    why_it_reads: >
+      Substitutes for a literal "processing" label — a flash + procedural
+      color noise reads as "something happened to it" cheaply, and because the
+      same orb re-enters immediately after, continuity is never in doubt.
+    remotion_recipe: >
+      Flash: a full-bleed <AbsoluteFill style={{background:'white'}}/> with
+      opacity interpolated [0,1,0] over 4 frames at the cut frame, rendered on
+      top of everything (z-index highest), timed to a hardCut underneath so
+      the actual scene swap is invisible under the flash.
+      Confetti: array of N (~8) divs, each assigned a seeded random {x, y,
+      color, delay} via a seeded PRNG (mulberry32 keyed off `seed + index`) so
+      it's deterministic across renders; each div's opacity follows
+      interpolate(frame - delay, [0, dur/2, dur], [0, 0.8, 0]) with
+      position:absolute and mix-blend-mode: screen for the translucent look.
+      Flame trail: 3-4 stacked, decreasingly-opaque copies of the orb offset
+      along its motion vector by 2f each (a manual motionTrail), tinted
+      orange, blurred with filter: blur(Npx), scaling down toward the tail.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 98
+  fastest_f: 54
+  slowest_f: 142
+  pattern: >
+    54f establish-and-swallow (shot 1) -> 4f white flash -> 142f unbroken take
+    (shot 2) containing 4 sequential internal beats (40f flare-launch, 24f
+    globe-formation, 60f partial orbit, 8f hero macro push) all riding one
+    slow ambient push-in camera — a single-cut structure where pacing lives
+    inside moves, not between shots.
+  beat_grid_f: 0
+  energy_curve: front-loaded
+
+transferable:
+  - Carry the entire metaphor on one persistent object across every beat —
+    introduce zero new characters/props after the first few frames, so the
+    piece stays legible with no text at all.
+  - Use a 3-5f near-white flash instead of a wipe/wash to sell a
+    transformation moment cheaply; place it exactly on the frame with the
+    highest luma-delta spike so it lines up with what would already read as a
+    hard cut.
+  - Represent "global/systemic capability" with a wireframe sphere + a single
+    orbiting point rather than a UI screenshot — cheaper to build in
+    three.js/R3F than a screen-recording, and reads instantly.
+  - Run one slow ambient push-in camera (scale 1->1.15) across an entire
+    multi-beat continuous shot so unrelated internal events (launch,
+    formation, orbit) feel like one held breath instead of separate scenes.
+  - End on an extreme macro crop of the hero motif's own texture — doubles as
+    a satisfying final beat and a clean loop point back to frame 0.
+
+avoid:
+  - >
+      The hand-tuned gravity-drop-with-decaying-bounce on the orb (shot 1) reads
+      like manually eased AE keyframes. Substitute: a real spring/physics config
+      (Remotion `spring()` with low damping for the bounce, or a matter.js/verlet
+      step for an actual gravity+restitution simulation) driven by frame number,
+      not hand-placed keyframes.
+  - >
+      The confetti glitch-chip placement/timing would normally be hand-placed
+      per-layer in AE. Substitute: seeded-PRNG-driven positions/opacities (see
+      technique `flash-flare-confetti-transform-beat`) so it's parametric and
+      re-runnable at any duration.
+  - >
+      The globe's wireframe shading/glow and the orbit arc depend on real 3D
+      lighting/camera work, not a 2D asset with hand-animated highlights.
+      Substitute: an actual WebGL scene (three.js/R3F) with a basic wireframe
+      material and parametric orbit math, never a pre-rendered AE 3D comp.
+  - >
+      The final macro reveal's swirling gradient-noise surface on the orb
+      depends on a pre-rendered AE fractal-noise texture. Substitute: a GLSL
+      fragment shader (simplex/Perlin noise driving a 3-stop color ramp,
+      animated via a `uTime` uniform) so the texture is procedural and loopable.
+
+new_moves:
+  - name: silhouetteRise
+    params: {dur_f: 9, ease: backOut, scaleY: [0, 1], anchor: bottom}
+    description: >
+      A flat-bottomed shape (silhouette/mountain/canyon) scales vertically
+      from 0 to 1 anchored at the bottom edge of frame, with a slight backOut
+      overshoot at the peak before settling — reads as the shape "snapping"
+      into place rather than sliding.
+  - name: gravityDropBounce
+    params: {dur_f: 20, from_y: string, to_y: string, ease: expoIn, bounces: 2, bounce_decay: [number, number]}
+    description: >
+      An object falls from from_y to to_y accelerating under an expoIn
+      (gravity-like) curve, then performs `bounces` decaying vertical
+      overshoot-and-settle oscillations at to_y, each bounce's amplitude
+      scaled by the corresponding entry in bounce_decay. A physically-honest
+      alternative to a single backOut/springSnap landing.
+  - name: vanishThroughGap
+    params: {dur_f: 12, ease: expoIn, clip_by: string, exit_particles: object}
+    description: >
+      An object continues moving along its existing trajectory while being
+      progressively occluded by a static foreground shape (clip_by) acting as
+      a mask — implemented as z-order clipping, not opacity — then triggers a
+      small burst of fading particles at the point where it disappears.
+  - name: flareLaunch
+    params: {dur_f: 40, ease: expoOut, from_y: string, to_y: string, trail: object}
+    description: >
+      An object launches from off-screen bottom to a resting on-screen
+      position on an expoOut curve, dragging a tapering flame-shaped trail
+      (color, length_f configurable) behind it that fades out once the object
+      settles.
+  - name: confettiGlitch
+    params: {dur_f: 24, chip_count: number, stagger_f: number, opacity_pulse: array, colors: array, seed: any}
+    description: >
+      A set of small translucent rectangles at seeded-random positions near
+      the frame edges each pulse opacity 0->peak->0 on a staggered per-chip
+      delay, using screen/lighten blend mode. Reads as a burst of
+      "data/processing" noise. Fully deterministic given the same seed.
+  - name: globeFormRise
+    params: {dur_f: 24, ease: expoOut, scale: [0, 1], anchor: string, wireframe_color: string, glow: string}
+    description: >
+      A 3D wireframe sphere scales in from 0 anchored at a horizon point,
+      accompanied by a soft radial bloom beneath it that appears slightly
+      before the mesh itself becomes visible.
+  - name: heroPushMacro
+    params: {dur_f: 8, ease: expoIn, scale: array, focus: string}
+    description: >
+      A fast, continuous (non-cut) camera dolly-zoom that scales the whole
+      composition up by a large factor (e.g. 12x) centred on a focus target
+      until that target's own surface texture fills the frame — used as a
+      closing hero beat / loop point rather than a UI-detail inspect (compare
+      `dollyToUI`, which is UI-focused and typically smaller-scale).

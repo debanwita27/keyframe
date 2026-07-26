@@ -1,0 +1,427 @@
+id: B_galactic-motion-art
+source: "local reference asset — no public URL provided in analysis folder"
+category: kinetic-type
+product_type: brand-only
+
+format:
+  aspect: "720:944"
+  fps: 25
+  duration_s: 7.92
+  orientation: vertical
+
+verdict: >
+  A 5-shot event-poster teaser for "GALACTIC" (MIND studio, date stamp 24/06/06): a 1s
+  glitch-built title intro detonates into a 3-strobe white flash, a 4f radial text-burst,
+  then a 16f stepped/stuttered material-swap montage, before locking into a 148f held
+  poster with a continuously-filling progress bar and a late circular iris tease. The
+  whole thing runs on one static black-and-red duotone ink illustration reused across
+  6+ treatment states rather than 6 different assets — that reuse is the reproducible trick.
+
+palette:
+  bg: "#000000"
+  ink: "#E6E6E6"
+  accent: "#E8121F"
+  support: ["#180018", "#300018", "#484860", "#301830"]
+  notes: >
+    Screen-share measured (profile.md): black #000000 26.6% + near-black #181818 25.7%
+    = ~52% of frame is pure dark. Ink linework (#C0C0C0-ish, recorded 4.0%) is the only
+    light value — the whole illustration is a black/white woodcut-style duotone. Red
+    (#E8121F estimated from title/UI, not separately measured in top palette) is rationed
+    to: wordmark, date stamp "24 / 06 06", "MIND" logo bug, progress bar, thumbnail
+    panel backgrounds, and kicker caption text. Muted purple #484860 and dark magenta
+    #180018/#300018 appear only during the torn-paper/halftone treatment swap (shot 4)
+    and the radial text-burst (shot 3) — they are transient treatment colors, not base palette.
+
+typography:
+  family_look: serif display
+  weights: [bold]
+  case: upper
+  tracking: tight
+  headline_frame_share: 0.85
+  notes: >
+    Single wordmark "GALACTIC" — distressed/rough-edged slab-serif, almost blackletter-
+    adjacent, condensed so letters nearly touch, ~85% of frame width, top-anchored,
+    present in every shot after f6. Small 2-3 line editorial kicker captions appear
+    transiently around the hero illustration (legible fragments, partially compressed
+    at delivered resolution): "...THE VOID AND ECHOES / A [DARK] SPECTER TAKES FORM"
+    (left, ~f100+), "A COLLIDING ARTIST APPROACH ... WITH AN INTRICATE ... ETHEREAL
+    HARMONY" (right, small caps), "WHERE THRESHOLD OF REALITY AND DREAMS" (right-mid),
+    "A MARRIAGE OF ANCIENT MYTH & FUTURISTIC LUSTER" (lower-right, near horn). At f31 a
+    red caption reads "BORN FROM T[HE SHADOWS] ... S EDGE" (clipped/scrambled, tied to
+    the radial-burst beat). Date/issue stamp "24" / "06 06" and a "MIND" head-icon logo
+    sit bottom-right in every settled frame — small caps, tight tracking, monospace-ish
+    numerals.
+
+structure:
+  - act: hook
+    t: [0.00, 0.96]
+    purpose: Detonate the wordmark out of a black/static field via a glitch-scramble reveal; plant the hero illustration mid-build.
+    shots: [1]
+  - act: reveal
+    t: [1.00, 1.96]
+    purpose: Strobe-flash into the full poster, hit a radial text-burst accent, then rapid-cycle the hero art through 4 material treatments on a ~4f stutter grid.
+    shots: [2, 3, 4]
+  - act: cta
+    t: [2.00, 7.92]
+    purpose: Lock into the final poster (wordmark, hero illustration, date stamp, thumbnails), hold long enough to read the date/brand, tease a color reveal at the very tail.
+    shots: [5]
+
+shots:
+  - n: 1
+    t: [0.00, 0.96]
+    frames: [0, 24]
+    layout: centre-stack
+    content: >
+      f0-5: near-black frame, only the ambient vertical static field and faint white/
+      pink scribble-line doodles visible (no legible content, motion near-zero per
+      motion.csv frames 0-9). f6-10: "GALACTIC" wordmark glitches into red, rough
+      ink-bleed edges, settles solid by f10. f14: a red panel containing 3 stacked b/w
+      profile-crop thumbnails of the horned figure pops in at right-mid; thin magenta
+      cable-like line doodles visible top-right (see keys/00_f11.png). f18: one-frame
+      full-screen glitch — wordmark replaced by scrambled/mirrored foreign-looking
+      glyphs in red (a decode-in-progress beat, not real language). f20-24: the horned
+      humanoid/cyborg hero illustration (huge ram-horns, ink woodcut face, red iris
+      dots) begins mask-revealing under the wordmark, red "G." dropcap and a short red
+      progress-bar stub appear bottom-left.
+    moves:
+      - move: textScrambleReveal
+        target: wordmark "GALACTIC"
+        at_f: 0
+        params: {dur_f: 10, settle_f: 6, glyph_pool: mixed-script-noise-glyphs, color: "#E8121F", ease: expoOut}
+      - move: popIn
+        target: thumbnail-strip (3 profile crops, red panel)
+        at_f: 14
+        params: {scale: [0, 1.08, 1], dur_f: 6, ease: springSnap}
+      - move: glitchSwap
+        target: full-frame
+        at_f: 18
+        params: {dur_f: 1, content: scrambled-glyph-overlay, opacity: 1.0}
+      - move: maskWipeUp
+        target: hero-illustration
+        at_f: 20
+        params: {dur_f: 5, per_line_stagger_f: 0, ease: expoIn}
+    camera: {move: none, params: {}}
+    bg: {kind: grain, moves: [staticScanline]}
+    treatment: [filmGrain]
+    audio_cue: riser
+    transition_out: {move: flashCut, params: {dur_f: 1, color: "#FFFFFF"}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.00, 1.16]
+    frames: [25, 29]
+    layout: full-bleed-ui
+    content: >
+      A 3-beat white strobe (motion.csv: frame25 luma 197.9, frame27 luma 194.2 partial,
+      frame29 luma 193.1) alternating with the fully-assembled poster (wordmark, hero
+      illustration, thumbnail panel, progress-bar stub, "MIND 24 / 06 06" bug — see
+      keys/01_f27.png). Reads as a camera-flash strobe landing the reveal.
+    moves:
+      - move: flashCut
+        target: full-frame
+        at_f: 0
+        params: {dur_f: 1, color: "#FFFFFF"}
+      - move: scaleIn
+        target: full-poster-composition
+        at_f: 1
+        params: {scale: [1.02, 1], dur_f: 4, ease: backOut, overshoot_pct: 2}
+      - move: flashCut
+        target: full-frame
+        at_f: 3
+        params: {dur_f: 1, color: "#FFFFFF"}
+    camera: {move: none, params: {}}
+    bg: {kind: grain, moves: [staticScanline]}
+    treatment: [filmGrain]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 3
+    t: [1.20, 1.32]
+    frames: [30, 33]
+    layout: centre-stack
+    content: >
+      A single hot 4f accent (keys/02_f31.png): the black background behind the hero
+      head is replaced by a dense red concentric-ring / spiral pattern built from tiled
+      micro-text (the tagline repeated dozens of times at ~6px, radiating like a
+      halftone burst), plus a partial red caption top-right reading "BORN FROM T[HE
+      SHADOWS] ... S EDGE". Motion centroid shifts to right-bottom (profile.md) —
+      matches the swirl's off-centre origin.
+    moves:
+      - move: radialTextBurst
+        target: background
+        at_f: 0
+        params: {dur_f: 4, rings: 6, rotate_deg: 35, source_text: "BORN FROM THE SHADOWS...", opacity: 0.6, ease: expoOut}
+      - move: maskWipeSide
+        target: caption "BORN FROM THE SHADOWS..."
+        at_f: 0
+        params: {dur_f: 3, dir: "r→l", ease: expoInOut}
+    camera: {move: none, params: {}}
+    bg: {kind: grain, moves: [staticScanline, radialTextBurst]}
+    treatment: [chromaticEdge, filmGrain]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 4
+    t: [1.36, 1.96]
+    frames: [34, 49]
+    layout: centre-stack
+    content: >
+      Same hero silhouette re-skinned through 4 material states on a ~4-frame stutter
+      grid (matches motion.csv spike clusters at f33-35, f41-44, f48-49 — i.e. holds,
+      not smooth interpolation): f34-38 the face is replaced by a desaturated torn-
+      paper/halftone-dot photocopy texture (partial legible mark "EISEMANN", see
+      keys/03_f41.png-adjacent frames on sheet_01 row 3); f39-42 a near-black hold with
+      only the wordmark visible (a dead-frame beat inside the strobe); f43-46 a stark
+      pure white-on-black line-art version of the hero with no red anywhere (keys/03
+      shows the horn/face rendered as bare linework); f47-49 full color/detail settle,
+      matching the f27 reveal state.
+    moves:
+      - move: stutterHold
+        target: full-composition
+        at_f: 0
+        params: {step_f: 4, dur_f: 16, states: [halftone-newsprint, blackout-hold, bw-lineart-only, full-color-settle]}
+    camera: {move: none, params: {}}
+    bg: {kind: grain, moves: [staticScanline]}
+    treatment: [filmGrain, chromaticEdge]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 5
+    t: [2.00, 7.92]
+    frames: [50, 197]
+    layout: centre-stack
+    content: >
+      Final locked poster: "GALACTIC" wordmark, hero horned-figure ink illustration,
+      3-thumbnail profile strip in red panel (left), red progress bar beneath it
+      (visibly longer at f177 than at f22 — grows over the whole shot), editorial
+      kicker captions (see typography.notes), "MIND" head-icon logo + "24" / "06 06"
+      date stamp (bottom-right). Composition settles with a small bounce (profile.md:
+      "ease-in + overshoot/settle bounce") then holds near-static for f100-185
+      (profile's measured static stretches: 138-149, 150-174, 175-185). At f184-193 a
+      small circular iris opens bottom-right over the MIND logo revealing a few frames
+      of muted purple/pink imagery underneath (motion.csv centroid moves to
+      ~0.9x/0.8y in this window) — a brief color tease before the clip ends/loops.
+    moves:
+      - move: scaleIn
+        target: full-composition
+        at_f: 0
+        params: {scale: [1.03, 1], dur_f: 10, ease: backOut, overshoot_pct: 3}
+      - move: breathe
+        target: hero-illustration
+        at_f: 10
+        params: {scale: [1, 1.015, 1], period_f: 120}
+      - move: progressBarFill
+        target: progress-bar
+        at_f: 0
+        params: {scaleX: [0.12, 0.85], dur_f: 147, ease: linear, transform_origin: left}
+      - move: irisReveal
+        target: teaser-circle (bottom-right, over MIND logo)
+        at_f: 134
+        params: {dur_f: 13, radius_px: [0, 64], ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.0%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [staticScanline]}
+    treatment: [filmGrain, vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+techniques:
+  - id: vertical-static-scanline-field
+    what: >
+      A constant, full-frame animated texture of tight vertical hairline streaks over
+      pure black (visible in every key frame), functioning as the piece's grain/
+      atmosphere layer — oriented noise, not isotropic film grain.
+    where: shots 1-5 (every frame)
+    why_it_reads: >
+      Directional noise reads as analog broadcast/VHS interference rather than camera
+      grain, which matches the occult/cyber tone and stops the flat-black background
+      from looking like an empty vector fill.
+    remotion_recipe: >
+      SVG filter chain: <feTurbulence type="fractalNoise" baseFrequency="0.9 0.02"
+      numOctaves="2" seed={frame}/> feeding a <feColorMatrix> to clamp to near-black/
+      white, composited at ~8-10% opacity over the black bg via mix-blend-mode:
+      screen. Animate by incrementing the seed attribute per frame (React state tied
+      to useCurrentFrame()). Cheaper fallback: pre-render 8-12 tileable vertical-
+      hairline PNG frames and cycle them with CSS steps() on a background-position
+      loop — avoids per-frame SVG filter recompute cost.
+    difficulty: moderate
+
+  - id: duotone-ink-linework-treatment
+    what: >
+      The hero illustration itself is a 2-value (near-black/near-white) woodcut-style
+      duotone with red used only for eyes/accents — not a flat vector, not a photo.
+    where: shots 1, 2, 4 (full-color state), 5
+    why_it_reads: >
+      High-contrast posterization plus visible linework texture (not smooth vector
+      fills) is what separates this from generic flat-illustration motion graphics.
+    remotion_recipe: >
+      If starting from a photo/3D render: run it through a CSS/SVG filter chain —
+      <feColorMatrix type="matrix"> to grayscale, <feComponentTransfer><feFuncR
+      type="discrete" tableValues="0 1"/></feComponentTransfer> to posterize to 2
+      levels, then overlay a red radial gradient clipped to an eyes-only mask (small
+      inline SVG circles) with mix-blend-mode: screen. Keep the source asset as a
+      pre-baked PNG/SVG for shots 1-4 (content changes are treatment swaps on one
+      asset, not new art).
+    difficulty: moderate
+
+  - id: stepped-treatment-stutter-montage
+    what: >
+      Across frames 34-49, the same hero silhouette cycles through 4 distinct
+      treatments (halftone/newsprint, blackout, line-art-only, full-color) on frame-
+      quantized holds of ~4 native frames each, rather than smooth interpolation.
+    where: shot 4 (frames 34-49)
+    why_it_reads: >
+      Chunky, non-eased holds read as "glitch/VHS-stutter" energy — the eye perceives
+      hard state changes as more aggressive/hyped than any eased transform could.
+    remotion_recipe: >
+      In Remotion, quantize the frame before driving any interpolate(): const
+      steppedFrame = Math.floor((frame - shotStart) / 4) * 4. Use steppedFrame to
+      index into an array of 4 pre-rendered treatment layers (each a filtered
+      duplicate of the same base SVG/PNG per duotone-ink-linework-treatment above)
+      and swap their opacity to 1/0 with zero transition — no ease at all is the
+      point.
+    difficulty: trivial
+
+  - id: radial-halftone-text-burst
+    what: >
+      A single 4-frame accent (f30-33) where the background behind the head becomes a
+      spiraling ring pattern built from the tagline text tiled at radiating angles.
+    where: shot 3 (frames 30-33)
+    why_it_reads: >
+      Turns a plain caption reveal into a full-bleed graphic hit synced to the hottest
+      motion spike in the piece — a "free" high-impact beat that's cheap to fake.
+    remotion_recipe: >
+      Render the tagline string N times (12-16 copies) as <text> elements placed at
+      polar coordinates around the hero's centroid, each rotated to face outward
+      (rotate = ring_angle), radius increasing per ring (concentric rings, not a
+      single spiral) — a fixed layout, not physics. Animate only opacity 0→0.6→0 over
+      the 4 frames and a slight rotate-parent (5-10deg) for the "burst" feel. Needs
+      canvas or SVG text-on-circle math (Math.cos/sin placement); doable without
+      WebGL.
+    difficulty: hard
+
+  - id: progress-bar-fill-ambient
+    what: >
+      A thin red horizontal bar beneath the thumbnail panel that visibly lengthens
+      from a short stub (~f22) to roughly 85% width by the end of the 148f hold shot.
+    where: shot 5 (frames 50-197), stub visible from shot 1
+    why_it_reads: >
+      This is the single mechanism keeping the long static hold (100+ frames of near-
+      zero motion per profile.md) from reading as a frozen/dead frame — cheapest
+      possible "always something moving" insurance.
+    remotion_recipe: >
+      A div with transform-origin: left, scaleX interpolated linearly from 0.12 to
+      0.85 across the full shot-5 duration via Remotion's interpolate(frame, [50,
+      197], [0.12, 0.85]). No easing — linear reads as a loading/scan indicator,
+      matching MOVE_VOCAB's note that linear is reserved for continuous loops.
+    difficulty: trivial
+
+  - id: iris-circle-teaser-reveal
+    what: >
+      A small circular mask opens over the bottom-right MIND-logo area in the last 13
+      frames (184-197), revealing a few frames of different-colored imagery
+      underneath before the clip ends.
+    where: shot 5 tail (frames 184-197)
+    why_it_reads: >
+      A last-second peek of color in an otherwise monochrome+red piece creates a
+      "there's more" hook, useful as a loop-point or a match-cut seam into a sequel
+      asset.
+    remotion_recipe: >
+      clip-path: circle(r px at 90% 88%) on a wrapper containing the alternate-color
+      layer, animate r from 0 to 64px with expoOut easing (cubic-bezier(0.16,1,0.3,1))
+      over 13 frames. Pure CSS clip-path, no SVG mask needed since it's a simple
+      circle.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 5
+  median_shot_f: 16
+  fastest_f: 4
+  slowest_f: 148
+  pattern: >
+    25f slow-build glitch-scramble title intro → 5f white-strobe flash impact → 4f
+    radial text-burst hit → 16f stepped/stuttered treatment-cycling montage (~4f holds,
+    no easing) → 148f settle-and-hold as a locked poster with a continuously-filling
+    progress bar and a 13f color-iris tease right at the tail.
+  beat_grid_f: 4
+  energy_curve: front-loaded
+
+transferable:
+  - Reuse one duotone illustration asset across 4+ "treatments" (halftone, blackout, line-art-only, full-color) instead of producing separate art per beat — swap CSS/SVG filters, not source images.
+  - Drive the hyped montage section (shot 4) with frame-quantized hard holds (Math.floor(frame/4)*4), not eased interpolation — stutter reads as more energetic than smooth motion here.
+  - Keep exactly one slow continuous move (the progress-bar fill) running under a long static hold so 148 frames of near-zero motion never reads as frozen.
+  - Layer a directional (vertical-hairline) noise field under everything via SVG feTurbulence with baseFrequency skewed on one axis — reads as analog interference, cheaper and more "premium" than isotropic grain.
+  - Land the reveal with a real strobe (2-3 alternating 1-frame white flashes), verified against luma spikes to ~194-198 in motion.csv, not a single flashCut — the repetition sells the "camera flash" read.
+  - Save one small, cheap circular clip-path reveal for the very last second as a color-tease loop point rather than ending flat.
+
+avoid:
+  - The exact hand-placed positions of the 3 profile thumbnails, wordmark distress, and caption copy blocks were almost certainly laid out by eye in After Effects/Illustrator — don't try to procedurally generate the illustration; treat the base art (wordmark + hero figure + thumbnails) as one imported static asset and animate only its treatment/compositing states in code.
+  - The radial-halftone-text-burst's exact ring spacing/rotation reads as manually tuned per-frame in AE — reproduce the mechanism (polar-placed text, opacity pulse) rather than trying to match the reference's exact spiral geometry frame-for-frame.
+  - Don't hand-key the shot-4 material swaps frame-by-frame; use the frame-quantization trick (stepped-treatment-stutter-montage) so the "randomness" is systematic and reusable for other assets.
+  - The subtle centroid drift in shot 5 (profile.md motion centre "centre-mid") could be mistaken for hand-animated camera work — it's small enough (≤1.5% per MOVE_VOCAB's driftCamera default) to just apply the standard ambient driftCamera move rather than keyframing a bespoke pan.
+
+new_moves:
+  - name: staticScanline
+    params: {baseFrequency: "0.9 0.02", opacity: 0.08-0.12, seed: frame, blend: screen}
+    description: >
+      Directional (near-vertical) animated noise field over black, built from SVG
+      feTurbulence with an anisotropic baseFrequency (high on x, low on y) so the
+      noise resolves into hairline vertical streaks rather than isotropic grain.
+      Reseed per frame for animation. The default ambient/atmosphere layer for dark,
+      analog/glitch-toned pieces — distinct from grainShift, which is isotropic.
+  - name: textScrambleReveal
+    params: {dur_f: 10, settle_f: 6, glyph_pool: mixed-script-noise-glyphs, ease: expoOut}
+    description: >
+      A title/wordmark reveal where characters cycle through randomized glyphs
+      (including non-Latin/decorative glyphs) at a fast rate before locking to the
+      correct character, left-to-right, converging by settle_f. The "decoding"
+      title reveal.
+  - name: glitchSwap
+    params: {dur_f: 1-2, content: any-alternate-layer, opacity: 1.0}
+    description: >
+      A single-frame (or 2-frame) full-replacement of the current visible content
+      with an alternate layer (scrambled text, inverted colors, a different image),
+      then an immediate revert — a "corrupted frame" flash distinct from flashCut
+      (which goes to a solid color) because it swaps in alternate *content*.
+  - name: stutterHold
+    params: {step_f: 4, dur_f: total, states: [array of layer ids]}
+    description: >
+      Quantizes the driving frame counter to steps of step_f before indexing into an
+      array of pre-built visual states, producing hard, non-eased cuts between states
+      at a regular sub-shot interval. Used for hyped montage beats where smooth easing
+      would undersell the energy.
+  - name: radialTextBurst
+    params: {dur_f: 4, rings: 6, rotate_deg: 35, source_text: string, opacity: 0.6}
+    description: >
+      Tiles a string as multiple <text> elements at polar coordinates around a target
+      centroid in N concentric rings, each ring at increasing radius, briefly pulsed
+      in opacity and rotated a few degrees — a full-bleed graphic "hit" built from
+      typography instead of particles.
+  - name: progressBarFill
+    params: {scaleX: "[start, end]", dur_f: whole-shot, ease: linear, transform_origin: left}
+    description: >
+      A thin bar that linearly scales on the x-axis from transform-origin: left across
+      an entire shot or scene, read as a loading/scan/progress indicator. The default
+      "keep it alive" ambient move for long static holds where no other element moves.
+  - name: irisReveal
+    params: {dur_f: 13, radius_px: "[0, N]", ease: expoOut}
+    description: >
+      A circular clip-path mask that grows from radius 0 to reveal alternate content
+      underneath at a fixed screen position — used as a small teaser/loop-point accent
+      rather than a full scene transition.
+
+detection_notes: >
+  Verified all 5 profile.md-detected cuts against sheet_01/sheet_02 and motion.csv —
+  no over-detection found; each cut corresponds to a genuine content/treatment change,
+  not a bright-flash false-positive inside one continuous shot. Confirmed via luma:
+  frame 24→25 luma jumps 45.6→197.9 (real white flash, shot1→2 cut), frame 27 luma
+  194.2 and frame 29 luma 193.1 (both genuine near-white strobe frames within shot 2,
+  not new cuts — profile correctly kept these inside one 25-29 shot). Frames 34-49
+  (shot 4) contain 4 distinct material treatments (halftone/newsprint at ~34-38,
+  blackout at ~39-42, line-art-only at ~43-46, full-color at ~47-49) but profile.md
+  correctly grouped them as one shot since there is no clean cut between them — they
+  are a stepped/stuttered internal montage (~4f holds), documented above as
+  stutterHold, not a cut-detection error.

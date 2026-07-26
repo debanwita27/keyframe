@@ -1,0 +1,385 @@
+id: B_logo-holo
+source: unknown
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 25
+  duration_s: 4.16
+  orientation: horizontal
+
+verdict: >
+  A 104-frame wordmark lockup for a product literally named "holo." that earns
+  its "holographic" read entirely with 2D SVG tricks -- a pulsing conic-gradient
+  background plus a 3x hue-shifted, scaled echo of the same stroke path -- before
+  hard-cutting to a flat, constant-speed strokeDashoffset draw of the actual
+  lowercase script wordmark and a long static hold. Zero WebGL is required; the
+  most valuable idea is that ALL the rainbow/iridescent color is rationed onto
+  a 31-frame macro intro and is completely gone by the time the brand mark itself
+  settles.
+
+detection_notes: >
+  profile.md reports 8 "shots" from luma-delta>26 and a static hold from frame
+  63. Cross-checked against sheet_01.jpg, the keys/, and motion.csv: (1) the
+  boundary at frame 9->10 (motion.csv spike 146.69, by far the largest in the
+  clip; motion centre moves centre-bottom->left-mid; keys 00_f4 vs 01_f11 show
+  completely different backgrounds -- bright cyan/pink/violet gradient vs
+  near-black) and the boundary at frame 40->41 (spike 55.30; keys 05_f33 vs
+  06_f47 show a total change of background, scale and ink colour) are genuine
+  hard cuts -- kept as shot boundaries. (2) profile's shots 3-6 (boundaries
+  reported at frames 14, 18, 22, 27) are FALSE-POSITIVE cuts: motion centre
+  stays "centre-mid" across all four, and profile's own velocity labels
+  describe them as "ease-in (builds)" / "ease-out (settles)" / "overshoot/
+  settle bounce" -- i.e. one continuous spring-animated stroke draw with fast
+  bursts, not scene changes. The apparent "cuts" are just the delta-threshold
+  algorithm flagging fast luma swings from a bright stroke growing against a
+  hue-pulsing background (luma dips 160->18 f9-10, climbs back to 50 by f27,
+  spikes back to ~160 by f29 -- matches profile's own brightness sparkline
+  bands ▆▂▃▆). Merged profile shots 2-6 (frames 10-40) into one shot. (3)
+  profile's reported static stretch (frames 63-103) is itself a false reading:
+  sheet_01.jpg shows the wordmark still visibly gaining letters at f64
+  ("holo" reads as overlapping-cursive "hob"), f68 ("holo" with no period),
+  and f72 (period dot appearing) -- corroborated by a small but real
+  motion.csv bump at frame 74 (0.174, vs ~0.01-0.05 immediately before/after)
+  matching the period's pop-in. The detector missed this because a thin
+  dark-grey stroke over a bright flat background produces a far smaller
+  mean-abs-luma-delta than the frame-filling glowing stroke of frames 0-40,
+  even though genuine change is still happening through ~f77. True settle is
+  frame ~77; the real static hold is frames 77-103 (~26f), not 63-103.
+
+palette:
+  bg: "#C0C0F0"
+  ink: "#3E3B52"
+  accent: "#A878D8"
+  support: ["#000018", "#D8C0F0", "#D8D8F0", "#C090D8", "#A8A8D8"]
+  notes: >
+    Hex values for bg/accent/support are profile.md's measured screen-share
+    palette (#C0C0F0 31.1%, #D8C0F0 15.0%, #D8D8F0 12.7%, #000018 9.5%,
+    #A8A8D8 6.7%, #C090D8 5.5%, #A878D8 4.3%). `ink` (~#3E3B52, a dark
+    slate-violet) is sampled visually from keys/07_f77.png -- it covers too
+    small a screen area to register in the top-7 palette. The rainbow/hue
+    range (#000018 dark navy through the cyan/pink/violet gradient stops) is
+    used ONLY during the frames 0-40 macro-drawing intro, both as the pulsing
+    background and as the 3-copy chromatic echo around the main stroke. By
+    the hard cut at f41 every accent colour is discharged -- the resting
+    wordmark card is monochrome dark ink on a flat pale-lavender gradient
+    with zero hue accent, so the thing people actually screenshot reads
+    clean and print-safe.
+
+typography:
+  family_look: >
+    lowercase joined script / handwritten cursive, monoline stroke with
+    rounded terminals -- does not map cleanly onto geometric-sans / grotesk /
+    serif-display / mono; closest bucket is a custom logotype script.
+  weights: [regular]
+  case: lower
+  tracking: normal
+  headline_frame_share: 0.30
+  notes: >
+    Single line, one word: "holo." (4 letters + a trailing period), all
+    lowercase, joined cursive strokes of constant width (no weight
+    variation). No separate icon/mark exists anywhere in this reference --
+    the wordmark IS the entire logo; the macro intro (frames 0-40) is an
+    extreme close-up of the SAME letterforms mid-stroke, not a distinct
+    icon assembling before the wordmark. Centred horizontally, occupies
+    roughly 30% of frame width once fully drawn (key 07_f77).
+
+structure:
+  - act: hook
+    t: [0.00, 1.60]
+    purpose: >
+      Establish material identity before legibility: an extreme-macro,
+      hard-cut flash sequence of a glowing stroke being drawn against a
+      hue-pulsing iridescent background, with no readable text yet.
+    shots: [1, 2]
+  - act: reveal
+    t: [1.64, 3.08]
+    purpose: >
+      Hard cut pulls all the way out to a flat brand-clean background where
+      the actual "holo." wordmark is drawn glyph-by-glyph, resolving the
+      abstract intro into a legible logotype.
+    shots: [3]
+  - act: cta
+    t: [3.08, 4.16]
+    purpose: >
+      Hold the completed wordmark static so it registers as the terminal
+      brand card / end-card freeze-frame.
+    shots: [3]
+
+shots:
+  - n: 1
+    t: [0.00, 0.36]
+    frames: [0, 9]
+    layout: full-bleed-ui
+    content: >
+      Full-bleed bright iridescent gradient (cyan top-left -> pink
+      bottom-left -> violet right, key 00_f4) fills the frame. A thick,
+      rounded, glowing off-white stroke is mid-draw, filling most of frame
+      height -- an extreme macro close-up of one ascender+loop of the "h"
+      in "holo.", magnified so far that only an abstract S-curve is legible.
+      A single thin darker-purple echo line runs parallel to the main
+      stroke. Motion centre sits centre-bottom (profile.md).
+    moves:
+      - move: drawOn
+        target: mainStroke (macro "h" ascender+loop fragment)
+        at_f: 0
+        params: {dur_f: 10, ease: linear, strokeDashoffset: "1->0", note: "constant-speed pen draw, matches profile's linear/constant-velocity label for this shot"}
+      - move: gradientDrift
+        target: background
+        at_f: 0
+        params: {hue_rotate: "0->40deg", period_f: 10, note: "brightness stays in profile's brightest sparkline band (▆) the whole shot -- barely perceptible drift, not the big pulse of shot 2"}
+    camera: {move: static, params: {note: "locked extreme-macro framing, no push/pull"}}
+    bg: {kind: gradient, moves: [gradientDrift]}
+    treatment: [bloomGlow]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {dur_f: 0, note: "matches motion.csv's single largest spike, 146.69 at f9 -- a real reframe cut, centre-bottom to left-mid"}}
+    hold_f: 0
+
+  - n: 2
+    t: [0.40, 1.60]
+    frames: [10, 40]
+    layout: full-bleed-ui
+    content: >
+      Continuous macro close-up (motion centre stays left-mid then
+      centre-mid throughout -- profile's shots 2-6, merged, see
+      detection_notes). Background luma pulses dark near-black (key
+      01_f11, luma ~18-23, f10-19) back up through a medium band (luma
+      ~46-50, f20-27) to the bright cyan/pink/violet gradient again (key
+      05_f33, luma ~160-167, f28-39) -- one full brightness cycle synced to
+      a rotating/sweeping conic gradient. Across this same span the thick
+      off-white stroke keeps growing into a large closed loop (the "o"/"l"
+      connector of the wordmark, keys 02_f15, 03_f19, 04_f24 show the SAME
+      loop progressively closing), flanked by 3 fainter, larger, hue-shifted
+      echo outlines (cyan/pink/violet, clearly visible in 02_f15/03_f19)
+      tracing the identical path at increasing scale and decreasing
+      opacity -- the clearest read of the "holographic" chromatic-fringe
+      effect in the whole reference. The loop's final flourish (f37-40)
+      shows a small overshoot-then-settle spring bounce as it closes
+      (profile: "overshoot/settle bounce").
+    moves:
+      - move: drawOn
+        target: mainStroke (macro loop, continues from shot 1)
+        at_f: 0
+        params: {dur_f: 31, ease: "expoIn f0-17, springSnap f17-31", strokeDashoffset: "1->0", overshoot_pct: 4, note: "profile: ease-in builds f10-21, ease-out settles f22-26, overshoot/settle bounce f27-40"}
+      - move: holoEchoOutline
+        target: mainStroke echoes (3 hue-shifted duplicate outlines)
+        at_f: 0
+        params: {copies: 3, scale: [1.15, 1.35, 1.55], colors: ["#8FE8E8", "#E8A0D8", "#A878D8"], opacity: [0.35, 0.25, 0.15], sync: "identical strokeDashoffset value as mainStroke"}
+      - move: gradientDrift
+        target: background
+        at_f: 0
+        params: {hue_rotate: "40->0->260deg", period_f: 31, note: "one non-looping sweep; luma trace bright(f0-9 of shot)->dark(f10-19)->medium(f20-27)->bright(f28-31), matches profile brightness bands ▂▃▆"}
+    camera: {move: static, params: {note: "one brief hard reframe at shot start (left-mid), otherwise locked extreme-macro framing for the rest of the shot"}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {dur_f: 0, note: "matches motion.csv spike 55.30 at f40 -- real hard cut: background flips from dark iridescent gradient to flat pale lavender, camera scale changes drastically (keys 05_f33 vs 06_f47)"}}
+    hold_f: 0
+
+  - n: 3
+    t: [1.64, 4.16]
+    frames: [41, 103]
+    layout: centre-stack
+    content: >
+      Hard cut to a flat pale lavender-white diagonal gradient background
+      (no further hue animation, luma flat ~205-213 for the rest of the
+      clip). Camera pulls back to a normal, centred framing. The lowercase
+      cursive wordmark "holo." is drawn stroke-by-stroke in dark
+      slate-violet ink (~#3E3B52), at constant handwriting speed: "h" (key
+      06_f47 shows it complete with a small entry tick for the next
+      stroke), then "o", then "l", then the second "o" (sheet f64/f68 show
+      these overlapping into a "hob"-looking read, an artifact of the
+      joined-cursive font, not a different word), then a small period dot
+      pops in near the baseline (sheet f72, motion.csv bump 0.174 at f74).
+      By f77 the full "holo." wordmark is resolved (key 07_f77) and holds
+      completely static for the remaining ~26f to the end of the clip
+      (sheet f81-102 are pixel-identical; motion.csv drops to ~0.0004-0.06
+      from f81 onward).
+    moves:
+      - move: drawOn
+        target: "glyph h"
+        at_f: 0
+        params: {dur_f: 8, ease: linear, strokeDashoffset: "1->0"}
+      - move: drawOn
+        target: "glyph o (1st)"
+        at_f: 8
+        params: {dur_f: 8, ease: linear, strokeDashoffset: "1->0"}
+      - move: drawOn
+        target: "glyph l"
+        at_f: 16
+        params: {dur_f: 7, ease: linear, strokeDashoffset: "1->0"}
+      - move: drawOn
+        target: "glyph o (2nd)"
+        at_f: 23
+        params: {dur_f: 8, ease: linear, strokeDashoffset: "1->0"}
+      - move: popIn
+        target: "period dot"
+        at_f: 31
+        params: {scale: "0->1.08->1", dur_f: 5, ease: springSnap, note: "matches motion.csv's small bump (0.174 at f74, frame 33 relative) -- the only spring-flavoured moment in the whole wordmark draw"}
+    camera: {move: static, params: {note: "locked normal framing for the whole shot, no push/pull"}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {dur_f: 0, note: "end of clip"}}
+    hold_f: 26
+
+techniques:
+  - id: iridescent-hue-pulse-background
+    what: >
+      During the macro-drawing intro (frames 10-40) the background luma
+      cycles bright -> near-black -> medium -> bright as a conic/radial
+      gradient sweeps through cyan, pink and violet hue stops.
+    where: shot 2, frames 10-40
+    why_it_reads: >
+      Sells the entire "holographic material" impression from the
+      background alone -- the foreground stroke stays a flat off-white the
+      whole time, so no shader or true iridescent surface is needed on the
+      subject itself.
+    remotion_recipe: >
+      Full-bleed absolutely-positioned div behind the stroke SVG.
+      background: conic-gradient(from var(--angle), #8FE8E8, #E8A0D8,
+      #A878D8, #000018, #8FE8E8). Register --angle as a custom CSS
+      property (@property) and drive it with
+      interpolate(frame, [10, 41], [0, 300], {easing: Easing.inOut(...)})
+      inside Remotion -- no shader, no canvas, just a rotating gradient.
+    difficulty: trivial
+
+  - id: chromatic-echo-stroke (holoEchoOutline)
+    what: >
+      The same in-progress SVG stroke path is rendered 4 times: one solid
+      off-white main copy at full opacity, plus 3 fainter copies scaled up
+      1.15x/1.35x/1.55x around the path's centroid, each recoloured to a
+      distinct hue (cyan/pink/violet) and rendered at 0.35/0.25/0.15
+      opacity, all driven by the identical strokeDashoffset value as the
+      main stroke.
+    where: shot 2, frames 10-40 (clearest in keys 02_f15, 03_f19, 04_f24)
+    why_it_reads: >
+      Mimics chromatic dispersion / holographic-foil fringing for free --
+      it looks like light is refracting off the stroke, but it is just the
+      same path stroked 4x with different transforms/colours/opacities.
+    remotion_recipe: >
+      One <svg> with 4 <path> elements sharing the same `d`. Compute
+      pathLength once via a hidden path.getTotalLength(); drive
+      strokeDashoffset = interpolate(frame, [f_start, f_end], [pathLength, 0])
+      identically on all 4. Wrap the 3 echo paths in <g
+      transform={`scale(${s})`} style={{transformOrigin: 'center'}}> with
+      stroke set to the hue-shifted colours and the given opacities; render
+      them BEHIND the main full-opacity path (SVG paint order, not z-index).
+    difficulty: trivial
+
+  - id: macro-reframe-flash-cuts
+    what: >
+      Two hard "reframe" cuts (f9->10, centre-bottom to left-mid; and
+      internally the shot-1/shot-2 boundary) hold the camera at an extreme
+      zoom level where a single letterform stroke fills the entire frame,
+      rather than smoothly panning or showing the whole word.
+    where: shots 1-2, frames 0-40
+    why_it_reads: >
+      Extreme macro scale plus abrupt reframes (not pans) reads as kinetic
+      "ink being laid down" rather than a simple logo zoom, and disguises
+      that only one script typeface asset exists -- the reframes hide the
+      repetition of technique across letterforms.
+    remotion_recipe: >
+      Precompute 2-3 camera keyframes as {scale, translateX, translateY}
+      triples sampled from the SVG path's getPointAtLength() at specific
+      path-length percentiles (e.g. 0%, 35%, 70%). Interpolate WITHIN a
+      shot with expoInOut easing (near-static in this case, since motion
+      inside each shot is minimal); switch keyframe sets with a single
+      hardCut (0 duration) exactly at the shot boundary frame -- never
+      cross-fade the camera position, or the reframe reads as a pan instead
+      of a cut.
+    difficulty: moderate
+
+  - id: script-wordmark-glyph-by-glyph-draw
+    what: >
+      The full "holo." wordmark is drawn one glyph at a time (h, o, l, o,
+      then a springSnap period pop) via strokeDashoffset at constant,
+      un-eased pen speed, ~7-8f per glyph, in flat dark ink on a flat pale
+      background, then holds static for ~26f.
+    where: shot 3, frames 41-103 (the reference's actual logo lockup)
+    why_it_reads: >
+      Constant-velocity strokes read as genuine handwriting physics (real
+      pens do not ease in/out mid-letter); reserving the ONE spring/overshoot
+      moment for the tiny period dot gives a single "alive" beat against an
+      otherwise mechanical draw, and the long trailing hold lets the eye
+      register the finished lockup as the freeze-frame end card.
+    remotion_recipe: >
+      One SVG <path> per glyph (5 total: h, o, l, o, period-as-small-circle).
+      For each glyph, strokeDashoffset = interpolate(frame, [at_f, at_f+dur_f],
+      [pathLength, 0], {easing: Easing.linear}). Period dot: scale animated
+      with spring({frame: frame - 31, fps, config: {damping: 14, mass: 0.5,
+      stiffness: 180}}) instead of a dash reveal, since it is a dot not a
+      stroke. After the last glyph's dur_f completes, render everything at
+      its final resting values for the remaining ~26f (no additional move
+      needed -- just stop animating).
+    difficulty: trivial
+
+rhythm:
+  cut_count: 2
+  median_shot_f: 31
+  fastest_f: 10
+  slowest_f: 63
+  pattern: >
+    10f flash-frame macro establishing burst (iridescent bg, "h" stroke
+    begins) -> hard cut -> 31f continuous macro pen-stroke draw riding a
+    dark/bright hue-pulse background with a 3-hue chromatic echo trail,
+    ending in a spring overshoot/settle bounce -> hard cut -> 63f flat
+    wordmark reveal: 4 glyphs drawn glyph-by-glyph in ~31f + a springSnap
+    period pop, then a 26f static hold to the end. Only 2 of profile.md's
+    8 reported "shots" are real cuts; the rest are fast in-shot velocity
+    bursts or sub-threshold letter-reveal motion -- see detection_notes.
+  beat_grid_f: null
+  energy_curve: front-loaded
+
+transferable:
+  - Ration ALL rainbow/iridescent hue onto a short intro phase only; let the
+    final resting logo card be flat monochrome ink-on-pale so the thing
+    people actually screenshot/freeze-frame reads clean and print-safe.
+  - Sell "holographic material" with a rotating conic-gradient background
+    plus a 3-copy, hue-shifted, scaled echo of the same stroke path -- 90%
+    of the perceived iridescence comes from these two 2D tricks, not from
+    any shader on the subject itself.
+  - Draw a wordmark logotype glyph-by-glyph via strokeDashoffset at constant
+    linear pen-speed (~7-9f per glyph) rather than easing each letter --
+    real handwriting doesn't ease, and it reads more organic for it.
+  - Reserve the ONE spring/overshoot easing moment for the smallest element
+    in the composition (here, a single period dot) -- one deliberate bounce
+    against an otherwise mechanical draw reads as intentional "life," not
+    inconsistency.
+  - Use extreme macro framing + hard reframe cuts (never smooth pans) on an
+    in-progress stroke draw to disguise a single typeface asset as a kinetic,
+    tactile "ink being laid down" moment.
+  - End a logo lockup on a long static hold (~26f, a quarter of total
+    runtime here) after the final glyph settles -- the eye needs that dwell
+    to register the full lockup as the freeze-frame.
+
+avoid:
+  - Hand-keyframing each cursive glyph's stroke reveal frame-by-frame in
+    After Effects -- use a single SVG path per glyph with
+    strokeDasharray/strokeDashoffset driven by one interpolate() call per
+    glyph; no manual per-frame keyframes needed.
+  - Manually keyframing the background's rainbow colour stops in AE --
+    animate one CSS custom property (--angle) driving a conic-gradient's
+    rotation; a single interpolate() call replaces dozens of colour
+    keyframes.
+  - Hand-placing the 3 "echo" duplicate stroke copies at custom manual
+    offsets per frame -- generate them programmatically as CSS/SVG
+    "transform scale()" clones of the same path with hue-shifted stroke
+    colours, computed once, not animated by hand.
+  - Eyeballing the macro camera reframes in an AE camera rig -- sample the
+    SVG path's actual point coordinates via getPointAtLength()/getBBox() at
+    fixed path-length percentiles so reframes stay mathematically centred
+    on the ink tip instead of guessed.
+
+new_moves:
+  - name: holoEchoOutline
+    params: {copies: 3, scale: [1.15, 1.35, 1.55], colors: ["#8FE8E8", "#E8A0D8", "#A878D8"], opacity: [0.35, 0.25, 0.15]}
+    description: >
+      Renders N additional copies of an already-animating stroke/path
+      (sharing the same strokeDashoffset driver value as the main path) at
+      increasing scale around the path's centroid and decreasing opacity,
+      each recoloured to a distinct hue. Reads as chromatic-dispersion /
+      holographic-foil fringing. Differs from the vocab's `motionTrail`
+      (which offsets echoes in TIME, 2f apart) -- these echoes are
+      perfectly time-synced but offset in SPACE (scale) and HUE instead.

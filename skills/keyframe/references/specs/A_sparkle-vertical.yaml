@@ -1,0 +1,489 @@
+id: A_sparkle-vertical
+source: "local reference, no URL"
+category: brand-loop
+product_type: brand-only
+
+format:
+  aspect: "9:16"
+  fps: 25
+  duration_s: 13.08
+  orientation: vertical
+
+verdict: >
+  A screen-captured After Effects build session (3D viewport + render preview + timeline
+  are all baked into the frame) used as raw footage for a process/BTS reel; the actual
+  reusable design is the render-preview panel only. Its real value is a chain of five
+  cheap-in-code procedural 3D looks (ribbon tunnel, nested-square kaleidoscope, concentric
+  portal rings, folded gradient sail+orb) strung together with hard cuts and a single
+  continuously-driven hue uniform instead of hand-keyed color.
+
+palette:
+  bg: "#000000"
+  ink: "#181830"
+  accent: "#4848C0"
+  support: ["#F0D8D8", "#D8A8D8", "#303048"]
+  notes: >
+    Measured screen-share is black-dominant (28.8% #000000, 12.6% #181830) because the
+    corridor/void backgrounds in shots 1, 2, 4 and 5 are near-black with a soft radial
+    glow. From shot 3 onward the piece is actually a continuously hue-cycling gradient
+    (purple → magenta → cyan → gold) driven by one rotating hue value, not a fixed
+    accent — treat accent/support here as the "rest state" swatches, not the full range.
+    Warm gold/cream and hot magenta both appear as full-frame dominants for 1-2s stretches
+    each (shots 5-7) and are not present in the measured 7-swatch table at all.
+
+typography:
+  family_look: geometric sans
+  weights: [regular]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.0
+  notes: >
+    No brand copy anywhere in this reference. The only text-adjacent element is a
+    generic rounded-system-font UI mockup in shot 3 (three window-control dots + a
+    pill search bar with a magnifying-glass icon, no legible words inside it). All
+    other on-screen text (layer names, "viewport" label, render-queue UI) belongs to
+    the After Effects application chrome captured behind the render — it is recording
+    noise, not the piece's own type system, and must not be treated as content.
+
+structure:
+  - act: hook
+    t: [0.00, 2.52]
+    purpose: dark ambient + a single sparkle glint and a small loading badge — reads as "something is being generated."
+    shots: [1, 2]
+  - act: capability
+    t: [2.56, 4.04]
+    purpose: flash a generic product-UI mockup (search bar, colored blobs) to hint at a tool without naming it.
+    shots: [3]
+  - act: reveal
+    t: [4.08, 8.88]
+    purpose: full-throttle abstract 3D craft display — ribbon tunnel flythrough into a kaleidoscope of nested squares, hue strobing throughout.
+    shots: [4, 5]
+  - act: proof
+    t: [9.08, 13.08]
+    purpose: settle into one polished, loop-able hero composition (twin portal rings, then a folded gradient sail with an orb) that bookends the shot-1 glint/sail motif.
+    shots: [6, 7]
+
+shots:
+  - n: 1
+    t: [0.00, 1.04]
+    frames: [0, 26]
+    layout: full-bleed
+    content: >
+      Near-black frame, soft violet-blue radial glow off-centre. At ~f14 a small
+      4-point white sparkle glint flares centre-right and a tiny solid blue
+      triangular "sail" silhouette appears just below it; both settle/shrink
+      slightly by f22. No text.
+    moves:
+      - move: sparkleFlare
+        target: glint
+        at_f: 14
+        params: {dur_f: 10, ease: backOut, points: 4, blur_px: [6, 0]}
+      - move: popIn
+        target: sailTriangle
+        at_f: 16
+        params: {scale: [0, 1], dur_f: 10, ease: springSnap}
+    camera: {move: driftCamera, params: {amp: "1%", period_f: 180, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 2
+    t: [1.04, 2.52]
+    frames: [27, 63]
+    layout: centre-stack
+    content: >
+      A rounded-rect loading badge (blue-violet gradient chip) scales in from a
+      sliver at f27 to full size by f39, a circular spinner appears rotating
+      inside it by f43; the sail triangle and background glow from shot 1 persist
+      just outside the badge. Holds/spins through f63.
+    moves:
+      - move: scaleIn
+        target: loaderBadge
+        at_f: 0
+        params: {scale: [0.1, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: spinnerSweep
+        target: spinnerIcon
+        at_f: 14
+        params: {rotate: [0, 360], period_f: 24, ease: linear, trail_opacity: [0.6, 0]}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 120}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 3
+    t: [2.56, 4.04]
+    frames: [64, 101]
+    layout: centre-stack
+    content: >
+      Background shifts to a soft pink-lavender gradient. A generic product-UI
+      "card" builds: three window-control dots top-left (f64), a pill search bar
+      with a magnifying-glass icon scales in centre (f68-77), flanking soft blob
+      shapes (teal rounded blob left, peach/orange blob right, small pink circle)
+      pop in around it (f77-89). No legible copy anywhere on the card. By f89-97
+      the frame is replaced by a hard diagonal wipe of thick black/magenta color
+      bars, transitioning into shot 4.
+    moves:
+      - move: staggerRise
+        target: windowDots
+        at_f: 0
+        params: {y: [10, 0], opacity: [0, 1], stagger_f: 2, ease: springSoft}
+      - move: scaleIn
+        target: searchBar
+        at_f: 4
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: staggerRise
+        target: blobShapes
+        at_f: 14
+        params: {y: [28, 0], opacity: [0, 1], blur: [8, 0], stagger_f: 3, ease: springSoft}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut, dur_f: 38}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: maskTransition, params: {shape: "diagonal-stripe-wipe, 5 bars", dur_f: 8, ease: expoInOut}}
+    hold_f: 0
+
+  - n: 4
+    t: [4.08, 7.04]
+    frames: [102, 176]
+    layout: full-bleed
+    content: >
+      Camera is inside a 3D corridor of long ribbon/plank shapes radiating to a
+      centre vanishing point (a "warp-speed" tunnel). Camera dollies forward
+      continuously while every ribbon's hue cycles rapidly and in sync — indigo/blue
+      (f102) → magenta/pink (f110) → cyan/teal + gold (f118-131) → deep blue/magenta
+      (f152-160) → cyan/orange (f164-172). One continuous camera move; the rapid
+      hue strobing is what over-triggers the profile's cut detector inside this
+      range (see detection_notes).
+    moves:
+      - move: ribbonTunnelFly
+        target: ribbonField
+        at_f: 0
+        params: {plank_count: 14, dur_f: 75, hue_cycle_period_f: 30, ease: linear}
+    camera:
+      move: pushIn
+      params: {scale: [1, 1.35], ease: expoInOut, dur_f: 75, note: "implemented as a literal camera z-dolly through the radial field, not a 2D scale — see technique iridescent-ribbon-tunnel"}
+    bg: {kind: 3d-set, moves: [gradientDrift]}
+    treatment: [vignette, chromaticEdge]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 5
+    t: [7.08, 8.88]
+    frames: [177, 226]
+    layout: full-bleed
+    content: >
+      Hard cut to a nested-square "hall of mirrors" kaleidoscope: 5-6 concentric
+      picture-frame squares rotate and recede toward camera against two giant
+      triangular colour wedges (magenta/purple + cyan/cream) meeting at a hard
+      diagonal seam. Palette strobes purple → magenta → cyan → pink → gold across
+      the shot. By f222-226 a small round bauble/marble enters top-right, cueing
+      the next scene.
+    moves:
+      - move: kaleidoTunnelZoom
+        target: kaleidoSquares
+        at_f: 0
+        params: {layer_count: 6, dur_f: 50, rotate_per_layer_deg: 8, scale_falloff: 0.12, ease: linear}
+    camera: {move: orbit3D, params: {rotateZ: [0, 140], perspective_px: 800, dur_f: 50, ease: linear}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [chromaticEdge, vignette]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 6
+    t: [9.08, 9.88]
+    frames: [227, 247]
+    layout: centre-stack
+    content: >
+      Hard cut to two stacked concentric-ring "portal" discs (reads as a vertical
+      two-up / reflection), warm gold-cream outer rings fading to a deep
+      violet-magenta core, a small solid white sphere sitting in each ring centre.
+    moves:
+      - move: portalRingPulse
+        target: portalRings
+        at_f: 0
+        params: {ring_count: 5, dur_f: 21, rotate_period_f: 300, ease: linear}
+      - move: scaleIn
+        target: coreOrb
+        at_f: 2
+        params: {scale: [0.8, 1], opacity: [0, 1], dur_f: 12, ease: backOut}
+    camera: {move: breathe, params: {scale: [1, 1.02, 1], period_f: 120}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 7
+    t: [9.92, 13.08]
+    frames: [248, 326]
+    layout: centre-stack
+    content: >
+      Camera pulls back to reveal the hero composition: a large folded "sail"/card
+      panel in a gold-violet-magenta gradient, a bright white orb sitting at the
+      fold's apex, and the small blue triangular sail from shot 1 drifting in and
+      settling lower-frame-right. The whole composition idles with a slight
+      overshoot/settle bounce (this is what the profile mis-reads as a new shot
+      at f290 — see detection_notes) and holds to the final frame at f326.
+    moves:
+      - move: sailFold
+        target: sailPanel
+        at_f: 0
+        params: {rotateY_deg: [-18, 0], rotateX_deg: [6, 0], dur_f: 26, ease: springSoft}
+      - move: unblurIn
+        target: coreOrb
+        at_f: 4
+        params: {blur: [18, 0], scale: [1.04, 1], dur_f: 20, ease: expoOut}
+      - move: flyOut
+        target: sailTriangle
+        at_f: 20
+        params: {y: [-40, 0], opacity: [0, 1], dur_f: 16, ease: springSnap, note: "reused inverted as an entrance, not an exit"}
+      - move: breathe
+        target: sailPanel
+        at_f: 46
+        params: {scale: [1, 1.015, 1], period_f: 120}
+    camera: {move: pullOut, params: {scale: [1.08, 1], ease: expoInOut, dur_f: 30}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+techniques:
+  - id: sparkle-glint-accent
+    what: >
+      A 4-point star flare (scale/blur pop) paired with a small solid triangular
+      "sail" silhouette, introduced tiny in the opening frame and reintroduced full
+      -size, settled, in the closing composition.
+    where: shots 1 and 7
+    why_it_reads: >
+      A hue-chaotic 13s middle section still reads as one coherent piece because the
+      eye recognises the same small motif at the start and end — a visual rhyme that
+      substitutes for narrative.
+    remotion_recipe: >
+      SVG path for the star: two overlapping elongated-diamond paths rotated 45deg
+      (or a single 4-point path built from four quadratic Bezier arcs meeting at the
+      centre), fill white, feGaussianBlur stdDeviation animated 6→0px. Animate
+      transform scale 0→1→0.7 over 10f with a spring (damping:14, mass:0.5,
+      stiffness:180 — springSnap) and opacity 0→1→0.85. Triangle: a simple SVG
+      <polygon>, solid accent-blue fill, mounted with mix-blend-mode: screen so it
+      glows over the gradient bg; give it a slow independent drift
+      (translateY = sin(frame/90*2π)*4px) so it never looks perfectly static.
+    difficulty: trivial
+
+  - id: iridescent-ribbon-tunnel
+    what: >
+      A radial array of long thin plank/ribbon geometry receding to a vanishing
+      point, with a camera dolly forward and every plank's hue cycling in lockstep.
+    where: shot 4
+    why_it_reads: >
+      The strobing rainbow read comes from one shared hue driver, not from complex
+      geometry — cheap to build, expensive-looking on screen.
+    remotion_recipe: >
+      three.js: generate N (~14) BoxGeometry planks arranged at polar coordinates
+      around the camera's forward (z) axis — angle = i * (2π/N), radius = R, each
+      extruded along z with slight per-plank length jitter. Give every plank a
+      ShaderMaterial whose fragment shader takes a uniform `uHue` and converts
+      HSL→RGB per-pixel; drive `uHue = (frame / totalFrames * cycles) % 1` from the
+      Remotion frame counter — one uniform update per frame, no per-object color
+      keyframes. Animate camera.position.z linearly each frame (dolly) while the
+      camera looks down +z; add a tiny camera rotateZ = sin(frame/40)*0.02 for an
+      organic, not-perfectly-mechanical push.
+    difficulty: needs-3d
+
+  - id: nested-square-kaleido-tunnel
+    what: >
+      6 concentric "picture-frame" squares rotating and receding toward camera in
+      a 3D perspective stack, over two full-bleed triangular colour wedges meeting
+      at a hard diagonal seam.
+    where: shot 5
+    why_it_reads: >
+      A formula-driven per-layer offset (not hand-keyed per square) makes the
+      kaleidoscope loop feel infinite and mathematically "clean," which is what
+      reads as premium rather than busy.
+    remotion_recipe: >
+      CSS 3D: parent div `perspective: 800px; transform-style: preserve-3d`. For
+      layer i in 0..5: `transform: translateZ(-i*120px) rotateZ(i*8deg + frame*k)
+      scale(1 - i*0.12)`, each an absolutely-positioned square with a 1-2px border
+      and transparent centre so inner layers show through. Animate the whole
+      group's outer rotateZ linearly (period_f ~140) instead of touching individual
+      layers. Background wedges: two divs with `clip-path: polygon(...)` cutting a
+      diagonal split, colours driven by a single CSS custom property `--hue`
+      updated per-frame via JS (`element.style.setProperty('--hue', ...)`) feeding
+      an `hsl(var(--hue), ...)` background — same one-uniform-drives-everything
+      principle as the ribbon tunnel.
+    difficulty: hard
+
+  - id: concentric-portal-rings
+    what: >
+      A stacked pair of concentric-ring "iris"/eclipse graphics (gold-cream outer
+      rings fading to a violet-magenta core) with a small white sphere at centre.
+    where: shot 6
+    why_it_reads: >
+      Radial symmetry plus a single bright core point reads instantly as "portal"
+      or "reveal," making it an efficient beat to land on right before the final
+      hero shot.
+    remotion_recipe: >
+      SVG: 5 concentric <circle> elements, each filled via a shared
+      <radialGradient> whose stops are recomputed per frame from the same hue
+      driver used elsewhere (gold → magenta → violet). Rotate the whole <g> slowly
+      and linearly (period_f 300) for a barely-perceptible drift. A solid white
+      <circle> at the centre with a soft drop-shadow/blur acts as the "sun." Render
+      the same SVG twice in a flex column (or once + `transform: scaleY(-1)
+      translateY(100%)` for a mirrored duplicate) to get the stacked two-up read.
+    difficulty: moderate
+
+  - id: folded-sail-orb-reveal
+    what: >
+      A single angular "sail"/flag panel in a gold-violet-magenta gradient, folded
+      via a combined rotateY/rotateX, with a bright orb at its apex and the
+      recurring blue triangle motif settling into the foreground.
+    where: shot 7
+    why_it_reads: >
+      Pulling the camera back to a static-feeling, symmetrical hero frame after four
+      shots of continuous camera motion gives the eye a place to land — this is the
+      frame the video is "for," and it is built to be a loop-able still.
+    remotion_recipe: >
+      CSS 3D: perspective parent (`perspective: 1000px`), sail = a single div with
+      `clip-path: polygon(...)` cut to an angular flag/sail silhouette,
+      `background: linear-gradient(135deg, gold, magenta, violet)`, animate
+      `transform: rotateY(-18deg → 0) rotateX(6deg → 0)` over 26f with a spring
+      (springSoft: damping 200, mass 0.6, stiffness 100). Orb: radial-gradient
+      white circle at the fold's top vertex, `filter: blur(0.5px)` + a soft
+      box-shadow bloom, unblurIn entrance (blur 18→0, scale 1.04→1, 20f, expoOut).
+      Reuse the technique-1 SVG triangle, translate/scale it into the lower-right
+      third with a spring landing, then apply a slow breathe (scale
+      1→1.015→1, period_f 120) so the final hold never looks frozen.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 6
+  median_shot_f: 38
+  fastest_f: 21
+  slowest_f: 79
+  pattern: >
+    27f dark-ambient tease → 37f loader-badge settle → 38f UI-card build ending in a
+    diagonal wipe → 75f continuous ribbon-tunnel dolly (hue-strobing, over-detected
+    by delta-based cut tools as 4-5 separate shots) → 50f nested-square kaleidoscope
+    → 21f twin portal-rings → 79f folded-sail-and-orb hero hold with a settle bounce
+    partway through (also mis-read as an extra cut). Profile's raw 10-cut list
+    collapses to 6 real transitions once color-cycling and settle-bounces are
+    discounted — see detection_notes.
+  beat_grid_f: 0
+  energy_curve: rising
+
+transferable:
+  - Bookend an abstract, hue-chaotic middle section with one small recurring motif
+    (the glint + blue sail triangle, tiny at frame 0, full-size and settled at the
+    final frame) so the piece still reads as coherent.
+  - Drive every color shift in a scene from one continuously-updating hue uniform
+    (shader `uHue` or CSS `--hue`, set from the frame counter) instead of keyframing
+    colors per object — cheaper to build and infinitely re-tunable.
+  - Time hard cuts between abstract scenes to land near local peaks of the
+    brightness/motion curve so the cut itself reads as an intentional beat, not a
+    glitch (see profile's brightness curve — every cut here sits on a rising slope).
+  - Build 3D "tunnel" looks (ribbons, nested squares, concentric rings) as
+    procedural radial/polar arrays driven by a loop index and one shared time
+    uniform — this replaces dozens of individually hand-placed and keyframed AE
+    layers with a formula.
+  - End an abstract loop on a pulled-back, symmetrical, mostly-static hero frame
+    (fold + orb) rather than mid-motion — gives viewers a still worth screenshotting
+    and makes the file usable as a genuine loop.
+
+avoid:
+  - The dual-panel AE screen-capture itself (wireframe 3D viewport with gizmo dots,
+    render-queue strip, layer-name list) is recording noise from a hand-operated
+    session, not designed content — never rebuild it; only the render-preview panel
+    (the middle strip in every sheet cell) is the real deliverable to recreate.
+  - The exact hue-cycle timing across the tunnel/kaleidoscope shots looks
+    eyeballed/scrubbed in the AE timeline rather than algorithmic — don't hand-key
+    each color stop; substitute a deterministic `hue = f(frame)` formula so the look
+    is reproducible and re-timeable.
+  - The kaleidoscope's per-layer rotation/scale values drift non-uniformly across
+    frames (consistent with manual per-keyframe tweaking) — substitute a
+    formula-driven loop (rotateZ = i*k1 + frame*k2, scale = 1 - i*k3) instead of
+    N individually keyed layers.
+  - Small camera "orbit tool" jitter visible in the wireframe viewport is manual
+    mouse movement from the artist scrubbing the scene, not intentional motion —
+    ignore it and drive the actual camera with a clean eased or linear dolly.
+
+new_moves:
+  - name: sparkleFlare
+    params: {dur_f: 10, ease: backOut, points: 4, blur_px: [6, 0]}
+    description: >
+      A 4-point star/glint burst used as a "something magical is happening" accent.
+      Scale animates 0→1→~0.7, blur 6px→0, opacity 0→1→~0.85. Built as an SVG
+      4-point star path (or two overlapping elongated diamonds), not a raster
+      sprite, so it can be recolored/rescaled freely.
+  - name: spinnerSweep
+    params: {rotate: [0, 360], period_f: 24, ease: linear, trail_opacity: [0.6, 0]}
+    description: >
+      A continuous rotating partial-ring/arc loader icon inside a badge or chip.
+      Rotate 0-360 linear on a loop; the trailing edge of the arc fades from
+      trail_opacity[0] to trail_opacity[1] to fake motion-trail without a real trail
+      render pass.
+  - name: ribbonTunnelFly
+    params: {plank_count: 14, dur_f: 75, hue_cycle_period_f: 30, ease: linear}
+    description: >
+      A 3D camera move through a radial array of long plank/ribbon geometry
+      converging on a vanishing point, with every plank's hue cycling in lockstep
+      via a single shared hue uniform. Camera dollies forward (position.z
+      increases linearly) for the shot's full duration. See technique
+      iridescent-ribbon-tunnel for the concrete three.js recipe.
+  - name: kaleidoTunnelZoom
+    params: {layer_count: 6, dur_f: 50, rotate_per_layer_deg: 8, scale_falloff: 0.12, ease: linear}
+    description: >
+      N concentric "picture-frame" squares stacked in 3D (translateZ per layer),
+      each offset in rotation and scale by a fixed per-layer formula, with the
+      whole group rotating continuously to read as an infinite receding
+      kaleidoscope tunnel. See technique nested-square-kaleido-tunnel.
+  - name: portalRingPulse
+    params: {ring_count: 5, dur_f: 21, rotate_period_f: 300, ease: linear}
+    description: >
+      A set of concentric rings filled via a shared radial gradient that cycles
+      hue over time, rotating slowly as a group, with a bright solid core (a
+      "sun"/orb) at centre. Reads as a portal/eclipse/reveal graphic. See
+      technique concentric-portal-rings.
+  - name: sailFold
+    params: {rotateY_deg: [-18, 0], rotateX_deg: [6, 0], dur_f: 26, ease: springSoft}
+    description: >
+      A single angular gradient panel ("sail"/flag) that settles from a folded,
+      rotated-in-3D state to its resting orientation via a soft spring — used for
+      a hero reveal composition. See technique folded-sail-orb-reveal.
+
+vertical_notes: >
+  Every shot is a centred, full-bleed or centre-stack composition with generous
+  top/bottom margin — nothing ever touches the outer ~10% of frame height (matches
+  the profile's "centre-mid" / "centre-top" motion-centre readings for all 7 shots),
+  which is exactly the safe zone a phone's status bar and home-indicator would
+  otherwise clip. The one UI-card mockup (shot 3) is sized to roughly 70% of frame
+  width and centred, comfortably inside a thumb-scroll-safe portrait layout. Nothing
+  here is inherently tied to vertical framing: the ribbon-tunnel, kaleidoscope and
+  portal-ring shots are camera-forward, radially symmetric compositions that would
+  recompose to 16:9 simply by widening the camera frustum/aspect (more ribbons or
+  wider rings become visible at the left/right edges) with no re-blocking needed.
+  The one shot that would need real rework for a 16:9 recut is shot 3 (the UI card):
+  in vertical it fills ~70% of frame width edge-to-edge, but in 16:9 it would need to
+  shrink into a floating, centred card with visible negative space on both sides
+  rather than a near-full-bleed mobile mockup.
+
+detection_notes: >
+  Profile's 10-cut list over-fires inside two continuous camera moves. Frames
+  147-221 (profile's shots 3-7) are actually ONE continuous 3D-ribbon-tunnel-then-
+  kaleidoscope camera push in which rapid hue-cycling — not scene changes — crosses
+  the delta>26 cut threshold every 8-20 frames; I merged these into my shot 4
+  (f102-176, ribbon tunnel) and shot 5 (f177-226, kaleidoscope), with the real visual
+  cut between them sitting at approximately f176/177 (ribbons vs. nested squares are
+  visibly different geometry starting exactly there). Profile's shot 9→10 boundary
+  at f290 is a settle/overshoot bounce inside one continuous final composition
+  (content is unchanged from f248 through f326) rather than a real cut — merged into
+  my shot 7. Conversely, profile's shot 2 (f63-146) under-detects: it silently spans
+  both the UI-card mockup build (f64-~97) and the start of the ribbon tunnel
+  (f98-146), because the diagonal color-bar wipe at f89-97 is itself high-delta and
+  masks the real content cut sitting underneath it — I split this into my shots 3
+  and 4 at approximately f101/102.

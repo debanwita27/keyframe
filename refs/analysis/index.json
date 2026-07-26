@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "Kirschberg__A_absolutely-massive-effort-to-launch-this-c",
+    "meta": {
+      "file": "Kirschberg__A_absolutely-massive-effort-to-launch-this-c.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 29.97,
+      "duration": 44.678,
+      "frames": 1339,
+      "aspect": "1920x1080",
+      "orientation": "horizontal"
+    },
+    "cuts": 40,
+    "sheets": [
+      "sheet_01.jpg",
+      "sheet_02.jpg",
+      "sheet_03.jpg",
+      "sheet_04.jpg",
+      "sheet_05.jpg",
+      "sheet_06.jpg",
+      "sheet_07.jpg",
+      "sheet_08.jpg"
+    ]
+  },
+  {
+    "slug": "Kirschberg__A_new-site-designed-in-figma-built-in-cursor",
+    "meta": {
+      "file": "Kirschberg__A_new-site-designed-in-figma-built-in-cursor.mp4",
+      "width": 1818,
+      "height": 1080,
+      "fps": 60.0,
+      "duration": 29.0,
+      "frames": 1740,
+      "aspect": "1818x1080",
+      "orientation": "horizontal"
+    },
+    "cuts": 10,
+    "sheets": [
+      "sheet_01.jpg",
+      "sheet_02.jpg",
+      "sheet_03.jpg",
+      "sheet_04.jpg",
+      "sheet_05.jpg"
+    ]
+  },
+  {
+    "slug": "Kirschberg__B_yummy-yummy-most-slop-please",
+    "meta": {
+      "file": "Kirschberg__B_yummy-yummy-most-slop-please.mp4",
+      "width": 1920,
+      "height": 1080,
+      "fps": 30.0,
+      "duration": 53.067,
+      "frames": 1592,
+      "aspect": "1920x1080",
+      "orientation": "horizontal"
+    },
+    "cuts": 3,
+    "sheets": [
+      "sheet_01.jpg",
+      "sheet_02.jpg",
+      "sheet_03.jpg",
+      "sheet_04.jpg",
+      "sheet_05.jpg",
+      "sheet_06.jpg",
+      "sheet_07.jpg",
+      "sheet_08.jpg",
+      "sheet_09.jpg"
+    ]
+  }
+]

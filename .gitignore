@@ -4,10 +4,24 @@ node_modules/
 *.log
 
 # ── third-party source material, deliberately NOT redistributed.
-# Rebuild with: ./pipeline/fetch_refs.sh   and   ./pipeline/fetch_music.sh
-# What IS committed is refs/specs/ — our own written analysis of these videos.
+#
+# The reference videos are the portfolio work of five working designers
+# (@byshubh_, @evanplace, @Kirschberg_, @mthblt, @jittervideo). Rehosting them —
+# or contact sheets of their frames — is redistribution, and not ours to do.
+#
+# What IS committed is everything WE produced from them:
+#   refs/specs/*.yaml              our written analysis
+#   refs/analysis/*/profile.md     measured shot tables + motion curves
+#   refs/analysis/*/motion.csv     per-frame measurements
+#   refs/analysis/*/meta.json      dimensions / fps / duration
+# That is ~2MB of text and gives a skill user every number without a download.
+# `./pipeline/fetch_refs.sh --analyze` rebuilds the videos AND contact sheets
+# locally in one command.
 refs/raw/
-refs/analysis/
+refs/analysis/**/sheet_*.jpg
+refs/analysis/**/keys/
+refs/analysis/**/keys.jpg
+refs/harvest/*.probe
 audio/raw/
 audio/analysis/
 

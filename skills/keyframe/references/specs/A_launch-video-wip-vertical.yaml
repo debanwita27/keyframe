@@ -1,0 +1,264 @@
+id: launch-video-wip-vertical
+source: "local reference, no URL"
+category: launch-video
+product_type: text-heavy-tool
+
+format:
+  aspect: "9:16"
+  fps: 60
+  duration_s: 6.49
+  orientation: vertical
+
+verdict: >
+  The whole tease is one unbroken phone recording of the editor's own monitor (tilted,
+  keyboard visible below), so the "in-progress" framing does the atmosphere work for free
+  while a plain sentence-builder text animation carries the message. Scrubbing through a
+  real timeline reads as "you are watching this get made," a stronger pre-launch hook than
+  a polished render, and it costs nothing extra to produce.
+
+palette:
+  bg: "#000000"
+  ink: "#141414"
+  accent: "#6C5CE7"
+  support: ["#D8D8D8", "#181830"]
+  notes: >
+    Near-black desk/room swallows ~45% of every frame (the negative space around the
+    tilted monitor). The "canvas" being edited is a light lavender-to-white gradient
+    card (#D8D8D8 family) floating centre-frame with near-black text (#141414). The
+    single accent (periwinkle-violet, ~#6C5CE7, visually estimated — too small an area
+    to register in the profile's colour-share buckets) is rationed to exactly one
+    word/phrase per beat ("Real E[state]" → full "Real Estate Agents" line, "this",
+    "about to change") — never on connective words. No light/dark inversion; the card
+    stays light throughout, only the room around it is dark.
+
+typography:
+  family_look: geometric sans
+  weights: [regular, medium]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.4
+  notes: >
+    One sentence per beat, built up progressively left-to-right/top-to-bottom rather
+    than appearing all at once. Single line for short beats ("Today", "this is about to
+    change", "introducing"); two lines for the stat beat ("Fewer than 1%" / "Real Estate
+    Agents"), where line 2 carries the accent colour. Text sits inside the on-screen AE
+    "canvas" card, so its real share of the full vertical frame is smaller (~0.4) than
+    its share of the monitor bezel alone (~0.55).
+
+structure:
+  - act: hook
+    t: [0.0, 0.95]
+    purpose: plant a temporal marker ("Today") before any claim is made
+    shots: [1]
+  - act: problem
+    t: [0.95, 2.92]
+    purpose: land the stat that creates the gap ("Fewer than 1% Real Estate Agents")
+    shots: [1]
+  - act: reveal
+    t: [2.92, 5.04]
+    purpose: explain the stat with a visual (network of local-market nodes around an agent)
+    shots: [1]
+  - act: proof
+    t: [5.04, 6.00]
+    purpose: state the tension/promise ("this is about to change")
+    shots: [1]
+  - act: cta
+    t: [6.00, 6.487]
+    purpose: open the reveal ("introducing…") and cut before the name — deliberate cliffhanger
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 6.487]
+    frames: [0, 389]
+    layout: split
+    content: >
+      Single continuous handheld-feel phone recording of a tilted external monitor
+      running After Effects, keyboard visible in the lower third, dark
+      purple-black room bleeding in at the very top edges. On the monitor's light
+      gradient card, text builds sentence by sentence: "Today" → "Fewer than 1%
+      Real Estate Agents" (2nd line in accent colour) → "are truly known in their
+      local markets" (with a person icon that sprouts a small scatter of node
+      dots) → "• this is about to change •" → "introducing" (kinetic reveal with
+      per-letter baseline jitter, video ends mid-word-complete, before the product
+      name appears).
+    moves:
+      - move: maskWipeSide
+        target: "\"Today\""
+        at_f: 12
+        params: {dur_f: 12, dir: l→r, ease: expoInOut}
+      - move: maskWipeSide
+        target: "line1 \"Fewer than 1%\""
+        at_f: 32
+        params: {dur_f: 18, dir: l→r, ease: expoInOut}
+      - move: maskWipeSide
+        target: "line2 \"Real Estate Agents\" (accent)"
+        at_f: 44
+        params: {dur_f: 14, dir: l→r, ease: expoInOut}
+      - move: maskWipeSide
+        target: "\"are truly known in their local markets\""
+        at_f: 92
+        params: {dur_f: 25, dir: l→r, ease: expoInOut}
+      - move: networkBloom
+        target: "node scatter around person icon"
+        at_f: 107
+        params: {dur_f: 10, node_count: 9, stagger_f: 1}
+      - move: maskWipeSide
+        target: "\"this is about to change\""
+        at_f: 152
+        params: {dur_f: 25, dir: l→r, ease: expoInOut}
+      - move: popIn
+        target: "flanking bullet dots"
+        at_f: 152
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: typeOnJitter
+        target: "\"introducing\""
+        at_f: 182
+        params: {dur_f: 12, per_char_stagger_f: 1, baseline_jitter_px: 6, ease: backOut}
+    camera:
+      move: pushIn
+      params: {scale: [1.02, 1.0], dur_f: 8, ease: expoOut, note: "quick handheld settle in the first ~8 30fps-frames, then driftCamera takes over"}
+    bg:
+      kind: grain
+      moves: [driftCamera]
+    treatment: [filmGrain, vignette, chromaticEdge]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+techniques:
+  - id: screen-record-of-screen-record
+    what: >
+      The entire piece is footage of a physical monitor (tilted ~8°, keyboard in
+      frame) playing back an After Effects project, itself showing a simple
+      sentence-builder animation. Two layers of "screen" nested inside each other.
+    where: shot 1, full duration
+    why_it_reads: >
+      Removes the render/polish signal a viewer associates with paid marketing and
+      replaces it with a "someone is actually building this" signal — reads as
+      authentic BTS/founder content, which pre-launch teases benefit from more than
+      a slick loop would.
+    remotion_recipe: >
+      Render the actual sentence-builder comp normally (flat, full-bleed, no fake
+      AE chrome). Composite it into a static photo/video plate of a monitor+desk
+      shot at a slight angle (8-10° rotateZ, subtle rotateX/Y for perspective) using
+      a CSS 3D transform on a `<div>` wrapping the rendered comp, then clip to the
+      monitor's screen bezel with a `clip-path: polygon(...)` matched to the plate's
+      four corner points. Add `driftCamera`-style handheld motion by animating the
+      wrapper's translate/rotate with a low-frequency seeded sine (not literal
+      camera capture). Do NOT try to synthesize fake After-Effects UI chrome —
+      it's a compositing/staging trick, not an animation technique.
+    difficulty: moderate
+  - id: network-bloom
+    what: >
+      A central icon (person silhouette) sprouts a small cluster of dots that
+      scatter outward into a loose radial arrangement, reading as "network of
+      local nodes" tied to the phrase "known in their local markets."
+    where: shot 1, ~t=3.6-3.9s (30fps frames 107-117)
+    why_it_reads: >
+      The scatter timing lines up with the words "local markets" landing, so the
+      visual argument (a network exists) arrives exactly when the claim is spoken
+      in text — cheap but effective sync.
+    remotion_recipe: >
+      Generate N node positions with a seeded PRNG in polar coordinates
+      (radius = rMin + rand()*(rMax-rMin), angle = i*(360/N) + rand()*jitterDeg),
+      convert to x/y offsets from the centre icon. Mount each node as an absolutely
+      positioned element, animate opacity 0→1 and radius 0→final with a per-node
+      stagger (~1f) and `springSnap`. Keep the seed fixed per render so the
+      "random" scatter is reproducible.
+    difficulty: trivial
+  - id: intro-baseline-jitter-type
+    what: >
+      The word "introducing" reveals character-by-character (or in 2-3 char
+      clusters), each cluster landing at a slightly different baseline height/size
+      than its neighbours (some sit high like a superscript, some sit low),
+      before all clusters settle onto one baseline as the word completes.
+    where: shot 1, final beat, 30fps frames 182-194 (video ends mid-settle)
+    why_it_reads: >
+      Used exactly once, at the climactic word of the whole video — a kinetic-type
+      "flourish" reads as a flourish only if it's rare; here it's the button that
+      says "pay attention, this is the reveal."
+    remotion_recipe: >
+      Split the string into clusters with a small deterministic offset table
+      (baselineOffsetPx: seeded per-cluster ±6px, scale: 0.85-1.1). Reveal clusters
+      left-to-right at per_char_stagger_f≈1 with opacity 0→1 and translateY from
+      its jittered offset → 0, ease backOut. This is close to `letterCascade` but
+      swaps its uniform y=18→0/rotate=6→0 for a per-cluster baseline/scale jitter —
+      define as its own move (see new_moves).
+    difficulty: moderate
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 194
+  fastest_f: 194
+  slowest_f: 194
+  pattern: >
+    No hard cuts — one continuous 389-frame (6.49s @ 59.94fps ≈ 194f @ 30fps) take.
+    Internal text beats land roughly every 20-30 30fps-frames: reveal (10-25f) →
+    hold (25-30f) → next reveal, with holds consistently longer than the reveals
+    that precede them — a slow, readable cadence built for a stat-led hook rather
+    than a fast montage.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Film your own monitor (tilted, keyboard visible) as the outer frame for a launch
+    tease — it's a staging/compositing trick, not extra animation work, and reads as
+    authentic BTS.
+  - Use maskWipeSide (l→r clip-path sweep on static text) for stat/line reveals
+    instead of fade+rise — it reads as "printing," which suits a factual-stat tone.
+  - "Reserve one kinetic-type flourish (here: baseline-jitter reveal on \"introducing\")
+    as the single climax of the whole video, per MOVE_VOCAB's \"one per video, max\" rule."
+  - Hold each beat 25-30 30fps-frames (~1s) before advancing — this reference proves a
+    stat needs that much dwell to register even inside a 6.5s vertical piece.
+  - Ration a single accent colour to exactly the punch word/phrase per beat, never
+    connective words, to keep a black/white/one-accent palette disciplined.
+
+avoid:
+  - Do not hand-build fake After-Effects UI chrome to fake the "editing" look — that
+    is a compositing/staging choice (real footage of a real monitor), not an
+    animatable move; render the actual comp flat and composite it into a photographed
+    plate with a CSS 3D transform + clip-path.
+  - The node scatter around the person icon looks like individually hand-placed AE
+    keyframes per dot — rebuild as `networkBloom` with seeded-random polar
+    coordinates so node count/spread is parametric and reusable.
+  - The handheld camera settle-then-drift should not be hand-keyframed frame by
+    frame — simulate with a seeded low-frequency sine/Perlin offset (`driftCamera`)
+    so it's procedural and reproducible.
+
+vertical_notes: >
+  Safe zone: all copy sits inside the monitor-screen region, which itself occupies
+  roughly the top 55-60% of the 480x852 frame, centred horizontally with generous
+  margin (the card never touches the simulated bezel edges) — so the true "safe
+  text zone" is the inner ~70% width of that screen region, i.e. ~35-40% of full
+  frame width, comfortably clear of any platform UI overlays that would sit at the
+  very top/bottom of a 9:16 canvas. The frame is divided in thirds vertically: dark
+  ambient room (top sliver, ~5-10%), the tilted monitor/canvas (~55-60%, where all
+  narrative content lives), and keyboard/desk (~35%, pure atmosphere, zero
+  information). Type is single- or two-line, sized small relative to full frame
+  width (~40% share) because it only has to read within the monitor's screen
+  area, not the full vertical canvas — this is the opposite of most vertical
+  social work, where type is usually blown up to dominate the frame. This idea
+  would NOT survive a straight 16:9 recut: the whole point is a phone held up
+  vertically to film a landscape monitor, which only makes sense as a portrait
+  composition; a 16:9 version would need to either show the monitor full-bleed
+  (losing the "someone is filming this" framing device) or crop out the keyboard
+  entirely, which is half of what sells the authenticity.
+
+new_moves:
+  - name: networkBloom
+    params: {dur_f: 10, node_count: 9, stagger_f: 1, ease: springSnap}
+    description: >
+      A cluster of N small nodes appears around a fixed center point, each at a
+      seeded-random polar position (radius, angle+jitter). Nodes fade/scale in
+      (opacity 0→1, scale 0→1) with a short per-node stagger. Reads as "a network
+      forming around a hub." Use for any "connected/local/community" claim.
+  - name: typeOnJitter
+    params: {dur_f: 12, per_char_stagger_f: 1, baseline_jitter_px: 6, ease: backOut}
+    description: >
+      Variant of letterCascade for a single climactic word. Characters (or 2-3
+      char clusters) reveal left-to-right; each cluster carries a seeded per-cluster
+      baseline offset (±6px) and scale (0.85-1.1) instead of letterCascade's
+      uniform y=18→0/rotate=6→0, then all clusters settle to a shared baseline as
+      the word completes. Reserve for exactly one moment per video — the reveal
+      beat.
