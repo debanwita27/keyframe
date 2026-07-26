@@ -1,0 +1,32 @@
+{
+  "name": "motion-os-video",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render",
+    "still": "remotion still",
+    "compositions": "remotion compositions"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.6.1",
+    "@remotion/cli": "^4.0.0",
+    "@remotion/google-fonts": "^4.0.0",
+    "@remotion/media-utils": "^4.0.0",
+    "@remotion/noise": "^4.0.0",
+    "@remotion/paths": "^4.0.0",
+    "@remotion/shapes": "^4.0.0",
+    "@remotion/three": "^4.0.499",
+    "@remotion/transitions": "^4.0.0",
+    "@types/three": "^0.185.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "^4.0.0",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.6.0"
+  }
+}

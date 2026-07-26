@@ -1,0 +1,291 @@
+id: B_dynamic-typography-d3
+source: https://x.com/byshubh_/status/1715991708541067686
+category: kinetic-type
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 25
+  duration_s: 10.92
+  orientation: horizontal
+
+verdict: >
+  A single static word ("BATMAN") never moves in space or scale-arc — instead its
+  typeface itself is the animated subject, substituted ~35-40 times over the runtime
+  via a directional-blur-and-shear swap, with letterforms allowed to bleed off both
+  frame edges whenever a wide/expanded face is selected. Build this as a font-array
+  cycler with a cheap blur+skew crossfade, not as any spatial keyframe animation.
+
+palette:
+  bg: "#000000"
+  ink: "#D8D8D8"
+  accent: "#D8D8F0"
+  support: ["#787878", "#A8A8A8", "#303030", "#181818"]
+  notes: >
+    Monochrome. No hue accent at all — "accent" here is just the faint cool-white
+    tint (#D8D8F0) some font instances render at vs. pure #D8D8D8. #181818 is the
+    fainter duplicate/echo pass of the wordmark visible behind the main instance in
+    several frames (e.g. sheet_02 frames 152-172, 227-247) — read as a low-opacity
+    ghost layer, not a drop shadow (no offset blur, just reduced opacity + slight
+    vertical/scale offset).
+
+typography:
+  family_look: geometric sans
+  weights: [regular, bold, black]
+  case: upper
+  tracking: tight
+  headline_frame_share: 0.75
+  notes: >
+    Single word, all caps, never changes: "BATMAN". Exactly one line always. The
+    typeface itself cycles through ~10-12 distinct display faces (condensed italic,
+    extended slab/black, thin geometric sans, script-slanted, monospaced-adjacent)
+    over the runtime, so family/weight/tracking are NOT fixed — they are the
+    animated variable. headline_frame_share swings 0.55 (condensed italic faces,
+    e.g. frame 18, 197) to 0.98 (expanded black faces that clip both L/R edges,
+    e.g. frame 72, 122, 138 — confirmed in keys/00_f122.png where both the "B" and
+    final "N" are cropped by the frame boundary).
+
+structure:
+  - act: hook
+    t: [0.0, 10.92]
+    purpose: >
+      The entire clip is one continuous type-identity loop — no narrative beats,
+      no product reveal. It functions as a brand/logo-type demo reel: prove one
+      word can carry 10+ distinct visual identities without ever leaving centre
+      frame.
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 10.92]
+    frames: [0, 272]
+    layout: centre-stack
+    content: >
+      White/light-grey wordmark "BATMAN", all caps, centred in frame on pure black
+      (#000000), continuously re-typeset in a different display typeface roughly
+      every 4-8 frames. A faint film-grain/noise field sits in the bg throughout.
+      A translucent watermark "@byshubh" sits small, centred, ~1/3 down from
+      centre in every frame (source credit, not part of the design — exclude from
+      any recipe). No other copy ever appears.
+    moves:
+      - move: unblurIn
+        target: wordmark
+        at_f: 0
+        params: {blur: [22, 0], scale: [1.0, 1.0], dur_f: 16, ease: expoOut}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 18
+        params: {outgoing_font: condensed-italic-sans, incoming_font: extended-slab-sans, dur_f: 6, blur_px: [0, 26, 0], skew_deg: [0, 9, 0], ease: expoInOut}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 49
+        params: {incoming_font: black-extended-sans, dur_f: 5, blur_px: [0, 30, 0], skew_deg: [0, 11, 0], ease: expoInOut, note: "luma spikes to 22.99 here, one of the sharpest single-frame swaps in the piece"}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 64
+        params: {incoming_font: expanded-black-slab, dur_f: 8, blur_px: [0, 20, 0], skew_deg: [0, 6, 0], ease: expoInOut, note: "arc-1 peak, luma 40.83 — widest face of the cycle, edges touch frame L/R"}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 89
+        params: {incoming_font: thin-geometric-sans, dur_f: 10, blur_px: [0, 34, 0], skew_deg: [0, 14, 0], ease: expoInOut, note: "hard reset back to thinnest face, luma bottoms at 10.31 — full-streak horizontal smear, heaviest blur in the piece (sheet_01 frames 77-97)"}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 122
+        params: {incoming_font: expanded-black-slab-2, dur_f: 6, blur_px: [0, 18, 0], skew_deg: [0, 5, 0], ease: expoInOut, note: "matches keys/00_f122.png — B and N clipped by frame edges both sides, luma 36.02"}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 156
+        params: {incoming_font: expanded-black-slab, dur_f: 8, blur_px: [0, 20, 0], skew_deg: [0, 6, 0], ease: expoInOut, note: "arc-2 peak, luma 40.81, same shape as frame 64 — confirms a repeating ~91f authored cycle"}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 178
+        params: {incoming_font: thin-geometric-sans, dur_f: 10, blur_px: [0, 34, 0], skew_deg: [0, 14, 0], ease: expoInOut, note: "arc-2 reset, luma bottoms 10.39"}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 247
+        params: {incoming_font: expanded-black-slab, dur_f: 8, blur_px: [0, 20, 0], skew_deg: [0, 6, 0], ease: expoInOut, note: "arc-3 peak, luma 40.82"}
+      - move: fontSwapBlur
+        target: wordmark
+        at_f: 269
+        params: {incoming_font: thin-geometric-sans, dur_f: 4, blur_px: [0, 12, 0], skew_deg: [0, 4, 0], ease: expoIn, note: "final reset into the loop point, luma 10.39 by f271 — designed to cut back to f0 (luma 10.52) seamlessly"}
+    camera: {move: driftCamera, params: {amp: 0, period_f: 0, axes: none, note: "no camera move at all — centroid_x/y in motion.csv holds 0.48-0.52/0.44-0.58 the entire clip, confirming zero pan/zoom, all energy is in the type substitution"}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, motionTrail]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+detection_notes: >
+  Profile correctly reports a single shot spanning the full 273 frames — no merge
+  needed, unlike the other two refs in this batch. The motion sparkline's
+  repeating triple-peak shape and motion.csv's luma column (cycling ~10.3→~40.8→
+  ~10.3 three times, at periods of 90-92f: valleys ~f9-16/f88-90/f178-181/f269-271,
+  peaks at f64/f156/f247) are NOT shot boundaries — they trace the font's white-
+  pixel coverage as it cycles from thin to expanded-black typefaces and back. Also
+  worth flagging: motion.csv's frame-to-frame delta alternates near-zero/moderate
+  on almost every single frame pair for the entire runtime (e.g. f0=0.009,
+  f1=3.75, f2=0.01, f3=4.32...), which is the signature of source animation held
+  on twos (each unique typeset frame repeated for 2 video frames) rather than a
+  detection artifact — see the steppedHoldOnTwos technique below.
+
+techniques:
+  - id: font-array-cycler
+    what: >
+      One word, fixed position/scale envelope, whose typeface property alone is
+      swapped on an interval (here ~4-8f, accelerating/decelerating in a ~91f
+      breathing arc from thin to expanded-black and back, x3 over the clip).
+      Nothing else about the composition changes — no translation, no rotation of
+      the block, no scale ramp on the container.
+    where: shot 1, entire clip, every fontSwapBlur move above
+    why_it_reads: >
+      Because position is perfectly locked, the eye reads the word as one
+      continuous "thing" trying on identities rather than as a cut or a slide —
+      the brain fills in permanence from the unchanging centre-frame anchor while
+      the typeface does all the work. It reads as effortless/generative rather
+      than as 35 discrete edits.
+    remotion_recipe: >
+      Keep a single absolutely-centred <div> (flex, centred both axes) sized to
+      the full comp. Maintain an array of ~10-12 font-family strings (mix
+      condensed-italic, extended-black-slab, thin-geometric, script-slant). Drive
+      an index with `Math.floor(frame / holdFrames) % fonts.length` where
+      holdFrames varies 4-10 depending on which arc-phase you're in (interpolate
+      holdFrames itself from a lookup keyed by frame, or hardcode the swap-frame
+      list above). Render the word twice, stacked in the same spot: outgoing font
+      at fonts[index-1], incoming at fonts[index], cross-fading opacity 1→0 / 0→1
+      over the swap's dur_f. Font-size should be a fixed em value large enough
+      that expanded faces clip the container (see edge-bleed-crop below); do NOT
+      auto-shrink to fit.
+    difficulty: trivial
+
+  - id: swap-blur-shear
+    what: >
+      The actual transition mechanic at every font swap: a horizontal-only
+      directional blur combined with a small skewX shear, ramping 0→peak→0 across
+      dur_f=5-10 frames, timed so peak-blur lands exactly on the frame where the
+      outgoing/incoming crossfade crosses 50%. Blur is anisotropic (only smears
+      horizontally — vertical stroke edges stay sharp-ish), which is what reads
+      as "glitch" rather than "defocus."
+    where: every fontSwapBlur move in shot 1; heaviest example is the f89 reset
+      (sheet_01 frames 77-97) and the f269 loop-point reset
+    why_it_reads: >
+      A symmetric Gaussian blur reads as a camera going out of focus. A
+      horizontal-only blur + shear reads as the letterforms being "smeared" by
+      their own motion, like a fast pan or a scanline glitch — it borrows the
+      grammar of motion blur to sell a substitution that has zero actual
+      translation.
+    remotion_recipe: >
+      CSS: apply `filter: blur(Xpx)` where X is driven by
+      `interpolate(frame, [swapStart, swapMid, swapEnd], [0, peakBlurPx, 0],
+      {easing: Easing.bezier(0.87,0,0.13,1)})`, peakBlurPx in the 18-34 range per
+      the params above. Stack a `transform: skewX(Ydeg)` on the same element with
+      Y interpolated the same way (peak 5-14deg). For a cheap anisotropic feel
+      without a shader, scale the element horizontally 1.0→1.08→1.0 in sync with
+      the blur peak (a very slight horizontal stretch reads as speed-smear even
+      though it's really just scaleX). Do this on BOTH the outgoing and incoming
+      font layers simultaneously, offset by ~2f, so the peak-blur frames overlap
+      and hide the hard crossfade.
+    difficulty: moderate
+
+  - id: edge-bleed-crop
+    what: >
+      When an expanded/black-weight font is selected, its rendered width exceeds
+      the 1280px comp width and the container clips it — both the leading and
+      trailing letters (B and final N) are cut off by the frame edge, not just
+      scaled to fit. Confirmed directly in keys/00_f122.png and visible again at
+      frames 72, 138, 213-ish, 247.
+    where: every fontSwapBlur move where incoming_font is one of the "expanded"
+      or "black" faces (f64, f122, f156, f247 above)
+    why_it_reads: >
+      Full-bleed type reads as confident/poster-scale — it implies the word is
+      bigger than the frame can hold, which sells scale and boldness without
+      actually changing the camera or the font-size number very much (font-size
+      is close to constant; it's the face's inherent glyph width that swings).
+    remotion_recipe: >
+      Set the word's container to a FIXED width equal to the comp (100vw) with
+      `overflow: hidden`, and give the text a large fixed font-size (e.g. 18vw)
+      that does not auto-scale to fit content width. Because different
+      font-families have very different advance-widths at the same font-size/
+      letter-count, swapping family alone is enough to push condensed faces well
+      inside the frame and expanded/black faces past both edges — no manual
+      per-font scale correction needed, which is why this is cheap to build:
+      pick faces with genuinely different intrinsic widths and let natural
+      glyph-metrics do the bleed for you.
+    difficulty: trivial
+
+  - id: stepped-hold-on-twos
+    what: >
+      The whole clip is authored (or was originally rendered) on twos — every
+      unique typeset frame is held for 2 video frames before advancing — visible
+      in motion.csv as a near-zero delta alternating with a real delta on almost
+      every consecutive frame pair for the full 10.92s.
+    where: entire shot 1
+    why_it_reads: >
+      Animating on twos at a base 25fps gives an effective 12.5fps update rate,
+      which reads as chunkier/more mechanical/more "designed" than smooth 1:1
+      interpolation — appropriate here because the subject is discrete font
+      substitution, not continuous motion, so smoothing between typefaces would
+      look like a bad morph rather than a clean swap.
+    remotion_recipe: >
+      In Remotion, compute a `heldFrame = Math.floor(frame / 2) * 2` and drive
+      every interpolate() call (blur, skew, opacity, font index) off `heldFrame`
+      instead of the raw `frame`. This is a one-line change that converts any of
+      the moves above from smooth-30/25fps to on-twos without re-authoring
+      keyframes.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 273
+  fastest_f: 4
+  slowest_f: 273
+  pattern: >
+    Single unbroken 273f shot containing ~35-40 internal font-swap micro-events
+    on a 4-10f cadence, organized into 3 breathing arcs of ~91f each (thin→
+    expanded-black→thin), i.e. one continuous loop repeated 3x rather than 3 cuts.
+  beat_grid_f: 91
+  energy_curve: wave
+
+transferable:
+  - Lock the word's position/scale envelope completely and let typeface family be
+    the only animated variable — this is far cheaper to build and reads as more
+    premium than any spatial kinetic-type move.
+  - Use directional (horizontal-only) blur + skewX, not symmetric Gaussian blur,
+    for any "glitch swap" transition — it borrows motion-blur grammar instead of
+    defocus grammar.
+  - Let font-metric differences do bleed/scale work for you — pick 2-3 faces with
+    very different intrinsic glyph widths so cycling family alone swings the
+    rendered width from comfortably-inside-frame to clipped-at-both-edges.
+  - Render key transitions on twos (heldFrame = floor(frame/2)*2) for a
+    mechanical, "designed" cadence instead of smooth interpolation.
+  - Overlap outgoing/incoming layers' blur peaks by ~2f so the crossfade hides
+    inside the blur rather than reading as a hard cut.
+
+avoid:
+  - The specific ~35-40 font choices and their exact per-swap timing were almost
+    certainly hand-selected/hand-keyframed in After Effects (e.g. with a
+    Rowbyte/Type-swap plugin). Do not try to hand-author 35 discrete keyframes —
+    substitute a code-native font array + Math.floor index cycling (see
+    font-array-cycler) and only hand-tune the 3-4 "hero" swap frames (the
+    edge-bleed peaks) if a specific silhouette matters.
+  - Do not build the blur via a real per-frame Gaussian/box blur convolution on a
+    3D engine — CSS `filter` blur() plus `skewX()` on a DOM/SVG text node is
+    indistinguishable at this scale and orders of magnitude cheaper to render.
+  - There is no camera move to fake here (confirmed via flat centroid data) — do
+    not add a pushIn/driftCamera "for production value"; it would contradict the
+    reference's own restraint, which is precisely what makes it read as
+    confident rather than busy.
+
+new_moves:
+  - name: fontSwapBlur
+    params: {outgoing_font: string, incoming_font: string, dur_f: 5-10, blur_px: "[0, peak, 0]", skew_deg: "[0, peak, 0]", ease: expoInOut}
+    description: >
+      A same-position typeface substitution on a static text block. The outgoing
+      font instance and incoming font instance are stacked in the same spot;
+      over dur_f frames both ramp a horizontal-only blur (filter: blur(Xpx)) and
+      a skewX shear from 0 to a peak (blur_px/skew_deg peak, given per-instance
+      above) and back to 0, crossfading opacity so the peak-blur frame hides the
+      swap. Position and font-size stay constant; only font-family (and
+      therefore rendered glyph width/weight) changes. Distinct from
+      `letterCascade` (which moves individual letters) and `maskWipeSide` (which
+      reveals via clip-path, not blur) — here the whole word substitutes in
+      place with a directional-blur disguise.

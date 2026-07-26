@@ -1,0 +1,398 @@
+id: A_2d-animation-growth-hack
+source: local-reference (A_2d-animation-growth-hack.mp4)
+category: launch-video
+product_type: text-heavy-tool
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 12.25
+  orientation: horizontal
+
+verdict: >
+  The whole video is a persistent 2x2 quadrant grid — four independent content
+  channels (chatbot UI, a folding brand-mark animation, an ads-manager
+  dashboard, and alternating UGC-ad/code-editor/proof cards) each cutting on
+  their own rhythm — periodically blacked out by a full-bleed kinetic-text
+  interstitial that builds one sentence word by word. The message ("an AI that
+  builds your brand, writes your integration, and runs ads that prove
+  themselves") is told by what's simultaneously visible, not by sequence — the
+  quad-grid IS the pitch.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#000000"
+  accent: "#1878C0"
+  support: ["#F0D8D8", "#D8D8D8", "#181830", "#D8F0F0"]
+  notes: >
+    Each quadrant carries its own local palette (teal/mint for the chatbot UI,
+    magenta-purple-orange for the folding logo shape, cool blue/white for the
+    ads dashboard), unified only by the black (#181830/#000000) full-bleed
+    interstitial background and by the final logo badge's conic gradient
+    (teal -> magenta -> orange -> red) which is the one moment all four
+    quadrant palettes visually resolve into a single ring.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.55
+  notes: >
+    The interstitial sentence ("They want someone who gets them") is set in a
+    clean white geometric sans, sentence case, large relative to frame — the
+    only typography meant to be read as "narration." In-quadrant type
+    (chatbot UI, "syntax" code-editor card, ads-dashboard column headers) is
+    small, product-authentic UI type and is not meant to be read as copy, only
+    recognised as "a real screen."
+
+structure:
+  - act: hook
+    t: [0.00, 1.92]
+    purpose: >
+      Establish the 2x2 grid itself — four screens/loops fade up
+      independently, none yet explained, so the format registers before any
+      claim is made.
+    shots: [1]
+  - act: problem
+    t: [1.92, 3.88]
+    purpose: >
+      Full-bleed interstitial blacks out the grid and builds the pain
+      statement word by word: "They want someone who gets them."
+    shots: [2]
+  - act: capability
+    t: [3.88, 8.08]
+    purpose: >
+      Grid resumes with its channels now legible: brand-mark forming
+      top-left, chatbot holding top-right, and the two bottom channels
+      alternating between an ads dashboard, a rising-revenue UGC ad
+      ("Scentless," $16k->$31k/mo), and a code editor cycling
+      JavaScript/TypeScript/Rust — i.e. "this AI builds brand, handles
+      support, ships code, and runs ads that make money," all at once.
+    shots: [3]
+  - act: reveal
+    t: [8.08, 10.00]
+    purpose: >
+      Interstitial returns to complete the sentence, then hands off through a
+      colour-tunnel wipe into the caption "meet" and a pulsing AI-sparkle icon.
+    shots: [4]
+  - act: cta
+    t: [10.00, 12.25]
+    purpose: >
+      The two top quadrants resolve into one final circular logo badge for
+      "neurox"; the two bottom quadrants settle on the ads dashboard and a
+      card explicitly labelled "Proof System" — the reel's thesis stated as
+      an on-screen label.
+    shots: [5]
+
+shots:
+  - n: 1
+    t: [0.00, 1.92]
+    frames: [0, 46]
+    layout: grid
+    content: >
+      2x2 grid fades up. Top-left: near-black panel with a single pulsing
+      cyan spark + cursor icon (f13-21). Top-right: a chatbot UI card
+      ("Your Bot" header, "Ask me anything...", a rotating pill/pointer icon
+      labelled "Customer") flickers in against a bright blue radial-beam bg —
+      the card visibly strobes in and out (present at f5,13,21, absent at
+      f0,9,17) like a hologram materialising rather than fading in cleanly.
+      Bottom-left: a Meta-Ads-style campaign dashboard table (columns for ad
+      name, delivery, actions, ad set name) fades in. Bottom-right: a torn
+      white-paper wedge shape reveals a soft gradient orb behind it.
+    moves:
+      - move: popIn
+        target: top-right chatbot card (per flicker cycle)
+        at_f: 5
+        params: {scale: [0.96, 1, 0.96], dur_f: 4, ease: springSnap}
+        note: repeats every ~8f through f21 to read as a deliberate strobe/flicker-in, not a glitch.
+      - move: staggerRise
+        target: [top-left spark icon, bottom-left dashboard table, bottom-right paper wedge]
+        at_f: 0
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 6, ease: springSoft}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: grid}
+    treatment: [filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 2
+    t: [1.92, 3.88]
+    frames: [47, 93]
+    layout: centre-stack
+    content: >
+      Full-bleed cut: the grid is replaced by a black frame holding a rotating
+      magenta capsule/pill icon centre-left (a "searching" loader). A sentence
+      builds word-group by word-group, left-aligned, each addition landing on
+      its own cut: "They" (f49) -> "They want" (f53) -> "They want someone"
+      (f57-65) -> "They want someone who" (f69-77) -> "They want someone who
+      gets them" (f81-93, fully held).
+    moves:
+      - move: maskWipeUp
+        target: "\"They want someone who gets them\" (per word-group)"
+        at_f: 2
+        params: {dur_f: 12, per_line_stagger_f: 4, ease: expoOut}
+      - move: orbit3D
+        target: rotating capsule/pill icon
+        at_f: 0
+        params: {rotateY: [0, 180], perspective: 800px, dur_f: 46}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 3
+    t: [3.88, 8.08]
+    frames: [94, 193]
+    layout: grid
+    content: >
+      Grid resumes with all four channels now legible and running
+      independently. Top-left: a pink/purple/orange square-in-square origami
+      shape continuously folds and rotates in shallow 3D, like a brand mark
+      still being formed. Top-right: the "Ask me anything..." chatbot card
+      holds steady (a looping idle, not advancing). Bottom-left alternates
+      between the ads dashboard and a UGC ad card: a tweet headed "Scentless -
+      Product Launch" showing a woman holding a green product on camera, next
+      to a "Total Sales" line-graph counting up $16k -> $20k -> $25k -> $29k ->
+      $31k /mo (f168-189). Bottom-right cycles a dark "syntax" code-editor
+      card through language tags: "JAVASCRIPT" (holds f168-185) -> "TYPESCRIPT"
+      (f185-193) -> "RUST" (continues into shot 4).
+    moves:
+      - move: orbit3D
+        target: top-left origami brand-mark shape
+        at_f: 0
+        params: {rotateY: [-20, 20], rotateX: [10, -10], perspective: 1000px, dur_f: 100, note: continuous fold-and-unfold loop, not a single settle}
+      - move: counterUp
+        target: "\"Total Sales\" $16k→$31k /mo counter"
+        at_f: 74
+        params: {dur_f: 20, ease: expoOut, monospace_digits: true}
+      - move: drawOn
+        target: sales line-graph
+        at_f: 74
+        params: {strokeDashoffset: [1, 0], dur_f: 20, ease: expoOut}
+      - move: scaleIn
+        target: "\"syntax\" code-editor card (per language tag)"
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 10, ease: backOut, stagger_f: 30}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: grid}
+    treatment: [dropShadowSoft, filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 4
+    t: [8.08, 10.00]
+    frames: [194, 240]
+    layout: centre-stack
+    content: >
+      Full-bleed interstitial returns: "They want someone who gets them"
+      completes and holds (f194-204). Hard cut to a perspective tunnel of
+      diagonal colour stripes (magenta/blue/orange, receding toward a vanishing
+      point) with the caption "meet" centred (f205-213, repeats/pulses through
+      f217). A small 4-point teal sparkle/asterisk icon pulses alone on black
+      (f213-216 — 3f flash, merged, see detection_notes) before the wordmark
+      begins forming.
+    moves:
+      - move: flyOut
+        target: "\"They want someone who gets them\" sentence"
+        at_f: 0
+        params: {y: [0, -60], opacity: [1, 0], stagger_f: 2, ease: expoIn}
+      - move: whipPan
+        target: colour-stripe tunnel bg
+        at_f: 8
+        params: {x_sweep: true, dur_f: 6, motion_blur: heavy}
+      - move: typeOn
+        target: "\"meet\" caption"
+        at_f: 14
+        params: {chars_per_f: 1, caret: false}
+      - move: popIn
+        target: sparkle/asterisk AI icon
+        at_f: 36
+        params: {scale: [0, 1.1, 1], dur_f: 10, ease: springSnap}
+    camera: {move: pushIn, params: {scale: [1, 1.1], ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, chromaticEdge]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 5
+    t: [10.00, 12.25]
+    frames: [241, 293]
+    layout: grid
+    content: >
+      Top-left and top-right quadrants merge into one full logo reveal: a
+      large ring badge on a conic gradient (teal -> magenta -> orange -> red)
+      rotates in with a white dot orbiting its rim like a clock hand, a black
+      rounded mouth/face glyph fixed at centre — the "neurox" brand mark.
+      Bottom-left settles on the ads-manager dashboard fully detailed (Cost
+      per result, Engagement rate ranking, Ends, Amount spent, Quality
+      Ranking, Purchase ROAS columns; several rows' Quality-Ranking cells
+      highlighted pink for "Below Average"). Bottom-right settles on a closing
+      card: a bar-chart glyph in a rounded square, flanked left/right by small
+      connector-node circles, labelled beneath in small type: "Proof System."
+    moves:
+      - move: scaleIn
+        target: logo ring badge
+        at_f: 0
+        params: {scale: [0.85, 1], opacity: [0, 1], dur_f: 16, ease: backOut}
+      - move: orbitRing
+        target: white orbiting dot on badge rim
+        at_f: 8
+        params: {rotate: [0, 360], period_f: 90, children_counter_rotate: false}
+      - move: staggerRise
+        target: ads-dashboard table rows
+        at_f: 6
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: maskWipeUp
+        target: "\"Proof System\" card + label"
+        at_f: 10
+        params: {dur_f: 14, ease: expoOut}
+    camera: {move: breathe, params: {scale: [1, 1.015, 1], period_f: 120}}
+    bg: {kind: grid}
+    treatment: [bloomGlow, dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+techniques:
+  - id: quadrant-proof-grid
+    what: >
+      A permanent 2x2 CSS-grid layout running for the whole video. Each
+      quadrant is an independent "channel" that cuts and loops on its own
+      schedule (chatbot UI holds steady for ~100f while the brand-mark
+      quadrant continuously folds and the two bottom quadrants swap between
+      3-4 different proof cards). No quadrant ever waits for another to finish.
+    where: shots 1, 3, 5 (frames 0-46, 94-193, 241-293)
+    why_it_reads: >
+      Four claims land in the time it would take to sequence one ("we do
+      support, brand, dev integration, and ads — simultaneously, not
+      eventually"), and because each channel has its own rhythm it never
+      feels like four things forced to sync — it feels like four things
+      already running.
+    remotion_recipe: >
+      A CSS grid (display:grid, grid-template-columns/rows: 1fr 1fr) with 4
+      absolutely-independent child <Sequence> components (Remotion), each with
+      its own local frame offset and its own internal cut list — do not drive
+      them from one shared cut array. Each child is free to hold a static
+      frame for 100+ frames while siblings cut every 20-30f. The only shared
+      timing is the interstitial layer (see next technique), which sits in a
+      higher z-index Sequence and simply covers the grid — the grid keeps
+      running underneath, unaffected, which is why it can resume mid-loop
+      without a re-sync cut.
+    difficulty: moderate
+
+  - id: full-bleed-text-interstitial-over-grid
+    what: >
+      A black full-bleed layer that periodically covers the entire quadrant
+      grid to deliver one line of narration, built word-group by word-group,
+      then lifts to reveal the grid mid-loop (not restarted).
+    where: shots 2 and 4 (frames 47-93, 194-213)
+    why_it_reads: >
+      Gives the eye a clean, single-focus moment to actually read a claim,
+      which a busy 4-up grid can't provide — alternating "read this" and
+      "watch everything happen" beats keeps the piece from feeling like an
+      unreadable wall of screens.
+    remotion_recipe: >
+      A single top z-index <Sequence> spanning the interstitial's frame range,
+      opacity/visibility toggled; content is a maskWipeUp of successive
+      substrings of one target string (same substring-growth mechanism as
+      A_explainer-zhylar-crm-cpq's wordBuildReveal, but word-group granularity
+      instead of letter-suffix). When this Sequence's range ends, it simply
+      unmounts — the grid Sequence beneath was never paused, so it's mid-loop
+      exactly where a live 4-up dashboard would be.
+    difficulty: trivial
+
+  - id: revenue-counter-as-proof-card
+    what: >
+      A UGC/social-post screenshot (photo + caption) paired with a live
+      counter and hand-drawn line graph that ticks upward ($16k -> $31k/mo),
+      inside one card.
+    where: shot 3, frames ~168-193
+    why_it_reads: >
+      Pairs a human face (testimonial credibility) with a hard number
+      (financial credibility) in the same glance — neither alone is as
+      convincing.
+    remotion_recipe: >
+      counterUp on the dollar figure driven by interpolate(frame, [start,
+      start+20], [16000, 31000], {easing: Easing.out(Easing.exp)}), formatted
+      with a monospace tabular-nums font so digit width doesn't jitter.
+      The line graph is a single SVG <path> with strokeDasharray equal to its
+      own length and strokeDashoffset animated 1->0 over the same 20f window
+      (drawOn) so the line "grows" exactly as fast as the number climbs.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 12
+  median_shot_f: 30
+  fastest_f: 3
+  slowest_f: 47
+  pattern: >
+    Profile's 12-cut list only tracks the interstitial layer's and the most
+    dominant quadrant's transitions — it can't represent 4 simultaneously
+    independent channels changing on different schedules, so the "shots"
+    above are wider frame ranges that each contain several in-quadrant cuts
+    (see detection_notes). The one sub-11f entry (194-204 boundary flash,
+    ~3f, "hot") is a flash, not a shot, and is folded into shot 4.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Steal the persistent quadrant grid (technique quadrant-proof-grid) for any
+    pitch with 3-4 simultaneous value props — run each as an independently
+    timed Sequence rather than forcing them onto one shared cut list.
+  - Use a full-bleed text interstitial that covers (not restarts) a background
+    grid/loop, so narration and "always-on product" can alternate without a
+    re-sync cut when the interstitial lifts.
+  - Pair every metric/counter with a human-sourced proof asset (UGC screenshot,
+    testimonial) in the same card — credibility from two different sources at once.
+  - Let one channel in a multi-channel layout hold static for 3-4x longer than
+    its siblings (the chatbot UI here) — a fixed anchor keeps a busy grid from
+    feeling chaotic.
+  - Land the final brand reveal by literally converging the grid's separate
+    channels into one shape (two top quadrants become one circular badge) —
+    resolution as a layout event, not just a bigger logo.
+
+avoid:
+  - The continuously folding/rotating origami-square brand-mark shape (shot 3,
+    top-left) reads like a hand-tuned AE 3D precomp with manual keyframes per
+    fold. Substitute — a small set of flat squares nested via CSS
+    transform-style:preserve-3d, each with a fixed rotateX/Y/Z offset from its
+    parent, animated by a single shared sine/cosine driver — one function, N
+    squares, no manual per-fold keyframing.
+  - The final ring badge's conic gradient plus an orbiting dot is easy to
+    over-build in AE with a masked gradient layer. Substitute — a CSS
+    `conic-gradient(...)` background for the ring, and position the dot with
+    a `rotate(frame/period * 360deg) translateX(radius)` transform on a
+    separate absolutely-positioned element — 2 CSS rules, no shape-layer masking.
+  - The UGC talking-head photo and the "Scentless" social-post screenshot are
+    real/composited assets, not motion design — don't attempt to regenerate
+    the photo or the tweet chrome; treat them as static image inputs and only
+    own the card's entrance and the counter/graph animating on top of them.
+  - Don't try to keyframe the ads-dashboard table's realistic data by hand —
+    it's a static data table; only the row stagger-in and the pink
+    "Below Average" cell highlights need animating (staggerRise + a delayed
+    background-color transition), the numbers themselves are fixed content.
+
+new_moves: []
+
+detection_notes: >
+  The automated cut detector's 12-shot list is real but incomplete for a
+  different reason than a simple over/under-count: this video runs a
+  permanent 2x2 grid (see technique quadrant-proof-grid) where each quadrant
+  cuts and loops on its OWN schedule — e.g. the top-right chatbot card holds
+  one static frame for roughly 100 continuous frames while the top-left brand
+  shape is continuously animating and the bottom-right card swaps between
+  "syntax/JAVASCRIPT," "TYPESCRIPT," and "RUST" every ~20-30f. A single
+  delta-based detector can only ever describe ONE timeline, so it effectively
+  tracks whichever change is currently largest (mostly the full-bleed
+  interstitial cuts and the biggest quadrant swap). This spec's 5 shots are
+  therefore wider frame ranges than the profile's 12, each one described with
+  its simultaneous per-quadrant content spelled out in `content`, rather than
+  claiming a false single-channel cut list. The one clearly sub-11f entry in
+  the profile (frames 214-216, 3f) is a flash between the "meet" caption and
+  the sparkle icon and is folded into shot 4 rather than modelled separately.

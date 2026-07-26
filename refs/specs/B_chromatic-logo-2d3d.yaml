@@ -1,0 +1,631 @@
+id: B_chromatic-logo-2d3d
+source: "unknown (on-screen credit: 'Logo by Vishesh' / 'Motion by Shubh')"
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "1:1"
+  fps: 24
+  duration_s: 10.708
+  orientation: square
+
+verdict: >
+  A single unbroken 257-frame take (not the 23 "cuts" the profile detects) that
+  carries one asterisk/star mark through four material states -- CAD blueprint
+  lines, flat white vector icon, a kaleidoscopic burst of duplicated 3D-chrome
+  copies, and a tumbling hero chrome lockup -- using only flashes, morphs and
+  glitch-dissolves as connective tissue, never a hard scene change until the
+  final blackout at f250. The reusable idea is cheap-vs-expensive rationing:
+  every 2D phase (grid, icon, HUD chips) is trivial SVG/CSS; only the single
+  hero mark gets true 3D extrusion and specular chrome.
+
+detection_notes: >
+  profile.md reports 23 cuts from luma-delta>26 in 257 frames; sheets + keys +
+  motion.csv show this is essentially ONE continuous composition with exactly
+  one real hard cut (to black at f250). Merges: (1) profile shots 1-4 (f0-65,
+  flagged cuts at f16, f19, f24) are a single continuous blueprint-construction
+  take -- motion.csv shows a smooth rising ramp (f10:1.1 -> f16:88.4 ->
+  f17:15.1) as guide-lines multiply and converge (keys f17, f21, f42 show the
+  SAME soft-shaded star blob resolving progressively under the same grid, not
+  a new scene) -- merged into shot 1. (2) profile shots 5-8 (f66-77, four
+  flagged 3f cuts) are a bloom-whiteout/tone-invert/resolve flash sequence on
+  the SAME mark: key f67 shows the star blob blown out to a glowing bloom,
+  f70 is a hard whiteout with black rays punching through, f73 shows the
+  negative/inverted read (black bg, white radiating spikes), f76 shows it
+  collapsing into the final flat icon silhouette -- one flashCut+invert
+  transition, merged into shot 2. (3) profile shots 9 (f78-123) is a real,
+  long, single shot (flat icon held, anchor-point ring orbiting per key f98)
+  -- kept as shot 3, no merge needed. (4) profile shots 10-12 (f124-143,
+  flagged at f124/f130/f133) contain the single highest motion spike in the
+  whole clip (140.5 at f124) -- this is a camera whip-zoom-out (key f126 shows
+  the icon shrink hard while its anchor-ring balloons to fill frame) directly
+  into a kaleidoscopic burst of duplicated 3D-extruded copies of the identical
+  mark (keys f131, f137) -- merged into shot 4, since it is the SAME logo
+  transforming, not a new subject. (5) profile shots 13-19 (f144-176, six
+  flagged cuts) are a halftone/RGB-glitch dissolve (keys f145, f148, f152 show
+  heavy horizontal-slice glitch) that resolves into the finished 3D chrome
+  mark while credit text cross-fades in and relocates (f148/f152 top-left ->
+  f159 bottom-right) before settling into a persistent corner HUD (key f172,
+  f175 show "DESIGN-VISHESH" / "ANIMATION-SHUBH" / coordinates / barcode /
+  "MOTION" counter) -- merged into shot 5. (6) profile shots 20-23 (f177-256)
+  are one continuous tumbling hold of the finished chrome mark (keys f172,
+  f196, f227 show the identical object at different rotation angles, same
+  HUD) accelerating into a lens-flare whiteout (key f241) -- merged into
+  shots 6-7. The ONLY genuine hard cut is at f250: motion.csv drops to
+  motion=0.0, luma=0.07 for f250-252 (pure black), before a small outline
+  mark fades in bottom-left at f253 (centroid 0.159, 0.843) as a closing tag.
+
+palette:
+  bg: "#000000"
+  ink: "#F0F0F0"
+  accent: "#A890C0"
+  support: ["#303078", "#606060", "#909090", "#D8D8D8"]
+  notes: >
+    72.5% pure black screen share (profile.md) -- almost the entire video is
+    black background. #F0F0F0 (4.5%) is the flat white icon/text/grid-line
+    color used everywhere in the 2D phases. Hue only exists on the hero
+    chrome mark itself (shots 4-7): #A890C0 lavender and #303078 indigo are
+    the two chromatic-iridescent highlight tones sweeping across its facets;
+    #606060/#909090/#D8D8D8 are the neutral greys of the early blueprint
+    blob shading and background grid lines. No hue anywhere else in the
+    piece -- the chroma is rationed entirely onto the 3D lockup.
+
+typography:
+  family_look: "grotesk (credit line, sentence case) + tracked mono/grotesk (HUD telemetry labels, upper case)"
+  weights: [light, regular]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.2
+  notes: >
+    No headline/wordmark copy at all -- this is a pure mark (logo icon) piece,
+    not a wordmark piece. Two small text moments only: (1) "Logo by Vishesh" /
+    "Motion by Shubh", two lines, sentence case, small regular-weight
+    grotesk, appears f148-165 in a corner, tracking near the rotating
+    object's screen-space corner. (2) A persistent minimal telemetry HUD
+    from f172 onward: "DESIGN-VISHESH" (top-right), "ANIMATION-SHUBH"
+    (below it), a fake coordinate string "51.4014 N, 1.3231 W" + a
+    barcode-tick ornament along the right edge, "MOTION" label + counter
+    number ("839", "29-241" style) bottom-left, plus a tiny outline replica
+    of the mark itself bottom-left -- all thin, wide-tracked, uppercase,
+    monospace-flavoured labels giving a CAD/spec-sheet read against the
+    painterly chrome render.
+
+structure:
+  - act: hook
+    t: [0.00, 2.708]
+    purpose: construct the mark from raw geometry (grid, guide lines, angle annotations) so the eye has to parse it before recognizing it.
+    shots: [1]
+  - act: reveal
+    t: [2.708, 5.125]
+    purpose: flash/invert into the finished flat 2D vector mark, then hold it long enough to read as "the logo" before anything else happens.
+    shots: [2, 3]
+  - act: capability
+    t: [5.125, 7.333]
+    purpose: demonstrate the mark can transform -- whip-zoom out, explode into duplicated 3D-chrome copies, glitch-dissolve into a single hero chrome object, credit the makers.
+    shots: [4, 5]
+  - act: proof
+    t: [7.333, 9.125]
+    purpose: hold the finished 3D chrome lockup turning in space long enough (with a deliberate dead-still beat) to sell material quality.
+    shots: [6]
+  - act: cta
+    t: [9.125, 10.708]
+    purpose: accelerate to a lens-flare whiteout, cut to black, and close on a tiny outline mark as a brand "bug".
+    shots: [7]
+
+shots:
+  - n: 1
+    t: [0.00, 2.708]
+    frames: [0, 65]
+    layout: centre-stack
+    content: >
+      Full-bleed black with a faint dark-grey perspective grid, static and
+      empty f0-9 (matches profile's held-stretch). From f10 thin white
+      diagonal guide-lines begin appearing and multiplying (one every ~2-3f),
+      crossing the frame at varying angles (key f17: ~8 lines already
+      crossing). A soft grey, gradient-shaded 6-armed rounded star/blob
+      (like a fat compass rose) emerges from behind the lines and resolves
+      f9-25 (key f21, f42 show progressive resolution of the same shape).
+      From f37 onward, thin "0 deg" / "90 deg" angle-annotation labels and a
+      small rectangular handle guide fade in near the shape's points (key
+      f42 shows two visible angle labels), reading as a CAD/vector-editor
+      construction diagram. The blob settles into its final silhouette with
+      a slight bounce by f65.
+    moves:
+      - move: drawOn
+        target: guideLines (6-8x diagonal construction lines)
+        at_f: 10
+        params: {dur_f: 23, stagger_f: 2, ease: expoInOut, strokeDashoffset: "1->0"}
+      - move: unblurIn
+        target: starBlob (soft grey 6-point rounded star)
+        at_f: 9
+        params: {blur: "18->0", scale: "1.04->1", dur_f: 16, ease: expoOut}
+      - move: popIn
+        target: angleLabels ("0 deg" text)
+        at_f: 37
+        params: {scale: "0->1.08->1", dur_f: 11, ease: springSnap}
+      - move: staggerRise
+        target: angleLabels_90 + rect_handle
+        at_f: 39
+        params: {y: "10->0", opacity: "0->1", stagger_f: 3, ease: springSoft}
+    camera: {move: static, params: {note: "locked frame; grid shows constant fisheye/perspective curvature, no camera animation this shot"}}
+    bg: {kind: grid, moves: []}
+    treatment: [filmGrain]
+    audio_cue: riser
+    transition_out: {move: flashCut, params: {dur_f: 2, note: "bleeds directly into shot 2's bloom/invert -- see detection_notes"}}
+    hold_f: 0
+
+  - n: 2
+    t: [2.750, 3.375]
+    frames: [66, 81]
+    layout: centre-stack
+    content: >
+      The grey star blob and its guide-lines bloom to a blown-out white glow
+      (key f67), then hard whiteout at f70 with black pinwheel rays punching
+      through from the center (key f70). This immediately reads as a tone
+      invert: f73 shows a black background with a white 6-pointed
+      radiating-spike silhouette (the same mark's negative), which by f76
+      collapses inward into a contained black star-shaped negative cutout
+      with white rays still converging. By f81 the shape has resolved into
+      the small, flat, solid-white final icon: a 6-armed asterisk/star with
+      alternating long/short points and inward notches at each root
+      (the finished 2D logo mark).
+    moves:
+      - move: flashCut
+        target: fullFrame
+        at_f: 4
+        params: {dur_f: 2, color: white}
+      - move: toneInvertFlash
+        target: starBlob
+        at_f: 4
+        params: {dur_f: 3, invert: full}
+      - move: morphShape
+        target: mark
+        at_f: 7
+        params: {dur_f: 8, ease: expoInOut, note: "SVG path interpolation from radiating-spike negative silhouette to the final contained flat-icon path"}
+    camera: {move: pushIn, params: {scale: "1->1.04", dur_f: 16, ease: expoOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: morphShape, params: {note: "continuous into shot 3, no hard cut"}}
+    hold_f: 0
+
+  - n: 3
+    t: [3.417, 5.125]
+    frames: [82, 123]
+    layout: centre-stack
+    content: >
+      The finished flat white 6-point asterisk/star mark holds centred and
+      static on black. A decorative ring of ~14 small vector "anchor point"
+      handles (square + circle caps) connected by thin white lines orbits
+      slowly around it (key f98), evoking a vector-editor bezier-handle
+      overlay around the finished icon -- a "look how precisely this was
+      drawn" flourish. Mark itself does not move; only the ring rotates.
+    moves:
+      - move: breathe
+        target: flatMark
+        at_f: 0
+        params: {scale: "1->1.015->1", period_f: 42}
+      - move: orbitRing
+        target: anchorRing (~14 handle points + connector lines)
+        at_f: 0
+        params: {rotate: "0->90", dur_f: 42, children_counter_rotate: true, note: "partial slow rotation across the whole shot, not a full 360 loop"}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [filmGrain]
+    audio_cue: none
+    transition_out: {move: whipZoomOut, params: {}}
+    hold_f: 6
+
+  - n: 4
+    t: [5.167, 5.958]
+    frames: [124, 143]
+    layout: centre-stack
+    content: >
+      Sudden extreme camera pull-back (peak motion value 140.5 at f124, the
+      single highest value in the whole clip): the flat icon shrinks hard
+      while the anchor-point ring balloons out to fill the frame (key f126).
+      As the pull-back settles, the flat mark reveals true depth -- it is
+      now a 3D-extruded black/chrome object seen at an angle (key f131) --
+      and multiplies: ~6-7 duplicated 3D-extruded copies of the identical
+      mark scatter outward past camera with heavy motion blur (key f137),
+      each showing chrome/iridescent facets (blue-violet-pink specular
+      highlights), before beginning to converge back toward a single
+      instance by the shot's end. This is the "2D to 3D" transform moment.
+    moves:
+      - move: whipZoomOut
+        target: camera
+        at_f: 0
+        params: {dur_f: 6, motion_blur: heavy, note: "extreme rapid scale-down pull-back, matches motion.csv peak 140.5 at f124"}
+      - move: logoKaleidoBurst
+        target: chromeMark copies
+        at_f: 6
+        params: {n: 7, dur_f: 14, ease: expoOut, note: "duplicated 3D-extruded copies radiate to frame edges then partially converge back toward center"}
+    camera: {move: whipZoomOut, params: {scale: "1->0.35->0.7", dur_f: 20, ease: expoIn}}
+    bg: {kind: flat, moves: []}
+    treatment: [motionTrail, bloomGlow]
+    audio_cue: whoosh
+    transition_out: {move: glitchDissolve, params: {}}
+    hold_f: 0
+
+  - n: 5
+    t: [6.000, 7.333]
+    frames: [144, 176]
+    layout: centre-stack
+    content: >
+      Heavy halftone-dot + RGB-split glitch (horizontal slice-displacement
+      artifacts, key f145/f148/f152) dissolves the scattered copies into a
+      single finished 3D chrome mark, tumbling, its facets rendered in
+      glossy blue-violet-pink iridescent chrome with hard specular
+      highlights. Small text "Logo by Vishesh" / "Motion by Shubh" fades in
+      top-left at f148-152, then reads bottom-right by f159 as if tracking
+      the rotating object's nearest screen-space corner, before fading out
+      by ~f165. From f172 a persistent minimal telemetry HUD fades in in
+      its place: "DESIGN-VISHESH" and "ANIMATION-SHUBH" top-right, a fake
+      GPS coordinate string + barcode-tick ornament along the right edge,
+      "MOTION" label + counter digits and a tiny outline replica of the
+      mark bottom-left (key f172, f175).
+    moves:
+      - move: glitchDissolve
+        target: chromeMark
+        at_f: 0
+        params: {dur_f: 15, note: "horizontal-slice displacement + halftone dot overlay opacity 0.6->0, chromaticEdge rgb-split up to +-3px, collapsing to a clean render"}
+      - move: cornerTrackLabel
+        target: creditText ("Logo by Vishesh / Motion by Shubh")
+        at_f: 4
+        params: {dur_f: 8, hold_f: 11, exit_dur_f: 8, corner_path: "top-left->bottom-right"}
+      - move: staggerRise
+        target: hudChips (DESIGN-VISHESH, ANIMATION-SHUBH, coordinates, barcode, MOTION counter, mini mark icon)
+        at_f: 28
+        params: {y: "8->0", opacity: "0->1", blur: "6->0", stagger_f: 3, ease: springSoft}
+    camera: {move: pushIn, params: {scale: "1->1.05", dur_f: 33, ease: expoInOut}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [chromaticEdge, filmGrain, specularSweep]
+    audio_cue: riser
+    transition_out: {move: none, params: {note: "same chrome mark keeps rotating directly into shot 6, no cut"}}
+    hold_f: 0
+
+  - n: 6
+    t: [7.375, 9.125]
+    frames: [177, 219]
+    layout: centre-stack
+    content: >
+      The finished 3D chrome mark fills more of the frame as it continuously
+      tumbles (multi-axis rotation, keys f196 and f227 show the same object
+      at clearly different orientations), its iridescent blue-violet-pink
+      facets catching a moving specular highlight. The full telemetry HUD
+      from shot 5 persists unchanged in the corners throughout. Rotation
+      goes essentially still for an 8f stretch at f199-207 (profile's
+      second held-stretch, motion.csv drops to 0.07-0.12) before resuming --
+      a deliberate freeze so the eye can register the mark clearly mid-hold.
+    moves:
+      - move: chromeTumble3D
+        target: chromeMark
+        at_f: 0
+        params: {dur_f: 43, rotateX: "0->140", rotateY: "0->220", ease: linear, freeze_at_f: 22, freeze_dur_f: 8}
+    camera: {move: pushIn, params: {scale: "1->1.12", dur_f: 43, ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [specularSweep, bloomGlow, chromaticEdge, filmGrain]
+    audio_cue: none
+    transition_out: {move: none, params: {note: "rotation accelerates directly into shot 7, no cut"}}
+    hold_f: 0
+
+  - n: 7
+    t: [9.167, 10.708]
+    frames: [220, 256]
+    layout: centre-stack
+    content: >
+      Rotation of the chrome mark visibly accelerates (motion.csv climbs
+      from ~9 to 44.9 across f227-237). At f237 a radial streak/lens-flare
+      burst begins blowing the frame toward near-white (key f241, luma
+      peaks at 73.5 by f248). Frame 250 cuts hard to pure black (motion.csv:
+      motion=0.0, luma=0.07, f250-252 -- the only real hard cut in the whole
+      video). A tiny outline replica of the mark then fades in bottom-left
+      (key f252, motion.csv centroid 0.159/0.843 at f253) as a closing
+      brand "bug", still visible as the clip ends at f256.
+    moves:
+      - move: chromeTumble3D
+        target: chromeMark
+        at_f: 0
+        params: {dur_f: 17, ease: expoIn, note: "rotation speed ramps up, continuing shot 6's tumble"}
+      - move: radialFlareBurst
+        target: fullFrame
+        at_f: 17
+        params: {dur_f: 12, opacity: "0->0.95", note: "radial streaks scale/brighten toward near-white, peak luma 73.5 at f248 (absolute)"}
+      - move: hardCut
+        target: fullFrame
+        at_f: 30
+        params: {dur_f: 0}
+      - move: scaleIn
+        target: endMark (tiny outline replica of the mark, bottom-left)
+        at_f: 33
+        params: {scale: "0.9->1", opacity: "0->1", dur_f: 3, ease: expoOut}
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow, chromaticEdge]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 0
+
+techniques:
+  - id: blueprint-construction-reveal
+    what: >
+      A soft grey 3D-shaded rounded-star blob resolves out of a black grid as
+      thin white diagonal "construction" lines multiply and converge, then
+      small "0 deg" / "90 deg" angle-annotation labels and a rectangular
+      handle guide fade in near its points, before it settles into a fixed
+      silhouette.
+    where: shot 1, frames 0-65
+    why_it_reads: >
+      Forcing the eye to parse raw geometry before recognizing the mark makes
+      the eventual reveal feel earned/designed rather than simply dropped in.
+    remotion_recipe: >
+      Render the blob as a single SVG path behind a radial-gradient-filled
+      circle clipped to that path (fakes the soft 3D shading without any real
+      lighting). Guide lines are separate <line> elements with
+      strokeDasharray/strokeDashoffset animated 1->0 via interpolate(),
+      staggered 2f apart. Background grid is a repeating-linear-gradient
+      layered horizontally + vertically on an absolutely-positioned div, with
+      a subtle CSS `transform: perspective(800px) rotateX(...)` for the
+      constant fisheye curvature seen in the keyframes. Angle labels are
+      plain text elements, position/rotation fixed, opacity/scale
+      interpolated in with springSnap.
+    difficulty: moderate
+
+  - id: bloom-invert-morph-transition
+    what: >
+      The construction blob blooms to a blown-out white glow, hard-whiteouts
+      for ~2f, tone-inverts to a black-bg/white-ray negative silhouette, then
+      that path morphs into the small, final, flat 2D icon shape.
+    where: shot 2, frames 66-81
+    why_it_reads: >
+      Using a bloom+invert flash as the "cut" instead of an actual scene
+      change means the SAME object visually persists through the transition,
+      so nothing ever reads as a jarring scene break despite huge luma swings.
+    remotion_recipe: >
+      Animate a bloomGlow filter's intensity/radius up over ~4f, then for 2f
+      render a solid white <div> at opacity 1 (flashCut). Apply `filter:
+      invert(1)` for 3f immediately after. Use an SVG path-morph library
+      (flubber or d3-interpolate-path) to interpolate the `d` attribute from
+      the radiating-spike/negative silhouette path to the final icon path
+      over 8f with expoInOut easing.
+    difficulty: moderate
+
+  - id: flat-icon-vector-anchor-orbit
+    what: >
+      The finished flat icon holds static while a ring of ~14 small
+      square/circle "bezier handle" points, connected by thin lines, slowly
+      rotates around it.
+    where: shot 3, frames 82-123
+    why_it_reads: >
+      A completely static logo would read as dead; this ambient decorative
+      motion (borrowed visual language of a vector editor's control points)
+      keeps the frame alive and implies "this was drawn with precision"
+      without animating the mark itself.
+    remotion_recipe: >
+      Place N points at polar coordinates around a fixed center (radius
+      slightly larger than the icon's bounding box), render as small
+      <rect>/<circle> with connecting <line> elements. Wrap the whole group
+      in one parent with `transform: rotate(deg)`, drive deg via
+      interpolate(frame, [82,123], [0,90]). Individual point markers do not
+      counter-rotate (they visibly tumble with the ring per the keyframes).
+    difficulty: trivial
+
+  - id: logo-2d-to-3d-kaleido-transform
+    what: >
+      An extreme camera whip-zoom-out shrinks the flat icon while its
+      construction ring balloons outward; as it settles, the mark reveals
+      true extruded depth and multiplies into ~6-7 duplicated 3D chrome
+      copies that scatter past camera with heavy motion blur before
+      converging back toward a single instance.
+    where: shots 4-5, frames 124-176 (this is the reference's hero "2D to 3D" moment named in the brief)
+    why_it_reads: >
+      The payoff (true 3D depth + material) is withheld until the single
+      fastest, highest-energy beat in the whole video (motion peak 140.5 at
+      f124), so the transform reads as a release of built-up tension rather
+      than an arbitrary style change.
+    remotion_recipe: >
+      Genuinely needs a 3D engine (react-three-fiber / three.js). Extrude the
+      flat icon's 2D SVG path into geometry via THREE.ExtrudeGeometry (depth
+      approx 15-20% of the mark's width, small bevel to match the rounded
+      keyframe edges). Material: MeshPhysicalMaterial with metalness=1,
+      roughness approx 0.15, clearcoat approx 1, and an iridescence/env-map
+      texture cycling blue-violet-pink to get the chromatic sheen seen in the
+      keyframes (a matcap texture is an acceptable cheaper substitute for the
+      iridescence extension). Instance 7 copies with randomized rotation/
+      position offsets, animate position outward then partially back inward
+      with a spring, and add heavy motion blur via a per-frame accumulation
+      buffer or a motionTrail post-process (3 echoes, 2f apart). Sync an
+      aggressive camera dolly-out (scale 1->0.35 over 6f) to the icon's
+      shrink. Do not attempt this with CSS 3D transforms -- the specular
+      chrome read requires real lighting/reflection.
+    difficulty: needs-3d
+
+  - id: glitch-dissolve-with-corner-tracking-credit
+    what: >
+      A horizontal-slice/halftone/RGB-split glitch collapses the scattered
+      3D copies into a single chrome hero mark while small credit text fades
+      in near one screen corner and appears to relocate to the opposite
+      corner as the object rotates, before a persistent minimal telemetry
+      HUD (studio credits, fake coordinates, barcode ticks, a live-looking
+      counter, a tiny mark icon) fades in and stays for the rest of the video.
+    where: shot 5, frames 144-176
+    why_it_reads: >
+      The glitch disguises the seam between "many flying 3D copies" and "one
+      settled hero object" as an intentional aesthetic event rather than a
+      technical cut; the HUD chips are cheap DOM/CSS but read as expensive
+      because they mimic real broadcast/engineering telemetry graphics.
+    remotion_recipe: >
+      Glitch: render the current frame to an offscreen canvas, then for each
+      of N horizontal bands apply a per-band x-offset driven by
+      noise(frameSeed, bandIndex) that decays toward 0 over the transition's
+      duration; composite a halftone dot pattern (SVG <pattern> of small
+      circles) at decaying opacity on top; nudge R/G/B channels +-1.5-3px
+      (chromaticEdge). Credit text: two absolutely-positioned text blocks
+      (top-left and bottom-right), cross-fade opacity between them timed to
+      the glitch's midpoint -- do not actually track 3D screen-space
+      position, just swap between two fixed layouts. HUD chips: small
+      fixed-position text/divs in each corner, monospace font,
+      letter-spacing approx 0.15em; drive the "MOTION" counter and
+      coordinate-like digits with a frame-seeded pseudo-random number
+      generator so they look "live"; render the barcode as a row of thin
+      divs of noise-driven width; stagger every chip's fade-in by 3f.
+    difficulty: moderate
+
+  - id: chrome-tumble-hero-lockup-with-freeze-beat
+    what: >
+      The finished 3D chrome mark rotates continuously on multiple axes for
+      43f while a moving specular highlight sweeps its facets, but goes
+      completely still for an 8f stretch mid-shot before resuming rotation.
+    where: shot 6, frames 177-219 (the reference's logo lockup)
+    why_it_reads: >
+      Continuous tumbling alone reads as a generic 3D-render loop; the single
+      deliberate freeze gives the eye a moment to actually parse the finished
+      mark's silhouette and material, which is what a lockup needs to do.
+    remotion_recipe: >
+      Needs 3D (same mesh as the kaleido-burst technique). Drive
+      mesh.rotation.x/y via interpolate() across the full 43f with a mostly-
+      linear curve, but clamp both to a constant value for an 8f window
+      (frames 22-30 relative to shot start) using an interpolate() range with
+      identical input/output at that segment, then resume. specularSweep:
+      animate a second, narrow, high-intensity directional light (or an
+      emissive gradient texture's UV offset) sweeping diagonally across the
+      mesh on a approx 24f period. A flat CSS gradient sweep on a 2D sprite
+      is an acceptable fallback for the highlight motion but will not
+      reproduce the true reflective chrome look -- see avoid.
+    difficulty: needs-3d
+
+  - id: radial-flare-blackout-close
+    what: >
+      Rotation accelerates, a radial streak/lens-flare burst blows the frame
+      to near-white, then an instant hard cut to black, followed by a tiny
+      outline mark fading in at bottom-left as a closing brand tag.
+    where: shot 7, frames 220-256
+    why_it_reads: >
+      The flare provides a release/climax beat and the abrupt cut to black
+      immediately after reads as confident and final, rather than a fade that
+      lingers.
+    remotion_recipe: >
+      Radial streaks: an SVG filter chain (feGaussianBlur radial + a
+      feDisplacementMap fed by radial noise) or, cheaper, a rotating
+      conic-gradient layered under a radial-gradient-to-white, both scaling
+      up and increasing opacity 0->0.95 over approx 12f. Hard cut: render a
+      solid #000 <AbsoluteFill> starting exactly at the cut frame, 0f
+      transition -- do not fade. End mark: reuse the same flat-icon SVG path
+      at approx 8% scale, stroke-only (no fill), opacity/scale interpolated
+      in over 3f, position bottom-left.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 37
+  fastest_f: 16
+  slowest_f: 66
+  pattern: >
+    66f blueprint-construction hook -> 16f bloom/invert flash reveal -> 42f
+    flat-icon hold with orbiting anchor-point ring -> 20f whip-zoom-out +
+    3D-kaleido burst (the 2D->3D transform) -> 33f glitch-dissolve into chrome
+    hero + credit/HUD -> 43f chrome-tumble lockup hold (with an 8f dead-still
+    freeze at its centre) -> 37f accelerating flare to blackout + end-mark
+    close. 6 total shot-boundaries but only 1 is a genuine hardCut (f250);
+    every other boundary is a flash, morph, whip-zoom or glitch-dissolve on
+    the same continuing object.
+  beat_grid_f: none
+  energy_curve: wave
+
+transferable:
+  - Build a logo reveal as one continuous timeline where every "cut" is
+    actually a flash/morph/glitch on the same object, not a scene change --
+    it reads as far more expensive than it costs to build.
+  - Path-morph a single vector mark through every material state (grid lines
+    -> flat icon -> 3D chrome) with an SVG path-interpolation library so
+    every frame reads as evolution of the same object, not a swap of assets.
+  - A slowly orbiting ring of small "bezier handle" dots+lines around an
+    otherwise-static flat icon is a nearly-free (pure SVG/CSS) way to make a
+    logo hold feel alive and precisely engineered.
+  - Corner HUD chips (credits, fake coordinates, barcode ticks, a
+    frame-seeded "live" counter, a tiny mark icon) are trivial DOM/CSS but
+    read as enormous production value on any hero shot -- reuse this pattern
+    broadly.
+  - Insert one deliberate ~8-frame dead-still freeze mid-rotation on a
+    tumbling hero object before resuming -- it gives the eye a beat to parse
+    the object and reads as intentional, not as a stutter.
+  - Reserve genuine 3D extrusion + specular chrome material for the single
+    hero mark only; every other phase (construction lines, flat icon, HUD)
+    is flat 2D and effectively free.
+
+avoid:
+  - The kaleidoscopic burst of duplicated tumbling 3D-chrome copies (keys
+    f131-f145) depends on real 3D geometry and a lit/reflective material --
+    do not fake with CSS 3D transforms; build in react-three-fiber with
+    ExtrudeGeometry + MeshPhysicalMaterial (metalness 1, roughness approx
+    0.15) and an env-map/matcap, or fall back to a lower-fidelity animated
+    conic-gradient "fake chrome" sprite if a 3D pipeline is genuinely
+    unavailable.
+  - The halftone/RGB-split glitch dissolve (frames 144-159) looks like
+    hand-tuned After Effects displacement work frame by frame -- recreate
+    deterministically with a per-row x-offset driven by a frame-seeded noise
+    function so it stays parametric, not with keyframed glitch frames.
+  - The moving specular highlight crossing the chrome mark during the hero
+    hold (shot 6) needs a real light/material model or at minimum a matcap
+    texture -- a flat CSS gradient sweep on a 2D sprite will read as plastic,
+    not chrome; do not substitute this for the true 3D version if fidelity
+    matters.
+  - The soft, gradient-shaded 3D look of the grey construction blob (frames
+    9-65) implies real light falloff on a rounded surface -- approximate with
+    a radial-gradient-filled SVG clip-path rather than hand-painting a
+    gradient by eye.
+
+new_moves:
+  - name: whipZoomOut
+    params: {dur_f: 6, motion_blur: heavy}
+    description: >
+      An extreme, fast camera pull-back (scale drops sharply, e.g.
+      1->0.35) over a very short duration with heavy motion blur, used as a
+      transition rather than a reveal -- the zoom-out equivalent of
+      whipPan. Reveals surrounding scale/context abruptly.
+  - name: toneInvertFlash
+    params: {dur_f: 3, invert: full}
+    description: >
+      A brief full-frame color inversion (CSS/filter invert(1) or equivalent)
+      immediately following a whiteout flash, used to punch a negative-space
+      read of the current shape before it resolves into its next state.
+  - name: logoKaleidoBurst
+    params: {n: 7, dur_f: 14, ease: expoOut}
+    description: >
+      N duplicated instances of a single 3D-extruded mark are placed with
+      randomized rotation/position offsets and animated radiating outward
+      past camera (heavy motion blur/motionTrail) before partially
+      converging back toward a single instance at center -- used to
+      dramatize a 2D-to-3D or single-to-many transform of a logo mark.
+  - name: glitchDissolve
+    params: {dur_f: 15, note: "horizontal-slice displacement + halftone overlay + chromaticEdge, decaying to clean"}
+    description: >
+      A transition where the frame is sliced into horizontal bands, each
+      offset in x by a decaying frame-seeded noise value, combined with a
+      halftone dot overlay fading out and an RGB channel split
+      (chromaticEdge) -- resolves from a glitched/broken read to a clean
+      image over dur_f frames. Used to bridge a chaotic multi-object moment
+      into a single settled hero object.
+  - name: chromeTumble3D
+    params: {dur_f: 43, rotateX: "0->140", rotateY: "0->220", ease: linear, freeze_at_f: 22, freeze_dur_f: 8}
+    description: >
+      Continuous multi-axis 3D rotation of a hero mesh over dur_f frames,
+      with an optional clamped "freeze" window (freeze_at_f, freeze_dur_f)
+      during which rotation values are held perfectly constant before
+      resuming -- used for logo-lockup hero holds so the object both feels
+      alive and gives the eye a beat to read its silhouette clearly.
+  - name: radialFlareBurst
+    params: {dur_f: 12, opacity: "0->0.95"}
+    description: >
+      Radial streak/lens-flare lines scale up and brighten from center,
+      ramping the frame's overall luminance toward near-white, typically
+      used as a climax beat immediately before a hard cut to black.
+  - name: cornerTrackLabel
+    params: {dur_f: 8, hold_f: 11, exit_dur_f: 8, corner_path: "top-left->bottom-right"}
+    description: >
+      A small credit/caption text block fades in near one screen corner,
+      then cross-fades to an equivalent block positioned at a different
+      corner partway through its hold (simulating tracking to a rotating
+      hero object's nearest bounding-box corner), before fading out
+      entirely. Implemented as two fixed-position layers cross-fading, not
+      true screen-space tracking.

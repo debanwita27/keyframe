@@ -1,0 +1,282 @@
+id: A_connect-to-figma-ui-anim
+source: https://x.com/byshubh_/status/1948074047360934258
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 60
+  duration_s: 3.68
+  orientation: horizontal
+
+detection_notes: >
+  Source runs at 60fps, not the library-standard 30fps MOVE_VOCAB.md assumes.
+  shots[].frames and moves[].at_f below keep the ACTUAL source frame numbers
+  (matching profile.md / sheet timecodes 1:1 for cross-reference). All dur_f
+  and stagger_f values are given as 30fps-equivalents (source frame delta ÷ 2,
+  rounded) so they compare directly against other specs in this library.
+  profile.md reports exactly 1 shot / 0 cuts across all 221 frames — confirmed
+  against sheet_01.jpg, no false cut to merge. The whole piece is one
+  continuous take; what looks like scene changes (logo -> wordmark -> dialog)
+  are all in-place transformations of the same composition, not cuts.
+
+verdict: >
+  One continuous shot in which the Figma brand mark itself demotes in scale
+  to literally become the app icon inside the "Connect to Figma" dialog it's
+  about to demo, so no cut is ever needed to get from logo to product. The
+  card's springy 3D tilt-settle and one choreographed cursor click are the
+  only moves carrying the last 1.7s, proving two well-tuned physical gestures
+  can keep a near-static UI screen feeling alive.
+
+palette:
+  bg: "#000000"
+  ink: "#FFFFFF"
+  accent: "#1ABCFE"
+  support: ["#F24E1E", "#A259FF", "#0ACF83", "#181818", "#3D8BFF", "#22C55E"]
+  notes: >
+    79% pure black background, 17% #181818 dialog-card fill — the frame is
+    almost entirely negative space. The only saturated color is the 4-color
+    Figma logo itself (red/orange, purple, blue, green) and the button state:
+    blue (#3D8BFF-ish "Connect") swaps to green (#22C55E-ish "Connected!") at
+    the moment of the click. Accent is rationed to exactly those two hits —
+    logo colors on entry, button color on the payoff.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.42
+  notes: >
+    "Figma?" wordmark is a single bold line, one word + a hand-set question
+    mark, sized to sit as tall as the logo glyph beside it. Dialog title
+    "Connect to Figma" and button label are small, medium-weight, centered,
+    single line each — standard UI chrome scale, not hero type.
+
+structure:
+  - act: hook
+    t: [0.0, 1.5]
+    purpose: pose the brand as a question — logo pops in, wordmark "Figma?" swings into lockup beside it, holds.
+    shots: [1]
+  - act: reveal
+    t: [1.5, 2.0]
+    purpose: wordmark exits, bare logo shrinks and relocates — demoting itself into a literal in-app icon.
+    shots: [1]
+  - act: capability
+    t: [2.0, 3.68]
+    purpose: the "Connect to Figma" dialog materializes around that icon, a cursor clicks Connect, it flips to Connected! — answering the opening question literally.
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 3.68]
+    frames: [0, 220]
+    layout: centre-stack
+    content: >
+      Frame 0-13: black frame, Figma logo (4-color glyph) pops in small,
+      dead center. Frame 14-48: logo grows and a bold "Figma?" wordmark
+      swings/rotates into lockup to its right, both scaling up together, in
+      one motion-blurred rotational sweep. Frame 48-83: hold on the settled
+      "Figma?" lockup. Frame 83-93: "?gma?" wordmark flies out / dissolves,
+      leaving the bare logo. Frame 93-119: bare logo shrinks and drifts down
+      into a small app-icon slot while a dark rounded dialog card
+      (title "Connect to Figma", blue "Connect" button) scales in around it.
+      Frame 114-184: the card does a damped 3D tilt (rotateY skew, trapezoid
+      silhouette) settling flat, like a physical card dropping into place.
+      Frame 134-174: an arrow cursor travels in from lower-left and clicks
+      the "Connect" button. Frame 174-220: button flips to green
+      "Connected!", cursor and card hold static to the end.
+    moves:
+      - move: popIn
+        target: figmaLogoGlyph
+        at_f: 0
+        params: {dur_f: 7, scale: [0, 1.08, 1], ease: springSnap}
+      - move: rotateConvergeIn
+        target: figmaLogoAndWordmarkLockup
+        at_f: 14
+        params: {dur_f: 17, rotate_deg: [-18, 0], scale: [0.65, 1.0], ease: expoOut}
+      - move: flyOut
+        target: figmaWordmarkText
+        at_f: 83
+        params: {dur_f: 5, y: [0, -20], opacity: [1, 0], ease: expoIn}
+      - move: morphToIcon
+        target: figmaLogoGlyph
+        at_f: 93
+        params: {dur_f: 13, scale: [1, 0.22], translate_y_px: [0, 46], ease: expoInOut}
+      - move: scaleIn
+        target: connectDialogCard
+        at_f: 99
+        params: {dur_f: 10, scale: [0.86, 1], opacity: [0, 1], ease: backOut}
+      - move: tiltSettle3D
+        target: connectDialogCard
+        at_f: 114
+        params: {dur_f: 35, rotateY_deg: [-8, 6, -3, 0], perspective_px: 1000, spring: springSoft}
+      - move: cursorTravelClick
+        target: pointerCursor
+        at_f: 134
+        params: {dur_f: 10, from: lower-left-of-card, to: connectButton, click_at_f: 154, ease: expoOut}
+      - move: stateSwap
+        target: connectButton
+        at_f: 164
+        params: {dur_f: 5, from_label: Connect, to_label: "Connected!", from_color: "#3D8BFF", to_color: "#22C55E", ease: expoOut}
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 18
+
+techniques:
+  - id: logo-to-icon-morph
+    what: >
+      The hero brand mark (large, centered) is the SAME element that ends up
+      as the small app icon inside the product dialog — it doesn't cut to a
+      new asset, it scales/translates down in place while the dialog chrome
+      fades in around its resting position.
+    where: shot 1, frames 93-119
+    why_it_reads: >
+      Removing the cut removes the seam between "brand" and "product" — the
+      logo visually IS the app, so the question "Figma?" and the answer
+      (a working Connect dialog) feel causally linked rather than edited
+      together.
+    remotion_recipe: >
+      Single absolutely-positioned logo component, never unmounted. Its
+      wrapper transform is `translate(x,y) scale(s)` where x/y/s are
+      interpolate(frame, [93,119], [heroX,heroY,1], [iconX,iconY,0.22],
+      {easing: Easing.bezier(0.87,0,0.13,1)}). iconX/iconY/0.22 must equal the
+      exact slot the dialog's <img> icon would occupy — measure it once from
+      the dialog's own layout (e.g. a ref + getBoundingClientRect at build
+      time, or hardcode from the design). Dialog card + title + button are a
+      separate absolutely-positioned group that fades/scales in
+      (opacity 0->1, scale 0.86->1) starting a few frames after the logo
+      arrives, using AnimatedProps or Remotion's `interpolate` + `spring`.
+    difficulty: moderate
+  - id: perspective-tilt-settle
+    what: >
+      Right after the dialog card scales in, it does a damped 3D wobble
+      (rotateY, with perspective) that overshoots then settles flat — reads
+      as a physical card dropping onto a surface rather than a flat fade.
+    where: shot 1, frames 114-184
+    why_it_reads: >
+      A pure scale/opacity entrance for UI cards is expected and forgettable;
+      adding a decaying rotation on a real 3D axis gives the flat mockup a
+      sense of mass and physical settle, which is exactly the trick for
+      keeping an otherwise-static screen alive.
+    remotion_recipe: >
+      Wrap the card in a container with `perspective: 1000px`. Drive
+      `transform: rotateY(${deg}deg)` where `deg = spring({frame: frame - 114,
+      fps, config: {damping: 12, mass: 0.6, stiffness: 140}, from: -8, to: 0})`
+      — a damping value in the 10-14 range is what produces the 2-3 visible
+      overshoot cycles seen in the sheet (skew at f124, f144, f164/174/184,
+      flat by f194) rather than a single smooth settle. Pair the card's
+      `box-shadow` blur/offset with `Math.abs(deg)` so the shadow visibly
+      thickens mid-wobble and thins as it goes flat — this sells the depth
+      far more than the rotation alone.
+    difficulty: moderate
+  - id: cursor-choreo-click
+    what: >
+      A fake SVG arrow cursor enters from off-card, travels to the "Connect"
+      button, does a small "peck" (scale down 1->0.85->1) exactly on the
+      frame the button's color/label flips — the only pointer interaction in
+      the entire piece.
+    where: shot 1, frames 134-174
+    why_it_reads: >
+      One deliberate, tightly-synced click reads as "a real user did this
+      just now" — sparse and precise beats a hovering, wandering cursor.
+    remotion_recipe: >
+      Absolutely-positioned SVG arrow. Position = interpolate(frame,
+      [134,154], [x0,y0], [xButton,yButton], {easing: expoOut-bezier}).
+      On the exact `click_at_f` frame, apply a `spring` scale pulse
+      (springSnap config: damping 14, mass 0.5, stiffness 180, 1->0.85->1
+      over ~4-5 output frames) to the cursor AND flip the button's React
+      state (label + background color) off the same `click_at_f` constant —
+      never eyeball two separate keyframe times for cause and effect, derive
+      both from one frame number.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 221
+  fastest_f: 221
+  slowest_f: 221
+  pattern: >
+    Single continuous 221f take, no hard cuts. Internal beat structure
+    instead of cuts: 14f pop-in -> 34f rotational wordmark assembly -> 35f
+    hold -> 10f exit -> 26f logo-to-icon morph -> 20f card scale-in ->
+    70f damped 3D settle (overlapping a 20f cursor travel + click at f154) ->
+    10f button state swap -> 36f final hold. Energy is front-loaded (the
+    11.1-peak rotational assembly at ~f29 is the single biggest motion event
+    in the whole piece) then trails into small, precise UI gestures.
+  beat_grid_f: 0
+  energy_curve: front-loaded
+
+transferable:
+  - Never cut from brand mark to product screenshot — scale/translate the
+    same logo element down into the exact pixel slot the in-UI icon
+    occupies, so the two "assets" are provably one continuous object.
+  - Give a UI card a damped rotateY spring on entrance (10-14 damping range,
+    2-3 overshoot cycles) instead of a flat scaleIn — it's the cheapest way
+    to make a static dialog read as a physical object landing.
+  - Tie a shadow's blur/offset to the live rotation magnitude
+    (`shadow ∝ |rotateY|`) instead of animating it on its own timeline —
+    keeps depth cues physically consistent for free.
+  - Limit pointer choreography to exactly one click, synced frame-for-frame
+    to the state change it causes, rather than continuous cursor wandering.
+  - Ration color to the brand mark on entry and the one button-state flip on
+    payoff — everything else stays black/white/gray so those two moments
+    read as loud.
+
+avoid:
+  - The multi-exposure "ghosted" look during the wordmark's rotational swing
+    (frames 24-44) was almost certainly a hand-tuned AE motion-blur/echo
+    stack. Code-native substitute — render N sub-frame samples of the
+    rotation per output frame and average them (true shutter-angle motion
+    blur), or apply a CSS blur `filter` whose radius scales with
+    instantaneous angular velocity (`d(rotate)/dt`) rather than baking fixed
+    ghost copies.
+  - The decaying tilt-wobble curve reads as a bespoke hand-keyframed easing
+    curve. Substitute an actual `spring()` (Remotion/react-spring) with a
+    damping/mass/stiffness config — parametric, tunable, and reusable across
+    specs instead of one-off keyframes.
+  - Manually nudging the button color-swap frame to "look right" against the
+    cursor's arrival is an AE-timeline habit. Substitute — derive both the
+    cursor's arrival animation and the button's React state change from the
+    same single `click_at_f` constant so they can never drift apart on edit.
+
+new_moves:
+  - name: rotateConvergeIn
+    params: {dur_f: 17, rotate_deg: [-18, 0], scale: [0.65, 1.0], ease: expoOut}
+    description: >
+      A single lockup (logo + wordmark treated as one rigid group) enters
+      already off-axis rotated and swings into rotate=0 while scaling up,
+      with heavy directional motion blur through the swing. Distinct from
+      letterCascade (that's per-character stagger); this is one rigid
+      element doing one fast rotational sweep. Best for single hero
+      brand-mark reveals, max once per piece.
+  - name: morphToIcon
+    params: {dur_f: 13, scale: [1, 0.22], translate_y_px: [0, 46], ease: expoInOut}
+    description: >
+      A hero-scale logo/mark shrinks and translates in place to become a
+      small in-UI icon, with no cut — the destination coordinates must equal
+      the exact slot the target icon occupies in the UI it's morphing into.
+      The bridge move between a brand-mark act and a product-UI act.
+  - name: tiltSettle3D
+    params: {dur_f: 35, rotateY_deg: [-8, 6, -3, 0], perspective_px: 1000, spring: springSoft}
+    description: >
+      A UI panel/card, on entrance, gets a damped rotateY oscillation (2-3
+      overshoot cycles via spring physics, not linear easing) before landing
+      flat, simulating a physical object settling. Pair with a shadow whose
+      blur/offset track |rotateY| for the depth cue to read.
+  - name: cursorTravelClick
+    params: {dur_f: 10, click_at_f: null, ease: expoOut}
+    description: >
+      A synthetic pointer/cursor graphic travels from an off-element start
+      point to a target control and performs a scale-pulse "click" exactly
+      on `click_at_f`, which must be the same frame constant driving any
+      resulting state change on the target control.
+  - name: stateSwap
+    params: {dur_f: 5, from_label: "", to_label: "", from_color: "", to_color: "", ease: expoOut}
+    description: >
+      A UI control's label and fill color cross-fade/swap in place (e.g.
+      button text + background changing on click) — no layout shift, just a
+      short color/opacity interpolation between the two states.

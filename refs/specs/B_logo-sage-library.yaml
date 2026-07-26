@@ -1,0 +1,285 @@
+id: B_logo-sage-library
+source: unknown
+
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 5.999
+  orientation: horizontal
+
+verdict: >
+  A single unbroken 179-frame take turns the brand's function into its mark: an open book
+  literally shatters into the pieces of a product (UI cards, spheres, wireframe window, text
+  bars), and only the core pieces survive to flatten into the abstract logomark — so the
+  reveal argues "this app distills a library" before the wordmark ever appears.
+
+palette:
+  bg: "#000000"
+  ink: "#FFFFFF"
+  accent: "#FF2D6E"
+  support: ["#A87890", "#787878", "#180018", "#303030"]
+  notes: >
+    Measured screen-share is 88.3% pure black bg, with #A87890 (1.5%) the blurred/averaged
+    reading of a vivid magenta-to-white gradient that only exists on the book cover and the
+    disperse-phase fragments (cards, spheres, capsule) — accent is fully rationed to the
+    transformation (frames ~0-117). The instant the logomark and wordmark lock in (f117
+    onward) all color is dropped: icon and wordmark are pure #FFFFFF on #000000, no gradient,
+    no glow color. The payoff is deliberately monochrome after a colorful journey.
+
+typography:
+  family_look: geometric sans
+  weights: [bold, regular]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.17
+  notes: >
+    Two-line lockup to the right of the icon: line 1 "Sage" (bold, larger), line 2 "Library"
+    (regular weight, smaller, same family) directly below it. Left edges of both lines align.
+    No tagline, no CTA — this is a closing brand card only.
+
+structure:
+  - act: hook
+    t: [0.00, 1.57]
+    purpose: >
+      Establish a legible, familiar object (a book, cover rendered in a magenta-to-white
+      gradient) tumbling in and opening — gives the eye something concrete before it's
+      destroyed.
+    shots: [1]
+  - act: reveal
+    t: [1.57, 4.20]
+    purpose: >
+      Destruct the book into ~10 fragments that read as generic product/app pieces (cards,
+      a wireframe window, list-line bars, glossy spheres, a capsule), let most fragments
+      fade, and converge the surviving pieces into the flat abstract mark. The literal
+      "library becomes an app becomes a mark" argument.
+    shots: [1]
+  - act: cta
+    t: [4.20, 5.999]
+    purpose: >
+      Wordmark wipes in beside the settled icon, lockup holds dead-static as the closing
+      card.
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 5.999]
+    frames: [0, 178]
+    layout: centre-stack
+    content: >
+      f0-8: a small closed book (cover = diagonal magenta→white gradient) tumbles/settles
+      into a stable orientation just left of centre, a single sparkle particle ticks on near
+      it. f16-30: cover hinges open in 3D (~158°) to a flat, camera-facing open-book pose,
+      white pages, faint horizontal "text lines" visible on the pages f30-42. f38-39: a quick
+      snap/flatten motion (secondary settle). f47: book compresses and starts ejecting small
+      bead/particle fragments upward on dotted trails. f47-71: the book shatters outward into
+      ~10 discrete fragments scattered across the frame — a wireframe app-window outline,
+      2 gradient (magenta→white) rectangle "cards", 2 clusters of striped horizontal bars
+      (list/text rows), 4-5 glossy pink/white specular-highlighted spheres, and one capsule/
+      pill shape — peaking at f71 (motion 25.4, just shy of the shot-cut threshold). f71-90:
+      the wireframe box, cards, and bars fade out; only the spheres + capsule remain, drifting
+      toward centre. f90-117: surviving fragments converge, rotate flat, and fuse into a
+      single flat white geometric mark — two mirrored skewed-parallelogram shapes joined
+      corner-to-corner, reading as an abstract interlocking-ribbon/bowtie "S" — with a small
+      settle bounce. f117-126: icon holds alone, centred, small. f126-140: wordmark "Sage"
+      then "Library" mask-wipe in beside the icon, staggered ~4f apart. f140-178: fully
+      settled two-line lockup ("Sage" bold / "Library" regular, white, right of icon) holds
+      completely static (measured motion <0.03 for the entire span) to the end of the clip.
+    moves:
+      - move: objectTumbleIn
+        target: book_asset
+        at_f: 0
+        params: {scale: [0.72, 1.0], dur_f: 8, ease: expoOut}
+      - move: bookOpen
+        target: book_asset
+        at_f: 16
+        params: {hinge_rotate_deg: [0, 158], dur_f: 14, ease: expoInOut}
+      - move: shatterDisperse
+        target: book_asset→fragments
+        at_f: 47
+        params: {dur_f: 24, fragment_count: 10, spread_radius_pct: 42, ease: expoOut, peak_at_f: 71}
+      - move: dissolveBlur
+        target: fragments_secondary [wireframe_window, cards, text_bars]
+        at_f: 71
+        params: {dur_f: 19, blur: [0, 14], opacity: [1, 0]}
+      - move: fragmentsConverge
+        target: fragments_core [spheres, capsule]
+        at_f: 90
+        params: {dur_f: 27, ease: springSnap, flatten_to_2d: true, overshoot_pct: 5}
+      - move: maskWipeUp
+        target: wordmark_line1 "Sage"
+        at_f: 126
+        params: {dur_f: 10, ease: expoOut, per_line_stagger_f: 4}
+      - move: maskWipeUp
+        target: wordmark_line2 "Library"
+        at_f: 130
+        params: {dur_f: 10, ease: expoOut, per_line_stagger_f: 4}
+    camera: {move: none, params: {note: "locked-off frame for the entire 179f, no push/pull/pan detected"}}
+    bg: {kind: flat, moves: []}
+    treatment: [motionTrail, bloomGlow]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {note: "end of video — card holds to the final frame, no exit animation"}}
+    hold_f: 38
+
+techniques:
+  - id: book-open-3d
+    what: >
+      A closed book (gradient-covered) tumbles to a resting orientation (f0-8), then its
+      cover/pages hinge open in true 3D perspective (~158° over f16-30) to a flat,
+      camera-facing open-book pose.
+    where: shot 1, frames 0-42
+    why_it_reads: >
+      Correct perspective foreshortening on the hinge sells it as a physical object, which
+      makes its destruction in the next beat feel like something real is being taken apart.
+    remotion_recipe: >
+      Two page-div halves inside a parent with `perspective: 900px` and
+      `transform-style: preserve-3d`. Front cover: `transform: rotateY()` animated 0→-158deg
+      (spring or expoInOut interpolation) hinged at the spine edge (`transform-origin: left
+      center`). Cover face gets `background: linear-gradient(135deg, #ff2d6e, #ffffff)`.
+      Whole-book parent gets a small initial `rotateX/rotateY` tumble (random -8→0deg) plus
+      `scale(0.72→1)` over 8f, expoOut, for the entrance.
+    difficulty: moderate
+
+  - id: fragment-shatter-reform
+    what: >
+      The open book destructs into ~10 discrete pieces (wireframe window outline, 2 gradient
+      cards, 2 text-bar clusters, 4-5 glossy spheres, 1 capsule) that fly outward from the
+      book's centre to scattered positions (f47-71, peak motion 25.4 at f71), then most
+      pieces fade (f71-90) while the spheres+capsule converge and flatten into the final 2D
+      mark (f90-117, springy overshoot/settle).
+    where: shot 1, frames 47-117
+    why_it_reads: >
+      Fragments read as generic app/product pieces (a card, a window, a list, data points) —
+      so the shatter is legible as "this tool's contents" before they resolve into the brand
+      mark, making the logo feel earned rather than just animated-in.
+    remotion_recipe: >
+      Model as N (~10) independent absolutely-positioned elements, each with a seeded random
+      target {x, y, rotate} within ~42% of frame radius from the book's centre. Drive
+      outward motion with `spring({damping:200, mass:0.6, stiffness:100})` on position,
+      staggered 0-4f per fragment. Glossy spheres: `radial-gradient(circle at 35% 30%,
+      #ffffff 0%, #ff2d6e 55%, #200008 100%)` + `box-shadow: 0 4px 18px rgba(255,45,110,.4)`
+      for the specular pop seen in keys/00_f80.png. Cards: `linear-gradient(135deg,#ff2d6e,
+      #ffffff)` rect with border-radius 6px. Wireframe window: 1px `rgba(255,255,255,.25)`
+      border, no fill. Text bars: stacked `repeating-linear-gradient` strips. Secondary
+      fragments (window/cards/bars) exit via opacity 1→0 + blur 0→14 over 19f starting f71.
+      Surviving fragments (spheres+capsule) animate back to the icon's target vertices with
+      `spring({damping:14, mass:0.5, stiffness:180})` (springSnap) over f90-117, combined
+      with a `rotateX/Y→0` flatten and opacity/scale settle for the "become flat and 2D"
+      read — no true 3D renderer required, just per-fragment transforms.
+    difficulty: moderate (hard/needs-3d only if matching the exact glossy specular falloff
+      on the spheres pixel-for-pixel; the layout/motion itself is DOM/SVG-native)
+
+  - id: two-line-staggered-wordmark
+    what: >
+      "Sage" (bold) mask-wipes in at f126 (dur 10f), "Library" (regular) follows 4f later at
+      f130 (dur 10f), both settling by ~f140, right after which the frame goes fully static.
+    where: shot 1, frames 126-140
+    why_it_reads: >
+      A 4f stagger between two short lines reads as one deliberate "type-on" beat rather than
+      two separate events — cheap to build, reads as premium.
+    remotion_recipe: >
+      Standard `maskWipeUp`: each line in its own `overflow: hidden` box, inner span
+      `translateY(110%→0%)`, `ease: expoOut`, second line delayed 4f from the first.
+    difficulty: trivial
+
+  - id: static-end-hold
+    what: >
+      From f140 to f178 (38f / 1.27s) measured motion is effectively zero (<0.03 on the
+      0-25 scale used elsewhere in the clip) — a genuinely frozen final card, not a subtly
+      breathing loop.
+    where: shot 1, frames 140-178
+    why_it_reads: >
+      For a lockup meant to be screenshotted or used as a static end-card, total stillness
+      reads as "arrived/finished" more than ambient motion would.
+    remotion_recipe: >
+      Render the last composed frame and hold it (no interpolation) for the remaining
+      duration — do not add a default `breathe` or `driftCamera` here, ground truth shows
+      none.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 179
+  fastest_f: 179
+  slowest_f: 179
+  pattern: >
+    Single unbroken 179f shot, no hard cuts. Internal energy arc: 8f settle → 14f hinge-open
+    → 24f rising shatter to peak at f71 (25.4) → 19f fragment fade → 27f springy converge-
+    and-flatten (scene-scale, matches vocab's 24-36f band) → 9f icon-alone hold → 14f
+    staggered two-line wordmark wipe → 38f dead-static hold to end.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Build the mark's assembly out of fragments that visually reference the product's own
+    domain (cards/window/list/data-points for a software tool) — the shatter argues the
+    brand's value before the wordmark does.
+  - Ration all color to the transformation phase only; let the resting logomark + wordmark
+    land as pure white-on-black. The contrast makes the final state feel "resolved".
+  - Stagger a two-line wordmark reveal by ~4f (line 2 starts while line 1 is still finishing)
+    rather than running them sequentially — reads as one gesture, not two.
+  - Use `springSnap` (damping 14) on the final fragment-to-icon convergence to get a free
+    "settle bounce" instead of hand-keyframing an overshoot.
+  - End on a truly static hold (no ambient breathe/drift) when the shot is a closing card
+    meant to be paused on or screenshotted.
+  - Let the near-cut-threshold motion spike (f71, 25.4 vs a 26.0 cut threshold) happen
+    without cutting — a single continuous take through the climax of a transformation reads
+    as more impressive than cutting away from it.
+
+avoid:
+  - The book's true 3D hinge-open with correct perspective foreshortening was almost
+    certainly rendered in a 3D tool (Blender/Cinema4D/Spline) — don't hand-keyframe this in
+    After Effects. Code-native substitute — two `rotateY`-hinged page divs inside a
+    `perspective` container (see book-open-3d recipe); close but not identical foreshortening,
+    acceptable trade for full code-ownership.
+  - Exact glossy specular shading on the spheres/capsule (keys/00_f80.png shows a true
+    physically-lit highlight with falloff) needs a real renderer for pixel-perfect match.
+    Code-native substitute — layered `radial-gradient` + `box-shadow` fake-specular (see
+    fragment-shatter-reform recipe) — reads correctly at video scale, isn't identical up
+    close.
+  - Don't hand-place each fragment's scatter position frame-by-frame. Code-native
+    substitute — seed a deterministic PRNG per fragment for its target {x,y,rotate}, drive
+    all of them through the same spring config — reproducible and tweakable without re-
+    keyframing.
+  - Don't add ambient motion (breathe/drift) to the final hold just because "every shot
+    should have one running" — ground truth here is genuinely frozen for the last 38f, and
+    that stillness is the point for an end-card.
+
+detection_notes: >
+  profile.md reports exactly 1 shot (0-178) with the algorithm's cut-delta peaking at 25.4
+  (frame 71) against a 26.0 cut threshold — i.e. the fragment-shatter climax nearly
+  registered as a false-positive hard cut but didn't. Cross-checked against sheet_01.jpg:
+  cells at f67/f72/f77 show continuous fragment motion (same particles, incrementally
+  displaced), no compositional discontinuity — confirms this is genuine single-take
+  continuity, not a missed cut. No shot merge/split needed; profile's count of 1 is correct.
+
+new_moves:
+  - name: objectTumbleIn
+    params: {scale: "0.7→1", rotate_settle: "small random xyz → 0", dur_f: 8, ease: expoOut}
+    description: >
+      A 3D hero object (product render, book, physical asset) already on-screen at frame 0
+      settles from a slightly tumbled orientation/reduced scale into its stable resting pose.
+      Used for 3D-rendered assets entering a scene without ever leaving frame bounds (distinct
+      from `scaleIn`, which is a 2D card/modal pop with opacity 0→1).
+  - name: bookOpen
+    params: {hinge_rotate_deg: "0→~160", dur_f: "14-20", ease: expoInOut}
+    description: >
+      A hinged 3D object (book, laptop, box lid) rotates one panel open around a fixed edge
+      (`transform-origin` at the hinge) to reveal an interior face. General-purpose for any
+      "open the container" beat preceding a reveal or shatter.
+  - name: shatterDisperse
+    params: {dur_f: "20-30", fragment_count: "8-14", spread_radius_pct: "35-50", ease: expoOut}
+    description: >
+      A single object breaks into N discrete pieces that fly outward from its former centre
+      to scattered positions across the frame, each on an independent (typically seeded-
+      random) trajectory. The destructive counterpart to `slideStackIn`; pairs with
+      `fragmentsConverge` for a shatter→reform arc.
+  - name: fragmentsConverge
+    params: {dur_f: "20-30", ease: springSnap, flatten_to_2d: "bool", overshoot_pct: "3-6"}
+    description: >
+      Surviving scattered fragments (see `shatterDisperse`) travel inward and fuse into a
+      single target shape (typically a logomark), landing with a spring overshoot/settle
+      bounce. Optionally flattens 3D-rotated pieces to a camera-facing 2D orientation as part
+      of the same move.

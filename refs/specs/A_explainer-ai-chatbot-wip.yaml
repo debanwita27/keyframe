@@ -1,0 +1,333 @@
+id: A_explainer-ai-chatbot-wip
+source: "unknown — no source URL captured in analysis assets"
+category: saas-explainer
+product_type: text-heavy-tool
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 6.125
+  orientation: horizontal
+
+verdict: >
+  The piece stages a felt problem — a customer's cursor drifting toward the close
+  button on a generic chatbot — before a single word of copy appears, so the text
+  that follows reads as payoff, not exposition. Splitting one sentence across two
+  contrasting pill shapes (solid vs. outline) fakes a two-speaker dialogue without
+  building a real chat UI, and the brand mark gets its own beat before the wordmark
+  joins it.
+
+palette:
+  bg: "#000000"
+  ink: "#F0F0F0"
+  accent: "#78D8D8"
+  support: ["#186090", "#307890", "#F0D8D8"]
+  notes: >
+    Cool teal/blue is rationed to the chatbot-UI establishing shot (the "product"
+    world). Warm pink/orange only enters during the emotional pain-point beat
+    (blurred gradient field) and the final brand ring — warmth is reserved for
+    the human/brand moments, never the neutral UI moment.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.55
+  notes: >
+    Chat-UI copy ("Ask me anything…") is medium weight, small, inside the mock
+    card. The pain-point sentence "They want someone who gets them" is bold and
+    built phrase-by-phrase (max ~3 words visible per fragment) across two shots
+    rather than typed as one block — keeps each beat readable inside a 12-36f shot.
+
+structure:
+  - act: hook
+    t: [0.00, 1.917]
+    purpose: >
+      Dramatize the problem wordlessly: a customer opens a generic chatbot and
+      the camera pushes toward the close button, implying abandonment.
+    shots: [1]
+  - act: problem
+    t: [1.917, 3.917]
+    purpose: >
+      State the emotional gap in words, paired with a two-chip "statement vs.
+      answer" visual so the sentence reads as a dialogue, not a slide of text.
+    shots: [2, 3]
+  - act: reveal
+    t: [3.917, 5.50]
+    purpose: >
+      Introduce the brand mark alone, then bring in the wordmark, as the
+      literal answer to the stated need.
+    shots: [4]
+  - act: cta
+    t: [5.50, 6.125]
+    purpose: End card — full logo lockup, held.
+    shots: [5]
+
+shots:
+  - n: 1
+    t: [0.00, 1.917]
+    frames: [0, 45]
+    layout: full-bleed-ui
+    content: >
+      Chat widget UI: header "Your Bot" with a three-dot menu; body headline
+      "Ask me anything…" above three teal placeholder message bars and an
+      input field reading "Type in here...". A black rounded-square "Customer"
+      cursor/avatar icon with a speech-bubble pointer tab enters bottom-left.
+      Camera continuously pushes in toward the top-right window-chrome controls,
+      ending in extreme close-up on the cursor pointing at the close (X) button.
+    moves:
+      - move: scaleIn
+        target: chat_card
+        at_f: 0
+        params: {scale: [0.92, 1], opacity: [0, 1], dur_f: 18, ease: backOut}
+      - move: staggerRise
+        target: chat_placeholder_bars
+        at_f: 2
+        params: {y: [12, 0], opacity: [0, 1], blur: [6, 0], stagger_f: 3, ease: springSoft}
+      - move: popIn
+        target: customer_cursor_icon
+        at_f: 5
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+    camera:
+      move: dollyToUI
+      params: {scale: [1, 3.4], dur_f: 24, ease: expoInOut, focus_point: "top-right window-chrome close button"}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.917, 2.417]
+    frames: [46, 57]
+    layout: centre-stack
+    content: >
+      Full-bleed black card. White sentence builds phrase by phrase:
+      "They want" → "They want someone".
+    moves:
+      - move: maskWipeUp
+        target: phrase_they_want
+        at_f: 0
+        params: {dur_f: 8, ease: expoOut, per_line_stagger_f: 0}
+      - move: maskWipeUp
+        target: phrase_someone
+        at_f: 6
+        params: {dur_f: 8, ease: expoOut, per_line_stagger_f: 0}
+    camera:
+      move: driftCamera
+      params: {amp: 1%, period_f: 180, axes: xy}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 3
+    t: [2.417, 3.917]
+    frames: [58, 93]
+    layout: split
+    content: >
+      Soft blurred teal/pink/orange gradient field. Two pill chips: a solid
+      black chip reading "They want someone" (carried from the previous shot)
+      paired with a white outlined chip reading "who" → "who gets them". The
+      white chip enlarges as the emphasis beat; "meet" fades in small,
+      top-right, foreshadowing the next shot.
+    moves:
+      - move: slidePush
+        target: chip_they_want_someone
+        at_f: 0
+        params: {incoming_x: ["-110%", "0%"], dur_f: 10, ease: expoOut}
+      - move: slidePush
+        target: chip_who_gets_them
+        at_f: 12
+        params: {incoming_x: ["110%", "0%"], dur_f: 10, ease: expoOut}
+      - move: popIn
+        target: chip_who_gets_them
+        at_f: 30
+        params: {scale: [1, 1.12], dur_f: 9, ease: backOut}
+      - move: scaleOut
+        target: chip_they_want_someone
+        at_f: 32
+        params: {scale: [1, 0.94], opacity: [1, 0], dur_f: 9, ease: expoIn}
+      - move: maskWipeUp
+        target: teaser_word_meet
+        at_f: 33
+        params: {dur_f: 8, ease: expoOut, per_line_stagger_f: 0}
+    camera: {move: none, params: {}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 4
+    t: [3.917, 5.50]
+    frames: [94, 131]
+    layout: centre-stack
+    content: >
+      Black background. The word "meet" fades in centred, then is replaced by
+      a colorful gradient asterisk/flower icon mark. The mark shifts left and
+      the wordmark "neurox" builds in beside it, settling into a static lockup
+      that holds for ~11f before the cut.
+    moves:
+      - move: maskWipeOut
+        target: teaser_word_meet
+        at_f: 6
+        params: {dur_f: 6, dir: up, ease: expoIn}
+      - move: popIn
+        target: brand_mark_icon
+        at_f: 10
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: staggerRise
+        target: wordmark_neurox
+        at_f: 19
+        params: {y: [10, 0], opacity: [0, 1], blur: [6, 0], stagger_f: 2, ease: springSoft}
+    camera: {move: breathe, params: {scale: [1, 1.015], period_f: 120}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 11
+
+  - n: 5
+    t: [5.50, 6.125]
+    frames: [132, 146]
+    layout: centre-stack
+    content: >
+      Hard cut to a full-bleed circular treatment: concentric rings in a
+      teal-purple-orange radial gradient surrounding a white disc containing a
+      black rounded heart/face mascot icon (two ear/eye bumps over a short
+      mouth line) — the brand's icon-as-mascot, scaling and settling into its
+      final held end-frame.
+    moves:
+      - move: scaleIn
+        target: logo_ring_lockup
+        at_f: 0
+        params: {scale: [0.88, 1], opacity: [0, 1], dur_f: 12, ease: backOut}
+    camera: {move: pushIn, params: {scale: [1, 1.05], ease: expoInOut, dur_f: 15}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow, vignette]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+techniques:
+  - id: problem-dramatized-as-ui-interaction
+    what: >
+      A generic chatbot UI card is shown mid-conversation ("Ask me anything…")
+      while a stylized cursor/avatar icon ("Customer") enters, and the camera
+      pushes continuously in on the window-chrome controls, landing in extreme
+      close-up on the close (X) button — implying the customer is about to
+      abandon the bot, entirely without dialogue or captions.
+    where: shot 1
+    why_it_reads: >
+      Converts an abstract SaaS claim ("bots don't get people") into a
+      concrete, wordless mini-scene with an implied outcome, so the copy that
+      follows in shots 2-3 lands as confirmation of something already felt,
+      not as exposition.
+    remotion_recipe: >
+      Wrap the chat card in a parent div; drive its transform with
+      interpolate(frame, [0,24], [1,3.4], {easing: expoInOut}) for scale, and
+      set transform-origin as a percentage pinned to the close-button's screen
+      position so the zoom converges exactly on it (classic dollyToUI). The
+      cursor icon is a separate absolutely-positioned SVG that pops in with a
+      spring (springSnap, stiffness 180 / damping 14) then rides the same
+      parent transform uncorrected — it must NOT be counter-scaled — so it
+      visibly grows with the push-in and sells the zoom.
+    difficulty: moderate
+
+  - id: dual-speech-chip-pairing
+    what: >
+      The sentence "They want someone who gets them" splits across two
+      pill/chip shapes: a solid black rounded-rect chip carrying the "want"
+      clause and a white/outline rounded-rect chip carrying the answer clause
+      "who gets them", laid edge-to-edge like two speech bubbles from
+      different speakers over a soft blurred color field.
+    where: shot 3
+    why_it_reads: >
+      Contrasting chip fills (solid/dark vs. outline/light) read instantly as
+      "problem vs. answer" / "two voices", letting one sentence carry a
+      dialogue structure without ever drawing an actual chat UI — cheaper to
+      build than a real chat mock and it reads faster on screen.
+    remotion_recipe: >
+      Two `<div>`s with border-radius:999px and display:inline-flex (width
+      intrinsic to text + padding): one background:#000/color:#fff, one
+      background:transparent/border:1px solid/color:#000. Animate each via
+      interpolate() on translateX from -110%/+110% to 0 over 10f, expoOut,
+      second pill starting 12f after the first (slidePush shape, not a real
+      transition-between-shots — reused within one shot). On the emphasis beat
+      scale the second pill 1→1.12 with backOut while the first fades/scales
+      out (scaleOut) — plain CSS transform + opacity interpolation, no AE.
+    difficulty: trivial
+
+  - id: mark-before-wordmark-logo-reveal
+    what: >
+      The brand reveal is sequenced, not simultaneous: "meet" appears alone,
+      is replaced by the abstract asterisk/flower icon mark alone (no
+      wordmark yet), and only then does the wordmark "neurox" build in beside
+      it to form the final lockup, holding static for ~11f before the cut.
+    where: shot 4
+    why_it_reads: >
+      Giving the mark a beat to register as a shape in its own right — before
+      it is demoted to "logo" — makes it read as a designed symbol rather
+      than a logotype slapped on screen.
+    remotion_recipe: >
+      Sequence three absolutely-positioned layers keyed off `frame`: (1)
+      "meet" text, opacity 1→0 over 6f (maskWipeOut); (2) icon mark, popIn
+      scale 0→1.08→1 over 11f with springSnap, held centered; (3) at a later
+      frame, interpolate the icon's translateX from center to its final
+      lockup offset while the wordmark div staggerRise-fades/slides in from
+      the right (y 10→0, opacity 0→1, blur 6→0, 2f per-character stagger) —
+      pure translateX + opacity/blur interpolation, no path morphing.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 5
+  median_shot_f: 36
+  fastest_f: 12
+  slowest_f: 46
+  pattern: >
+    46f establishing UI scene with an internal camera push-in → 12f quick
+    pain-statement flash on black → 36f dual-chip statement beat over a
+    blurred color field → 38f brand-mark build ending in an 11f static
+    wordmark hold → 15f final logo-lockup hold-out.
+  energy_curve: wave
+
+transferable:
+  - Stage the pain point as a wordless UI vignette (cursor drifting to the
+    close button) before any text states the problem — let the scene argue
+    first, the copy confirm second.
+  - Split a single sentence across two contrasting chip shapes (solid vs.
+    outline) to fake a two-speaker dialogue without building a real chat UI.
+  - Reveal a logo mark alone before pairing it with the wordmark, so the icon
+    earns a beat as a shape in its own right.
+  - Use a continuous camera dolly-zoom (dollyToUI) into the same UI instead of
+    a hard cut for a "push closer" moment — cheaper to build and reads as more
+    deliberate than a cut.
+  - Hold the finished wordmark completely static for ~10f before cutting —
+    every settle needs a beat to be read before the next idea starts.
+
+avoid:
+  - The chat-card's exact entrance timing (breathing into frame in sync with
+    an implied voiceover beat) reads like hand-tuned AE keyframes matched
+    frame-by-frame; substitute a parameterized scaleIn (backOut, dur_f 18)
+    plus a springSnap popIn on the cursor — two reusable moves instead of a
+    bespoke animation.
+  - The blurred organic color-field background behind the chip pair looks
+    like a pre-rendered/hand-painted gradient blob rather than a procedural
+    shader; substitute 3-4 CSS radial-gradients blended with
+    mix-blend-mode:screen, animated via gradientDrift, instead of trying to
+    match the exact blob shapes.
+  - The cursor's exact path onto the X button is a one-off hand-animated
+    path; substitute a generic dollyToUI whose transform-origin is
+    parameterized to any target element's bounding box, reusable for any
+    "frustration" beat in future explainers.
+
+detection_notes: >
+  profile.md detected 6 cuts; the split at frame ~22 (motion.csv delta 35.9,
+  well below the 132-170 magnitude of the four genuine hard cuts) is a
+  continuous camera dolly-zoom on the same chat-card UI, not a scene change —
+  merged into shot 1 here (frames 0-45). Real hard cuts remain at frames
+  45/46 (Δ132.3, black card in), 57/58 (Δ167.7, gradient field in), 93/94
+  (Δ134.9, "meet" on black in), and 131/132 (Δ145.5, ring lockup in).

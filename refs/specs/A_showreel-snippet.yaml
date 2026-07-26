@@ -1,0 +1,445 @@
+id: A_showreel-snippet
+source: https://x.com/byshubh_/status/1943022663485829471
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 7.958
+  orientation: horizontal
+
+detection_notes: >
+  Source is natively 24fps (191 frames), not the pipeline's default-assumed 30fps —
+  every frame number below is a native 24fps index matching profile.md / the burned
+  timecodes on sheet_01.jpg and sheet_02.jpg. Multiply by 1.25 to retarget 30fps.
+  Profile detected 21 cuts; 13 of those 21 are exactly 3f long (frames 85-87, 88-90,
+  100-102, 103-105, 106-108, 137-139, 140-142, 143-145, 146-148, 149-151, 177-179,
+  180-182, 183-185) — well under the vocab's 11f minimum shot length, so these are
+  not independent shots, they are a single rapid-fire whip-cut BURST where a
+  horizontally-scrolling filmstrip of phone-shaped mockups is sampled by the cut
+  detector once per ~3-frame slide-step. Cross-checked against keys/04_f86.png
+  through keys/09_f107.png (burst 1), keys/11_f138.png through keys/15_f150.png
+  (burst 2), and keys/17_f178.png through keys/19_f184.png (burst 3): in every case
+  consecutive "shots" show the same 4-card row shifted a few dozen px, not unrelated
+  content — confirming this is one continuous conveyor motion, not 13 real edits.
+  Below, the 21 detected cuts are merged into 10 authored shots: profile shots
+  1/2/3 kept as-is (real cuts, each ≥12f); shot 4 kept as-is; shots 5-10 merged into
+  "burst 1"; shot 11 kept as-is; shots 12-16 merged into "burst 2"; shot 17 kept
+  as-is; shots 18-20 merged into "burst 3"; shot 21 kept as-is. rhythm.cut_count
+  below reports the raw 21 for stats, pattern narrative uses the merged 10.
+
+verdict: >
+  A design agency's entire portfolio compressed into 8 seconds by treating every
+  finished email as an interchangeable card on one continuous horizontal conveyor —
+  the edit rhythm alternates readable settle-holds with whip-fast flash bursts, and
+  every cut lands on the same rounded-rect card silhouette (a match cut by
+  construction), so the montage never looks like 12 different projects glued
+  together, it looks like one long shelf being scrolled past camera.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#000000"
+  accent: "#C0A8A8"
+  support: ["#C0C0C0", "#483030", "#F0F0D8"]
+  notes: >
+    No single accent hue belongs to this reel — every card carries its own client's
+    brand color (HIDE yellow, Soapy Faith maroon/pink, Nailboo hot pink, TATBROW
+    pink), which is the point: the reel-frame itself stays neutral (near-white
+    #F0F0F0/#C0C0C0 bg, pure black #000000 type) so 12 unrelated brand palettes can
+    sit side by side without clashing. The one recurring warm thread is skin-tone
+    photography (#483030 shadow, #C0A8A8 highlight) shared across the beauty/skincare
+    cards (HIDE, Tericci, TATBROW). Brightness curve is light-dominant throughout
+    (min 120/max 236) but dips into its "medium" band precisely across the
+    black-header HIDE/Soapy Faith/Puffy cards — light/dark contrast is carried by
+    which card is on screen, not by any reel-level lighting change.
+
+typography:
+  family_look: mixed
+  weights: [regular, bold, black]
+  case: mixed
+  tracking: wide
+  headline_frame_share: 0.55
+  notes: >
+    The opening hero ("ELEVATE YOUR PALATE" / "FEATURED COLLECTIONS") is serif
+    display, upper-case, wide-tracked — a single intentional type choice for this
+    reel's own title card. Every card after that is verbatim, un-restyled client
+    creative (HIDE's grotesk, Nailboo's condensed display, Tericci's editorial
+    serif, time—line's spaced-out wordmark) — the reel does not impose a type
+    system on the work it's showing, which is itself the honest thing to copy: don't
+    reskin the screenshots, let each one read as-is.
+
+structure:
+  - act: hook
+    t: [0.0, 2.04]
+    purpose: open on one hero project (a wine gift-box email) given real time to breathe — title, headline, body copy, then zoom into the actual browser mockup and scroll its product grid — establishing "these are real, working deliverables" before the pace increases.
+    shots: [1, 2, 3]
+  - act: proof
+    t: [2.04, 7.38]
+    purpose: prove breadth and speed by conveyor-scrolling ~10 more client emails past camera, alternating readable settle-holds (so the eye can register a brand) with whip-fast flash bursts (so it never drags) — the edit rhythm itself is the pitch ("we ship a lot, fast").
+    shots: [4, 5, 6, 7, 8, 9]
+  - act: cta
+    t: [7.38, 7.958]
+    purpose: break the conveyor pattern on the last card — pull it out of the row and center/enlarge it alone — so the reel ends on one clean hero product rather than fading out mid-row.
+    shots: [10]
+
+shots:
+  - n: 1
+    t: [0.00, 0.79]
+    frames: [0, 18]
+    layout: centre-stack
+    content: >
+      Cream/off-white bg. "ELEVATE YOUR PALATE" (upper-case, wide-tracked, serif,
+      small) fades up centred; a wine-glass illustration begins animating in from
+      lower-left.
+    moves:
+      - move: staggerRise
+        target: kicker
+        at_f: 0
+        params: {y: [18, 0], opacity: [0, 1], dur_f: 14, ease: springSoft}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 2
+    t: [0.79, 1.54]
+    frames: [19, 36]
+    layout: centre-stack
+    content: >
+      "FEATURED COLLECTIONS" (serif display, large) grows in below the kicker; two
+      wine-glass illustrations (one pouring red, one splashing white) pop in flanking
+      the headline; body copy "Make any occasion truly special by putting just the
+      right elegant gift box of Lamborghini sparkling or still wine." fades in below.
+    moves:
+      - move: maskWipeUp
+        target: headline
+        at_f: 0
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: popIn
+        target: wineGlassIcons
+        at_f: 4
+        params: {dur_f: 11, ease: springSnap, stagger_f: 3}
+      - move: staggerRise
+        target: bodyCopy
+        at_f: 10
+        params: {y: [28, 0], opacity: [0, 1], blur: [8, 0], dur_f: 14, ease: springSoft}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 3
+    t: [1.54, 2.04]
+    frames: [37, 48]
+    layout: full-bleed-ui
+    content: >
+      The whole hero card (title + headline + copy) scales down and the frame pulls
+      back to reveal it sitting inside an actual browser mockup labelled
+      "Creativecue.com," now showing a product grid below (wine gift boxes with
+      "BUY NOW" / price rows: Toranti Umbria Red, Lusso Red Collection, Lamborghini
+      Grechetto, Lamborghini Gold Prosecco). The mockup auto-scrolls down through the
+      full product grid to a "SHOP ALL" button at the bottom, with no additional
+      cuts.
+    moves:
+      - move: scaleIn
+        target: browserMockup
+        at_f: 0
+        params: {scale: [1.3, 1], opacity: [0.6, 1], dur_f: 12, ease: backOut}
+      - move: autoScrollReveal
+        target: browserMockupContent
+        at_f: 0
+        params: {dur_f: 12, distance_px: 900, ease: expoInOut}
+    camera: {move: pullOut, params: {scale: [1.15, 1], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: matchCut, params: {note: "rounded-rect card silhouette carries into shot 4's phone bezel"}}
+    hold_f: 0
+
+  - n: 4
+    t: [2.04, 3.54]
+    frames: [49, 84]
+    layout: centre-stack
+    content: >
+      A single phone-shaped card (HIDE skin-booster brand) fills most of frame,
+      autoscrolling continuously top-to-bottom through one full email: model photo
+      applying product → "HIDE / MEMORIAL DAY SAVINGS UP TO 50% OFF" black header →
+      "50% off $100+" (yellow-highlighted) / "25% off $50+" copy → "Don't wait any
+      longer" CTA → yellow "SHOP NOW" pill button → "Explore our Super Set
+      Collection / Maximize coverage, multiply wear" with two product icons. One
+      continuous internal scroll, no cuts, matching motion.csv's smooth ramping
+      curve across the full 36f (no delta spikes).
+    moves:
+      - move: autoScrollReveal
+        target: phoneCardContent
+        at_f: 0
+        params: {dur_f: 36, distance_px: 1400, ease: linear}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: zoomBlurCut, params: {dur_f: 5}}
+    hold_f: 0
+
+  - n: 5
+    t: [3.54, 4.54]
+    frames: [85, 108]
+    layout: grid
+    content: >
+      BURST 1 (24f, sampled by the detector as 6 sub-cuts of 3-9f each — frames
+      85-87, 88-90, 91-99, 100-102, 103-105, 106-108). The single HIDE card breaks
+      into a horizontally-sliding row: HIDE's "Don't forget your Foundation Brush!"
+      panel (yellow badges, brush-cursor icon) continues animating while, in the
+      same frame, small thumbnail tiles flash past on the left/right edges — RAIZE
+      "We're here to provide you" (blue cookie illustration) and RAIZE testimonial
+      grid ("See what our customers are saying," red footer) — then Soapy Faith
+      ("Divine intervention has hit your shower!", pink/maroon) begins entering from
+      the right edge. Each sub-step is one horizontal conveyor increment.
+    moves:
+      - move: conveyorSlide
+        target: filmstripRow
+        at_f: 0
+        params: {dur_f: 24, step_px: 340, step_f: 3, cards_visible: 2.5, ease: linear}
+      - move: popIn
+        target: raizeThumbs
+        at_f: 0
+        params: {dur_f: 9, ease: springSnap}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [motionTrail]
+    audio_cue: whoosh
+    transition_out: {move: matchCut, params: {note: "card silhouettes align into settled row for shot 6"}}
+    hold_f: 0
+
+  - n: 6
+    t: [4.54, 5.71]
+    frames: [109, 136]
+    layout: grid
+    content: >
+      The conveyor settles with an overshoot/bounce (confirmed by motion.csv: motion
+      value falls from 14.6 at f112 to 0.03 by f116 then holds near-zero through
+      f124, i.e. an 8-9f static hold inside this shot) into a row of 4 aligned
+      phone-cards: HIDE ("Don't forget your Foundation Brush!") / Soapy Faith
+      ("Divine intervention has hit your shower!") / linenbundle "Hello Dreamer"
+      (bedding, "You deserve the best possible night's sleep") / duyu ("Support your
+      thyroid, naturally"). Held static for the eye to register all four brands,
+      then motion resumes (delta climbs back to 26+ by f136) leading into burst 2.
+    moves:
+      - move: conveyorSlide
+        target: filmstripRow
+        at_f: 0
+        params: {dur_f: 28, step_px: 340, settle_ease: backOut, overshoot_pct: 4}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: zoomBlurCut, params: {dur_f: 5}}
+    hold_f: 8
+
+  - n: 7
+    t: [5.71, 6.33]
+    frames: [137, 151]
+    layout: grid
+    content: >
+      BURST 2 (15f, sampled as 5 sub-cuts of 3f each). HIDE card exits left edge;
+      Puffy ("$1,350 off, Welcome to Puffy," black-luxury mattress) and SEE Eyewear
+      ("Welcome to SEE Eyewear, use code WELCOME15") enter from the right in quick
+      succession, row reads Soapy Faith / Hello Dreamer / duyu / Puffy by mid-burst,
+      then / duyu / Puffy / SEE by its end.
+    moves:
+      - move: conveyorSlide
+        target: filmstripRow
+        at_f: 0
+        params: {dur_f: 15, step_px: 340, step_f: 3, cards_visible: 4, ease: linear}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [motionTrail]
+    audio_cue: whoosh
+    transition_out: {move: matchCut, params: {}}
+    hold_f: 0
+
+  - n: 8
+    t: [6.33, 7.38]
+    frames: [152, 176]
+    layout: grid
+    content: >
+      A continuous, accelerating slide (profile: "ease-in, builds, exits fast" — not
+      a settle like shot 6) that runs the row from duyu/Puffy/SEE/Nailboo
+      ("UNDERLINING 5th BIRTHDAY... 50% OFF," hot pink) at its start, through a brief
+      mid-shot plateau (static stretch at frames 155-163), to SEE/Nailboo/Tericci
+      (editorial fashion, lorem-ipsum placeholder copy)/TATBROW ("High performance
+      brows, powered by nature") by its end — the row keeps moving throughout, it
+      never fully stops.
+    moves:
+      - move: conveyorSlide
+        target: filmstripRow
+        at_f: 0
+        params: {dur_f: 25, step_px: 260, ease: expoIn, note: "accelerates across the shot, plateaus briefly f3-11 relative"}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: zoomBlurCut, params: {dur_f: 5}}
+    hold_f: 0
+
+  - n: 9
+    t: [7.38, 7.75]
+    frames: [177, 185]
+    layout: grid
+    content: >
+      BURST 3 (9f, sampled as 3 sub-cuts of 3f each). Tericci and TATBROW finish
+      sliding through; time—line ("Improve your cellular health," longevity
+      supplement, minimal white) begins entering from the right edge.
+    moves:
+      - move: conveyorSlide
+        target: filmstripRow
+        at_f: 0
+        params: {dur_f: 9, step_px: 340, step_f: 3, ease: linear}
+    camera: {move: null, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [motionTrail]
+    audio_cue: whoosh
+    transition_out: {move: matchCut, params: {}}
+    hold_f: 0
+
+  - n: 10
+    t: [7.75, 7.958]
+    frames: [186, 190]
+    layout: centre-stack
+    content: >
+      The conveyor pattern breaks: instead of settling into another 4-card row, the
+      time—line card alone pulls free of the filmstrip, scales up and centers to
+      fill most of the frame ("Improve your cellular health," product bottle, "New &
+      Improved / +17%" stat), and the clip ends on this single isolated hero rather
+      than fading out mid-row.
+    moves:
+      - move: scaleIn
+        target: timelineCard
+        at_f: 0
+        params: {scale: [0.55, 1], dur_f: 5, ease: backOut}
+    camera: {move: pushIn, params: {scale: [1, 1.08], ease: expoInOut}}
+    bg: {kind: flat, moves: []}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+techniques:
+  - id: conveyor-matchcut-montage
+    what: >
+      Every one of the ~12 client projects is rendered inside the same uniform
+      rounded-rect "phone card" silhouette, positioned in the same on-screen row.
+      Cuts between cards therefore always align the same shape at the same
+      coordinates — a match cut by construction, not by careful manual alignment.
+    where: shots 4-9 (frames 49-185), the entire montage body
+    why_it_reads: >
+      Because the silhouette never moves or changes shape across a cut, the eye
+      reads 12 unrelated brands as "the same shelf, different item" instead of "a
+      new video started" — it's what lets 21 raw cuts in 5.4s feel like one motion,
+      not a slideshow.
+    remotion_recipe: >
+      Define one <PhoneCard> component (fixed aspect-ratio rounded-rect,
+      overflow:hidden, drop-shadow) that takes a screenshot/video source as a prop.
+      Drive an array of card data through a single parent that positions N cards
+      with translateX = index*cardWidth - scrollOffset(frame), where
+      scrollOffset(frame) is itself an interpolate()/spring() driven step function
+      (see conveyorSlide below). Adding a 13th client card is appending one object to
+      the data array, never a new composition or new keyframes.
+    difficulty: moderate
+
+  - id: settle-burst-settle-pacing
+    what: >
+      The edit alternates two distinct velocity states: multi-frame "settle" shots
+      (12-36f, ease-out+overshoot, camera/conveyor fully still, 4 cards readable)
+      and "burst" zones (multiple 3f sub-cuts totalling 9-24f, conveyor visibly
+      sliding, motion-blurred).
+    where: rhythm block below; settles = shots 1,2,3,4,6,8/10, bursts = shots 5,7,9
+    why_it_reads: >
+      Constant-speed scrolling reads as a lifeless marquee; constant flash-cutting
+      reads as unwatchable noise. Alternating "let it breathe, then whip it" gives
+      the montage a pulse — the viewer gets just long enough on each settle to parse
+      a brand before the next burst refuses to let them linger.
+    remotion_recipe: >
+      Model the whole sequence as one array of {type: "settle"|"burst", dur_f,
+      cards} segments. For "settle," spring() the conveyor offset to its target
+      value with overshoot (damping ~12, stiffness ~180) and hold. For "burst,"
+      step the offset in fixed increments every step_f frames with a hard cut (no
+      interpolation between steps) — literally toggle between two different offset-
+      calculation functions per segment rather than trying to fake both speeds with
+      one continuous easing curve.
+    difficulty: moderate
+
+  - id: cta-card-isolate-outro
+    what: >
+      The final card breaks the conveyor grid pattern — instead of settling as a
+      4-up row like every prior settle, it alone scales up and centers, ending the
+      piece on one isolated hero product.
+    where: shot 10, frames 186-190
+    why_it_reads: >
+      Ending on the same "4 cards in a row" composition as every other settle would
+      make the video feel like it just ran out of runway; breaking the established
+      pattern on the very last beat reads as an intentional, designed ending rather
+      than a clip that got cut off.
+    remotion_recipe: >
+      Reuse the same <PhoneCard> component used throughout, but on the last
+      segment interpolate its own scale/position directly to fill-frame (scale to
+      ~1.8x, translate to center) instead of running it through the shared
+      conveyor-offset function — i.e. the last card opts out of the grid layout
+      function and animates independently.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 21
+  median_shot_f: 3
+  fastest_f: 3
+  slowest_f: 36
+  pattern: >
+    49f hero intro (title → headline → browser scroll, 3 real cuts) → 36f single-card
+    autoscroll (HIDE) → 24f burst (6 sub-cuts, RAIZE + Soapy Faith flash in) → 28f
+    settle-with-bounce (4-card row, 8f static hold mid-shot) → 15f burst (5 sub-cuts,
+    Puffy + SEE flash in) → 25f continuous accelerating slide (not a settle — plateaus
+    briefly then keeps moving) → 9f burst (3 sub-cuts, Tericci/TATBROW/time—line) →
+    5f final isolate-and-scale ending on one hero card. Contrast alternation is
+    constant: every settle/burst pairs a dark-header card (HIDE, Puffy, Tericci —
+    black) against a light one (Hello Dreamer, duyu, SEE, time—line — white/cream),
+    never two visually-similar cards adjacent.
+  beat_grid_f: 3
+  energy_curve: wave
+
+transferable:
+  - Put every showcased item inside one identical container shape (same aspect ratio, same corner radius, same on-screen slot) so cuts between unrelated content read as a match cut for free.
+  - Alternate a still "settle" (spring to rest, 4-up grid readable, ~1s) with a fast "burst" (fixed-step hard cuts every 3f, ~0.5-1s) rather than picking one constant montage speed.
+  - Model the whole cut sequence as a data array of {type, dur_f, items} segments feeding one layout function, not as individually hand-placed cuts — this is what makes 21 cuts buildable and re-orderable.
+  - Auto-scroll the full length of a single screenshot inside its frame instead of cutting to show "more of it" — one continuous scroll (autoScrollReveal) reads as one shot even when a huge amount of content passes by.
+  - Break your own established pattern exactly once, on the last beat, to signal an intentional ending (here: the only card that isolates and scales instead of settling into a row).
+  - Never let two adjacent cards/settles share a light/dark reading — force a contrast flip (dark-header ↔ light-header) at every boundary to keep a same-format montage from going visually flat.
+
+avoid:
+  - Don't hand-position and hand-keyframe 21 individual cuts in a timeline editor; drive the whole montage from one ordered array of card assets + segment types (settle/burst) through a single Remotion sequence-generator component — adding/removing/reordering a client project becomes a one-line data change.
+  - Don't rotoscope or manually paint the wine-glass pour illustration in shot 2; if it needs to be original (not a stock asset), build it as an SVG path with a clip-path liquid-fill mask animated via interpolate(), not frame-by-frame paint.
+  - Don't animate the internal email auto-scroll (shots 3-4) by hand-adjusting a scroll position per keyframe; it's a single translateY = interpolate(frame, [0, dur_f], [0, -distance_px], {easing}) call against a tall static screenshot/DOM capture.
+  - Don't try to recreate the burst zones as literally 3-frame video cuts if retiming is likely; model them as the step function described in "settle-burst-settle-pacing" so changing step_f from 3 to 5 retimes the whole burst without touching individual cuts.
+
+new_moves:
+  - name: conveyorSlide
+    params: {step_px: 340, step_f: 3, cards_visible: 4, settle_ease: backOut, overshoot_pct: 4}
+    description: >
+      A horizontal row of uniform cards (see MOVE_VOCAB's slidePush/marquee, but for
+      N discrete items rather than 2 or an infinite loop). Offset is driven by a
+      segment-typed function: during a "burst" segment it steps in fixed increments
+      every step_f frames with a hard cut between steps (no easing within a step);
+      during a "settle" segment it springs to a target offset with overshoot and
+      then holds. cards_visible controls how many card-widths are on screen at once.
+
+  - name: autoScrollReveal
+    params: {distance_px: 1400, ease: linear|expoInOut}
+    description: >
+      Continuous translateY of a screenshot/DOM capture taller than its viewport,
+      simulating a hands-free scroll through the full page inside a single
+      uncut shot. Distinguishes from a cut-driven "reveal more content" approach —
+      the whole page is shown as one take.

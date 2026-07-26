@@ -1,0 +1,296 @@
+id: B_logo-aim
+source: "unknown (meta.json has no source URL/handle; in-video watermark on every frame reads '@byshubh', consistent with x.com/byshubh_ per MOVE_VOCAB.md's own example source, but no specific post URL is present in the extracted materials)"
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 15
+  duration_s: 6.067
+  orientation: horizontal
+  notes: >
+    Source is natively 15fps (91 frames total). Every at_f/dur_f in this spec
+    is in the SOURCE's native 15fps timeline, matching profile.md/motion.csv
+    exactly. If rebuilding at a standard 30fps composition, double every
+    at_f/dur_f below (e.g. dur_f=18 here = 1.20s = 36f at 30fps).
+
+verdict: >
+  One continuous 62-frame shot turns the brand's own iconography into its own
+  reveal mechanism: an arrow flies in and snaps a target/crosshair mark into
+  place, holds dead-still, then the mark's own rings physically fragment and
+  reform into the wordmark's letterforms before a single-frame, motion-free
+  color-cut plants the icon's accent hue as a full-bleed end card. The only
+  genuinely hard step is the ring-to-letterform path morph; everything else
+  (pop-in, directional blur trail, instant bg recolor) is flat SVG/CSS, no
+  WebGL required.
+
+detection_notes: >
+  profile.md's "2 cuts detected @ delta > 26.0" resolves to exactly ONE real
+  hard cut, between frame 61 and frame 62. motion.csv shows a single massive
+  spike (motion=77.95) at frame 61 with luma dropping from 253.41 (f61) to
+  175.47 (f62) and staying at ~174.6 through the rest of the video -- this is
+  the background flipping from off-white (#F0F0F0) to teal-green (#78A8A8) in
+  one frame. The contact sheet confirms visual discontinuity exactly there:
+  row5/cell1 (f61, "00:00:04.067") is still on white bg, row5/cell2 (f63,
+  "00:00:04.200") is already on solid green bg with the identical wordmark in
+  the identical position. No other false-positive cuts exist inside the first
+  62 frames -- despite containing an arrow entrance, a pop-in assembly, a full
+  static hold, and a ring-to-wordmark morph, the sheet shows unbroken visual
+  continuity across every intermediate cell (rows 1-4), so this is authored
+  as ONE shot with multiple sequenced moves, not merged from false cuts.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#183018"
+  accent: "#78A8A8"
+  support: ["#90A8A8", "#C0C0C0", "#D8D8D8", "#78C0A8"]
+  notes: >
+    Two-scene palette built from measured screen-share %: off-white
+    (#F0F0F0, 64.5% of sampled pixels) carries the entire build/hold/morph
+    sequence (shot 1, f0-61). The teal accent (#78A8A8, 32.1%) lives only
+    inside the icon's rings/arrow during shot 1, then INVERTS ROLE at the
+    f61->62 cut to become the full-bleed background of the end card (shot 2)
+    -- same hex, promoted from "accent on white" to "the whole screen". Ink
+    (#183018, ~0.5% of pixels, a near-black deep green rather than pure
+    black) is reserved exclusively for the wordmark glyph and never touches
+    the icon. The remaining support greys (#90A8A8/#C0C0C0/#D8D8D8, <1% each)
+    are transient anti-aliasing / motion-blur-streak tones visible only
+    during the arrow's entrance (f0-8) and the ring's fragmentation (f36-43).
+
+typography:
+  family_look: serif display (bold slab serif)
+  weights: [bold]
+  case: mixed
+  tracking: normal
+  headline_frame_share: 0.23
+  notes: >
+    The ONLY text-like element in the whole video is a 3-glyph slab-serif
+    wordmark that the logo mark itself morphs into between f43-58: a steep
+    (~70 deg) diagonal stroke with flared slab-serif terminals, followed by
+    two thick vertical bars with slab-serif feet and caps (visible fully
+    formed in keys/01_f75.png). Exact letters are not confidently legible --
+    reads ambiguously as stylized initials/a monogram (possibly "Z" + "II")
+    -- transcribed here by shape, not asserted as literal characters. No
+    other copy, tagline, or text appears anywhere else in the video. The
+    "@byshubh" text visible in every sheet cell is a video-creator watermark,
+    not in-video copy.
+
+structure:
+  - act: hook
+    t: [0.00, 1.20]
+    purpose: grab attention with a fast projectile entrance that snaps into the brand's target/crosshair icon on impact.
+    shots: [1]
+  - act: reveal
+    t: [1.20, 2.40]
+    purpose: hold the fully assembled target mark completely still so the eye registers the finished logo before anything else happens.
+    shots: [1]
+  - act: capability
+    t: [2.40, 4.13]
+    purpose: prove the mark and the wordmark are the same object by physically fragmenting the rings/arrow and reforming the pieces into the wordmark's letterforms.
+    shots: [1]
+  - act: cta
+    t: [4.13, 6.067]
+    purpose: land on the icon's own accent color as a full-bleed end card, wordmark held motionless to close.
+    shots: [2]
+
+shots:
+  - n: 1
+    t: [0.00, 4.067]
+    frames: [0, 61]
+    layout: centre-stack
+    content: >
+      Off-white (#F0F0F0) flat background. f0-8: a small arrow/dart icon
+      (pale teal-green #78C0A8 shaft, darker slate-green head/fletching)
+      travels on a diagonal path toward screen centre, trailing heavy
+      horizontal motion-blur streak lines (light grey) behind it -- classic
+      "thrown at high velocity" cue. f9-17: a concentric target/crosshair
+      mark pops into existence at the landing point with a springy overshoot
+      -- from centre out: a filled teal (#78A8A8) dot, a thin white gap, a
+      teal ring, another white gap, and an outer thin dark ring (~#183018-ish
+      dark tone) broken into 4 quadrant arcs by short crosshair-tick
+      extensions at N/E/S/W that poke past the ring's edge (a scope-reticle
+      look). The arrow completes its flight during this same window and
+      comes to rest embedded diagonally through the mark's centre, tip
+      (arrowhead) poking past the outer ring at upper-right, fletching at
+      lower-left, by ~f18. f18-35: the assembled mark (rings + embedded
+      arrow) holds completely motionless (motion.csv reads 0.0 for
+      frames 22-25, confirmed by keys/00_f27.png sitting mid-hold). f36-43:
+      the rings/crosshair fracture into separate arcs and the arrow
+      shrinks/desaturates -- by f43 only two curved fragments and a
+      diagonal stroke remain, floating apart. f43-58: the fragments
+      straighten, reposition, and thicken into the strokes of a bold
+      slab-serif wordmark (a diagonal stroke + two vertical bars) -- legible
+      as "/ ‖" by f53, fully bolded/solid black by f58. f58-61: the finished
+      wordmark holds on the white background for a final ~4 frames before
+      the cut.
+    moves:
+      - move: flightArcIn
+        target: arrow_icon
+        at_f: 0
+        params: {dur_f: 18, path: "diagonal, off-frame toward centre landing point", ease: expoOut, final_rotation_deg: 45, motion_blur: "3 ghost echoes at opacity 0.3/0.2/0.1, 2f apart, trailing along velocity vector, fading out as speed approaches 0 by f18"}
+      - move: popIn
+        target: target_mark_group (crosshair ring + teal ring + centre dot)
+        at_f: 9
+        params: {scale: [0, 1.08, 1], dur_f: 9, ease: springSnap, spring: {damping: 14, mass: 0.5, stiffness: 180}}
+      - move: morphShape
+        target: "target_mark_group + arrow_icon -> wordmark_glyphs"
+        at_f: 36
+        params: {dur_f: 22, fragment_phase_f: [36, 43], reform_phase_f: [43, 58], ease: expoInOut, per_fragment_stagger_f: 2, technique: "SVG path interpolation between matched ring/crosshair fragment paths and wordmark stroke paths"}
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [motionTrail]
+    audio_cue: impact
+    transition_out:
+      move: hardCut
+      params: {dur_f: 1, bg_recolor: "#F0F0F0 -> #78A8A8", note: "the wordmark glyph itself does not move at all across the cut (motion.csv decays to 0 by f66 with only anti-aliasing edge settle) -- reads as a matchCut on a still element, only the background layer swaps"}
+    hold_f: 4
+
+  - n: 2
+    t: [4.133, 6.067]
+    frames: [62, 90]
+    layout: centre-stack
+    content: >
+      Solid full-bleed teal-green background (#78A8A8, luma ~174.6). The
+      finished bold slab-serif wordmark (identical position/scale to the
+      final frame of shot 1) sits centred, rendered in near-black deep-green
+      ink (#183018), confirmed in keys/01_f75.png. Completely static from
+      f62 to end of video (f90) -- motion.csv reads exactly 0.0 for every
+      frame from f67 through f89, i.e. this is the true end card / lockup
+      hold, not an idling loop.
+    moves: []
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {note: "end of video, no further transition"}}
+    hold_f: 29
+
+techniques:
+  - id: target-mark-pop-assembly
+    what: >
+      The concentric target/crosshair icon (outer dark ring broken into 4
+      quadrant arcs by short crosshair ticks, a teal ring, a white gap, and a
+      filled teal centre dot) appears as a single grouped shape scaling
+      0 -> 1.08 -> 1 with a spring overshoot, frames 9-18, timed to land
+      right as the incoming arrow arrives.
+    where: shot 1, frames 9-18
+    why_it_reads: >
+      The overshoot bounce reads as a physical "snap into place" impact.
+      Because its peak (f11-12, motion.csv 7.3/7.25) coincides with the
+      arrow's deceleration, the pop-in and the arrow's landing feel like one
+      causal event (dart hits target, target materializes) rather than two
+      unrelated animations layered on top of each other.
+    remotion_recipe: >
+      Build the target as one SVG <g>: concentric <circle> strokes (use
+      stroke-dasharray/stroke-dashoffset segments to create the 4-gap
+      crosshair ring), a filled <circle> centre dot, and 4 short <line>
+      crosshair ticks extending past the outer ring. Animate the <g>'s
+      transform: scale via a Remotion spring({damping:14, mass:0.5,
+      stiffness:180}) from 0 to 1 (spring naturally overshoots to ~1.08
+      before settling), starting at frame 9.
+    difficulty: trivial
+
+  - id: arrow-flight-with-directional-blur
+    what: >
+      An arrow/dart icon translates and rotates along a diagonal path from
+      off-frame into the target's centre over 18 frames, trailing a
+      directional motion-blur streak, decelerating sharply (expoOut) into
+      its final embedded angle (~45 deg) through the mark.
+    where: shot 1, frames 0-18
+    why_it_reads: >
+      Heavy blur at apparent high velocity followed by a sudden crisp stop
+      sells weight and speed cheaply, without ever rendering real motion
+      blur.
+    remotion_recipe: >
+      interpolate() the arrow group's x/y/rotate from an off-screen start
+      point to the embedded end coordinates/angle using Easing.out(Easing.exp)
+      (expoOut). Render 3-4 duplicate copies of the arrow <g>, each offset
+      backward along the velocity vector by t-2f/t-4f/t-6f, at opacities
+      0.3/0.2/0.1 (the motionTrail treatment), and multiply each echo's
+      opacity by the current normalized velocity so the trail vanishes as
+      the arrow decelerates to 0 by f18.
+    difficulty: moderate
+
+  - id: mark-to-wordmark-morph
+    what: >
+      After the static hold, the assembled rings + crosshair + arrow
+      fracture into 4 separate arcs and a diagonal stroke (f36-43), which
+      then translate, straighten, and thicken into the strokes of a bold
+      slab-serif wordmark glyph (f43-58), reaching full weight by f58.
+    where: shot 1, frames 36-58
+    why_it_reads: >
+      The same material (color, stroke weight, teal palette) carries
+      through the morph, so the wordmark feels literally "made of" the
+      icon's own geometry rather than a hard cut between two separately
+      animated logo states -- establishes mark and wordmark as one
+      continuous object.
+    remotion_recipe: >
+      Author two matched SVG path sets with corresponding fragment/point
+      counts: ring-quadrant-1 -> the diagonal stroke, ring-quadrant-2 ->
+      vertical bar 1, ring-quadrant-3 -> vertical bar 2, centre
+      dot/crosshair remnants -> serif terminal details. Use a path
+      interpolation library (flubber's interpolate(), or GSAP
+      MorphSVGPlugin) to tween each fragment's `d` attribute across frames
+      36-58, eased with cubic-bezier(0.87,0,0.13,1) (expoInOut) so motion
+      front-loads then settles. Stagger each fragment's morph start by 2-3f
+      so pieces don't move in lockstep.
+    difficulty: hard
+
+  - id: instant-bg-recolor-match-cut
+    what: >
+      At the shot boundary (f61->62) the background flips instantly from
+      off-white (#F0F0F0) to the brand teal-green (#78A8A8) in a single
+      frame, while the now-static wordmark glyph does not move at all
+      across the cut.
+    where: shot 1 -> shot 2 boundary, frames 61-62
+    why_it_reads: >
+      Because the foreground element is perfectly still and pixel-identical
+      across the cut, the eye reads it as a "color reveal", not a scene
+      change -- a zero-render-cost way to introduce the brand color as a
+      full-bleed finale.
+    remotion_recipe: >
+      Two Remotion <Sequence>s sharing the identical wordmark
+      component/coordinates: Sequence A background #F0F0F0 ends at frame 61;
+      Sequence B background #78A8A8 starts at frame 62. No crossfade, no
+      interpolation on the wordmark itself -- only the <AbsoluteFill>
+      background color differs between the two sequences.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 46
+  fastest_f: 29
+  slowest_f: 62
+  pattern: >
+    one continuous 62f hero-lockup shot (18f arrow-flight -> 9f target
+    pop-assembly, overlapping and settling by f18 -> 18f static hold ->
+    22f disassemble-then-morph into wordmark -> 4f hold) hard-cuts via a
+    single-frame, motionless background recolor into a 29f fully static
+    end-card hold.
+  energy_curve: wave
+
+transferable:
+  - Reuse the exact same accent color across the icon's rings, the arrow, and the final full-bleed background -- the palette never grows a new step, it just changes which layer wears the color.
+  - Morph the logo mark's own geometry into the wordmark's letterforms (matched-path SVG interpolation) instead of cutting between two separately-animated logo states, so mark and wordmark read as one object.
+  - Land an incoming element exactly as the target icon pops in (spring overshoot), sharing one timing peak so two effects (arrival + assembly) read as one causal impact.
+  - Hold a finished mark in genuinely zero motion for ~18 frames before touching it again -- let the eye register the assembled logo rather than continuously animating it.
+  - Cut on a completely still, pixel-identical foreground element while only the background color changes -- reads as a reveal, not a scene change, and costs nothing extra to render.
+  - Keep the full lockup (assembly -> hold -> morph -> wordmark) inside one continuous shot rather than spreading it across multiple cuts, avoiding any need to re-establish position/scale.
+
+avoid:
+  - The ring-to-letterform path morph (f36-58) looks hand-keyframed shape-by-shape in After Effects -- instead author both path sets with matching anchor/point counts and drive the tween procedurally with flubber/GSAP MorphSVGPlugin, which stays parametric and re-timeable.
+  - The arrow's directional motion blur is not a real motion-blur render pass -- fake it with 3 opacity-fading ghost-copy duplicates offset along the velocity vector (the motionTrail treatment); much cheaper and trivially retimeable.
+  - Don't eyeball the target mark's overshoot percentage by hand -- drive it with a spring (damping:14, mass:0.5, stiffness:180) so the small pop-in bounce is physically consistent and easy to retune.
+  - This reference is natively 15fps; if reimplementing at 30fps, double every at_f/dur_f in this spec rather than reusing the raw numbers verbatim, or timing will read at half speed.
+
+new_moves:
+  - name: flightArcIn
+    params: {dur_f: 18, path: "diagonal, off-frame to on-screen landing point", ease: expoOut, motion_blur: "directional ghost trail, 3 echoes at opacity 0.3/0.2/0.1, 2f apart, fading with velocity"}
+    description: >
+      An object (icon/glyph) translates and rotates along a diagonal
+      trajectory from off-frame into a landing position inside the comp, at
+      high apparent velocity that decelerates sharply (expoOut) as it
+      arrives, paired with a directional motion-blur ghost trail (per the
+      motionTrail treatment) that fades out as velocity approaches zero.
+      Used for "thrown/shot" objects (arrows, darts, projectiles) entering
+      and landing inside a logo mark.

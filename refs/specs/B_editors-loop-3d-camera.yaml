@@ -1,0 +1,464 @@
+id: B_editors-loop-3d-camera
+source: "local asset — B_editors-loop-3d-camera.mp4 (no source URL on record)"
+category: brand-loop
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 13.5
+  orientation: horizontal
+
+verdict: >
+  One unbroken camera take that never cuts — it pushes through a UI mockup, a
+  data-bar floor, a re-skinned portal tunnel, an iris, and a folded landscape,
+  ending on a dot that visually rhymes with its own opening frame so the loop
+  is invisible. Steal the "one continuous dolly, many re-skins" structure, not
+  any single shot.
+
+palette:
+  bg: "#000000"
+  ink: "#000018"
+  accent: "#6048F0"
+  support: ["#F0D8D8", "#6000D8", "#181848", "#000030"]
+  notes: >
+    Two near-black/near-navy values (46% combined screen share) hold the void
+    behind every scene so the saturated magenta/gold/cyan gradient objects
+    (bars, portal frames, iris, ribbon) read as glowing "material" against
+    dark. Violet/indigo (#6048F0, #6000D8) is the connective tissue color
+    present in almost every shot. No light-theme inversion anywhere in the
+    piece.
+
+typography:
+  family_look: geometric sans (implied only, via rounded-rect proportions)
+  weights: [regular]
+  case: n/a
+  tracking: normal
+  headline_frame_share: 0.0
+  notes: >
+    No legible on-screen copy anywhere across all 324 frames. Every "text"
+    element (search-bar label, sidebar chips, list rows, the "code" panel) is
+    a solid rounded-rect gradient bar standing in for lorem-ipsum content —
+    confirmed by close reading of every sheet cell and all 40 keyframes. This
+    is a pure camera/motion reference, not a typography reference; mine it
+    for camera language and shape-morph technique only, not type treatment.
+
+structure:
+  - act: hook
+    t: [0.00, 1.08]
+    purpose: Ignite a single point of light in a void to seed attention before any content exists.
+    shots: [1]
+  - act: reveal
+    t: [1.08, 4.21]
+    purpose: Build a believable SaaS UI mockup from nothing, chip by chip, establishing "this is a product."
+    shots: [2]
+  - act: capability
+    t: [4.21, 8.88]
+    purpose: Dive through the UI into an abstract 3D space and fly through a re-skinned portal tunnel — the "engine" showcase.
+    shots: [3, 4]
+  - act: proof
+    t: [8.88, 9.75]
+    purpose: Resolve the abstraction into a single symbolic form (an eye/iris) — a brand-mark beat.
+    shots: [5]
+  - act: cta
+    t: [9.75, 13.50]
+    purpose: Land on a folded landscape, pay it off with a shatter, and seed a dot that loops back to frame 0.
+    shots: [6]
+
+shots:
+  - n: 1
+    t: [0.00, 1.08]
+    frames: [0, 26]
+    layout: centre-stack
+    content: >
+      Deep indigo-black radial void. Faint white crosshair guide lines
+      (horizontal + vertical) fade in through frame center. A 4-point
+      lens-flare spark ignites exactly at center by f14; a small cobalt-blue
+      cursor-arrow prop slides in from lower-left to sit beside it by f26.
+    moves:
+      - move: popIn
+        target: centerSpark
+        at_f: 14
+        params: {scale: [0, 1.15, 1], dur_f: 12, ease: springSnap}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 200, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [filmGrain, bloomGlow]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 2
+    t: [1.08, 4.21]
+    frames: [26, 101]
+    layout: centre-stack
+    content: >
+      Cursor draws a pill-shaped search-bar chip into existence left-of-center
+      (f29-45): a rounded rect scales up with a magnifying-glass glyph inside,
+      wrapped the entire time in a dashed selection-marquee with 8 resize
+      handles — reads as "a tool is actively placing this." The rest of an
+      app-window chrome assembles around it in discrete pops: 3 traffic-light
+      dots + top nav bar (~f49), two dark content tiles (~f57), a teal
+      video-thumbnail tile top-right (~f61-69), 3 stacked color-pill chips in
+      a right sidebar (~f65-69), then a full-width dark "content" panel and 3
+      gradient list-rows below it (~f73-88). By f96 it reads as a complete
+      SaaS dashboard card. No legible text anywhere — every label is a solid
+      gradient bar.
+    moves:
+      - move: uiKitAssemble
+        target: dashboardMockup
+        at_f: 3
+        params: {elements: 7, per_element_stagger_f: 8, element_dur_f: 14, ease: backOut, marquee_handles: true}
+      - move: scaleIn
+        target: searchBarChip
+        at_f: 3
+        params: {scale: [0.8, 1], dur_f: 14, ease: backOut}
+      - move: popIn
+        target: sidebarChips
+        at_f: 39
+        params: {scale: [0, 1.08, 1], dur_f: 11, stagger_f: 4, ease: springSnap}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft, filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 3
+    t: [4.21, 6.04]
+    frames: [101, 145]
+    layout: full-bleed-ui
+    content: >
+      Camera pushes hard into the dashboard's dark content panel; the flat
+      panel dissolves into a field of glowing rounded-rect bars in
+      magenta/blue/gold gradients, laid out like a code-diff or equalizer
+      (f100-118, still front-on). Camera keeps translating forward and
+      rotates its pitch downward from 0° to roughly 78° by f139-145, revealing
+      the bars as extruded 3D blocks on a dark perspective-grid floor,
+      receding to a single vanishing point dead-center — reads as "flying
+      over a neon data city." The next portal is already visible, small, at
+      that vanishing point by f139.
+    moves:
+      - move: dollyToUI
+        target: dashboardMockup
+        at_f: 0
+        params: {scale: [1, 3.2], dur_f: 18, ease: expoInOut, focus_point: "content-panel-center"}
+      - move: floorFlyover
+        target: barGridFloor
+        at_f: 18
+        params: {rotateX: [0, 78], perspective_px: 900, translateZ_per_f: 14, dur_f: 26, ease: expoInOut}
+    camera: {move: floorFlyover, params: {rotateX: [0, 78], perspective_px: 900, ease: expoInOut, dur_f: 44}}
+    bg: {kind: 3d-set, moves: [parallaxLayers]}
+    treatment: [filmGrain, chromaticEdge]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 4
+    t: [6.04, 8.88]
+    frames: [145, 213]
+    layout: 3d-set
+    content: >
+      Camera flies straight into and through the portal waiting at the
+      horizon: 4 nested square "picture frames" recede toward a vanishing
+      black doorway, each edge beveled with a gradient (cream→magenta→cyan);
+      glossy 3D icon props (a video-call window, a bar-chart tile, small
+      spheres, a star sliver) drift past mid-flight. On reaching the
+      innermost square, the ENTIRE portal instantly re-skins with a new
+      gradient pass — purple/black (~f151) → cyan/magenta (~f177) → warm
+      pink/teal (~f198-213) — same geometry, new palette each of 3 passes.
+    moves:
+      - move: portalDive
+        target: nestedSquarePortal
+        at_f: 0
+        params: {passes: 3, frames_per_pass: 22, squares_per_pass: 4, scale_growth_per_square: 1.6, ease: expoIn, palette_swap: "hard cut per pass"}
+    camera: {move: pushIn, params: {scale: [1, 4.5], ease: expoIn, dur_f: 68}}
+    bg: {kind: 3d-set, moves: [parallaxLayers, gradientDrift]}
+    treatment: [chromaticEdge, bloomGlow, filmGrain]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 5
+    t: [8.88, 9.75]
+    frames: [213, 234]
+    layout: centre-stack
+    content: >
+      The innermost portal square collapses toward camera and cross-morphs
+      into concentric rings (cream/magenta/blue), which resolve into a giant
+      stylized eye: an almond blue iris with a small white pupil-sphere
+      center-frame and a thin cyan tick orbiting the outer ring like a
+      loading indicator. The blue triangular cursor prop re-enters
+      bottom-right.
+    moves:
+      - move: shapeMorphCollapse
+        target: portalToEye
+        at_f: 0
+        params: {stages: ["nestedSquares", "concentricRings", "eyeIris"], dur_f: 20, ease: expoInOut}
+    camera: {move: pullOut, params: {scale: [1.15, 1]}}
+    bg: {kind: flat, moves: [gradientDrift]}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 6
+    t: [9.75, 13.50]
+    frames: [234, 323]
+    layout: centre-stack
+    content: >
+      The eye's lower half unfurls into a large diagonal folded plane (like a
+      paper fold or dune) sweeping in from lower-right, its gradient cycling
+      warm-cool across the fold (blue→magenta ~f244, magenta→gold ~f277-305).
+      The iris/rings persist fixed in the upper-left corner, now reading as a
+      "sun." The blue-outline triangle cursor drifts slowly across the fold's
+      face. At ~f293 a small glossy sphere appears mid-fold and explodes into
+      a burst of white triangular shards (f293-313), which contract back into
+      a single tiny magenta sphere alone on black by f321-323 — a visual
+      rhyme with shot 1's center-spark, seeding a seamless loop back to
+      frame 0.
+    moves:
+      - move: shapeMorphCollapse
+        target: eyeToRibbon
+        at_f: 0
+        params: {stages: ["eyeIris", "foldedPlane"], dur_f: 18, ease: expoInOut}
+      - move: gradientDrift
+        target: foldedPlane
+        at_f: 18
+        params: {hue_rotate: "±40deg", period_f: 70}
+      - move: crystalShatterLoop
+        target: seedSphere
+        at_f: 59
+        params: {shard_count: 24, burst_dur_f: 12, contract_dur_f: 8, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.1], ease: linear}}
+    bg: {kind: flat, moves: [gradientDrift]}
+    treatment: [bloomGlow, filmGrain, chromaticEdge]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+detection_notes: >
+  Automated cut detection reported 40 cuts across 324 frames (24fps); the
+  sheets and all 40 keys/*.png keyframes show this is in fact ONE unbroken
+  camera take from f0 to f323 with zero true hard cuts — the detector is
+  triggered by hard palette re-skins and chip pop-ins inside a continuously
+  moving camera, not scene changes. Merges made, with original profile shot
+  numbers and frames: profile shots 2-7 (frames 59-101, six 3-24f "hot"
+  micro-cuts) are UI-chip pop-ins on a static hold, folded into spec shot 2.
+  Profile shot 8 (102-137) plus the start of shots 9-11 (138-146) are one
+  continuous dolly-and-tilt from flat panel to floor-flyover, folded into
+  spec shot 3. Profile shots 9-28 (frames 138-217, eighteen 3-16f "hot"
+  micro-cuts) are 3 hard palette re-skins of ONE reused nested-square portal
+  geometry plus per-frame luma spikes from glossy floating props, folded into
+  spec shot 4. Profile shots 29-31 (218-234) are a single shape-morph
+  collapse (portal→rings→eye), folded into spec shot 5. Profile shots 32-40
+  (235-323, nine 3-24f micro-cuts including the two overshoot/bounce
+  detections at 252-275 and the shatter burst at 293-320) are one continuous
+  ribbon-fold pan with a hue cycle and a shatter payoff, folded into spec
+  shot 6. Net: 40 raw cuts → 6 macro-beats inside 1 unbroken take.
+
+techniques:
+  - id: floor-flyover-camera
+    what: >
+      A continuous rotateX pitch-down dolly over a tiled grid of extruded
+      rounded-rect bars, producing an "aerial flight over a data landscape"
+      look from flat 2D layers plus CSS 3D — no real terrain geometry.
+    where: shot 3
+    why_it_reads: >
+      True parallax reads because near bars are wider, brighter, and cross
+      the frame faster than far bars — a byproduct of real perspective +
+      translateZ, not a 2D scale cheat.
+    remotion_recipe: >
+      Build barGridFloor as `<div style="perspective:900px">` wrapping a
+      `<div style="transform-style:preserve-3d">` grid of ~14 columns of
+      absolutely-positioned rounded-rect bars, each column pre-placed at a
+      fixed translateZ (0, -200, -400 ... -2600px) so they recede away from
+      camera at rest. Animate the whole group's translateZ with
+      `interpolate(frame, [0,44], [0,-3200])` so the floor appears to fly
+      under the camera. Animate the group's rotateX from 0 to 78deg over the
+      first 26 frames with `interpolate` + a custom cubic-bezier matching
+      expoInOut (0.87,0,0.13,1). Randomize bar hues per column from a fixed
+      gradient array; fade bar opacity toward 0 past a `farClipOpacity`
+      distance threshold to fake depth fog.
+    difficulty: moderate
+
+  - id: portal-triptych-dive
+    what: >
+      A forward dolly through one reused nested-square "picture frame"
+      tunnel asset, re-skinned with a new gradient on each pass so 3
+      visually distinct tunnels are built from a single geometry.
+    where: shot 4
+    why_it_reads: >
+      The geometry never changes but the palette hard-cuts on each pass
+      boundary, so the eye reads "arriving somewhere new" even though the
+      camera move itself never pauses or resets.
+    remotion_recipe: >
+      Author one nested-square portal component: 4 `<div>`s each scaled up
+      1.6x and offset in translateZ (0, -150, -300, -450px) inside a
+      `perspective:1000px` parent, borders using a `linear-gradient`
+      border-image. Animate the group's translateZ with
+      `interpolate(frame,[0,66],[0,4200])` (expoIn) so squares fly past
+      camera and the next set scales in from the vanishing point. Every 22
+      frames, compute `paletteIndex = Math.floor(frame/22)` and use it to key
+      CSS custom properties (`--portal-a`, `--portal-b`) via `useMemo` — a
+      hard swap, not an interpolation, which produces the re-skin cut feel.
+      Floating icon props (video tile, chart tile, spheres) are separate
+      absolutely-positioned children with their own small translateZ drift +
+      rotate for extra depth cueing.
+    difficulty: moderate
+
+  - id: ui-kit-genesis-build
+    what: >
+      A dashboard mockup assembling itself piece by piece as if a design
+      tool is placing components, complete with a fake selection marquee
+      (dashed box + resize handles) around whichever element is "active."
+    where: shot 2
+    why_it_reads: >
+      The marquee handles are the trick: they tell the eye "a tool just
+      placed this," turning a plain staggered fade-in into a believable
+      "product being built" narrative without any real screen recording.
+    remotion_recipe: >
+      Define a `components` array (searchBar, navBar, contentTileA,
+      contentTileB, videoTile, chip1-3, listRows), each with
+      `{x, y, w, h, inFrame}`. Mount each with
+      `<Sequence from={inFrame}>` and animate
+      `scale: spring({frame: frame-inFrame, fps, config:{damping:12,
+      stiffness:180}})` from 0.8 to 1 for a backOut feel. For whichever
+      component is "currently building," render a sibling
+      absolutely-positioned dashed-border div with 8 small circular handles
+      at its corners/edges; its opacity is 1 only while
+      `frame - inFrame < 20`, then interpolates to 0 — handing attention off
+      to the next component in reading order.
+    difficulty: trivial
+
+  - id: shape-morph-collapse-chain
+    what: >
+      A chain of 2D shape morphs — nested squares → concentric rings → eye
+      iris → folded ribbon plane — that reads as one continuous liquid
+      transformation without ever being true 3D geometry.
+    where: shots 5-6
+    why_it_reads: >
+      Each stage shares the same circular/radial silhouette and color
+      positions, so the eye tracks continuity of color and roundness across
+      totally different shapes — a match-cut done as a path morph instead
+      of a hard cut.
+    remotion_recipe: >
+      Author each stage as an SVG `<path>` normalized to the SAME point
+      count (hand-author equal-length paths, or generate with a shape
+      interpolation library such as `flubber`). Interpolate `d` between
+      stage paths with `flubber.interpolate(pathA, pathB)` driven by
+      `interpolate(frame, [startF, startF+20], [0,1], {easing:
+      Easing.bezier(0.87,0,0.13,1)})`. Cross-fade the fill gradient's
+      `stop-color` values in lockstep with the same progress value so color
+      and shape settle together at the same moment.
+    difficulty: hard
+
+  - id: shatter-to-seed-loop
+    what: >
+      A glossy sphere bursts into triangular shards and re-contracts to a
+      single dot pixel-similar to the video's opening frame, creating a
+      seamless loop point.
+    where: shot 6 end / shot 1 start
+    why_it_reads: >
+      Because the last visible object (a small colored dot on black)
+      resembles frame 0's ignition spark, the shot6→shot1 cut reads as
+      continuous motion rather than a hard restart — a loop seam disguised
+      as a payoff beat.
+    remotion_recipe: >
+      Render 24 small SVG `<polygon>` shards absolutely positioned at the
+      sphere's center. From `burstFrame` to `burstFrame+12`, animate each
+      shard's `translate(x,y)` outward to a per-shard random radius/angle
+      with `spring` (damping 14, mass 0.5, stiffness 180 — springSnap) and
+      opacity 1→0.3; from `burstFrame+12` to `+20`, interpolate back to
+      `translate(0,0) scale(0)`. Render only a single small circle on the
+      final frame, sized/colored to match `centerSpark` from shot 1 frame 0,
+      then hardCut back to shot 1 — wrap the whole composition so
+      `durationInFrames` loops back to frame 0 for true seamless playback.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 56
+  fastest_f: 21
+  slowest_f: 86
+  pattern: >
+    Single unbroken 323f continuous camera take (13.5s @ 24fps) structured as
+    6 macro-beats: 26f UI genesis → 75f UI-kit assembly → 44f dive-and-floor-
+    flyover → 68f 3-pass portal dive → 21f portal-to-eye collapse → 86f
+    ribbon-fold/shatter loop-seed. No hard camera cuts anywhere; the 40
+    raw-detected "cuts" are luma-delta spikes from chip pop-ins and palette
+    re-skins riding on top of continuous camera motion.
+  beat_grid_f: none — continuous take, no regular cut interval
+  energy_curve: rising
+
+transferable:
+  - One never-cutting camera move can carry an entire 13.5s piece if you vary
+    WHAT it's moving through every 20-90f, not the cut rate.
+  - Re-skin one geometry with a hard palette swap instead of building new
+    geometry per "scene" — cheaper to build and reads as more scenes than it is.
+  - A fake selection-marquee (dashed box + handles) around an appearing UI
+    element sells "this was just built" far more than a plain fade/scale-in.
+  - Normalize path point-counts up front so any 2D shape can morph into any
+    other shape via flubber/path interpolation — plan this before drawing final art.
+  - End on a frame that visually rhymes with frame 0 (same size/color dot) to
+    make a loop invisible instead of announcing "the video restarts."
+  - Vary camera velocity profile per beat (ease-in build vs ease-out settle
+    per profile.md) even inside one continuous take — it's what gives 6
+    distinct beats their own character without a single hard cut.
+
+avoid:
+  - The exact portal-frame 3D asset and its floating icon props are almost
+    certainly hand-modeled/rigged in a 3D tool (Blender/C4D) and rendered
+    frame-by-frame — do not attempt to hand-key that geometry in code.
+    Code-native substitute — build the nested-square portal as flat CSS/SVG
+    layers with perspective + translateZ (see portal-triptych-dive above);
+    it reads as equivalent depth at a fraction of the effort.
+  - The precise organic gradient "blob" shapes (star-splat, cloud-puff props
+    drifting through the portal) look like hand-drawn AE shape-layer keyframes
+    with manual bezier tweaks. Code-native substitute — generate similar blobs
+    procedurally with an SVG noise-displaced circle (turbulence filter or a
+    seeded random-point closed spline) rather than hand-tracing each one.
+  - The exact hue-cycling gradient on the ribbon-fold (shot 6) looks like a
+    hand-animated gradient-map/AE adjustment layer scrubbed by eye. Code-native
+    substitute — drive `hue-rotate()` or gradient stop colors with a single
+    `interpolate(frame, [...], [...])` sine function (see gradientDrift) so
+    the cycle is parametrized, not manually keyframed.
+
+new_moves:
+  - name: uiKitAssemble
+    params: {elements: int, per_element_stagger_f: int, element_dur_f: int, ease: string, marquee_handles: bool}
+    description: >
+      A UI mockup (or similar composite object) assembles itself from N
+      named sub-elements, each scaling in on its own stagger offset. When
+      marquee_handles is true, a dashed selection-box with corner/edge
+      handles appears around whichever element is currently animating in,
+      then fades once the next element starts — signals "actively being built."
+  - name: floorFlyover
+    params: {rotateX: [number, number], perspective_px: number, translateZ_per_f: number, dur_f: int, ease: string}
+    description: >
+      Camera/scene-group rotates its X-axis pitch from front-on (0deg) toward
+      near-floor-level (70-90deg) while continuously translating forward
+      (translateZ) over a tiled ground-plane of repeating elements, producing
+      an "aerial flyover" read from flat layers plus CSS/WebGL 3D — no true
+      terrain mesh required.
+  - name: portalDive
+    params: {passes: int, frames_per_pass: int, squares_per_pass: int, scale_growth_per_square: number, ease: string, palette_swap: string}
+    description: >
+      Continuous forward dolly through a repeating nested-frame tunnel
+      geometry (e.g. concentric squares/rings) built once and reused for N
+      passes; on each pass boundary the geometry's palette hard-swaps
+      (no cross-fade) so each pass reads as a distinct "chapter" despite the
+      camera move never stopping.
+  - name: shapeMorphCollapse
+    params: {stages: [string], dur_f: int, ease: string}
+    description: >
+      A 2D shape (SVG path or CSS clip-path) interpolates through an ordered
+      list of named stages with matched point-counts, so the eye reads it as
+      one continuous liquid transformation between conceptually different
+      forms (e.g. tunnel frame → ring → eye → folded plane) rather than a cut.
+  - name: crystalShatterLoop
+    params: {shard_count: int, burst_dur_f: int, contract_dur_f: int, ease: string}
+    description: >
+      A small sphere/object explodes outward into N triangular shard
+      fragments (burst), then the shards contract back inward into a single
+      point matching the size/color of an earlier "seed" element elsewhere
+      in the piece — used specifically to disguise a loop point as a payoff beat.

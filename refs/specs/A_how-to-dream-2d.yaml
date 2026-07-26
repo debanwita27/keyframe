@@ -1,0 +1,253 @@
+id: A_how-to-dream-2d
+source: https://x.com/byshubh_/status/1957524930888937580
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 7.875
+  orientation: horizontal
+
+detection_notes: >
+  Source is natively 24fps (189 frames), not the pipeline's default-assumed 30fps —
+  every frame number below is a native 24fps index matching profile.md / the burned
+  timecodes on the sheets. Multiply by 1.25 to retarget a 30fps Remotion timeline.
+  Profile detected exactly 2 hard cuts (frame 0 and frame 77); cross-checked against
+  both sheets and keys/00_f34.png + keys/01_f127.png — correct, no over-fire. Shot 2
+  (frames 77-188) is NOT a static UI screen; it is one continuous take built entirely
+  from shape-morphs (icon → alarm-orb → background → card → dice-pip loader) with no
+  internal cuts, confirmed by motion.csv showing smooth continuous curves (no delta
+  spikes) between frames 89, 105, 121 and 157 where the morphs occur.
+
+verdict: >
+  Sells an AI product moment entirely through shape continuity: the same send button
+  that gets clicked becomes the loading state by literally morphing into it (icon →
+  orb → background → result card), so the viewer never loses the thread of "what did
+  I just click." The dice-pip loader is a genuinely novel, brandable wait-state.
+
+palette:
+  bg: "#000000"
+  ink: "#D8D8D8"
+  accent: "#D8A890"
+  support: ["#181830", "#303030"]
+  notes: >
+    Shot 1 lives entirely in near-black/navy (#000000, #181818, #000018, #181830) with
+    a single warm dusty-peach glow (#D8A890) as the only accent, sourced from the
+    spotlight beam behind the caret. At the cut (f77) the palette inverts: the button's
+    blue→orange gradient morph literally becomes the bg of shot 2, and by f125 the
+    frame is light-dominant (#D8D8D8 card on an orange/blue blurred orb) — the accent
+    color of shot 1 becomes the dominant hue of shot 2, which is the mechanism that
+    sells the "click caused this" continuity.
+
+typography:
+  family_look: geometric sans
+  weights: [regular, medium]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.5
+  notes: >
+    Single line, typed live inside a pill-shaped input bar ("how to dream big?", no
+    question mark visible until late — actually resolves to "how to dream big?").
+    No other on-screen copy; the rest of the piece is iconographic (arrow glyph,
+    alarm-clock silhouette, dice pips).
+
+structure:
+  - act: hook
+    t: [0.0, 3.21]
+    purpose: establish the AI input bar and type the query live, character by character, so the viewer reads the prompt themselves rather than being told it.
+    shots: [1]
+  - act: reveal
+    t: [3.21, 7.875]
+    purpose: user sends the prompt; the send icon morphs continuously through an alarm/orb shape into a result card with a dice-pip loader that settles and holds — dramatizing "thinking" without ever cutting away.
+    shots: [2]
+
+shots:
+  - n: 1
+    t: [0.00, 3.21]
+    frames: [0, 76]
+    layout: centre-stack
+    content: >
+      Dark navy/near-black frame. A pill-shaped input bar materializes centre-mid via
+      a left-to-right light-beam sweep (f0-20), "+" icon pops in on the left. The
+      caret then types "how to dream big?" character by character (f2-45) with a warm
+      glow trailing the last-typed character and faint sparkle particles near the
+      caret (f6-20). Once text completes, an up-arrow send icon pops in on the right
+      (f45), followed by a small image/attachment icon next to it (f53). Holds static
+      to the cut.
+    moves:
+      - move: maskWipeSide
+        target: inputBarContainer
+        at_f: 0
+        params: {dur_f: 20, dir: l→r, ease: expoInOut}
+      - move: popIn
+        target: plusIcon
+        at_f: 0
+        params: {dur_f: 11, ease: springSnap}
+      - move: sparkleDust
+        target: caretArea
+        at_f: 6
+        params: {dur_f: 14, count: 8}
+      - move: typeOn
+        target: promptText
+        at_f: 2
+        params: {chars_per_f: 0.42, caret: true, caret_blink_f: 15, text: "how to dream big?"}
+      - move: caretGlowTrail
+        target: caret
+        at_f: 2
+        params: {dur_f: 43, trail_len_px: 60, fade_f: 10}
+      - move: popIn
+        target: sendArrowIcon
+        at_f: 45
+        params: {dur_f: 11, ease: springSnap}
+      - move: popIn
+        target: attachmentImageIcon
+        at_f: 53
+        params: {dur_f: 9, ease: springSnap}
+    camera: {move: driftCamera, params: {amp: 1%, period_f: 180, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [vignette, dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 1
+
+  - n: 2
+    t: [3.21, 7.875]
+    frames: [77, 188]
+    layout: centre-stack
+    content: >
+      Large rounded-square send icon (blue gradient, white up-arrow) centred; a
+      cursor arrives and the icon's gradient morphs blue→orange on click (f77-89).
+      The icon then morphs shape: square→circle, two alarm-clock "ear" bumps appear
+      then dissolve, the arrow glyph fades out (f89-105). The circle expands
+      dramatically (scale ~1→9) until its blurred orange/blue gradient becomes the
+      full-bleed background (f105-121). A white/cream rounded-square card scales and
+      rotates in from a 14° tilt to upright (f109-125) with a thin circle ("die"
+      outline) and dice pips inside. The pip count regenerates/rearranges
+      continuously — not a clean linear counter — cycling roughly 2→3→4→5→4→6 dots
+      (f125-157) before settling into a fixed 3+3 six-pip grid (classic dice-six
+      layout) which holds static for the last ~31 frames (157-188), matching the
+      profile's held stretch at 169-188.
+    moves:
+      - move: morphShape
+        target: sendIconBg
+        at_f: 0
+        params: {dur_f: 12, from: "blue-gradient rounded-square", to: "orange-gradient rounded-square", technique: "cross-fade gradient stops"}
+      - move: morphShape
+        target: sendIconShape
+        at_f: 12
+        params: {dur_f: 16, path: "rounded-square → circle-with-two-ear-bumps → plain circle", ease: expoInOut}
+      - move: dissolveBlur
+        target: arrowGlyph
+        at_f: 20
+        params: {dur_f: 9, blur: [0, 14], opacity: [1, 0]}
+      - move: expandToBackdrop
+        target: sendIconShape
+        at_f: 28
+        params: {dur_f: 16, scale: [1, 9], ease: expoInOut, crossfade_in: cardLayer}
+      - move: scaleIn
+        target: resultCard
+        at_f: 32
+        params: {scale: [0.8, 1], rotate: [14, 0], opacity: [0, 1], dur_f: 16, ease: backOut}
+      - move: pipLoader
+        target: dieDots
+        at_f: 32
+        params: {dur_f: 79, count_sequence: [2, 3, 4, 5, 4, 6], settle_at_f: 68, hold_f: 31, ease: springSoft}
+    camera: {move: driftCamera, params: {amp: 2%, period_f: 180, axes: xy}}
+    bg: {kind: gradient-drift, moves: [gradientDrift, driftCamera]}
+    treatment: [bloomGlow, dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 20
+
+techniques:
+  - id: click-becomes-loader-morph
+    what: >
+      The exact icon the user clicks (send button) is the same object that becomes
+      the loading state: rounded-square → circle → alarm-orb → full-bleed background
+      → card, all as one continuous shape morph with no cut, no new asset popping in.
+    where: shot 2, frames 77-125
+    why_it_reads: >
+      Continuity of a single deforming shape is what convinces the eye that "this
+      loading state is a consequence of that click," which is the exact causal read
+      a product demo needs and a hard-cut to a new screen would destroy.
+    remotion_recipe: >
+      One absolutely-positioned <div>/<svg> for the icon. Drive border-radius,
+      background (conic/radial gradient interpolated via chroma.js or interpolateColors),
+      width/height and transform:scale off a single `frame` value with 3-4
+      interpolate() breakpoints (input ranges [0,12],[12,28],[28,44]). At the scale
+      breakpoint (~f28, scale crossing ~2.5), cross-fade in the next scene's layer
+      with opacity interpolate so the morphing shape visually "becomes" the backdrop
+      before the card fades on top. No AE shape-layer keyframes needed — all pure
+      interpolate() chains.
+    difficulty: moderate
+
+  - id: dice-pip-loader
+    what: >
+      A "thinking/loading" indicator styled as a die face: dots inside a thin circle
+      that regenerate in count and position rather than counting up cleanly, before
+      settling into the standard 6-pip (3+3) dice arrangement and holding.
+    where: shot 2, frames 125-188
+    why_it_reads: >
+      Borrowing a physical, universally-legible object (a die) for an abstract
+      "system is generating options for you" beat gives an AI loading state a shape
+      vocabulary nobody else uses — more memorable than a spinner or progress bar.
+    remotion_recipe: >
+      Precompute the 6 standard dice-pip coordinate layouts (1 through 6, as
+      normalized x/y pairs) as a lookup object. Pick a short sequence of layout keys
+      (e.g. [2,3,4,5,4,6]) and cross-dissolve/spring between them: render the union
+      of dot positions across the two adjacent layouts, animate each dot's cx/cy and
+      opacity with a spring (springSoft) keyed to which layout is "active" at that
+      frame (computed via interpolate on a step index derived from frame/dur_f).
+      Freeze on the final [6] layout for the hold.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 2
+  median_shot_f: 94.5
+  fastest_f: 77
+  slowest_f: 112
+  pattern: >
+    77f typing establish (no internal cuts) → hardCut → 112f uncut morph chain
+    (click → icon morph → orb expand → card scaleIn → pip loader → 31f hold). This
+    is a 2-shot piece; all the "editing" rhythm lives inside continuous morphs, not
+    cuts.
+  beat_grid_f: null
+  energy_curve: rising
+
+transferable:
+  - Make the clicked control literally become the next screen via shape morph (interpolate border-radius/scale/color on one element) instead of cutting to a new composed frame.
+  - Trail a soft glow behind a typing caret (small radial gradient div, opacity fading over ~10f) to make live-typed text feel synthesized rather than pasted.
+  - Use a physical, recognizable object (dice pips) as a loading motif instead of a generic spinner — instantly more brandable, costs the same interpolate() effort.
+  - Let a "loader" wobble through several near-final states before settling — a loader that lands immediately reads as fake; 3-4 intermediate states read as real computation.
+  - Invert the palette across a hard cut (dark→light) at the exact moment causality is established (the click) so the color change reinforces "something happened."
+
+avoid:
+  - Don't hand-keyframe the icon→orb→card morph in After Effects shape layers; it is fully reproducible with 3-4 chained interpolate() calls on one element's scale/border-radius/background, which also makes it trivially retimeable.
+  - Don't build the dice-pip loader as a hand-animated AE sprite sequence; precompute the 6 pip layouts as data and spring-interpolate between them — this also makes "N pips" reusable for any counter/rating UI elsewhere in the library.
+  - Don't rotoscope the sparkle particles frame-by-frame; use a tiny keyframed opacity+position loop on 6-8 divs seeded with Math.random(seed) so it's deterministic and cheap.
+
+new_moves:
+  - name: caretGlowTrail
+    params: {dur_f: 43, trail_len_px: 60, fade_f: 10}
+    description: >
+      A soft radial-gradient glow that sits behind/around the last-typed character
+      in a live-typing animation, fading out ~10f after the caret moves past. Reads
+      as "the text is being written by something," not pasted in. Pairs with typeOn.
+
+  - name: expandToBackdrop
+    params: {scale: "[1, N]", ease: expoInOut, crossfade_in: targetLayer}
+    description: >
+      A foreground icon/shape scales up dramatically (N≈8-10x) until it fills the
+      frame and its material (color/blur) becomes indistinguishable from the new
+      scene's background, at which point the next scene's layer cross-fades in on
+      top. A zero-cut way to transition from "UI element" to "new environment."
+
+  - name: pipLoader
+    params: {count_sequence: [2, 3, 4, 5, 4, 6], settle_at_f: 68, hold_f: 31, ease: springSoft}
+    description: >
+      A loading indicator built from dice-pip layouts (1-6 standard arrangements).
+      Steps through a short sequence of pip counts/positions with spring motion
+      between each, then settles on a final layout and holds. Generalizes to any
+      "system is thinking" beat that wants a countable, physical motif instead of a
+      spinner.

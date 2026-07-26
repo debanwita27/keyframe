@@ -1,0 +1,679 @@
+id: A_explainer-zhylar-crm-cpq
+source: local-reference (A_explainer-zhylar-crm-cpq.mp4)
+category: saas-explainer
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 30
+  duration_s: 19.966
+  orientation: horizontal
+
+verdict: >
+  A stock-illustration SaaS explainer that hides its budget behind three cheap,
+  code-native tricks: a 3-column word-cycle slot machine that lands on the value
+  prop, a suffix-growing headline ("Simplify Pro" -> "Simplify Processes") with a
+  drawn underline, and toast notifications with a green glow that sell "it worked."
+  Everything else is Storyset-style vector illustration panning/scaling, which is
+  cheap to buy but expensive to hand-animate — don't rebuild the character rigs.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#180048"
+  accent: "#7860C8"
+  support: ["#F0D8F0", "#D8D8F0", "#A890D8", "#C0A8F0", "#300060"]
+  notes: >
+    Light-dominant lavender/white UI chrome (F0F0F0, F0D8F0, D8D8F0) against deep
+    plum ink (#180048) for headlines and dark navy-purple (#300060) for the
+    cold-open card background. Accent purple (~#7860C8, interpolated — not in the
+    top-7 swatch list but visible on every button/header/circle) is rationed to
+    interactive elements: dashboard header bar, CTA buttons, wordmark circle, icon
+    chips. Success states break the palette entirely with a saturated green toast
+    (#3ECF6E-ish) — the only non-purple hue in the whole video, used exactly twice.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.35
+  notes: >
+    Headlines are short sentence-case fragments (2-6 words), never full sentences,
+    assembled progressively rather than typed. UI mockup text is a smaller
+    geometric sans at ~11-14px equivalent. The wordmark "Zhylar" is a rounded serif
+    (distinct from body sans) always paired with a tracked-out uppercase tagline
+    "ACE DIGITALLY" underneath at ~40% the wordmark's size.
+
+structure:
+  - act: hook
+    t: [0.00, 2.73]
+    purpose: Name the target persona and assemble the brand mark from feature icons.
+    shots: [1]
+  - act: capability
+    t: [2.73, 7.07]
+    purpose: Tour the dashboard UI, then land the core value-prop sentence via a word-cycle reveal.
+    shots: [2, 3, 4]
+  - act: capability
+    t: [7.07, 12.47]
+    purpose: Walk the CPQ flow end to end — quote built and sent, email sent.
+    shots: [5, 6, 7, 8, 9]
+  - act: proof
+    t: [12.47, 15.83]
+    purpose: Show who it's for (SMEs, managers, sales people) closing real deals.
+    shots: [10, 11, 12, 13]
+  - act: capability
+    t: [15.83, 18.20]
+    purpose: Build the tagline word-by-suffix, then show the reporting payoff (quotes archive, analytics, risk flags caught).
+    shots: [14]
+  - act: cta
+    t: [18.20, 19.97]
+    purpose: Logo lockup over a growing skyline — "you'll grow" as a literal building animation.
+    shots: [15]
+
+shots:
+  - n: 1
+    t: [0.00, 2.73]
+    frames: [0, 81]
+    layout: centre-stack
+    content: >
+      Cold open on dark navy card: "Catering to the personas of CEOs, managers,"
+      types onto a white UI card (f0-35). Cuts to feature icons (chart, folder,
+      envelope, shield-check, doc, search, megaphone, database) flying in from
+      off-frame to hover in a loose ring around the wordmark (f35-77). Icons
+      contract into a tight circular orbit, then the ring fills solid purple and
+      the "Zhylar" wordmark sits centred in a full purple disc (f82). A 4-frame
+      white flash (f78-81, merged — see detection_notes) punches the transition
+      from open ring to solid disc.
+    moves:
+      - move: typeOn
+        target: "\"Catering to the personas of CEOs, managers,\" card"
+        at_f: 2
+        params: {chars_per_f: 1.6, caret: false}
+      - move: staggerRise
+        target: 8 feature icons
+        at_f: 20
+        params: {y: [24, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: orbitRing
+        target: icon ring around wordmark
+        at_f: 30
+        params: {rotate: [0, 45], period_f: 90, children_counter_rotate: true}
+      - move: scaleIn
+        target: purple disc behind wordmark
+        at_f: 60
+        params: {scale: [0.4, 1], opacity: [0, 1], dur_f: 18, ease: backOut}
+      - move: flashCut
+        target: full frame
+        at_f: 78
+        params: {color: white, dur_f: 4}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: flat, moves: [gradientDrift]}
+    treatment: [filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: flashCut, params: {dur_f: 4}}
+    hold_f: 4
+
+  - n: 2
+    t: [2.73, 4.27]
+    frames: [82, 128]
+    layout: full-bleed-ui
+    content: >
+      "Zhylar" wordmark + "ACE DIGITALLY" tagline settle in the purple disc, then
+      hand-drawn line-art doodle strokes sketch in behind it (f92-107, faint
+      lilac lines suggesting a face/glasses shape). Hard cut to the actual product:
+      dashboard header bar "Zhylar ... User" (f112), left nav collapses in,
+      "Dashboard" label, then Lead / Deals metric cards pop in with counters
+      (Lead 4, Deals 8, Level 4) and a donut + bar chart. A 4-frame flash (f125-128,
+      merged — see detection_notes) punches into shot 3.
+    moves:
+      - move: drawOn
+        target: line-art doodle behind wordmark
+        at_f: 8
+        params: {strokeDashoffset: [1, 0], dur_f: 24, ease: expoInOut}
+      - move: maskWipeSide
+        target: dashboard chrome (header, left nav)
+        at_f: 26
+        params: {dur_f: 18, dir: "l→r", ease: expoInOut}
+      - move: staggerRise
+        target: [Lead card, Deals card]
+        at_f: 34
+        params: {y: [28, 0], opacity: [0, 1], blur: [8, 0], stagger_f: 4, ease: springSoft}
+      - move: counterUp
+        target: metric numbers (4, 8, 4)
+        at_f: 38
+        params: {dur_f: 16, ease: expoOut, monospace_digits: true}
+      - move: flashCut
+        target: full frame
+        at_f: 43
+        params: {color: white, dur_f: 4}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: tick
+    transition_out: {move: flashCut, params: {dur_f: 4}}
+    hold_f: 4
+
+  - n: 3
+    t: [4.30, 5.80]
+    frames: [129, 174]
+    layout: centre-stack
+    content: >
+      Full-bleed 3D scene: 8 dark ellipse "beads" orbit on a ring in shallow
+      perspective (camera looking down a receding floor plane, f129-141). Ring
+      rotates and flattens to face-on as the words "Keeps all your critical data"
+      build up inside it, word group by word group (f142-167): "Keeps all" ->
+      "Keeps all your critical" -> "Keeps all your critical data". Ring holds
+      face-on with full text for ~7f before the next cut.
+    moves:
+      - move: orbit3D
+        target: ellipse ring
+        at_f: 0
+        params: {rotateY: [-12, 0], perspective: 1200px, dur_f: 40}
+      - move: maskWipeUp
+        target: "\"Keeps all your critical data\" (per word-group)"
+        at_f: 13
+        params: {dur_f: 16, per_line_stagger_f: 4, ease: expoOut}
+    camera: {move: dollyToUI, params: {scale: [1.15, 1], ease: expoInOut, dur_f: 36}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 7
+
+  - n: 4
+    t: [5.83, 7.07]
+    frames: [175, 212]
+    layout: centre-stack
+    content: >
+      Ring/text collapse to a small dark icon, then reform into a stack of purple
+      "pages" that grows taller like a book being built ("In one place", f152-172
+      per profile / f157-172 here — book-stack grows plank by plank). Hard cut to
+      black, then a white card reads "Without" alone. Cut to a 3-column
+      slot-machine word cycler: three text panels independently cycle candidate
+      words at high speed and land in sequence — col 1 settles on "bank" (having
+      shown "breaking"), col 2 settles on "revolutionary" (having shown blank,
+      "With", "our"), col 3 settles on "Simplify Processes" (having shown
+      "Simplify Proce", "Simplify Process"). Final held sentence across the three
+      panels: "bank / revolutionary / Simplify Processes."
+    moves:
+      - move: slideStackIn
+        target: purple page-stack
+        at_f: 0
+        params: {y: [40, 0], stagger_f: 3, z_offset: 8px}
+      - move: wordCycleSettle
+        target: 3-column word cycler
+        at_f: 12
+        params: {cycle_words_per_col: 3, swap_every_f: 5, settle_stagger_f: 5, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 5
+    t: [7.10, 8.20]
+    frames: [213, 245]
+    layout: split
+    content: >
+      6-frame flash (f213-218, merged — see detection_notes): "revolutionary"
+      label fades, a "Save" checkmark and loading-spinner circle punch in as a
+      transition beat. Cuts to an Invoice UI card entering in raked 3D
+      perspective (f217, tilted like a clipboard being laid down), rotating flat
+      to face-on over ~20f while its fields (Company, Contact, Sales Person,
+      dates, line-item table) populate top to bottom.
+    moves:
+      - move: popIn
+        target: checkmark / spinner icon
+        at_f: 0
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: orbit3D
+        target: Invoice card
+        at_f: 6
+        params: {rotateY: [22, 0], rotateX: [8, 0], perspective: 1000px, dur_f: 20}
+      - move: staggerRise
+        target: invoice form fields (row by row)
+        at_f: 14
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+    camera: {move: rackFocus, params: {dur_f: 18}}
+    bg: {kind: gradient-drift}
+    treatment: [dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 5
+
+  - n: 6
+    t: [8.20, 9.07]
+    frames: [246, 271]
+    layout: centre-stack
+    content: >
+      Invoice card shrinks/fades out. A pill toast reads "Quote Sent Successfully!"
+      in white text on saturated green, with a soft glow halo, popping in centre
+      frame and holding (static stretch f259-268 per profile) before fading.
+    moves:
+      - move: scaleOut
+        target: Invoice card
+        at_f: 0
+        params: {scale: [1, 0.94], opacity: [1, 0], dur_f: 9, ease: expoIn}
+      - move: popIn
+        target: "\"Quote Sent Successfully!\" toast"
+        at_f: 6
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: dissolveBlur
+        target: toast
+        at_f: 22
+        params: {blur: [0, 14], opacity: [1, 0], dur_f: 12}
+    camera: {move: pushIn, params: {scale: [1, 1.02], ease: expoInOut}}
+    bg: {kind: gradient-drift}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 9
+
+  - n: 7
+    t: [9.07, 10.23]
+    frames: [272, 306]
+    layout: split
+    content: >
+      Three Email compose windows enter stacked in raked 3D perspective (like the
+      invoice beat), flattening one by one until the centre "Email" card sits
+      face-on. A "Send" button fades in at the bottom of the card.
+    moves:
+      - move: orbit3D
+        target: 3 email cards
+        at_f: 0
+        params: {rotateY: [18, 0], perspective: 1000px, dur_f: 24, per_layer_stagger_f: 4}
+      - move: scaleIn
+        target: "Send button"
+        at_f: 26
+        params: {scale: [0.86, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+    camera: {move: pullOut, params: {scale: [1.06, 1]}}
+    bg: {kind: gradient-drift}
+    treatment: [dropShadowSoft]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 8
+    t: [10.23, 10.80]
+    frames: [307, 323]
+    layout: centre-stack
+    content: >
+      Macro close-up on the "Send" button alone: two concentric ripple rings
+      expand outward from the button on cursor click/press (f312-317), button
+      does a small press-scale, cursor icon visible bottom-right of the button.
+    moves:
+      - move: popIn
+        target: ripple rings (x2)
+        at_f: 0
+        params: {scale: [1, 1.6], opacity: [0.5, 0], dur_f: 11, ease: springSnap}
+      - move: scaleIn
+        target: Send button (press)
+        at_f: 2
+        params: {scale: [1, 0.94, 1], dur_f: 8, ease: springSnap}
+    camera: {move: dollyToUI, params: {scale: [1, 2.2], ease: expoInOut, dur_f: 16}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 9
+    t: [10.80, 12.47]
+    frames: [324, 373]
+    layout: split
+    content: >
+      Zooms back out to the 3-card Email stack; a green "Email Sent!" toast with
+      a checkmark pops in above the centre card and holds for ~20f while slowly
+      shrinking/fading as the camera pulls back further, bridging toward the next
+      illustration.
+    moves:
+      - move: popIn
+        target: "\"Email Sent!\" toast"
+        at_f: 0
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: dissolveBlur
+        target: toast
+        at_f: 30
+        params: {blur: [0, 10], opacity: [1, 0], dur_f: 14}
+    camera: {move: pullOut, params: {scale: [1.15, 1]}}
+    bg: {kind: gradient-drift}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+  - n: 10
+    t: [12.47, 13.33]
+    frames: [374, 399]
+    layout: centre-stack
+    content: >
+      Cut to flat-illustration storefront: location pin + two dollar coins drop
+      in above a shop building, shop assembles (awning, "OPEN" sign, door,
+      coin stack) bottom-up, "Built for SMEs," headline settles beneath. Scene
+      holds static once assembled.
+    moves:
+      - move: staggerRise
+        target: [location pin, shop awning, shop body, OPEN sign, coin stacks]
+        at_f: 0
+        params: {y: [30, 0], opacity: [0, 1], stagger_f: 4, ease: springSoft}
+      - move: maskWipeUp
+        target: "\"Built for SMEs,\" headline"
+        at_f: 16
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 11
+    t: [13.33, 14.00]
+    frames: [400, 419]
+    layout: centre-stack
+    content: >
+      Cut to a framed monitor/portrait illustration of a man in a purple suit,
+      pointing, inside a glowing concentric-ring frame on dark bg. A pill chip
+      label "Managers" slides in over his shoulder.
+    moves:
+      - move: scaleIn
+        target: portrait frame
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: staggerRise
+        target: "\"Managers\" chip"
+        at_f: 12
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 0, ease: springSoft}
+    camera: {move: pushIn, params: {scale: [1, 1.05], ease: expoInOut}}
+    bg: {kind: gradient-drift}
+    treatment: [vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 12
+    t: [14.00, 14.73]
+    frames: [420, 441]
+    layout: centre-stack
+    content: >
+      Same framed-portrait composition now shows two full-body illustrated people
+      shaking hands (briefcase, contract-with-pen icon above). A "Sales People"
+      chip label slides in.
+    moves:
+      - move: scaleIn
+        target: handshake illustration
+        at_f: 0
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: staggerRise
+        target: "\"Sales People\" chip"
+        at_f: 10
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 0, ease: springSoft}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: gradient-drift}
+    treatment: [vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 13
+    t: [14.73, 15.83]
+    frames: [442, 474]
+    layout: centre-stack
+    content: >
+      Handshake illustration reframes to full-bleed white bg (frame drops away);
+      chat bubbles, a checkmark, and a dollar-sign icon fade in flanking the pair
+      to sell "deal closed." Cuts to blank white card reading "Simplify Pro" —
+      the first frame of the next kinetic word-build.
+    moves:
+      - move: staggerRise
+        target: [chat bubble L, chat bubble R, checkmark, dollar icon]
+        at_f: 0
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: maskWipeUp
+        target: "\"Simplify Pro\""
+        at_f: 26
+        params: {dur_f: 16, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 14
+    t: [15.83, 18.20]
+    frames: [475, 545]
+    layout: centre-stack
+    content: >
+      "Simplify Pro" grows by suffix over 4 steps — "Simplify Pro" ->
+      "Simplify Proces" -> "Simplify Processe" -> "Simplify Processes" — each
+      step widening an underline/box beneath the text to match (f482-497). Cuts
+      to a fanned stack of 3 "Quotes" document cards (f502-517). Cuts to an
+      analytics wall: bar chart, donut chart, line chart on foam-board panels
+      with two illustrated people pointing/presenting (f522-537). Red warning
+      triangle icons pop in around the scene at the very end (f537-545) —
+      the "here's what you'd miss without us" beat.
+    moves:
+      - move: wordBuildReveal
+        target: "\"Simplify Pro\" -> \"Simplify Processes\""
+        at_f: 7
+        params: {steps: 4, dur_per_step_f: 5, ease: expoOut, underline_draw: true}
+      - move: slideStackIn
+        target: 3 Quotes document cards
+        at_f: 27
+        params: {y: [40, 0], stagger_f: 3, z_offset: 8px}
+      - move: staggerRise
+        target: [bar chart panel, donut chart panel, line chart panel]
+        at_f: 47
+        params: {y: [24, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: popIn
+        target: warning triangle icons (x2-3)
+        at_f: 62
+        params: {scale: [0, 1.1, 1], dur_f: 10, ease: springSnap, stagger_f: 3}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 15
+    t: [18.20, 19.97]
+    frames: [546, 597]
+    layout: centre-stack
+    content: >
+      Cut to "Zhylar / ACE DIGITALLY" logo lockup on flat lavender bg, held (f552-557).
+      Building silhouettes fly in askew/tilted (f562-567, deliberately
+      mis-rotated) then each snaps upright into a proper skyline with trees and
+      a wordmark reappearing above (f572-582). Final skyline + wordmark composition
+      holds static to the end of the video (f578-597, matches profile's final
+      static stretch).
+    moves:
+      - move: maskWipeUp
+        target: "\"Zhylar / ACE DIGITALLY\" lockup"
+        at_f: 0
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+      - move: staggerRise
+        target: 5 building silhouettes (mis-rotated entry)
+        at_f: 16
+        params: {y: [40, 0], rotate: [12, 0], opacity: [0, 1], stagger_f: 4, ease: springSoft}
+      - move: breathe
+        target: whole skyline composition
+        at_f: 32
+        params: {scale: [1, 1.015, 1], period_f: 120}
+    camera: {move: pushIn, params: {scale: [1, 1.03], ease: expoInOut}}
+    bg: {kind: flat}
+    treatment: [dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 20
+
+techniques:
+  - id: word-cycle-slot-settle
+    what: >
+      Three independent text columns, each cycling through 2-3 candidate words
+      at a fast fixed rate, staggered so column 1 settles first, then column 2,
+      then column 3 — like a slot machine landing left to right. The final held
+      frame reads as one deliberate sentence ("bank / revolutionary / Simplify
+      Processes") even though each word arrived by elimination, not by writing.
+    where: shot 4, frames 175-212
+    why_it_reads: >
+      The eye reads rapid word substitution as "the computer/system deciding,"
+      which sells "processes optimised for you" without needing a real
+      personalisation engine. It also disguises a plain 3-word headline as a
+      whole sequence of content.
+    remotion_recipe: >
+      Three absolutely-positioned <div> columns. Each column holds an array of
+      candidate strings, e.g. col1=["breaking","bank"], col2=["","With","our","revolutionary"],
+      col3=["Simplify Proce","Simplify Process","Simplify Processes"]. Drive each
+      column's visible index with Math.floor(frame / swapEveryF) clamped to
+      array.length-1, so it swaps every ~5 frames and locks on the last entry.
+      Stagger each column's start frame by settle_stagger_f (5f) so they don't
+      all land in the same frame. Crossfade each swap with opacity 0->1 over 2-3f
+      (interpolate) rather than a hard cut, to avoid strobing. No AE needed —
+      pure array-index-by-frame logic.
+    difficulty: trivial
+
+  - id: word-build-suffix-reveal
+    what: >
+      A headline grows by appending letters over 4 discrete steps ("Simplify
+      Pro" -> "...Proces" -> "...Processe" -> "...Processes"), with an
+      underline/box beneath that redraws its width to match the new text length
+      on every step.
+    where: shot 14, frames 475-497 (visually distinct from the word-cycle above — this
+      one only ever grows, never substitutes)
+    why_it_reads: >
+      Reads as the sentence "being completed live," giving weight to a single
+      short tagline by spending 22 frames on it instead of 6.
+    remotion_recipe: >
+      Define the full string once ("Simplify Processes") and a steps array of
+      substring lengths [12, 15, 17, 19] (i.e. "Simplify Pro".length, etc).
+      currentStep = Math.floor((frame - startF) / durPerStepF); render
+      fullString.slice(0, steps[currentStep]). Measure the rendered text width
+      each step (ref.offsetWidth or a canvas measureText precompute) and animate
+      the underline <div> width to that value with a spring/expoOut over the
+      same durPerStepF window so the line "catches up" to the new text.
+    difficulty: moderate
+
+  - id: toast-confirmation-pop
+    what: >
+      A pill-shaped toast ("Quote Sent Successfully!", "Email Sent!") pops in
+      with overshoot, sits on a saturated green fill (the only non-purple hue
+      in the whole video) with a soft outer glow, holds ~15-20f, then blur-fades out.
+    where: shots 6 and 9, frames 246-271 and 324-373
+    why_it_reads: >
+      Breaking the palette rule exactly for success states makes "it worked"
+      register instantly and only twice — scarcity keeps it meaningful.
+    remotion_recipe: >
+      <div> with border-radius:999px, background: saturated green, box-shadow:
+      0 0 24px rgba(green,0.5) for the glow (equivalent to bloomGlow treatment).
+      Enter with spring({damping:14, mass:0.5, stiffness:180}) driving scale
+      0->1.08->1 (springSnap / popIn). Hold via a flat frame range, then exit
+      with blur(0->14px) + opacity(1->0) over 12f (dissolveBlur) — filter:blur()
+      is GPU-cheap, no AE needed.
+    difficulty: trivial
+
+  - id: raked-3d-ui-card-flatten
+    what: >
+      A UI mockup (invoice form, email compose card) enters tilted in shallow 3D
+      perspective as if being laid flat on a table, then rotates to face-on over
+      ~20f while its internal fields stagger-fill.
+    where: shots 5 and 7, frames 213-245 and 272-306
+    why_it_reads: >
+      Gives a flat screenshot a sense of physical placement/arrival instead of
+      just fading in, and buys time to stagger-reveal form fields believably.
+    remotion_recipe: >
+      Wrap the UI card in a container with CSS perspective: 1000px. Animate the
+      card's transform: rotateY() and rotateX() from ~20deg/8deg down to 0 using
+      an expoInOut/expoOut interpolation over 20f (orbit3D). Keep transform-origin
+      at the card's bottom edge so it reads as "being set down." Stagger the
+      internal form rows/fields with a separate staggerRise (y 16->0, 3f stagger)
+      starting a few frames after the tilt begins.
+    difficulty: moderate
+
+rhythm:
+  cut_count: 19
+  median_shot_f: 33
+  fastest_f: 17
+  slowest_f: 71
+  pattern: >
+    78f cold-open hook -> two ~4f flash-punches (merged into neighbours) -> a
+    string of 17-50f UI/illustration beats depicting one continuous CPQ user
+    story (dashboard -> quote -> invoice -> email -> persona proof -> tagline
+    payoff) -> 52f logo/skyline outro hold. Energy is front- and back-loaded
+    (fastest cuts at the open and around the two toast pops); the middle two
+    thirds run at a steady "medium" energy with no shot under 17f once flashes
+    are excluded.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Steal the 3-column word-cycle slot machine (technique word-cycle-slot-settle)
+    for any single-line value-prop headline — it's 3 arrays and a frame-based
+    index, zero keyframing.
+  - Steal the suffix-growing headline with a redrawing underline (technique
+    word-build-suffix-reveal) whenever a tagline needs to feel "typed to
+    completion" rather than typed character by character.
+  - Reserve one saturated off-palette colour (here, green) exclusively for
+    success toasts so it reads as a distinct "system state," not a design choice.
+  - Use raked-3D-then-flatten (perspective + rotateY/X to 0) as the default
+    entrance for any UI-mockup card instead of a flat fade/scale-in.
+  - Every persona/proof beat swaps only three things — a chip label, the
+    illustration, and 1-2 flanking icons — reuse that 3-part template for any
+    "who this is for" sequence instead of designing bespoke scenes per persona.
+
+avoid:
+  - The Storyset-style illustrated characters (presenter portrait, handshake
+    pair, storefront, skyline) are pre-made vector assets, not something to
+    hand-animate a rig for. Buy/license static SVGs and only animate them with
+    generic transforms (staggerRise, scaleIn, breathe) — never attempt custom
+    limb/joint keyframing.
+  - The icon-orbit formation in shot 1 (icons flying to precise ring positions
+    with individual overshoot) looks hand-tweaked per icon in AE. Substitute
+    with polar-coordinate placement (x = r*cos(theta), y = r*sin(theta)) driven
+    by a single spring per icon, staggered — never hand-key each icon's arc.
+  - The building-skyline "mis-rotated then corrects" outro (shot 15) reads like
+    manually nudged rotation keyframes per building. Substitute — give each
+    building a random initial rotate/offset seeded by its index, and let one
+    shared spring() config resolve them all to 0 with a per-index delay —
+    consistent physics, no manual correction pass.
+  - The two 4-6f "flash" shots the cut-detector counted as their own shots
+    (frames 78-81, 125-128, 213-218) are not real content beats — don't budget
+    a full shot's worth of design/timing effort on a transition punch; they're
+    a flashCut treatment layer, not a scene.
+
+new_moves:
+  - name: wordCycleSettle
+    params: {cycle_words_per_col: 3, swap_every_f: 5, settle_stagger_f: 5, ease: expoOut}
+    description: >
+      For N independent text columns/slots, cycle each through its own array of
+      candidate strings at a fixed swap rate (swap_every_f), crossfading each
+      swap over 2-3f. Stagger each column's final settle frame by
+      settle_stagger_f so columns lock left-to-right (or in a defined order)
+      rather than all at once. Reads as a slot machine converging on a decided
+      sentence. Good for single-line value props assembled from independent
+      word slots (subject / adjective / value-prop-phrase).
+  - name: wordBuildReveal
+    params: {steps: 4, dur_per_step_f: 5, ease: expoOut, underline_draw: true}
+    description: >
+      A single string is revealed by progressively increasing the visible
+      substring length in N discrete steps (never per-character or all at
+      once). If underline_draw is true, an underline/box beneath the text
+      animates its width to match the new substring's measured width on each
+      step. Distinct from typeOn (which is continuous, per-character, with a
+      caret) and from letterCascade (which animates already-complete text) —
+      this move is for a short tagline that should feel "completed via a few
+      deliberate edits."
+
+detection_notes: >
+  The cut detector fired 3 extra "shots" that are really flash-transition
+  punches, not content: frames 78-81 (4f, between the icon-ring and the solid
+  purple disc in what's now shot 1), frames 125-128 (4f, between the populated
+  dashboard and the "Keeps all your critical data" ring, now folded into the
+  end of shot 2), and frames 213-218 (6f, the "Save"/checkmark spinner beat
+  between the word-cycle reveal and the invoice card, now folded into the
+  start of shot 5). All three are under the 11f minimum-shot-length rule in
+  MOVE_VOCAB.md and are better modelled as a flashCut transition_out on the
+  preceding shot than as their own entries. No shots were merged incorrectly
+  in the other direction — the remaining 16 profile-detected cuts all
+  correspond to a real, visually distinct content change on the sheets.

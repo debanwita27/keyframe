@@ -1,0 +1,246 @@
+# Keyframe
+
+**Launch videos generated in code — no After Effects, no motion designer.**
+
+The bet: a language model cannot *see* motion, but it can follow numeric law and
+read a still grid. So everything here converts motion into two things a model can
+actually work with — **numbers** (frame counts, easing names, measured velocity
+profiles) and **contact sheets** (frames as a timecoded grid).
+
+![preview](demo/preview.gif)
+
+▶ **[Watch the full 26s launch video](demo/product-os-launch.mp4)** — built entirely
+by this pipeline, music beat-locked, no manual keyframing anywhere.
+
+---
+
+## What this actually is
+
+Three things that only work together:
+
+1. **A vocabulary.** ~45 named moves with exact parameters (`maskWipeUp`:
+   `y 110%→0 over 16f, expoOut, per-line stagger 3f`). A model composing from
+   named moves with sane defaults produces good motion; a model writing raw
+   `interpolate()` calls produces 2015 PowerPoint.
+2. **A measurement tool.** `analyze.py` turns any video — including your own
+   render — into a shot table, three motion curves, and contact sheets. This is
+   how the model reviews its own work.
+3. **A reference library.** 25 machine-readable specs describing how a real
+   motion designer ([@byshubh_](https://x.com/byshubh_)) builds launch videos,
+   each with a `remotion_recipe` naming the mechanism to reproduce it.
+
+## Quickstart
+
+```bash
+git clone https://github.com/debanwita27/keyframe && cd keyframe
+cd video && npm install && cd ..
+
+python3 pipeline/make_sfx.py      # synthesise the SFX layer (no licensing risk)
+./pipeline/fetch_music.sh         # the CC BY track the film ships with
+
+cd video
+npx remotion studio                       # live preview
+npx remotion render src/index.ts ProductOSLaunch out/raw.mp4
+../pipeline/post.sh out/raw.mp4 out/final.mp4 clean
+```
+
+Optional — rebuild the reference corpus (not shipped, see [Licensing](#licensing)):
+
+```bash
+./pipeline/fetch_refs.sh --analyze
+```
+
+## Layout
+
+```
+keyframe/
+├── pipeline/
+│   ├── analyze.py          video → shot table, motion curves, contact sheets
+│   ├── analyze_audio.py    music → tempo, BEAT CONFIDENCE, sections, beat grid
+│   ├── set_music.py        swap in any track and re-lock the edit to its beats
+│   ├── make_sfx.py         synthesises whooshes/impacts/risers from numpy
+│   ├── MOVE_VOCAB.md       ~45 named moves with exact params
+│   ├── PRINCIPLES.md       the taste, written as numbers
+│   ├── SPEC_TEMPLATE.yaml  one schema for describing refs AND authoring new work
+│   ├── post.sh             grade + grain + bloom + two-pass loudnorm
+│   ├── fetch_refs.sh       rebuild the reference corpus locally
+│   └── fetch_music.sh      fetch + rank candidate tracks
+├── refs/specs/             25 motion specs — the reference library
+├── video/src/moves/        the move library (implements MOVE_VOCAB)
+├── video/src/lib/film.tsx  shot sequencing, beat grid, shot-timing audit
+└── video/src/compositions/product-os/   the Product OS launch film
+```
+
+## The loop that makes it work
+
+```bash
+# 1. author      cd video && npx remotion studio
+# 2. render      npx remotion render src/index.ts ProductOSLaunch out/raw.mp4
+# 3. grade       ../pipeline/post.sh out/raw.mp4 out/final.mp4 clean
+# 4. CRITIQUE    python3 pipeline/analyze.py video/out/final.mp4 --out out-analysis
+```
+
+**Step 4 is not optional.** On the first cut of this film it caught: 672 dead
+frames, a 3-second lifecycle rail with literally zero movement, type too small for
+the frame, dark cards invisible against a dark background, a synthetic cursor that
+never reached the button it was supposed to click, and ambient drift pushing a
+word off the right edge. None of it was visible from reading the code.
+
+Read `profile.md`, then **look at the contact sheets**. Composition problems that
+are invisible in motion are obvious in a still grid.
+
+## What `analyze.py` reports
+
+- **shot table** — cuts with frame durations, plus each shot's measured velocity
+  profile (`ease-out (fast in, settles) + overshoot/settle bounce`)
+- **three motion curves** — per-frame delta, 8-frame window delta, and loudest
+  8×8 tile. All three are needed: a per-frame mean calls a correct slow camera
+  drift "dead", and a whole-frame mean calls text typing into a small card
+  "dead". A stretch is flagged frozen only when all three are flat.
+- **frozen stretches** — a bug list, not an observation
+- palette with screen-share %, brightness curve, per-shot motion centroid
+
+Contact sheets: `fps=6`, 6×6, frame number and timecode burned into every cell.
+
+## Music
+
+`analyze_audio.py` is the audio counterpart — ffmpeg → mono → STFT → spectral
+flux onsets → autocorrelation for tempo → comb-filter phase search → per-bar
+energy → sections. Pure numpy, no librosa.
+
+Pick a track on **beat confidence** (0..1): how far the winning autocorrelation
+lag stands above its neighbours, combined with how consistently its harmonics
+also peak. A drum machine scores high, a rubato piano low.
+
+```
+track                     BPM  conf  beat_f  bar_f  sections
+dirt-rhodes              82.0  0.87   21.94   87.8         5
+digital-lemonade        120.2  0.81   14.98   59.9         9   <- chosen
+neon-laser-horizon       79.5  0.81   22.64   90.6         6
+machinations            139.7  0.78   12.89   51.5         6
+hackbeat                161.5  0.74   11.15   44.6        14
+deuces                   94.0  0.66   19.16   76.6         7
+```
+
+`dirt-rhodes` scored highest but is 82 BPM funk — wrong energy, and an 87.8f bar
+forces 3-second shots. `digital-lemonade` won on fit: **14.98f per beat**, which
+matches the 15f grid the edit was already cut on.
+
+The window (127.30s–153.27s of the source) was picked off the section table:
+3 quiet bars → the track's strongest passage → outro. So the damped intro and
+outro sit where the music is *already* quiet instead of fighting it.
+
+`beatgrid.ts` is generated from the track's **detected beat times**, not a nominal
+grid, so the edit cannot drift. Verify on the finished file rather than
+re-estimating tempo from a short excerpt (this one re-analyses as 79.5 BPM — a
+3:2 octave error):
+
+```
+onset strength at the 13 cuts        1.006
+onset strength at 400 random frames  0.518   → cuts land 1.94× stronger than chance
+```
+
+### Bring your own track
+
+The shot list is expressed in **beats, not frames** — so swapping music retimes
+the edit instead of breaking it. Subscription libraries (Envato Elements has a
+[launch-video category](https://elements.envato.com/audio/launch), Artlist,
+Musicbed) are better targeted than CC music and worth using for real work:
+
+```bash
+python3 pipeline/set_music.py ~/Downloads/that-envato-track.mp3
+cd video && npx remotion render src/index.ts ProductOSLaunch out/raw.mp4
+```
+
+It analyses the track, picks a downbeat that starts on a quiet section so the
+damped intro lands where the music is already quiet, regenerates `beatgrid.ts`
+from real beat times, and trims the window into `video/public/`. It warns if beat
+confidence is below 0.55 — some tracks simply don't have a pulse you can cut to.
+
+**Those files must not be committed.** Envato/Artlist/Musicbed licences permit use
+in an end product but forbid redistributing the source audio, and each project
+needs its own licence registration on their side. `audio/raw/` is gitignored; keep
+your own `video/public/*.mp3` out of commits too.
+
+### Mixing
+
+Layering happens in Remotion (`product-os/mix.tsx`), not ffmpeg — every hit needs
+a specific *frame*, and the mix stays versioned next to the edit. `HITS` is a flat
+data array so it can be read and retimed without touching JSX. SFX are
+**synthesised** by `make_sfx.py` (filtered noise sweeps, pitch-dropping sub
+thumps) — deterministic and licence-free.
+
+ffmpeg does the master. **Two-pass `loudnorm` with `linear=true`** — single-pass
+applies *dynamic* gain, which flattened this mix badly: it pulled the ducked open
+up by 14 dB and collapsed the loudness range to 3.8 LU, destroying the drop.
+Measuring first, then applying one constant gain, preserves the envelope:
+
+```
+                 mean      final master: -13.1 LUFS, LRA 9.8 LU
+open           -29.7 dB
+pre-drop duck  -26.5 dB
+DROP           -17.2 dB   ← +9.3 dB, which is what makes the cut land
+capability     -14.3 dB
+end card       -18.0 dB
+```
+
+## Reading the reference library
+
+Start here — these four cover the most ground:
+
+| spec | why |
+|---|---|
+| `A_explainer-zhylar-crm-cpq` | 20s SaaS explainer, 15 shots. Closest thing to a text-heavy product done well. |
+| `A_best-launch-reel-2026` | a montage of 6+ launches, 11 shots |
+| `A_not-your-average-ui-animation` | how to make a real interface the hero |
+| `B_dynamic-typography-d3` | type as the subject — what a tool launch needs |
+
+Each spec's `techniques[].remotion_recipe` names the actual mechanism (polar
+coords, `strokeDashoffset`, clip-path, CSS 3D, a specific shader approach), and
+`avoid:` names what depended on hand-keyframed AE work plus the code-native
+substitute.
+
+## Two categories of launch video
+
+The distinction that drives everything in `PRINCIPLES.md`:
+
+**Text-heavy tools** (skills, CLIs, agents) — the product is a capability, so
+words carry the load. Never put a whole sentence on screen at once; stage it.
+Every abstract claim gets one concrete visual object. `WordSwap` over bulleted
+reveals. Typewriter only where a human would actually be typing.
+
+**Visual products** (app, web feature) — the interface is the hero, on screen
+inside 2 seconds. Establish once, then `DollyToUI` into the control that matters.
+Choreograph a synthetic cursor, because a real screen recording cannot land on a
+beat grid.
+
+## Licensing
+
+Code and docs: **MIT**. But read [`LICENSE`](LICENSE) — there is third-party
+material it cannot cover:
+
+- **Reference videos are not in this repo.** They belong to
+  [@byshubh_](https://x.com/byshubh_). `refs/specs/` is our own written analysis;
+  it neither includes nor licenses the underlying footage. Rebuild locally with
+  `./pipeline/fetch_refs.sh`.
+- **Music is CC BY 4.0** — "Digital Lemonade" by Kevin MacLeod
+  (incompetech.com). Commercial use is fine, **attribution is required**. That
+  applies to the demo video in this repo too.
+- Most CC music on archive.org is NC (bars commercial use) or ND (bars cutting to
+  length, which is exactly what we do). Both unusable. And don't trust
+  archive.org's `licenseurl` field — it's user-supplied and often wrong.
+
+## Known gaps
+
+- **No vertical cut.** Shots use pixel widths tuned to a 1920 frame; 9:16 needs a
+  per-shot layout pass. The three vertical reference specs carry `vertical_notes`
+  for exactly this. Deliberately unregistered rather than shipped broken.
+- **3D works but is unused.** `three` + `@react-three/fiber` + `@remotion/three`
+  render headlessly — `npx remotion still src/index.ts ThreeSmoke out/x.png`
+  proves it. The `needs-3d` reference techniques are unbuilt, and true chrome
+  needs an **environment map**; without one `metalness: 0.95` just reads dark.
+  Add `@react-three/drei`'s `Environment` first.
+- **Reference corpus is one designer** — coherent house style, thin on range.
+- The lifecycle rail still sits slightly above optical centre.
+- Six consecutive left-text/right-object capability beats is a layout the
+  references never repeat that many times in a row.

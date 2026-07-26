@@ -1,0 +1,95 @@
+// Motion spec schema — used for BOTH describing references and authoring new videos.
+// Write valid YAML (this header is illustrative only; strip these // comments).
+// Every field marked REQUIRED must be present. Never write vague prose where a
+// number belongs. "slides in" is a failure; "y 28→0 over 16f, expoOut" is correct.
+
+id: slug-matching-the-analysis-folder            # REQUIRED
+source: https://x.com/byshubh_/status/...        # REQUIRED for references, omit for new work
+category: launch-video | saas-explainer | ui-showcase | logo-anim | kinetic-type | brand-loop   # REQUIRED
+product_type: text-heavy-tool | visual-product | brand-only    # REQUIRED
+# text-heavy-tool  = the value is words/capability (skills, CLIs, agents, docs). Category 1.
+# visual-product   = the value is a screen/interface/object. Category 2.
+
+format:                                          # REQUIRED
+  aspect: "16:9"
+  fps: 30
+  duration_s: 20.0
+  orientation: horizontal | vertical | square
+
+verdict: >                                       # REQUIRED. 2 sentences max.
+  Why this works, in terms a person building it in code could act on.
+
+palette:                                         # REQUIRED
+  bg: "#F4F0FA"
+  ink: "#180048"
+  accent: "#6E2BF0"
+  support: ["#C0A8F0"]
+  notes: how the accent is rationed; where light/dark inverts
+
+typography:                                      # REQUIRED
+  family_look: geometric sans | grotesk | serif display | mono
+  weights: [medium, bold]
+  case: sentence | upper | mixed
+  tracking: tight | normal | wide
+  headline_frame_share: 0.42                     # fraction of frame width the headline occupies
+  notes: line count per card, how text is broken
+
+structure:                                       # REQUIRED — the narrative arc
+  - act: hook | problem | reveal | capability | proof | cta
+    t: [0.0, 2.6]
+    purpose: what this act has to accomplish
+    shots: [1, 2, 3]
+
+shots:                                           # REQUIRED — one entry per detected shot
+  - n: 1
+    t: [0.00, 2.60]
+    frames: [0, 77]
+    layout: centre-stack | left-rail | full-bleed-ui | split | grid | 3d-set
+    content: >
+      Literally what is on screen. Include actual copy if legible.
+    moves:                                       # REQUIRED, from MOVE_VOCAB.md
+      - move: maskWipeUp
+        target: headline
+        at_f: 4                                  # frame offset within the shot
+        params: {dur_f: 16, per_line_stagger_f: 3, ease: expoOut}
+    camera: {move: pushIn, params: {scale: [1, 1.06], ease: expoInOut}}
+    bg: {kind: flat | gradient-drift | grain | 3d-set | blurred-ui, moves: [gradientDrift]}
+    treatment: [filmGrain, dropShadowSoft]       # from the treatment table
+    audio_cue: whoosh | tick | impact | riser | none    # inferred from the motion curve
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8                                    # dwell after settle, before the cut
+
+techniques:                                      # REQUIRED — the reusable inventions
+  - id: icon-orbit-ring
+    what: >
+      Precisely what the effect is, geometrically.
+    where: shots 3-6
+    why_it_reads: what perceptual trick makes it feel good
+    remotion_recipe: >
+      How to build it with React/CSS/SVG/three.js. Name the actual approach —
+      "absolute-position N children at polar coords, rotate parent, counter-rotate
+      children by -parentRotation". Be specific enough to implement without guessing.
+    difficulty: trivial | moderate | hard | needs-3d
+
+rhythm:                                          # REQUIRED
+  cut_count: 19
+  median_shot_f: 27
+  fastest_f: 4
+  slowest_f: 78
+  pattern: >
+    e.g. "long 78f establish → 4f flash → 26-50f capability beats → 52f outro hold"
+  beat_grid_f: 15                                # if cuts land on a regular interval
+  energy_curve: rising | front-loaded | wave | flat
+
+transferable:                                    # REQUIRED — 3-6 bullets
+  - Specific stealable thing, stated as an instruction.
+
+avoid:                                           # REQUIRED — 2-4 bullets
+  - What in this reference depends on After Effects / hand-keyframing and should
+    not be attempted in code, plus the code-native substitute.
+
+new_moves:                                       # only if the reference needed them
+  - name: camelCaseName
+    params: {}
+    description: >
+      Definition precise enough to add to MOVE_VOCAB.md.

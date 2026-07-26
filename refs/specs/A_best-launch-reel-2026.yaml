@@ -1,0 +1,567 @@
+id: A_best-launch-reel-2026
+source: local-reference (A_best-launch-reel-2026.mp4)
+category: launch-video
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 29.97
+  duration_s: 13.046
+  orientation: horizontal
+
+verdict: >
+  This is NOT one launch video — it is a compilation/showreel of at least 6
+  distinct third-party product launches (Monologue Notes, Pikzels, an
+  unnamed rep-counting fitness app, an unnamed "virality score" app,
+  Cross-Border Payments, a "LIFE RUINED" roast/meme app, and a closing
+  Stablecoin/USD-Named-Accounts agent-banking product) cut together. What makes
+  it read as ONE reel instead of a grab-bag is a single connective device
+  reused between every source clip: a dark particle-field background with one
+  drifting caption word/phrase, always in the same quiet italic-serif voice,
+  regardless of how loud or different each product's own UI/branding is.
+
+palette:
+  bg: "#001830"
+  ink: "#F0F0F0"
+  accent: "#30D8A8"
+  support: ["#000018", "#000000", "#001848", "#303060", "#304878", "#181818"]
+  notes: >
+    The reel's OWN palette (connective particle bg, captions, transitions) is
+    near-black navy with a single mint/teal glow accent (~#30D8A8, used for the
+    sparkle "AI is working" icon, the One-Click-Fix pill, and progress rings) —
+    this is the "reel voice" palette and it never changes. Each showcased
+    product is allowed its own competing accent inside its own card/panel
+    (hot pink for Pikzels, red for LIFE RUINED, blue for Cross-Border
+    Payments) — those clashes are fine because they're contained inside a
+    product's own inset, not bleeding into the connective layer.
+
+typography:
+  family_look: serif display
+  weights: [regular, medium]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.22
+  notes: >
+    The reel's connective captions ("Analyzing...", "Introducing", "to
+    capture", "anything", "Trajectories", "Your ideas / notes / meetings",
+    "See your agent's full journey", "full journey") are set in a small,
+    quiet italic serif/script, always white, always understated — deliberately
+    the opposite of the loud bold sans/condensed type used inside each
+    product's own branded card (Monologue Notes' serif wordmark, LIFE RUINED's
+    bold red condensed sans, Pikzels' bold rounded sans). That typographic
+    contrast is what signals "this word belongs to the reel, not the product."
+
+structure:
+  - act: hook
+    t: [0.00, 1.90]
+    purpose: >
+      Rapid-fire proof of range — two products' wordmarks/UI assemble back to
+      back in under 2s to signal "many launches, one studio" before any single
+      story is told.
+    shots: [1, 2]
+  - act: capability
+    t: [1.90, 4.40]
+    purpose: >
+      Two more products shown as quick B-roll-style inserts (rep-counting
+      fitness score, currency exchange + watch) — establishes the reel covers
+      wildly different verticals, not just fintech.
+    shots: [3, 4]
+  - act: capability
+    t: [4.40, 5.90]
+    purpose: An "AI scoring" product (virality/clarity/idea/curiosity/emotion meters) gets its own beat.
+    shots: [5]
+  - act: proof
+    t: [5.90, 9.90]
+    purpose: >
+      The longest, calmest hold in the reel — Cross-Border Payments gets a
+      real product demo (globe, phone, hand, live stats) intercut with the
+      comic-relief "LIFE RUINED" counter, which acts as tension release.
+    shots: [6, 7, 8]
+  - act: cta
+    t: [9.90, 13.05]
+    purpose: >
+      Close on the studio's own flagship: a Stablecoin / USD-Named-Accounts
+      agent-banking product, paired with a word-cycle tagline ("Your ideas /
+      notes / meetings") and a direct address ("See your agent's full
+      journey") that reframes every prior clip as evidence for this last one.
+    shots: [9, 10, 11]
+
+shots:
+  - n: 1
+    t: [0.00, 1.07]
+    frames: [0, 32]
+    layout: full-bleed-ui
+    content: >
+      "Monologue Notes" — a crypto/finance wallet app. Dark-navy dashboard
+      (balance "$52,042,000", Deposit / Withdraw / Convert bar) is intercut
+      with the wordmark assembling one glyph at a time: "M" -> "Mo" ->
+      "Monologue N" -> "Monologue Notes" in a serif display face, over the same
+      dashboard bg (f0-27).
+    moves:
+      - move: typeOn
+        target: "\"Monologue Notes\" wordmark"
+        at_f: 6
+        params: {chars_per_f: 0.6, caret: false}
+      - move: staggerRise
+        target: dashboard balance card + nav bar
+        at_f: 0
+        params: {y: [20, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain}
+    treatment: [filmGrain, vignette]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 2
+    t: [1.07, 1.90]
+    frames: [32, 57]
+    layout: centre-stack
+    content: >
+      Hard cut to "Pikzels" — glowing green wordmark letters scatter and
+      re-assemble against a shifting green-to-magenta gradient (f32-42), then
+      the tagline builds word by word: "endless spans" (f42) -> "not anymore"
+      (f52-57), each new word typed on, previous word left standing.
+    moves:
+      - move: letterCascade
+        target: "\"Pikzels\" wordmark letters"
+        at_f: 0
+        params: {per_char_stagger_f: 1, y: [18, 0], rotate: [6, 0], ease: backOut}
+      - move: typeOn
+        target: "\"endless spans\" / \"not anymore\" tagline"
+        at_f: 10
+        params: {chars_per_f: 1.2, caret: true, caret_blink_f: 15}
+      - move: gradientDrift
+        target: bg
+        at_f: 0
+        params: {hue_rotate: ±30deg, period_f: 60}
+    camera: {move: pushIn, params: {scale: [1, 1.05], ease: expoInOut}}
+    bg: {kind: gradient-drift, moves: [gradientDrift]}
+    treatment: [bloomGlow]
+    audio_cue: whoosh
+    transition_out: {move: flashCut, params: {dur_f: 3}}
+    hold_f: 2
+
+  - n: 3
+    t: [1.90, 3.20]
+    frames: [57, 96]
+    layout: split
+    content: >
+      Unnamed fitness/rep-counting app. A man lifting weights in a gym
+      (vertical-aspect insert card) is cut against a green particle-field bg
+      carrying the reel's own caption "to capture" -> "anything" (typed word
+      by word). A circular progress ring with a live "Score" counter climbs
+      2 -> 6 -> 11 -> 17 -> 21 -> 24 across the shot, each increment landing on
+      a new cut of the lifter. A US flag icon and a face-swapped photo card
+      (man's portrait composited onto a house exterior) intercut briefly near
+      the end, foreshadowing shot 5's "virality" product.
+    moves:
+      - move: counterUp
+        target: "\"Score\" ring counter (2→24)"
+        at_f: 0
+        params: {dur_f: 39, ease: expoOut, monospace_digits: true}
+      - move: drawOn
+        target: circular progress ring
+        at_f: 0
+        params: {strokeDashoffset: [1, 0], dur_f: 39, ease: linear}
+      - move: typeOn
+        target: "\"to capture\" / \"anything\" caption"
+        at_f: 6
+        params: {chars_per_f: 1.4, caret: false}
+      - move: popIn
+        target: US flag icon
+        at_f: 30
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+    camera: {move: whipPan, params: {x_sweep: true, dur_f: 6, motion_blur: heavy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, chromaticEdge]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 4
+    t: [3.20, 4.40]
+    frames: [96, 137]
+    layout: split
+    content: >
+      Currency-exchange app. A phone-shaped card shows a "Convert" / "Exchange"
+      screen with a mock 1,000,000 unit conversion and live exchange-rate
+      readout; cut against a close-up of an Apple Watch on a wrist showing the
+      same exchange UI at watch scale, then a fingertip tapping the watch
+      face. Reel caption "anything" lingers over the particle bg between cuts.
+    moves:
+      - move: slideStackIn
+        target: phone + watch UI cards
+        at_f: 0
+        params: {y: [30, 0], stagger_f: 6, z_offset: 8px}
+      - move: scaleIn
+        target: watch close-up
+        at_f: 24
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+    camera: {move: rackFocus, params: {dur_f: 18}}
+    bg: {kind: grain}
+    treatment: [dropShadowSoft, filmGrain]
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 5
+    t: [4.40, 5.90]
+    frames: [137, 182]
+    layout: centre-stack
+    content: >
+      Unnamed AI "virality score" app. A glowing 4-point sparkle/star icon
+      pulses over the particle-field bg with the caption "Introducing" typed
+      beneath it. Cuts to a photo card (a man's portrait composited onto a
+      house-exterior background — clearly stock/AI-generated) with a
+      right-hand panel of horizontal bar meters labelled Virality, Clarity,
+      Idea, Curiosity, Emotion, each bar filling to a different length.
+    moves:
+      - move: popIn
+        target: sparkle/star "AI working" icon
+        at_f: 0
+        params: {scale: [0, 1.1, 1], dur_f: 11, ease: springSnap}
+      - move: typeOn
+        target: "\"Introducing\" caption"
+        at_f: 4
+        params: {chars_per_f: 1.2, caret: false}
+      - move: scaleIn
+        target: composited photo card
+        at_f: 20
+        params: {scale: [0.9, 1], opacity: [0, 1], dur_f: 14, ease: backOut}
+      - move: staggerRise
+        target: 5 metric bars (Virality/Clarity/Idea/Curiosity/Emotion)
+        at_f: 30
+        params: {y: [0, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+        note: bars fill horizontally (scaleX 0→N) rather than rising — same stagger timing as staggerRise, different axis.
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [bloomGlow, filmGrain]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 6
+    t: [5.90, 7.10]
+    frames: [182, 215]
+    layout: centre-stack
+    content: >
+      "One-Click Fix" — a mint-green pill button with a plus icon pops in
+      centre frame over the particle bg (f182-192, caption "Introducing"
+      still resolving from shot 5). Cuts to a rotating translucent 3D globe
+      (wireframe/glass sphere with a glowing network of arcs) — the visual
+      hinge into the Cross-Border Payments product that follows.
+    moves:
+      - move: popIn
+        target: "\"One-Click Fix\" pill button"
+        at_f: 0
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap}
+      - move: orbit3D
+        target: rotating glass globe
+        at_f: 12
+        params: {rotateY: [0, 40], perspective: 1200px, dur_f: 22}
+    camera: {move: pushIn, params: {scale: [1, 1.08], ease: expoInOut}}
+    bg: {kind: grain}
+    treatment: [bloomGlow, chromaticEdge]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 7
+    t: [7.10, 9.20]
+    frames: [215, 277]
+    layout: split
+    content: >
+      Cross-Border Payments — this reel's longest single hold. A hand holds a
+      phone showing a balance/exchange screen with a USD flag chip and a live
+      line-graph; caption "anywhere" types beneath. Cut to the rotating globe
+      again with a location arc animating between two points; a small stat
+      readout (93%, then 99%) counts up beside it. Frame label "Cross-Border
+      Payments" sits top-left throughout in a small sans caption, distinct
+      from the reel's own serif captions — this is the product's own on-screen
+      title, not the reel's voice.
+    moves:
+      - move: counterUp
+        target: stat readout (93% → 99%)
+        at_f: 20
+        params: {dur_f: 24, ease: expoOut, monospace_digits: true}
+      - move: drawOn
+        target: globe arc between two points
+        at_f: 0
+        params: {strokeDashoffset: [1, 0], dur_f: 30, ease: expoInOut}
+      - move: typeOn
+        target: "\"anywhere\" caption"
+        at_f: 6
+        params: {chars_per_f: 1.2, caret: false}
+      - move: maskWipeUp
+        target: "\"Cross-Border Payments\" title chip"
+        at_f: 0
+        params: {dur_f: 14, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, dropShadowSoft]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 4
+
+  - n: 8
+    t: [9.20, 9.90]
+    frames: [277, 300]
+    layout: centre-stack
+    content: >
+      "LIFE RUINED" — a small square card (Mike-Tyson-styled stock photo) with
+      a bold red "LIFE RUINED" banner sits beside a mint progress ring whose
+      counter climbs fast across several intercut frames: 13 -> 39 -> 66 -> 86
+      -> 96 -> 99. Reads as comic-relief tension-break between the two calmer
+      fintech segments — the only shot in the reel that plays for a laugh.
+    moves:
+      - move: counterUp
+        target: "\"LIFE RUINED\" score ring (13→99)"
+        at_f: 0
+        params: {dur_f: 23, ease: expoOut, monospace_digits: true}
+      - move: popIn
+        target: "\"LIFE RUINED\" red banner"
+        at_f: 0
+        params: {scale: [0, 1.1, 1], dur_f: 10, ease: springSnap}
+    camera: {move: pushIn, params: {scale: [1, 1.06], ease: expoInOut}}
+    bg: {kind: grain}
+    treatment: [filmGrain]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 2
+
+  - n: 9
+    t: [9.90, 11.30]
+    frames: [300, 340]
+    layout: split
+    content: >
+      Stablecoin Credit / Stablecoin On/Off Ramp / USD Named Accounts — the
+      closing product. A network graphic (small circular user avatars
+      connected by arcs over the glass globe) sits left; on the right the
+      reel's caption cycles through synonyms on a single line: "Your ideas" ->
+      "Your notes" -> "Your meetings" (each word substituting only the object,
+      "Your ___" stays fixed) — the same word-cycle-slot mechanic as
+      A_explainer-zhylar-crm-cpq's shot 4, here used to imply the product
+      understands many kinds of user intent.
+    moves:
+      - move: wordCycleSettle
+        target: "\"Your ___\" caption (ideas/notes/meetings)"
+        at_f: 0
+        params: {cycle_words_per_col: 3, swap_every_f: 12, settle_stagger_f: 0, ease: expoOut}
+      - move: staggerRise
+        target: network avatar icons
+        at_f: 6
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, ease: springSoft}
+      - move: maskWipeUp
+        target: "\"Stablecoin Credit\" / \"Stablecoin On/Off Ramp\" title chip"
+        at_f: 0
+        params: {dur_f: 14, ease: expoOut}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [bloomGlow, filmGrain]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 10
+    t: [11.30, 12.20]
+    frames: [340, 367]
+    layout: centre-stack
+    content: >
+      "USD Named Accounts" title chip settles over the globe/network graphic;
+      caption resolves to "Your meetings" then fades. LIFE RUINED's card makes
+      one final cameo intercut (comic callback) before the reel commits fully
+      to the closing product.
+    moves:
+      - move: maskWipeUp
+        target: "\"USD Named Accounts\" title chip"
+        at_f: 0
+        params: {dur_f: 14, ease: expoOut}
+      - move: flyOut
+        target: "\"Your meetings\" caption"
+        at_f: 18
+        params: {y: [0, -60], opacity: [1, 0], stagger_f: 2, ease: expoIn}
+    camera: {move: pushIn, params: {scale: [1, 1.04], ease: expoInOut}}
+    bg: {kind: grain}
+    treatment: [bloomGlow]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 3
+
+  - n: 11
+    t: [12.20, 13.05]
+    frames: [367, 390]
+    layout: centre-stack
+    content: >
+      Final beat: "full journey" caption (handwritten/script italic, slightly
+      wobbling baseline as if hand-tracked) types on next to the phrase "See
+      your agent's" / "Our agent" over the particle-field bg, resolving as the
+      reel's closing line while the globe/network graphic holds steady behind
+      it. Video ends on this held frame — no logo lockup card, the last
+      product IS the outro.
+    moves:
+      - move: typeOn
+        target: "\"See your agent's full journey\" / \"Our agent\" closing line"
+        at_f: 0
+        params: {chars_per_f: 1.0, caret: true, caret_blink_f: 15}
+      - move: breathe
+        target: globe/network bg graphic
+        at_f: 0
+        params: {scale: [1, 1.015, 1], period_f: 120}
+    camera: {move: driftCamera, params: {amp: 1.5%, period_f: 180, axes: xy}}
+    bg: {kind: grain, moves: [grainShift]}
+    treatment: [filmGrain, vignette]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 10
+
+techniques:
+  - id: particle-field-connector
+    what: >
+      A persistent dark-navy background carrying slow-drifting coloured
+      dots/triangles/stars (parallax, 3 depth layers) plus exactly one line of
+      quiet italic-serif caption text, reused as the connective tissue between
+      every hard cut to a different showcased product. It never changes look
+      regardless of which product's loud branded UI it's introducing.
+    where: recurring throughout, clearest at shots 1-2 transition (f30-35), shots 5-6 (f137-192), and the closing shot 11 (f367-390)
+    why_it_reads: >
+      A compilation of unrelated products would otherwise feel like a grab-bag
+      ad break. Giving every cut the exact same "host" layer (same colour, same
+      type voice, same particle motion) makes the disparate content feel
+      curated by one narrator rather than randomly spliced.
+    remotion_recipe: >
+      A full-bleed <div> with background: radial-gradient/near-black, holding
+      ~30-40 absolutely-positioned dot/triangle/star SVGs at randomised
+      positions, each drifting via a shared sine offset
+      (y = baseY + amp*Math.sin((frame+seed)/period)) at 3 different amp/period
+      bands for parallax depth (parallaxLayers). Overlay ONE <p> caption per
+      cut, always the same font/size/color, cross-fading in/out (opacity
+      0->1->0 over ~10f each side) as content cards enter/exit on top of it via
+      normal z-index. The product cards themselves (screenshots, photos, UI
+      mocks) sit in front, entering with any per-product move — the connector
+      layer is oblivious to what's on top of it, which is exactly why it's
+      reusable across totally different source clips.
+    difficulty: trivial
+
+  - id: word-cycle-slot-object-swap
+    what: >
+      A fixed sentence stem ("Your ___") with only the object noun cycling
+      through 3 options (ideas / notes / meetings) at a steady rate, landing
+      on the last one as the shot ends. Identical mechanism to
+      A_explainer-zhylar-crm-cpq's 3-column slot machine, but here it's a
+      single slot inside one sentence rather than 3 independent columns.
+    where: shot 9, frames ~300-330
+    why_it_reads: >
+      Implies breadth ("this works for many kinds of input") in one line
+      instead of three separate proof shots.
+    remotion_recipe: >
+      Same mechanism as wordCycleSettle with cycle_words_per_col:1 slot —
+      render a static prefix span ("Your ") and swap only the suffix span's
+      text via Math.floor(frame/swapEveryF) % words.length, crossfading each
+      swap over 2-3f. No layout shift because prefix never changes width.
+    difficulty: trivial
+
+  - id: inset-card-b-roll
+    what: >
+      Every showcased product's screen recording / photo is framed as a
+      contained card (rounded corners, soft drop shadow) floating over the
+      particle-field bg, never full-bleed. Cards enter via a small scale/slide,
+      not a hard full-frame cut.
+    where: shots 3, 4, 5, 8
+    why_it_reads: >
+      Keeps every clip — regardless of its native aspect ratio or resolution —
+      visually consistent in scale and presence, so cutting between a
+      1080x1920 phone screen recording and a 16:9 UI demo doesn't feel like a
+      resolution mismatch.
+    remotion_recipe: >
+      Each product clip is an <video>/<img> inside a fixed-aspect container
+      (border-radius: 16px, box-shadow per dropShadowSoft) sized to a
+      percentage of the canvas (not full-bleed). Mount with scaleIn
+      (0.9→1, backOut, 14f). Because the container size and shadow are
+      identical across every product, only the pixels inside change —
+      the frame around them is the reel's, not the product's.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 3
+  median_shot_f: 33
+  fastest_f: 25
+  slowest_f: 62
+  pattern: >
+    The automated detector only found 3 shots (0-79, 80-276, 277-390) because
+    every product segment sits on the same near-black navy background, so
+    frame-to-frame luma delta never spikes past the 26 threshold even at a
+    real content cut — see detection_notes. Reading the sheets directly finds
+    at least 10 real hard cuts across 6+ distinct products, running
+    25-62f apiece with almost no shot under the 11f flash-minimum — this is a
+    "fast but not frantic" montage, closer to a highlight reel's pace than a
+    strobe cut.
+  beat_grid_f: 30
+  energy_curve: wave
+
+transferable:
+  - Give a compilation reel ONE constant connective layer (technique
+    particle-field-connector) — same bg treatment, same caption typography,
+    same motion — so wildly different source content reads as curated, not spliced.
+  - Frame every third-party clip as a consistent inset card (technique
+    inset-card-b-roll), never full-bleed, so aspect-ratio/resolution mismatches
+    between sources disappear.
+  - Reuse the word-cycle-slot mechanic (object-only swap inside a fixed
+    sentence stem) as a 1-shot "this works for many things" proof beat instead
+    of three separate proof shots.
+  - Save your single loudest comic beat (LIFE RUINED counter) as a tension
+    release between two calmer, longer proof segments, not as an opener.
+  - Close on the flagship product with no separate logo card — let the last
+    product's own screen be the endcard, holding 10f+ static at the very end.
+
+avoid:
+  - The face-swapped/AI-composited photo cards (shot 5's portrait-on-house-exterior,
+    shot 8's Mike-Tyson-styled banner) depend on a stock-photo/AI-image
+    pipeline, not motion design — don't try to recreate the images themselves
+    in Remotion; treat them as static asset inputs and only own the
+    card-entrance/meter-fill animation around them.
+  - The rotating glass globe with glowing arcs (shots 6, 7, 9) is likely a
+    pre-rendered 3D loop (or WebGL/three.js asset), not something to hand-key
+    per frame. Substitute — build it once as a three.js sphere with an additive
+    line-shader for arcs, driven by a single continuous rotation uniform, and
+    reuse the same render across every shot that needs it — never re-author it per cut.
+  - Because the automated cut detector undercounted real cuts here (3 detected
+    vs 10+ actual — see detection_notes), don't trust delta-based cut detection
+    alone on any reel with a consistently dark/similar-luma background; cross-check
+    against the contact sheets by eye for content changes, especially in
+    compilation/montage references.
+
+new_moves:
+  - name: particleFieldConnector
+    params: {dot_count: 35, depth_layers: 3, amp_px: 12, period_f: [200, 320, 450], caption_crossfade_f: 10}
+    description: >
+      A persistent background layer: N small dot/triangle/star shapes at
+      randomised positions, drifting via per-shape sine offsets grouped into
+      depth_layers bands (slower/larger = further back), plus a single caption
+      line that crossfades in/out (never more than one on screen at a time).
+      Used as connective tissue between hard cuts to otherwise-unrelated
+      content so a compilation reads as one authored piece.
+  - name: wordCycleSettle
+    params: {cycle_words_per_col: 3, swap_every_f: 12, settle_stagger_f: 0, ease: expoOut}
+    description: >
+      Duplicate of the move defined in A_explainer-zhylar-crm-cpq.yaml — see
+      that file for the full definition. Reused here with a single column
+      (an object-noun suffix inside a fixed sentence stem) rather than 3
+      independent columns.
+
+detection_notes: >
+  Automated cut detection found only 3 shots for the whole 390-frame video
+  (frames 0-79, 80-276, 277-390), which is a severe undercount, not an
+  overcount — the opposite problem from the usual "flash miscounted as a cut."
+  Every showcased product sits on the same near-black navy/dark-grain
+  background, so real hard cuts between completely different products
+  (Monologue Notes -> Pikzels -> fitness app -> exchange/watch app ->
+  virality-score app -> One-Click Fix -> Cross-Border Payments -> LIFE RUINED
+  -> Stablecoin/USD Named Accounts) never produce a frame-to-frame luma delta
+  above the 26 cut threshold. This spec's 11-shot breakdown was built by
+  reading the contact sheets directly (per-cell burned-in timecodes) rather
+  than trusting the profile's shot table, per the instruction to treat sheets
+  as ground truth for on-screen content; the profile's 3 shots are still
+  accurate as coarse TIMING anchors (its shot boundaries at f79/80 and f276/277
+  do land on real, if not the only, content changes) but should not be read as
+  "this video has 3 shots."

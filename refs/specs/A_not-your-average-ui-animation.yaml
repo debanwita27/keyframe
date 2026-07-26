@@ -1,0 +1,257 @@
+id: A_not-your-average-ui-animation
+source: https://x.com/byshubh_/status/1980591221396623506
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 5.875
+  orientation: horizontal
+
+verdict: >
+  A single unbroken 141-frame shot builds a stat-card dashboard by adding cards one at a
+  time, then tilts the whole cluster into 3D to reveal supporting charts underneath —
+  selling depth and "live product" without a single hard cut. The loop is engineered to
+  open and close on a pixel-matching blank frame so it can play forever.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#1B2340"
+  accent: "#7890D8"
+  support: ["#D8D8F0", "#90C0D8", "#78A8D8", "#78C0F0", "#D8F0F0"]
+  notes: >
+    Card surfaces stay flat white with near-black text; the only saturated colour event
+    is the radial halo behind the UI, which cycles through the blue→purple family as more
+    content is revealed. UI chrome itself never goes off-neutral.
+
+typography:
+  family_look: geometric sans
+  weights: [medium, bold]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.12
+  notes: >
+    No headline copy at all — pure UI-as-hero. Text is card labels ("Total Revenue",
+    "Straight Sale Revenue", "Rebill Revenue", "Total Refunds", "Revenue Composition")
+    plus bold metric values roughly 2x the label size.
+
+structure:
+  - act: hook
+    t: [0.0, 1.0]
+    purpose: first card folds open and lands, establishing the UI object as a physical thing
+    shots: [1]
+  - act: capability
+    t: [1.0, 2.75]
+    purpose: additional stat cards stagger in, building a 4-card row while values tick upward
+    shots: [1]
+  - act: reveal
+    t: [2.75, 4.5]
+    purpose: the whole card cluster tilts into an isometric dashboard, chart panels appear below
+    shots: [1]
+  - act: proof
+    t: [4.5, 5.2]
+    purpose: hold on the completed dashboard so the eye can read it
+    shots: [1]
+  - act: cta
+    t: [5.2, 5.875]
+    purpose: specular flash pulse, then fade to the frame-0-matching blank for seamless loop
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 5.875]
+    frames: [0, 140]
+    layout: centre-stack
+    content: >
+      Frame 0-3: blank light-gray canvas (#F0F0F0), no UI. Frame ~4-24: a small folded
+      paper shape flips open into the first stat card ("Total Revenue $8,395 / 161
+      transactions") while a blue-purple radial halo grows behind it. Frame ~33-62: three
+      more cards stagger in beneath/beside it — "Rebill Revenue", "Straight Sale Revenue",
+      "Total Refunds" — arranged in a 2x2 grid, each dollar value ticking upward in small
+      irregular steps ($8,395→$8,449→$8,547→$8,610→$8,636→$8,643). Frame ~54-99: the whole
+      4-card cluster rotates on X and scales down, revealing it was actually the header row
+      of a larger dashboard — a line-chart panel and a "Straight Sale Revenue" bar chart
+      fade/grow in below it, followed by a "Revenue Composition" list (Straight Sale,
+      Rebill, upsell rows). Frame ~99-124: static hold on the completed tilted dashboard.
+      Frame ~125-131: a bright diagonal glow sweeps across the whole panel (matches the
+      motion-curve's sharpest peak, 13.2 at f127). Frame ~132-140: everything fades back to
+      the exact blank #F0F0F0 canvas the shot opened on.
+    moves:
+      - move: paperFoldIn
+        target: first_stat_card
+        at_f: 2
+        params: {dur_f: 10, ease: springSnap}
+      - move: slideStackIn
+        target: card_grid_cards_1_2
+        at_f: 10
+        params: {y: [40, 0], stagger_f: 3, z_offset_px: 8, ease: springSoft, dur_f: 14}
+      - move: staggerRise
+        target: card_grid_cards_3_4
+        at_f: 33
+        params: {y: [28, 0], opacity: [0, 1], blur_px: [8, 0], stagger_f: 3, dur_f: 18, ease: springSoft}
+      - move: counterUp
+        target: all_four_metric_values
+        at_f: 10
+        params: {retrigger: true, keyframed_values: [8395, 8449, 8547, 8610, 8636, 8643], step_hold_f: 6, monospace_digits: true, note: "irregular discrete jumps, not one smooth pass"}
+      - move: flattenToIsometric
+        target: full_card_cluster
+        at_f: 54
+        params: {dur_f: 45, ease: expoInOut, rotateX_deg: [0, 22], scale: [1, 0.72], translateY_px: [0, 140], perspective_px: 1200}
+      - move: barGrowIn
+        target: straight_sale_revenue_bars
+        at_f: 80
+        params: {dur_f: 14, stagger_f: 2, ease: backOut}
+      - move: staggerRise
+        target: revenue_composition_rows
+        at_f: 95
+        params: {y: [16, 0], opacity: [0, 1], stagger_f: 3, dur_f: 16, ease: springSoft}
+      - move: specularSweep
+        target: full_dashboard
+        at_f: 125
+        params: {dur_f: 7, angle_deg: 120}
+      - move: dissolveBlur
+        target: full_dashboard
+        at_f: 132
+        params: {blur_px: [0, 14], opacity: [1, 0], dur_f: 8, note: "resolves to pixel-match of frame 0 for seamless loop"}
+    camera: {move: driftCamera, params: {amp_pct: 0.5, period_f: 140, axes: xy}}
+    bg: {kind: gradient-drift, moves: [radialRevealGlow]}
+    treatment: [dropShadowSoft]
+    audio_cue: riser
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 17
+
+techniques:
+  - id: flat-to-isometric-dashboard-reveal
+    what: >
+      Flat stat cards enter and are fully legible, then the whole cluster rotates on X and
+      scales down as one unit, revealing itself as the header row of a larger 3D-tilted
+      dashboard with chart panels underneath — all as one continuous transform, no cut.
+    where: shot 1, frames 54-99
+    why_it_reads: >
+      The eye reads the numbers while flat, before depth is introduced, so the later tilt
+      sells "this is a real dashboard" instead of "this is decoration."
+    remotion_recipe: >
+      Wrap all dashboard content in one div with perspective:1200px on the parent and
+      transform-style:preserve-3d on the child. Drive a single progress value p (0-1,
+      expoInOut) into `transform: rotateX(${interp(p,[0,1],[0,22])}deg)
+      scale(${interp(p,[0,1],[1,0.72])}) translateY(${interp(p,[0,1],[0,140])}px)` on that
+      one wrapper. Chart panels are just absolutely-positioned siblings inside the same
+      3D-transformed wrapper so they share the exact plane — don't animate them separately.
+    difficulty: moderate
+
+  - id: growing-radial-halo
+    what: >
+      A soft blue-purple radial glow behind the UI expands and brightens in step with how
+      many cards have been revealed, filling the frame behind the full dashboard, then
+      collapsing back to flat gray at both ends of the loop.
+    where: whole shot, continuous
+    why_it_reads: >
+      Gives a mostly-static data screen a heartbeat — it's the one thing always moving,
+      so no frame, including the long holds, reads as dead.
+    remotion_recipe: >
+      Absolutely-position a large radial-gradient (or blurred solid circle, filter:blur(60px))
+      div behind the UI layer. Animate its scale and opacity off cardsRevealed/4 (the same
+      count driving the card stagger), not off a fixed timer, so the glow is content-driven.
+    difficulty: trivial
+
+  - id: continuous-live-counter
+    what: >
+      Dollar figures don't count up once and stop — they keep incrementing in small
+      irregular steps ($8,395→$8,449→$8,547→$8,610→$8,636→$8,643) across ~115 frames,
+      independent of what else is animating.
+    where: shot 1, frames 10-124
+    why_it_reads: >
+      Repetition with irregular step size mimics a live metrics feed far more convincingly
+      than a single counterUp pass to a final value.
+    remotion_recipe: >
+      Don't tween across the full numeric range. Hold a small array of target values keyed
+      to specific frames (~6-8f apart) and snap or very-briefly ease (3f) the displayed
+      digits between each keyed value, monospace digits, no comma reflow jitter.
+    difficulty: trivial
+
+  - id: paper-card-entrance
+    what: >
+      The very first element enters as a small folded/angled paper shape that flips open
+      into the first stat card before the rest slide-stack in beneath it.
+    where: shot 1, frames 2-24
+    why_it_reads: >
+      A plain slide-in reads as a slide deck; a fold-open reads as tactile paper, buying
+      credibility for the "UI as physical object" metaphor the later isometric tilt relies on.
+    remotion_recipe: >
+      Animate transform:rotate3d(1,1,0,θ) scaleY(s) with transform-origin:top left on the
+      card, θ 70→0deg and s 0.1→1 over ~10f with a springSnap config, then hand off to a
+      plain slideStackIn (translateY 40→0) for every card after it. Use the fold only once.
+    difficulty: moderate
+
+  - id: specular-flash-outro-loop
+    what: >
+      Right before resolving to blank, a bright diagonal glow sweeps across the dashboard
+      (the sharpest motion-curve peak, 13.2 at frame 127), then everything fades back to
+      the exact blank frame the video opened on.
+    where: shot 1, frames 125-140
+    why_it_reads: >
+      Gives the loop a deliberate "beat" to land on so replaying it feels like a pulse,
+      not a jump-cut restart.
+    remotion_recipe: >
+      Animate a linear-gradient(120deg, transparent 40%, rgba(255,255,255,.8) 50%,
+      transparent 60%) band's background-position across the frame over ~7f, then crossfade
+      the whole UI layer's opacity to 0 over the final 8f so the last rendered pixels match
+      frame 0 exactly (same bg color, no residual transform) — required for a true loop.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 141
+  fastest_f: 141
+  slowest_f: 141
+  pattern: >
+    one continuous 141f shot: paper-fold entrance (f2-24) → staggered card build with
+    ticking values (f33-62) → isometric tilt reveal overlapping bar/list build (f54-99) →
+    static hold (f99-124) → specular flash (f125-131) → fade to matching blank (f132-140).
+  beat_grid_f: 0
+  energy_curve: wave
+
+transferable:
+  - Drive an isometric dashboard tilt as one shared 3D transform (rotateX+scale+translateY)
+    on the whole content wrapper, not per-panel keyframes — panels inside share the plane for free.
+  - Tie a background radial glow's scale/opacity to a content-reveal progress value instead
+    of a fixed timer, so ambient motion survives long holds.
+  - Animate metric values as a short array of discrete keyed jumps rather than one smooth
+    counterUp — reads as live data, not a scripted count.
+  - Open and close a shot on pixel-identical blank frames to make a hero/GIF-style clip loop seamlessly.
+  - Spend a "paper fold" flourish once on the very first element only, then switch to a plain
+    slideStackIn for the rest — repeating the flourish would read as gimmicky.
+
+avoid:
+  - Hand-keyframing the isometric tilt per card/panel in After Effects; use one CSS/three.js
+    3D transform on a single wrapper driven by one progress value.
+  - Manually painting/animating a blurred glow PNG; use a CSS radial-gradient or blurred div
+    whose scale+opacity is computed from shot progress, not hand-tweaked per frame.
+  - Rotoscoping the paper-fold entrance frame by frame; use a single CSS rotate3d+scaleY
+    transform with a spring, not drawn artwork.
+
+new_moves:
+  - name: paperFoldIn
+    params: {origin: top-left, rotate3d_deg: [70, 0], scaleY: [0.1, 1], dur_f: 10, ease: springSnap}
+    description: >
+      A single element flips open from a folded/angled sliver into its flat final shape by
+      animating rotate3d + scaleY from a steep angle to 0, transform-origin at one corner.
+      Used once, on the very first element in a build-up sequence, for a tactile paper feel.
+  - name: flattenToIsometric
+    params: {rotateX_deg: [0, 22], scale: [1, 0.72], translateY_px: [0, 140], perspective_px: 1200, dur_f: 45, ease: expoInOut}
+    description: >
+      A flat-facing UI cluster tilts on X and scales down as one rigid transform on its
+      wrapper (perspective on the parent, preserve-3d + the animated transform on the
+      wrapper), revealing previously-cropped/hidden content below the fold in the same plane.
+  - name: barGrowIn
+    params: {scaleY: [0, 1], transform_origin: bottom, stagger_f: 2, dur_f: 14, ease: backOut}
+    description: >
+      Bar-chart bars grow upward from a zero baseline with a small overshoot, staggered
+      left-to-right, transform-origin pinned to the bar's bottom edge.
+  - name: radialRevealGlow
+    params: {scale: [0.3, 1.4], opacity: [0, 0.9], driven_by: content_reveal_progress}
+    description: >
+      A background radial-gradient/blurred-circle halo whose scale and opacity are a
+      function of how much foreground content has been revealed (e.g. cardsRevealed/total),
+      not a fixed timer — keeps ambient motion alive through static holds.

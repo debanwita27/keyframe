@@ -1,0 +1,231 @@
+id: A_micro-elements-animations
+source: https://x.com/byshubh_/status/1936832964287177045
+category: ui-showcase
+product_type: visual-product
+
+format:
+  aspect: "1:1"
+  fps: 24
+  duration_s: 2.75
+  orientation: square
+
+verdict: >
+  A single unbroken 66-frame shot where seven independent sci-fi HUD widgets
+  (line, bar, star-lattice, star-outline, coordinate readout, live counter,
+  particle sparkle) each draw themselves on with a 2-4f stagger around one
+  shared "power-on" beat at f12, then the whole composition holds dead
+  static for 29f — proof that a screen can feel alive from one continuous
+  micro-tick (the counter) after the big reveal is done.
+
+palette:
+  bg: "#000000"
+  ink: "#F2F2F2"
+  accent: "#8A8CFF"
+  support: ["#5A5A5A", "#FFFFFF"]
+  notes: >
+    Near-monochrome: pure black bg, off-white stroke/text for all HUD
+    linework. The only chroma in the whole piece is the faint blue-violet
+    sparkle flecks orbiting the bottom-right star — rationed to a single
+    accent role (ambient particle glow), never used on text or lines.
+
+typography:
+  family_look: mono
+  weights: [regular]
+  case: upper
+  tracking: wide
+  headline_frame_share: 0.0
+  notes: >
+    No headline — this is a diegetic HUD overlay, not a title card. Largest
+    text is the "MOTION" label + counter digits (top-left, monospace
+    tabular figures for the ticking number), plus small caps credits
+    ("DESIGN-VISHESH", "ANIMATION-SHUBH") and a fake lat/long readout,
+    all uppercase mono at small corner scale.
+
+structure:
+  - act: hook
+    t: [0.0, 0.5]
+    purpose: a lone diagonal line resolves out of motion-blur into a crisp stroke, establishing the "instrument is booting" premise before anything else exists on screen.
+    shots: [1]
+  - act: reveal
+    t: [0.5, 1.05]
+    purpose: six more HUD widgets snap in almost simultaneously on one beat (f12) — divider rule, segmented level bar, crosshatch star-lattice, star outline, coordinate/barcode block, credits — reading as a single power-on flash rather than a slow build.
+    shots: [1]
+  - act: proof
+    t: [1.05, 2.75]
+    purpose: everything stops moving except a perpetually-ticking motion counter and coordinate readout, plus one sparkle burst around the star (~f33-35) — enough residual motion to sell the HUD as "live" without re-animating the layout.
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 2.75]
+    frames: [0, 65]
+    layout: full-bleed-ui
+    content: >
+      Black 1:1 frame. A thin diagonal accent line (bottom-left) draws on
+      first. At f12 a burst of widgets appears together: a full-width
+      divider rule top-left, a segmented vertical level-meter bar
+      (center-left), a woven crosshatch star/compass lattice (center),
+      a five-point rounded star outline with 4 inset squares and orbiting
+      sparkle dots (bottom-right), a vertical barcode + fake lat/long
+      coordinate string "51.4014°N 1.3231°W" (top-right), and small-caps
+      credits "DESIGN-VISHESH" / "ANIMATION-SHUBH" (top-right). Below the
+      divider rule a "MOTION" label appears with a live incrementing
+      counter (157 → 2464) and a paired incrementing coordinate pair
+      ("41-282" → "114-568"), both ticking continuously for the rest of
+      the shot. From f36 onward the frame is fully static except the
+      counter/coordinate text.
+    moves:
+      - move: drawOn
+        target: diagonalLine_bottomLeft
+        at_f: 0
+        params: {dur_f: 9, ease: expoOut, blur: [14, 0]}
+      - move: drawOn
+        target: dividerRule_topLeft
+        at_f: 12
+        params: {dur_f: 8, ease: expoOut}
+      - move: staggerRise
+        target: levelBar_segments
+        at_f: 12
+        params: {count: 6, y: [0, 0], reveal: clip-path-bottom-up, dur_f: 12, stagger_f: 2, ease: springSoft}
+      - move: drawOn
+        target: crosshatchStarLattice_lines
+        at_f: 16
+        params: {dur_f: 10, per_line_stagger_f: 2, line_count: 5, ease: expoInOut}
+      - move: drawOn
+        target: starOutline_bottomRight
+        at_f: 12
+        params: {dur_f: 10, ease: expoOut}
+      - move: popIn
+        target: barcodeCoordBlock_topRight
+        at_f: 12
+        params: {dur_f: 8, ease: springSnap}
+      - move: scaleIn
+        target: creditsText
+        at_f: 12
+        params: {dur_f: 10, opacity: [0, 1], scale: [0.96, 1], ease: expoOut}
+      - move: liveCounterTick
+        target: motionCounter_label
+        at_f: 20
+        params: {dur_f: 45, start_value: 0, end_value: 2464, digits: 4, monospace_digits: true}
+      - move: liveCounterTick
+        target: coordinateReadout_pair
+        at_f: 20
+        params: {dur_f: 45, step_per_4f: [6, 33], digits: 3}
+      - move: staggerRise
+        target: sparkleParticles_star
+        at_f: 12
+        params: {count: 10, opacity: [0, 1], stagger_f: 2, dur_f: 20, ease: springSoft}
+        note: secondary burst peaks at_f 32-35 (motion.csv spikes 3.30 and 3.09 at frames 33/35) then goes fully static
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow, filmGrain]
+    audio_cue: whoosh
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 29
+
+techniques:
+  - id: staggered-svg-power-on
+    what: >
+      Seven unrelated HUD widgets (line, rule, bar, lattice, star outline,
+      barcode block, credits) each independently draw themselves on via
+      strokeDashoffset/clip-path, but all begin within a 4-frame window
+      (f12-16), so the eye reads one unified "system boot" flash instead
+      of seven separate animations.
+    where: shot 1, f0-26
+    why_it_reads: >
+      A single lone element (the diagonal line) establishes the world is
+      empty/off first, so the near-simultaneous burst 12 frames later
+      reads as a deliberate power-on event rather than a chaotic pile-on.
+      The motion.csv luma jumps from ~1.0 to 5.5-8.3 exactly at that burst
+      — the brightness change alone sells "activation."
+    remotion_recipe: >
+      One `buildStart` frame constant (12). Every widget is its own
+      component rendering an SVG `<path>` with `pathLength=1`; each gets a
+      `delayFrames` prop (0, 4, 4, 0, 0, 0 respectively) and computes local
+      progress as `spring({frame: frame - (buildStart + delayFrames), fps,
+      config: {damping: 200, mass: 0.6, stiffness: 100}})`, mapped to
+      `strokeDashoffset = interpolate(progress, [0,1], [1,0])`. The
+      diagonal line's early "resolve from blur" is the same drawOn curve
+      driving a CSS `filter: blur(${interpolate(progress,[0,1],[14,0])}px)`
+      on a duplicate glow layer under `mix-blend-mode: screen`. No AE
+      plugin, no hand-painted glow frames.
+    difficulty: moderate
+
+  - id: perpetual-telemetry-counter
+    what: >
+      A monospace "MOTION" counter and a paired fake lat/long-style
+      coordinate string increment continuously for the entire back half
+      of the shot (f20-65), never settling — the one thing still moving
+      once the layout is fully built.
+    where: shot 1, f20-65
+    why_it_reads: >
+      It's cheap ambient proof-of-life: viewers register "this is a
+      running system, not a frozen screenshot" from a few ticking digits
+      in a corner, without needing any additional layout motion or cuts.
+    remotion_recipe: >
+      Derive the digits directly from `frame`, no keyframes: `const value =
+      Math.round((frame - 20) * 54.5)` for the counter (matches the
+      ~2464 over ~45f rate measured in the sheet), rendered in a
+      `font-variant-numeric: tabular-nums` monospace span so digit width
+      never shifts the layout. Drive the coordinate pair the same way with
+      two independent linear-with-noise functions, e.g. `base + frame *
+      rate + Math.sin(frame * 0.7) * jitter`, so it doesn't look like a
+      perfect linear ramp. Zero AE keyframes — it's a pure function of
+      frame.
+
+  - id: segmented-level-bar-reveal
+    what: >
+      A vertical bar built from ~6 alternating light/dark segments reveals
+      bottom-to-top with a short per-segment stagger, reading as an
+      equalizer/signal-strength meter powering up.
+    where: shot 1, f12-24
+    why_it_reads: >
+      Revealing by segment (not a single scale/height animation) sells
+      "digital meter" rather than "loading bar" — the eye counts discrete
+      steps filling in, which matches how real telemetry UIs animate.
+    remotion_recipe: >
+      Absolute-position 6 stacked `div` segments inside a fixed-height
+      column. Each segment's clip-path animates `inset(100% 0 0 0)` →
+      `inset(0 0 0 0)` via `spring()`, with `delayFrames = index * 2`.
+      Alternate segment fill color (`#F2F2F2` / `#1A1A1A`) is static, only
+      the clip-path animates — cheap on the GPU, no masks needed beyond
+      clip-path.
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 66
+  fastest_f: 66
+  slowest_f: 66
+  pattern: >
+    Single 66f shot, no internal cuts. Internal energy shape: near-zero
+    (f0-8) → single resolve (f0-9, diagonal line) → brief quiet (f9-11) →
+    hard burst (f12, motion peak 4.15 in motion.csv) → decaying settle
+    (f13-26) → small secondary bump (f28-31, motion ~0.6-0.7, content
+    shifting toward bottom-right per centroid_x) → sparkle burst (f33 &
+    35, motion 3.30 / 3.09) → fully static hold (f36-65, 29f).
+  beat_grid_f: null
+  energy_curve: front-loaded
+
+transferable:
+  - Stagger unrelated UI widgets' entrances within a ~4f window around one shared beat frame instead of sequencing them — it reads as one power-on event, not a list animating in.
+  - Give a mostly-static UI shot one perpetual, purely frame-derived counter/readout (no easing, no settle) so the whole hold period still feels "live" for free.
+  - Precede the main burst with one small, slow, isolated element (in this case, the diagonal line resolving from blur) to establish "nothing is happening yet," which makes the subsequent simultaneous reveal register as a deliberate event.
+  - Build meters/bars as segmented clip-path reveals with per-segment stagger rather than a single scale animation — reads as more "instrumented."
+  - A single sparkle/particle burst placed well after the main reveal (here ~20f later) gives a shot a second, smaller pulse of life without re-animating any layout.
+
+avoid:
+  - Hand-painting the glow/bloom on every thin line frame-by-frame in After Effects — use a duplicated blurred layer with `mix-blend-mode` set to `screen` (or CSS `filter` with `blur()` plus `drop-shadow()`) driven by the same progress value as the stroke draw-on.
+  - Hand-keyframing seven independent widgets' start times in AE's graph editor to get the "near-simultaneous burst" feel — centralize all offsets in one JSON choreography object (`widget -> {delayFrames, durFrames}`) consumed by one generic `<DrawOnPath>`/`<RevealSegments>` component.
+  - Keyframing the ticking counter and coordinate digits as individual number keyframes — express them as pure functions of `frame` (linear rate plus small sine jitter) so any duration/fps change doesn't require re-keying.
+
+new_moves:
+  - name: liveCounterTick
+    params: {dur_f: to-end-of-shot, start_value: 0, end_value: N, digits: 4, monospace_digits: true, jitter: optional}
+    description: >
+      A perpetually-incrementing numeric readout (counter, coordinate,
+      telemetry value) that runs for the remainder of a shot with no
+      settle/ease and no fixed endpoint tied to a landing — distinct from
+      `counterUp`, which eases into a final resting value. Used for
+      HUD/dashboard "proof of life" text. Value is a direct function of
+      frame (`value = f(frame)`), optionally with small sinusoidal jitter
+      so it doesn't read as a perfectly linear ramp.

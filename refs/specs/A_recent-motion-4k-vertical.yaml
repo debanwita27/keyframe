@@ -1,0 +1,263 @@
+id: A_recent-motion-4k-vertical
+source: "local reference, no URL"
+category: brand-loop
+product_type: brand-only
+
+format:
+  aspect: "9:16"
+  fps: 30
+  duration_s: 9.43
+  orientation: vertical
+
+verdict: >
+  A single 283-frame seamless loop that tells "chargeback prevented" through
+  pure iconography: red threat bubbles arrive, a shield pops in and blocks
+  them while green safe-bubbles cascade in on the other side, everything idles
+  with independent ambient bob, then a matching rack-focus blur closes the
+  loop back to its own opening frame so playback never shows a seam.
+
+palette:
+  bg: "#F6DCC4"
+  ink: "#1A1A1A"
+  accent: "#E5532A"
+  support: ["#C94040", "#E88080", "#4FCB7C", "#8DE3A8", "#FFFFFF"]
+  notes: >
+    Peach-to-coral diagonal wash background, static aside from the open/close
+    focus pull. Red (#C94040, pink highlight #E88080) rations to the left
+    cluster = threat; green (#4FCB7C, mint highlight #8DE3A8) rations to the
+    right cluster = safe/resolved. Shield keeps brand red/orange but splits
+    it with a white centre panel. Single light-mode look throughout, no
+    dark-mode inversion observed. Raw capture's dominant colours (#303030,
+    #483030, near-black) are the filmed monitor bezel/keyboard, not the
+    on-screen design — excluded from this palette, see detection_notes.
+
+typography:
+  family_look: geometric sans
+  weights: [medium]
+  case: sentence
+  tracking: normal
+  headline_frame_share: 0.35
+  notes: >
+    Two stacked caption lines beneath the shield, each prefixed with a small
+    check/arrow glyph, left-aligned: "✓ Chargeback Prevented" / "✓ Chargeback
+    Prevented" — both lines are the identical string, a placeholder/WIP
+    duplicate rather than a real two-point copy pattern (see avoid:).
+
+structure:
+  - act: hook
+    t: [0.0, 0.9]
+    purpose: Rack-focus reveal draws the eye before any icon exists on screen.
+    shots: [1]
+  - act: problem
+    t: [0.9, 2.07]
+    purpose: Red threat bubbles scale-pop in one by one along the diagonal, establishing the risk.
+    shots: [1]
+  - act: reveal
+    t: [2.07, 3.27]
+    purpose: Shield springs in and visually blocks the threats while green safe-bubbles and the caption cascade in.
+    shots: [1]
+  - act: proof
+    t: [3.27, 8.53]
+    purpose: Hold the fully-resolved composition long enough to read; ambient per-bubble float keeps the frame alive.
+    shots: [1]
+  - act: cta
+    t: [8.53, 9.43]
+    purpose: Rack-focus blurs back out to the exact opening state so the loop hands off invisibly.
+    shots: [1]
+
+shots:
+  - n: 1
+    t: [0.00, 9.43]
+    frames: [0, 282]
+    layout: centre-top
+    content: >
+      Diagonal peach/coral gradient background. Red spiky "threat" bubbles
+      (glossy 3D-look spheres, per visible Cinema 4D renderer in the AE
+      toolbar) scale-pop in from top-right along the diagonal band and settle
+      left-of-centre. A shield badge (orange/red outline, white vertical
+      centre panel) springs in centre-left. Green rounded "safe" bubbles
+      (each with a small white icon: arrow / checkmark / shield-tick) pop in
+      one by one along the same diagonal, settling right-of-centre. Caption
+      "✓ Chargeback Prevented" x2 stacked lines fades/wipes up under the
+      shield. Whole scene idles with independent bubble bob for ~155f, then
+      blurs back to the opening rack-focus state to loop.
+    moves:
+      - move: unblurIn
+        target: bg+content group
+        at_f: 0
+        params: {blur: [18, 0], scale: [1.04, 1], dur_f: 27, ease: expoOut}
+      - move: popIn
+        target: red-bubble[0..5]
+        at_f: 32
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap, stagger_f: 5, count: 6}
+      - move: scaleIn
+        target: shield
+        at_f: 62
+        params: {scale: [0.86, 1.05, 1], dur_f: 18, ease: backOut}
+      - move: popIn
+        target: green-bubble[0..8]
+        at_f: 62
+        params: {scale: [0, 1.08, 1], dur_f: 11, ease: springSnap, stagger_f: 5, count: 9}
+      - move: maskWipeUp
+        target: caption-lines
+        at_f: 72
+        params: {dur_f: 16, per_line_stagger_f: 4, ease: expoOut}
+      - move: bubbleDrift
+        target: red-bubble[*]+green-bubble[*]
+        at_f: 102
+        params: {amplitude_px: 6, period_f: [90, 130], phase_seed: per_index, axis: y, until_f: 266}
+      - move: breathe
+        target: shield
+        at_f: 102
+        params: {scale: [1, 1.015, 1], period_f: 120, until_f: 266}
+      - move: rackLoop
+        target: bg+content group
+        at_f: 266
+        params: {blur: [0, 18], scale: [1, 1.04], dur_f: 16, ease: expoIn}
+    camera: {move: none, params: {}}
+    bg: {kind: gradient-drift, moves: []}
+    treatment: [bloomGlow, dropShadowSoft]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 164
+
+techniques:
+  - id: bubble-threat-safe-swarm
+    what: >
+      A swarm of glossy circular icon-sprites (red = threat, green = safe)
+      that scale-pop in staggered along a diagonal path, then switch to an
+      independent, asynchronous ambient float once settled.
+    where: shot 1, frames 32-266
+    why_it_reads: >
+      Per-bubble entrance stagger plus non-synchronised idle bob avoids the
+      "everything moves in lockstep" flat-vector look; asymmetric count and
+      organic per-sprite timing reads as alive through a 150+ frame hold.
+    remotion_recipe: >
+      Define an array of bubble descriptors {id, color, targetX, targetY,
+      entryFrame}. Render each as an absolutely-positioned div/SVG circle
+      with a radial-gradient fill (light spot offset up-left for the
+      specular highlight) + a centred small icon svg. Entrance: spring
+      ({damping:14, mass:0.5, stiffness:180}) driving scale 0→1.08→1 and
+      opacity 0→1, entryFrame = baseFrame + index*5. Once the spring output
+      is ~settled, switch the same sprite to idle motion: translateY =
+      Math.sin((frame - entryFrame)/period + phaseSeed) * amplitude, where
+      period = 90 + (index % 3) * 20 and phaseSeed = index * 0.7 (deterministic
+      per index, so re-renders match). No 3D engine required — the CSS
+      radial-gradient + soft box-shadow fakes the C4D glossy-sphere look.
+    difficulty: moderate
+  - id: shield-block-reveal
+    what: >
+      The shield badge springs in at the exact frame the incoming red
+      bubbles finish arriving, reading as if it physically stopped them.
+    where: shot 1, frame 62
+    why_it_reads: >
+      Causal timing (threats arrive → shield appears → scene resolves) sells
+      the "blocked" idea with zero collision physics — just sequencing.
+    remotion_recipe: >
+      Two-layer SVG: a fixed shield outline path, plus an inner rect clipped
+      to the shield shape via clip-path: path(...) split into orange/white
+      halves. Animate both together on one scale spring
+      ({damping:12, mass:0.5, stiffness:200}) driving scale 0.86→1.05→1 so
+      it overshoots then settles, matching the profile's measured
+      "overshoot/settle bounce" velocity signature.
+    difficulty: trivial
+  - id: seamless-rackfocus-loop-bookend
+    what: >
+      The clip opens and closes on the identical out-of-focus blurred-gradient
+      frame so it can autoplay on repeat with no visible seam.
+    where: shot 1, frames 0-27 (open) and 266-282 (close)
+    why_it_reads: >
+      Both ends match in blur amount, scale, and framing, so the eye reads
+      one continuous ambient shot rather than a loop point — the seam is
+      literally invisible because the pixels at frame 282 and frame 0 match.
+    remotion_recipe: >
+      Drive a single `focus` interpolation: 0→1 over frames 0-27 (expoOut)
+      controlling `filter: blur(${(1-focus)*18}px)` and `scale(${1 + (1-focus)*0.04})`
+      on the bg+content group. Mirror it 1→0 over frames 266-282 (expoIn)
+      using the identical blur/scale end values as frame 0. Wrap the
+      composition in Remotion's `<Loop>` (or set CSS
+      animation-iteration-count: infinite) — because both bookends resolve
+      to the same visual state, the frame 282→0 handoff is imperceptible.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 0
+  median_shot_f: 283
+  fastest_f: 283
+  slowest_f: 283
+  pattern: >
+    Single continuous loop, no hard cuts: 27f blur-in → 30f threat-bubble
+    build → 40f shield+safe-bubble+caption resolve → 164f ambient hold →
+    16f blur-out that lands exactly back on frame 0's state.
+  beat_grid_f: null
+  energy_curve: front-loaded
+
+transferable:
+  - Use a barrier/shield icon as the causal hinge of a before/after value-prop
+    loop — threats arrive, icon pops in at the exact frame they'd collide,
+    resolved state assembles. No collision physics needed, just timing.
+  - Give particle swarms independent post-entrance idle motion (per-sprite
+    period + phase offset) so a 150+ frame hold doesn't read as a freeze-frame.
+  - Bookend a loop with a matching blur/focus pull at open and close (same
+    end-state blur+scale) — cheap to build, reads as expensive polish.
+  - Glossy 3D-sphere bubbles are fakeable in 2D with one radial-gradient +
+    soft box-shadow per sprite; no WebGL/3D engine required for this fidelity.
+  - Stagger particle entrances at a measured ~5f cadence (not the vocab's
+    default 2-4f) when the sprites are large/glossy — reads calmer, matches
+    the "subtle" energy classification here.
+
+avoid:
+  - The 3D-rendered bubbles (Cinema 4D visible in the AE toolbar) depend on
+    a full 3D render pass — don't rebuild in an actual 3D/WebGL engine;
+    the CSS radial-gradient sphere fake (see bubble-threat-safe-swarm) gets
+    ~90% of the read at near-zero cost.
+  - Individual bubble scatter positions were almost certainly hand-nudged
+    per-layer in AE — don't hand-key each one; use a small seeded-random
+    layout function (fixed seed, tune until it looks intentional) instead.
+  - Any camera jitter in the raw capture is handheld-phone shake from
+    filming a monitor, not a deliberate camera move — do not replicate it;
+    the virtual camera in a rebuild should be static.
+  - The duplicated caption line is unfinished placeholder copy, not a real
+    two-line pattern — swap in two distinct proof points before treating
+    this as a copy template.
+
+new_moves:
+  - name: rackLoop
+    params: {blur: [18, 0], scale: [1.04, 1], dur_f: 27, ease: expoOut, mirrored_out_f: 16}
+    description: >
+      A bookend focus-pull that makes a clip loop invisibly: background and
+      content start blurred and slightly scaled up, sharpen over dur_f
+      frames at the open; the identical blur/scale curve is replayed in
+      reverse over mirrored_out_f frames at the very end, so frame 0 and the
+      final frame match pixel-for-pixel and the loop point is imperceptible
+      on repeat playback.
+  - name: bubbleDrift
+    params: {amplitude_px: 6, period_f: [90, 130], phase_seed: per_index, axis: y}
+    description: >
+      Ambient idle float for a swarm of small icon/particle sprites once
+      their entrance has settled. Each sprite gets its own period
+      (randomised within a small range) and phase offset (seeded from its
+      index) so the swarm bobs asynchronously rather than in unison — reads
+      as organic rather than looped.
+
+detection_notes: >
+  profile.md reports exactly 1 shot spanning all 283 frames (0-282) with no
+  internal cuts. Cross-checked against both sheets: correct, this is a single
+  continuous take/loop — nothing to merge or split.
+
+vertical_notes: >
+  This capture is a handheld phone video of an After Effects monitor
+  (bezel, keyboard, and timeline chrome are visible in the raw frame across
+  every sheet cell) — its 9:16 shape comes from how the phone was held, NOT
+  from the underlying motion graphic, which is itself composed as a roughly
+  16:9 horizontal scene sitting letterboxed in the frame's upper portion. So
+  there is no genuine vertical-native layout decision to extract from this
+  reference as shot. What WOULD transfer to a true vertical build: restack
+  the composition so the shield sits centred in the top third, cluster red
+  bubbles above/left and green bubbles below/right along a vertical
+  diagonal instead of the current horizontal one, and run the two caption
+  lines full-width in the lower third with generous side margins — matching
+  the safe-zone logic the other two vertical refs in this batch actually
+  demonstrate. Recut to 16:9: trivial — the underlying composition already
+  wants to live there; just crop out the filmed bezel/keyboard and use the
+  inner content area directly at its native aspect.

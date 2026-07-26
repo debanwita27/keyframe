@@ -1,0 +1,347 @@
+id: B_logo-wip
+source: unknown — no source URL captured in analysis folder
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 60
+  duration_s: 9.067
+  orientation: horizontal
+
+verdict: >
+  A raw After Effects viewport screen-recording of a logo build (DILATION), not a graded
+  final export — zero camera work, zero atmosphere, almost the whole comp is flat
+  #F0F0F0/#181818. Valuable for exactly two moves: the fill→stroke ring-cluster
+  crossfade, and the twin 8-frame alternate-treatment flash used as a "process reveal" beat.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#181818"
+  accent: "#301830"
+  support: ["#303030", "#787878", "#606078"]
+  notes: >
+    Screen-share-measured (#F0F0F0 37.8%, #181818 34.7%, #303030 17.4% is AE UI chrome,
+    #301830 5.1%). Accent #301830 (dark plum) is rationed to a single small figure/tag
+    icon that sits over the "T". Everything else is pure black-on-white. During the two
+    alt-treatment flash frames (f367-382) the whole comp inverts: white-on-black glow
+    ink, then black-on-white flat ink — a full palette invert used as punctuation, not a
+    gradual grade.
+
+typography:
+  family_look: geometric sans
+  weights: [medium]
+  case: upper
+  tracking: normal
+  headline_frame_share: 0.32
+  notes: >
+    Single-line wordmark "DILATION" set inside/behind a 4-circle ring cluster, small
+    dark-plum icon fused over the "T". One line of tagline below in a smaller weight of
+    the same family, bracketed with slashes: "// PERSPECTIVE // NO MATTER WHERE". During
+    the f367-382 flash the wordmark is swapped for a hand-drawn distressed/grunge brush
+    rendering of the same word, tagline unchanged.
+
+structure:
+  - act: reveal
+    t: [0.0, 0.317]
+    purpose: cold-open bookend on the tool itself (screen-recording of OBS + After Effects) before cutting to the actual logo build
+    shots: [1]
+  - act: capability
+    t: [0.333, 6.10]
+    purpose: build the ring-cluster mark, crossfade it to outline, then letter-reveal the wordmark and hold on the finished lockup
+    shots: [2]
+  - act: proof
+    t: [6.117, 6.383]
+    purpose: rapid-fire flash two alternate ink-brush treatments of the wordmark (palette inverted) as a "here's what we explored" beat
+    shots: [3, 4]
+  - act: cta
+    t: [6.383, 9.067]
+    purpose: return to the finished lockup, hold, then strip the wordmark and sign off on the ring mark alone
+    shots: [5, 6]
+
+shots:
+  - n: 1
+    t: [0.00, 0.317]
+    frames: [0, 19]
+    layout: full-bleed-ui
+    content: >
+      Static desktop capture: an OBS recording overlay window sitting on top of an After
+      Effects project ("WEBSITE LOGO ANIMATION" / "DILATION LIQUID" comps visible in the
+      tab bar). No logo content yet. Near-zero pixel motion (CSV motion 0.01-0.58 across
+      f0-18) is UI/cursor noise, not a designed move.
+    moves: []
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 0
+
+  - n: 2
+    t: [0.333, 6.10]
+    frames: [20, 366]
+    layout: centre-stack
+    content: >
+      Four overlapping circles (flower-of-life / Olympic-rings style cluster) appear
+      solid-filled in near-black, hold, then crossfade to outline-only strokes. The
+      wordmark "DILATION" builds in left-to-right ("DI" → "DILA" → full word) with a
+      small dark-plum figure/tag icon fusing onto the "T". A one-line tagline
+      "// PERSPECTIVE // NO MATTER WHERE" settles beneath. The finished lockup then
+      holds, essentially static, for ~200 native frames before the cut.
+    moves:
+      - move: popIn
+        target: ringCluster (filled state)
+        at_f: 0
+        params: {scale: [0, 1.05, 1], dur_f: 8, ease: springSnap}
+      - move: fillToStroke
+        target: ringCluster
+        at_f: 70
+        params: {dur_f: 24, ease: expoInOut}
+      - move: maskWipeSide
+        target: wordmark "DILATION"
+        at_f: 104
+        params: {dur_f: 40, dir: l→r, ease: expoInOut}
+      - move: popIn
+        target: tIcon (dark-plum figure mark over the "T")
+        at_f: 130
+        params: {scale: [0, 1.1, 1], dur_f: 8, ease: springSnap}
+      - move: staggerRise
+        target: tagline
+        at_f: 140
+        params: {y: [28, 0], opacity: [0, 1], dur_f: 12, ease: springSoft}
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 202
+
+  - n: 3
+    t: [6.117, 6.233]
+    frames: [367, 374]
+    layout: centre-stack
+    content: >
+      Hard cut to a fully inverted comp: black background, "DILATION" rendered as a
+      hand-drawn distressed/grunge ink brush wordmark in white, with a soft glow/bloom
+      haze bleeding off the strokes. Same tagline beneath, unchanged. Fully static hold
+      (CSV motion ~0.01 across all 7 frames, mean luma 50.5 — dark).
+    moves: []
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow]
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 4
+    t: [6.25, 6.367]
+    frames: [375, 382]
+    layout: centre-stack
+    content: >
+      Second hard cut: same distressed ink-brush "DILATION" wordmark, now flat black on
+      white, no glow — the un-bloomed sibling of shot 3. Same tagline. Fully static hold
+      (mean luma 119.75 — bright).
+    moves: []
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 8
+
+  - n: 5
+    t: [6.383, 8.783]
+    frames: [383, 527]
+    layout: centre-stack
+    content: >
+      Returns to the finished white-bg lockup (ring cluster outline + "DILATION"
+      wordmark + tIcon + tagline) — visually identical to the end-state of shot 2. A
+      3-frame dark dip (native f383-385, luma drops to 47.3) sits at the very head of
+      this shot before the lockup reasserts at f387 (luma back to ~121.6); the coarse
+      cut-detector did not register this as its own shot (see detection_notes). Holds
+      static for the remaining ~140 frames.
+    moves:
+      - move: flashCut
+        target: whole comp
+        at_f: 0
+        params: {dur_f: 3, colour: black}
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 140
+
+  - n: 6
+    t: [8.80, 9.083]
+    frames: [528, 545]
+    layout: centre-stack
+    content: >
+      Wordmark, tIcon, and tagline drop out, leaving only the outlined ring-cluster mark
+      alone. The mark settles/drifts toward the bottom-right of frame (centroid_x
+      0.58→0.85, centroid_y 0.56→0.95 over the shot) as the piece ends — reads as a
+      camera pull-back leaving whitespace around the mark, the sign-off beat.
+    moves:
+      - move: flyOut
+        target: wordmark + tIcon + tagline
+        at_f: 0
+        params: {y: [0, -30], opacity: [1, 0], dur_f: 10, ease: expoIn}
+    camera: {move: pullOut, params: {scale: [1.1, 1.0], dur_f: 18, ease: expoOut}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: hardCut, params: {}}
+    hold_f: 6
+
+detection_notes: >
+  Profile's shots 3 (f367-374) and 4 (f375-382) are NOT an over-fired duplicate of one
+  shot — motion.csv confirms two genuinely distinct treatments (mean luma 50.5 vs 119.75,
+  i.e. black-bg-glow ink logo vs white-bg-flat ink logo), each its own hard cut
+  (spikes of 70.75 at f366, 70.76 at f374, 73.71 at f382). No merge needed there.
+  What the profile's shot table DOES miss: a 3-frame dark dip at native f383-385
+  (luma 47.3, distinct from the surrounding f382 spike of 73.71 and the f386 spike of
+  75.4 — the highest peak in the whole clip) folded silently into the front of shot 5.
+  This is a real sub-cut (a brief black flash punctuating the return to the finished
+  lockup) that the coarse >26.0 threshold detector under-split rather than over-split;
+  it is called out here and modelled as a `flashCut` at the head of shot 5's moves
+  rather than restructuring the top-level shot table, per instructions to treat
+  profile.md's shot list as ground truth for timing.
+
+techniques:
+  - id: ring-cluster-fill-to-stroke
+    what: >
+      A 4-circle overlapping cluster (fixed geometry, flower-of-life layout) first
+      renders as solid near-black fills, holds, then crossfades to outline-only strokes
+      of the same circles — no shape morph, just an opacity swap between two identical
+      geometry layers.
+    where: shot 2, native f20-114 (popIn f20-28, hold, crossfade f90-114)
+    why_it_reads: >
+      Because the geometry never moves, the eye reads it as the mark "dematerializing"
+      into a lighter, more refined version of itself rather than as two different marks.
+    remotion_recipe: >
+      Two absolutely-stacked SVG <g> groups with identical <circle> elements: one with
+      fill="#181818" fill-opacity, one with fill="none" stroke="#181818"
+      stroke-opacity. Interpolate fill-opacity 1→0 and stroke-opacity 0→1 over the same
+      24-frame window with expoInOut easing (Remotion interpolate() driving two CSS
+      opacity values, no path morphing library needed).
+    difficulty: trivial
+
+  - id: wordmark-clip-reveal
+    what: >
+      "DILATION" appears left-to-right as if being printed, not slid or popped in per
+      letter — a rectangular reveal window grows across the text.
+    where: shot 2, native f124-164
+    why_it_reads: >
+      maskWipeSide's "printing" quality reads as confident/typographic rather than
+      playful, appropriate for a wordmark logo rather than UI copy.
+    remotion_recipe: >
+      Static text/SVG wordmark under an absolutely-positioned parent with
+      clip-path: inset(0 X% 0 0), animate X from 100 to 0 over 40 frames
+      (dur_f=40 native/≈20f@30fps) with expoInOut easing. No per-character stagger
+      needed — one clip-path keyframe track.
+    difficulty: trivial
+
+  - id: twin-flash-alt-treatment
+    what: >
+      Two 7-8 native-frame (≈4f@30fps) hard-cut flashes of an alternate distressed
+      ink-brush wordmark rendering — first inverted (black bg, white glow-bloomed ink),
+      then flat (white bg, black flat ink) — sandwiched into an otherwise calm build,
+      before returning to the primary lockup.
+    where: shots 3-4, native f367-382
+    why_it_reads: >
+      The palette full-invert plus the sub-11-frame duration (below the vocab's
+      "min shot length" for a real shot) reads as a subliminal "here's an alternate
+      universe" flourish rather than a competing idea — brief enough that it registers
+      as texture, not narrative.
+    remotion_recipe: >
+      Pre-author the distressed wordmark as two static SVG/PNG assets (one glow variant,
+      one flat variant — do not attempt to procedurally generate the brush strokes).
+      Drop each into its own <Sequence from={f} durationInFrames={8}> with a solid
+      background fill swapped to black/white per sequence. No interpolation inside
+      either sequence — the effect is entirely the hard cut + palette invert + the
+      pre-baked glow.
+    difficulty: moderate
+
+  - id: ink-brush-bloom
+    what: >
+      The black-bg variant of the distressed wordmark has a soft white glow/halation
+      bleeding a few pixels off every stroke, visibly raising the frame's mean luma to
+      50.5 despite a black background.
+    where: shot 3, native f367-374
+    why_it_reads: >
+      A cheap bloom on a monochrome ink asset is enough to make a flat vector shape read
+      as "lit" rather than "printed" — the single moment of atmosphere in an otherwise
+      flat reference.
+    remotion_recipe: >
+      Pure CSS/SVG filter chain, no shader needed: duplicate the wordmark SVG under the
+      original, apply feGaussianBlur(stdDeviation≈4-6) + feColorMatrix to boost
+      brightness, composite with mix-blend-mode: screen underneath the crisp original.
+      Equivalent to MOVE_VOCAB's bloomGlow (threshold≈0.7, radius≈18px) but applied to
+      a static asset rather than an animated highlight.
+    difficulty: trivial
+
+  - id: mark-alone-sign-off
+    what: >
+      Wordmark, T-icon, and tagline fly out, leaving only the ring-cluster outline mark,
+      which then drifts/settles toward the bottom-right quadrant of frame as the piece
+      ends.
+    where: shot 6, native f528-545
+    why_it_reads: >
+      Stripping back to the icon alone is a classic "the mark can stand on its own" close
+      — the drift toward a corner (rather than staying centred) implies the frame
+      continues past the edge, a cheap way to avoid a dead-centre freeze-frame ending.
+    remotion_recipe: >
+      flyOut the text/icon group (y 0→-30, opacity 1→0, 10f, expoIn) while the whole
+      comp scales 1.1→1.0 over 18f (expoOut) — a plain CSS transform: scale + translate
+      on the root composition, no camera library required.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 5
+  median_shot_f: 19
+  fastest_f: 8
+  slowest_f: 347
+  pattern: >
+    20f cold-open on the desktop/tool bookend → 347f uninterrupted build-and-hold of the
+    ring+wordmark lockup → two rapid 8f alternate-treatment flashes (palette inverted) →
+    145f return-hold on the finished lockup → 18f close stripping to the ring mark alone.
+    Note: all dur_f figures above are native 60fps frame counts (this source is 60fps,
+    not the vocab's assumed 30fps) — halve them for 30fps-equivalent durations.
+  beat_grid_f: null
+  energy_curve: wave
+
+transferable:
+  - Build a logomark by crossfading solid-fill shapes to stroke-only outlines on
+    identical, unmoving geometry — no morph library required, just two opacity tracks.
+  - Reveal a wordmark with a clip-path sweep (maskWipeSide) instead of per-letter
+    slide/pop — reads cleaner and more "typographic" for a logo lockup.
+  - Use a pair of sub-11-frame, palette-inverted hard cuts to flash an alternate
+    treatment as texture/process-reveal without slowing the main build down.
+  - Keep the whole comp flat (no grain, no gradient, no vignette) so the one bloom
+    moment on the alt-treatment ink logo reads as deliberate, not accidental.
+  - Close by stripping text away and drifting the bare icon toward a frame corner
+    rather than freezing it dead-centre.
+
+avoid:
+  - The distressed/grunge ink-brush wordmark (native f367-382) is a hand-illustrated or
+    brush-simulated vector asset, not something to regenerate procedurally — pre-author
+    it once as a static SVG/PNG (or run a clean wordmark through a one-time
+    feTurbulence+displacement pass and bake the result) and just hard-cut it in.
+  - The per-letter/per-phase timing in the source was manually nudged in the AE
+    timeline (visible scrubbing/keyframe UI in the capture) — don't hand-key each
+    stagger; drive the wordmark reveal from a single dur_f/per_char_stagger_f parameter.
+  - The 202f and 140f holds are artifacts of this being a raw project scrub for review,
+    not deliberate broadcast beats — compress to the vocab's 6-10f hold rule when
+    reusing this build sequence in an actual spot.
+  - The OBS+After Effects screen-recording bookend (shot 1) is literal, unrepeatable
+    screen-capture content — don't hand-animate a fake "editor UI"; either use a real
+    capture or drop the bookend entirely.
+
+new_moves:
+  - name: fillToStroke
+    params: {dur_f: 24, ease: expoInOut}
+    description: >
+      A shape (or group of shapes) crossfades from a solid fill rendering to an
+      outline-only stroke rendering of the identical geometry: fill-opacity 1→0 on the
+      base layer while stroke-opacity 0→1 on a stacked duplicate, same path/position, no
+      morphing. Reads as the shape "dematerializing" into a lighter version of itself.

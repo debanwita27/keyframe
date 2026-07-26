@@ -1,0 +1,29 @@
+# ── dependencies
+node_modules/
+.DS_Store
+*.log
+
+# ── third-party source material, deliberately NOT redistributed.
+# Rebuild with: ./pipeline/fetch_refs.sh   and   ./pipeline/fetch_music.sh
+# What IS committed is refs/specs/ — our own written analysis of these videos.
+refs/raw/
+refs/analysis/
+audio/raw/
+audio/analysis/
+
+# ── generated assets (regenerate with: python3 pipeline/make_sfx.py)
+video/public/sfx/
+
+# ── renders and analysis output
+video/out/
+out-analysis/
+*.mp4
+*.mov
+*.webm
+
+# the one exception: the finished launch video, linked from the README
+!demo/product-os-launch.mp4
+
+# ── remotion
+.remotion/
+video/.remotion/

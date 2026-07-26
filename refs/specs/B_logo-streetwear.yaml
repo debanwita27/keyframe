@@ -1,0 +1,260 @@
+id: B_logo-streetwear
+source: local-reference
+category: logo-anim
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 24
+  duration_s: 7.0
+  orientation: horizontal
+
+verdict: >
+  A monochrome logo build treated as two acts: assemble four dots into a
+  circle-chain badge over 101f, then a 6-frame white/black strobe flips the
+  entire identity to a glowing distressed wordmark on black, held dead-still
+  for 2.6s. The strobe cut and the confidence to stop animating, not any
+  shader work, are what sell it.
+
+detection_notes: >
+  Profile's cut detector fired 4 "shots". Shots 2 (frames 101-103, 3f) and 4
+  (frame 167, 1f) are both under the 11f minimum shot length and are not real
+  shots. Shot 2 is the interior of a 6-frame strobe transition (f100-105):
+  motion.csv luma alternates 241(f100, bright) -> 15.5(f101, dark) ->
+  235(f102, bright) -> 22.4(f103, dark) -> 234.9(f104, bright) -> 31.7(f105,
+  dark, settles) -- three white flash pulses on a 2f period before the
+  composition locks to black. This single transition bridges the light-bg
+  circle badge (shot 1, f0-100) and the dark-bg distressed wordmark (renamed
+  shot 2, f104-166). Shot 4 (f167) is one trailing black frame after the
+  63f hold, almost certainly a loop-reset/encode-tail artifact, not a shot.
+  This spec merges the detected 4 shots down to 2 real shots plus one strobe
+  transition between them.
+
+palette:
+  bg: "#F0F0F0"
+  ink: "#000000"
+  accent: "#FFFFFF"
+  support: ["#606060", "#303030"]
+  notes: >
+    Pure two-tone monochrome, zero hue anywhere in the piece. Act 1 (f0-100)
+    is ink-on-paper: #000000 marks on #F0F0F0. The f100-105 strobe hard-inverts
+    the whole palette: Act 2 (f104-166) is #FFFFFF glow on #000000. The
+    "accent" is literally the white bloom against black -- the single
+    color event in the entire video is this one invert.
+
+typography:
+  family_look: "geometric sans (badge wordmark, f65-100) -> grunge/distressed hand-drawn display lettering (f105-166, not a real typeface -- a custom vector asset)"
+  weights: [bold]
+  case: upper
+  tracking: tight
+  headline_frame_share: 0.5
+  notes: >
+    Single word "DILATION" both times, one line, all caps. A second line of
+    copy only exists in Act 2, small caps, centered under the wordmark:
+    "// PERSPECTIVE //" / "NO MATTER WHERE".
+
+structure:
+  - act: hook
+    t: [0.0, 4.17]
+    purpose: build anticipation by geometrically constructing a circle-chain badge mark from scratch, letter by letter.
+    shots: [1]
+  - act: reveal
+    t: [4.17, 6.96]
+    purpose: strobe-cut payoff into the final distressed brand mark + tagline, then hold in total stillness so it reads as landed/confident.
+    shots: [2]
+
+shots:
+  - n: 1
+    t: [0.00, 4.17]
+    frames: [0, 100]
+    layout: centre-stack
+    content: >
+      Off-white (#F0F0F0) flat background, empty for 9f. Four solid black
+      dots (~28px dia at 720p) pop in individually staggered every ~4f
+      between f9-25 at scattered off-center positions and drift on eased
+      curved paths, tightening into a compact diamond cluster by f49. From
+      f49-57 each dot's fill fades out while a ~2px stroke fades in,
+      converting filled dots into hollow rings. From f57-69 the rings grow
+      in radius and slide apart to overlap edge-to-edge, forming a
+      horizontal chain of 4-5 interlocking circles -- a ring-chain badge.
+      The wordmark "DILATION" wipes on left-to-right inside the chain
+      f65-73 (visible partial "DI" at f65, full word by f69). Badge holds
+      static f73-100.
+    moves:
+      - move: orbitAssemble
+        target: dot_cluster (4x circle)
+        at_f: 9
+        params: {n: 4, dur_f: 40, stagger_f: 4, ease: springSoft}
+      - move: ringBadgeForm
+        target: dot_cluster
+        at_f: 49
+        params: {fill_to_stroke_dur_f: 8, expand_overlap_dur_f: 12, ring_count: 5, ease: expoInOut}
+      - move: maskWipeSide
+        target: wordmark_badge ("DILATION")
+        at_f: 65
+        params: {dur_f: 8, dir: "l->r", ease: expoInOut}
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out:
+      move: flashCut
+      params: {pulses: 3, pulse_period_f: 2, dur_f: 6, note: "bg strobes white/black/white/black/white/black across f100-105; badge-style logotype crossfades to distressed logotype mid-strobe (~f102-103); settles locked on black from f105"}
+    hold_f: 27
+
+  - n: 2
+    t: [4.33, 6.96]
+    frames: [104, 166]
+    layout: centre-stack
+    content: >
+      Pure #000000 background. "DILATION" now rendered in a jagged,
+      thorn-like distressed display lettering (custom-drawn, not a
+      procedural font), stroked in white with a soft bloom. Tagline
+      centered directly below in small bold caps: "// PERSPECTIVE //" on
+      one line, "NO MATTER WHERE" on the line beneath. Composition is
+      static from the moment it lands (f105) through f166 -- motion.csv
+      values sit at 0.03-0.12 for the whole span, i.e. encoder noise floor,
+      not animated idle motion. No grain, no vignette, no gradient, no
+      camera drift are present.
+    moves: []
+    camera: {move: none, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: [bloomGlow]
+    audio_cue: none
+    transition_out: {move: hardCut, params: {note: "cuts to a single trailing black frame at f167, likely a loop-reset artifact rather than a designed beat"}}
+    hold_f: 61
+
+techniques:
+  - id: dot-converge-ring-badge
+    what: >
+      4 filled circles enter individually staggered (~4f apart) between
+      f9-25 at scattered positions and drift via eased paths into a tight
+      diamond cluster by f49. Fill opacity then fades 1->0 while a 2px
+      stroke fades in 0->1 (f49-57), turning solid dots into rings. Rings
+      then grow radius and translate apart to overlap edge-to-edge into a
+      horizontal chain of 4-5 interlocking circles (f57-69), while the
+      wordmark "DILATION" reveals left-to-right inside the chain (f65-73).
+    where: shot 1, frames 9-73
+    why_it_reads: >
+      The setup (loose dots) and the payoff (ring-chain badge) are built
+      from the exact same primitive (circle), so the construction reads as
+      one continuous idea instead of two unrelated animations -- the eye
+      never has to re-parse a new shape vocabulary mid-sequence.
+    remotion_recipe: >
+      4 absolutely-positioned <div> circles (border-radius:50%). Each gets
+      its own interpolate() driving x/y from a random off-cluster start
+      point to a fixed relative target over frames 9->49 with an Easing
+      matching springSoft (damping 200, mass 0.6, stiffness 100), staggered
+      by frame offset = index*4. Fill->stroke: interpolate the div's
+      background-color alpha 1->0 while a 2px inset box-shadow (acting as
+      stroke) opacity goes 0->1, over frames 49-57. Ring-chain spread:
+      interpolate translateX offset = index*spacing and scale 1->1.6 per
+      circle over frames 57-69. Wordmark reveal: wrap the SVG/text in a div
+      with clip-path: inset(0 X% 0 0), animate X from 100->0 over frames
+      65-73.
+    difficulty: moderate
+
+  - id: strobe-restyle-transition
+    what: >
+      Over 6 frames (f100-105) the full-bleed background color alternates
+      white/black three times on a 2-frame period while the logotype layer
+      swaps from the clean grotesk-in-ring-badge version to the distressed
+      jagged wordmark + tagline; the final flip lands and holds on black.
+    where: transition between shot 1 and shot 2, frames 100-105
+    why_it_reads: >
+      A strobe this fast (2f per state) is perceived as a single flash
+      event, not as individually legible frames -- the viewer experiences
+      an instant identity-flip rather than a fade, for near-zero animation
+      cost.
+    remotion_recipe: >
+      Stack two pre-built logo layers (badge SVG, distressed SVG) in one
+      <AbsoluteFill>. Drive the background color for frames 100-105 with
+      `frame % 2 === 0 ? '#ffffff' : '#000000'`. Snap (no easing) the
+      opacity crossfade of badge-layer 1->0 / distressed-layer 0->1 at the
+      strobe's midpoint frame (~102-103). After frame 105, lock background
+      to #000000 and distressed-layer opacity to 1.
+    difficulty: trivial
+
+  - id: bloom-glow-on-black
+    what: >
+      The distressed wordmark and tagline sit on flat #000000 with a soft
+      white glow extending roughly 15-25px beyond the linework at 720p.
+      There is no grain, no vignette, no gradient, no directional
+      light-sweep -- background is completely flat black, glow is the only
+      atmosphere cue in the entire video.
+    where: shot 2, frames 104-166
+    why_it_reads: >
+      Against a perfectly flat black, even a static glow reads as
+      neon/backlit signage -- it sells a streetwear/rebellious tone with a
+      single cheap filter instead of any lighting simulation.
+    remotion_recipe: >
+      Pure CSS, no SVG filter chain and no shader needed (no animated
+      threshold, no directional sweep to justify one). Apply
+      `filter: drop-shadow(0 0 6px #fff) drop-shadow(0 0 16px #fff) drop-shadow(0 0 32px #fff)`
+      (three stacked passes, increasing blur radius, white, opacities ~0.8 /
+      0.5 / 0.3) directly to the logotype SVG/text layer.
+    difficulty: trivial
+
+  - id: dead-hold-as-confidence
+    what: >
+      Frames 104-166 (2.6s, 37% of total runtime) show zero meaningful
+      motion -- motion.csv values sit at 0.03-0.12 for the entire span,
+      indistinguishable from compression noise. No breathing, no grain,
+      no camera drift.
+    where: shot 2
+    why_it_reads: >
+      This deliberately breaks MOVE_VOCAB's own "always run one ambient
+      move" rule. After a high-energy strobe reveal, total stillness reads
+      as the brand having landed and being confident enough not to keep
+      selling itself.
+    remotion_recipe: >
+      Render this layer with zero interpolate() calls for the hold
+      duration -- a genuinely static frame. Do not add `breathe` or
+      `grainShift` here even though the vocab recommends always animating
+      something: reproducing this reference means reproducing the
+      stillness, not "fixing" it.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 82
+  fastest_f: 63
+  slowest_f: 101
+  pattern: >
+    single 101f construction shot -> 6f strobe transition (3 white pulses on
+    a 2f period) -> 63f static reveal hold (2.6s dead-still) -> 1f trailing
+    black flash (probable loop-reset artifact, not a designed beat).
+  beat_grid_f: null
+  energy_curve: front-loaded
+
+transferable:
+  - Build setup and payoff from the same primitive (circle -> ring-chain badge) so a multi-phase construction reads as one idea, not a sequence of unrelated tricks.
+  - Use a fill-opacity-to-stroke-opacity crossfade to turn solid shapes into line-art in place, cheaper and cleaner than swapping assets.
+  - A 2-frame-period strobe (3 pulses, ~250ms total at 24fps) is a near-free way to sell an instant identity flip/rebrand beat.
+  - Layer 2-3 stacked drop-shadow() passes at increasing blur radius for a convincing neon/bloom glow on black -- no shader required.
+  - Don't be afraid of a long static hold (here: 2.6s / 37% of runtime) immediately after a high-energy moment -- stillness reads as confidence, not as dead air.
+  - Time a wordmark reveal at ~8f left-to-right for a "printing" feel rather than a slower per-letter typewriter cadence.
+
+avoid:
+  - The distressed jagged letterforms are a hand-designed vector asset (custom lettering), not a real typeface -- don't try to procedurally generate this from a regular font in code; import it as a static SVG/PNG and only animate its opacity/glow/scale.
+  - The individual dot trajectories in the converge phase (f9-49) look hand-eased per dot in AE -- reproduce with per-dot spring() seeded by index (slightly randomized damping/stiffness) rather than keyframing each path by hand.
+  - The frame-exact strobe timing (bright at 100/102/104, dark at 101/103/105) was almost certainly hand-tuned in AE -- reproduce with a deterministic `frame % 2` square wave instead of keyframing opacity per frame, so it stays parametric and re-timeable.
+
+new_moves:
+  - name: orbitAssemble
+    params: {n: 4, dur_f: 40, stagger_f: 4, ease: springSoft}
+    description: >
+      N identical shapes (typically small filled circles) pop in
+      individually, staggered by stagger_f, each at a scattered start
+      position, then drift along an eased curved path toward a shared
+      target cluster, arriving together by dur_f. Used for particle-style
+      logo-mark construction.
+  - name: ringBadgeForm
+    params: {fill_to_stroke_dur_f: 8, expand_overlap_dur_f: 12, ring_count: 5, ease: expoInOut}
+    description: >
+      Takes a cluster of filled circles and (1) fades fill-opacity 1->0
+      while fading in a thin stroke 0->1 over fill_to_stroke_dur_f, turning
+      solid dots into hollow rings, then (2) grows each ring's radius and
+      translates them apart over expand_overlap_dur_f until they overlap
+      edge-to-edge into a horizontal interlocking chain of ring_count
+      circles -- the classic "Venn-chain" logo badge shape.
