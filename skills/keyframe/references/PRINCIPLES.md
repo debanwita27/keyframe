@@ -227,3 +227,40 @@ word off the right side. The base zoom has to exceed the drift amplitude.
 
 The pattern: **every defect above was invisible in the source and obvious in a
 render.** Budget for the render-and-look step; it is not a formality.
+---
+
+## 14. Three disciplines that are not pattern families
+
+Rejected as PATTERNS.md families because each is a rule that applies across all
+families rather than a recurring composition. They live here instead. Sources are
+in `pipeline/patterns-parts/`.
+
+**Emphasis budget.** Inside a block of body copy, exactly ONE phrase gets a
+different treatment — a colour and an underline, nothing more. The style is
+**static**; the entrance move supplies the motion. Styling three phrases in a
+paragraph spends the emphasis budget and none of them reads as emphasised. This is
+the same rationing rule as "one per-letter moment per video" and "the accent
+appears 2–3 times" — the general form is that emphasis is a fixed budget per
+frame, not a property you can apply repeatedly.
+Source: `B_logo-streetwear` (`single-keyword-link-styling`).
+
+**Stepping on twos.** Quantise the driving frame before it reaches any
+`interpolate()` call:
+
+```ts
+const held = Math.floor(frame / 2) * 2;   // then use `held` everywhere
+```
+
+Halves the effective frame rate for that element, which reads as deliberate,
+hand-drawn cadence rather than as a dropped frame. Traditional animation calls
+this "on twos". Use it for a whole shot or not at all — mixing stepped and smooth
+elements in one frame reads as a performance problem, not a choice. Do not combine
+it with spring physics, which needs every frame to settle correctly.
+Source: `B_trippy-abstract-type` (`stepped-hold-on-twos`).
+
+**Mark-alone sign-off.** The closing convention: fly the wordmark and any
+supporting text out, keep the mark alone, and let the root composition ease from
+`scale 1.1 → 1.0` while drifting slightly off-centre. Composition of existing
+moves (`flyOut` + `pullOut`), not a new mechanism — but it is the corpus's default
+ending and worth knowing as a convention rather than re-deriving it.
+Source: `B_logo-aim` (`mark-alone-sign-off`).
