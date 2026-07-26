@@ -177,6 +177,10 @@ Two things that catch people out:
 - A "free" tier almost never covers a company's own launch video. Free usually
   means *personal channel*, and a product announcement is commercial content
   even when it is posted to a company social account.
+- **"Internal only" does not mean non-commercial.** Epidemic lists *"corporate
+  videos, explainer videos, and internal communications"* as Business-plan uses —
+  they would not enumerate internal comms under a paid business tier if it were
+  exempt. Company use is business use regardless of audience.
 - Epidemic's Business **and** Pro plans exclude companies above ~$10M revenue —
   larger organisations need Enterprise. Check whether marketing already holds a
   seat somewhere before buying anything.
@@ -184,6 +188,22 @@ Two things that catch people out:
 Epidemic's genuine edge: anything published during an active subscription stays
 cleared permanently, even after cancelling. The others don't guarantee that as
 cleanly.
+
+#### Internal launches
+
+Licence terms and practical risk are different questions. Strictly, an internal
+corporate video still needs a commercial/business licence under all of the paid
+libraries. Practically, enforcement runs through Content ID and platform
+takedowns, so a video that never leaves Slack trips none of it.
+
+The operational risk is not legal-theoretical, it is that **internal videos get
+reused.** An all-hands clip becomes a careers-page embed months later and the
+licence problem arrives retroactively, after nobody remembers which track it was.
+
+This is why the default here is CC BY rather than a free tier: Kevin MacLeod's
+licence permits commercial use outright — internal or external, no distinction —
+and asks only for a credit line. For an internal launch that is one line in the
+post announcing it, and it keeps holding if the video ever escapes internal.
 
 **Source audio must never be committed.** Every subscription library (Envato,
 Artlist, Musicbed, Epidemic, freetouse) permits use in an end product but forbids
