@@ -10,8 +10,8 @@ import { EaseName, at, loop, osc, t } from "./easings";
    missing: masks whose SHAPE is the animated thing, and masks that are the
    subject rather than a reveal device.
 
-   See pipeline/MOVE_VOCAB_ADDITIONS.md — every move here cites the reference
-   spec it was derived from.
+   See pipeline/MOVE_VOCAB.md Part 2 (family 1.5) — every move here cites the
+   reference spec it was derived from.
 
    Law that carries over: the mask does the work. Do NOT crossfade opacity
    underneath a shape reveal — it halves the effect and reads as a dissolve.
