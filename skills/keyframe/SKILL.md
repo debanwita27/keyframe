@@ -73,10 +73,19 @@ at*; `PATTERNS.md` §2 decides what to *build*.
   @evanplace, @Kirschberg_, @mthblt, @jittervideo): 200 techniques, each with a
   `remotion_recipe` naming the mechanism. Read the two or three closest to what
   you are building before you start.
-- `references/MOVE_VOCAB.md` + `references/MOVE_VOCAB_ADDITIONS.md` — ~45 + ~25
-  named moves with exact parameters. **Compose from these.** Hand-rolled
-  `interpolate()` calls in a composition are how motion ends up looking like 2015
-  PowerPoint; the vocabulary has defaults that already carry taste.
+- `references/MOVE_VOCAB.md` — the single canonical vocabulary. **Part 1** is 49
+  primitives (entrances, exits, camera, treatment, and the timing law). **Part 2**
+  is 107 compositional moves grouped by pattern family. Then an **Aliases** table
+  (47 folded-away names, because the 47 specs still use them), a **Conflicts**
+  table (34 pairs that look like duplicates and are not), and a **Dropped** list.
+
+  **Compose from these.** Hand-rolled `interpolate()` calls are how motion ends up
+  looking like 2015 PowerPoint; the vocabulary's defaults already carry taste.
+
+  Check the `status` column before citing a move: `built: ExportName` can be
+  imported today, `spec-only` cannot — 73 of the 107 are spec-only, so a spec
+  citing one will not compile until someone builds it. "Which primitives are built"
+  gives the same mapping for Part 1, generated from the code.
 
 ### 4. Write the spec before the code
 

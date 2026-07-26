@@ -42,7 +42,11 @@ out-analysis/
 *.mov
 *.webm
 
-# the one exception: the finished launch video, linked from the README
+# The one exception: the finished launch video, linked from the README.
+# NOTE: git stores a full new copy of this ~21MB file on every commit. It was
+# re-committed 5 times during iteration = 107MB of history. If you rebuild the
+# demo, upload it as a GitHub Release asset instead of committing it again.
+# See "Updating the demo video" in README.md.
 !demo/product-os-launch.mp4
 
 # ── remotion

@@ -56,6 +56,22 @@ Optional — rebuild the reference corpus (not shipped, see [Licensing](#licensi
 ./pipeline/fetch_refs.sh --analyze
 ```
 
+## Updating the demo video — read before you re-render
+
+`demo/product-os-launch.mp4` is ~21MB and git stores a **complete new copy on every
+commit**. It was re-committed five times while the film was being iterated, which
+is 107MB of history for one 27-second video, and it is most of this repo's clone
+size.
+
+So: **do not re-commit a rebuilt demo.** Either
+
+- upload the new render as a **GitHub Release asset** and point the README link at
+  it — zero repo growth per update, or
+- keep only `demo/preview.gif` (2.9MB) inline and drop the mp4 entirely.
+
+The existing history cannot be shrunk without a force-pushing rewrite, which would
+break every existing clone. Left alone deliberately.
+
 ## Layout
 
 ```
