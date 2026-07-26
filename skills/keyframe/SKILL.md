@@ -28,10 +28,14 @@ Two kinds of launch video, and they need opposite treatment:
 
 - `references/PRINCIPLES.md` — the taste, written as numbers. Timing table,
   easing rules, what may animate, treatment amounts. Non-negotiable.
-- `references/PATTERNS.md` — 12 pattern families aggregated across 50 reference
-  videos by five working designers, with a ranked table of the most transferable
-  techniques and which ones **multiple independent designers converge on**.
-  Convergent patterns are the strongest signal available; prefer them.
+- `references/PATTERNS.md` — 12 pattern families aggregated across the corpus,
+  with a ranked table of the most transferable techniques and which ones
+  **multiple independent designers converge on**. Convergent patterns are the
+  strongest signal available; prefer them.
+- `references/specs/` — 50 specs from five working designers (@byshubh_,
+  @evanplace, @Kirschberg_, @mthblt, @jittervideo): 200 techniques, each with a
+  `remotion_recipe` naming the mechanism. Read the two or three closest to what
+  you are building before you start.
 - `references/MOVE_VOCAB.md` + `references/MOVE_VOCAB_ADDITIONS.md` — ~45 + ~25
   named moves with exact parameters. **Compose from these.** Hand-rolled
   `interpolate()` calls in a composition are how motion ends up looking like 2015

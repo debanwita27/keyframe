@@ -1,0 +1,392 @@
+id: evanplace_B_had-a-lot-of-fun-working-on-the-speaker-an
+source: "unknown (X/Twitter post by @evanplace; folder name preserves the original post's caption text)"
+category: kinetic-type
+product_type: brand-only
+
+format:
+  aspect: "16:9"
+  fps: 29.97
+  duration_s: 19.987
+  orientation: horizontal
+
+verdict: >
+  Three small flat-design vignette icons build from a shared kit of primitives
+  (bars, semicircles, quarter-circle "petals"), hold, then dissolve back down
+  to a single point before the next one builds from that same point -- until
+  the third icon's orange accent shape scales up as a match cut into a
+  full-bleed title card that reveals "MATTHEW ENCINA & CHRIS DO" and holds for
+  6.7 seconds. The reusable idea is a repeatable build/hold/collapse-to-point
+  cycle that strings unrelated illustrations together without a single hard
+  cut.
+
+detection_notes: >
+  profile.md's shot detector reports a single shot (0-598f, no luma-delta cut
+  above 26.0) across the whole 599-frame, 20-second piece -- zero hard cuts.
+  The six shots below are a narrative subdivision of one continuous take,
+  matching the precedent set by B_chromatic-logo-2d3d.yaml. The frozen-stretch
+  list independently anchors these boundaries: 0-16 is the empty establishing
+  beat before the first primitive fades in; 69-88 falls inside the first
+  icon's hold; 178-202 falls inside the second icon's long hold; 267-321
+  falls inside the third icon's hold; 421-598 is the closing title-card hold
+  (5.91s, the longest frozen stretch in the piece by a wide margin). Sheets 2
+  and 3 additionally show, and confirm by direct inspection, that each icon
+  collapses to a single floating dot (frames ~107-122 and ~217-237) before the
+  next icon's primitives begin arriving from that same dot -- this is a real,
+  repeated construction/deconstruction cycle, not cut-detector noise.
+
+palette:
+  bg: "#90A8A8"
+  ink: "#184848"
+  accent: "#F06030"
+  support: ["#D8D8C0", "#A8C0C0", "#304848", "#484848"]
+  notes: >
+    A flat sage-teal background (60% screen share) hosts dark-teal
+    "structure" primitives (buildings, bars, pillars) with a single orange
+    accent shape (14.7% share -- a sun/circle) reused across all three
+    vignette icons and then scaled up to become the title card's dominant
+    background shape. Cream and mid-teal tones round out the corner shapes
+    on the final title card. The accent color is deliberately the one
+    element that survives the match-cut into the closing card.
+
+typography:
+  family_look: "grotesk"
+  weights: [bold]
+  case: upper
+  tracking: tight
+  headline_frame_share: 0.38
+  notes: >
+    Only text in the piece is the closing title card: "MATTHEW / ENCINA / &
+    CHRIS DO" set across three stacked lines, bold uppercase grotesk, white
+    on the orange title-card shape, tight tracking. No text appears during
+    any of the three icon-construction beats.
+
+structure:
+  - act: hook
+    t: [0.00, 1.07]
+    purpose: establish an empty frame with one translucent seed shape fading in, before any construction begins.
+    shots: [1]
+  - act: capability
+    t: [1.07, 4.07]
+    purpose: build the first small flat-design vignette icon from primitives, hold it, then collapse it back to a single point.
+    shots: [2]
+  - act: capability
+    t: [4.07, 7.91]
+    purpose: build a second, more complex vignette icon (a building facade) from primitives, hold it longer, then collapse it.
+    shots: [3]
+  - act: proof
+    t: [7.91, 12.07]
+    purpose: build a third vignette icon, hold it, then scale its orange accent shape up as a match cut into the closing title card's background.
+    shots: [4]
+  - act: cta
+    t: [12.07, 19.99]
+    purpose: reveal the "MATTHEW ENCINA & CHRIS DO" title card and hold it for an unusually long, confident close.
+    shots: [5, 6]
+
+shots:
+  - n: 1
+    t: [0.00, 1.07]
+    frames: [0, 32]
+    layout: centre-stack
+    content: >
+      Empty flat sage-teal background. A translucent ring outline fades in and
+      grows near the top of frame from frame 17 onward (key sheet_01 row1,
+      cols 4-6) -- the seed shape the first icon will build from.
+    moves:
+      - move: unblurIn
+        target: seedRing
+        at_f: 17
+        params: {blur: "10->0", scale: "0.8->1", dur_f: 15, ease: expoOut}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: none, params: {note: "seed ring becomes the first primitive of shot 2, no cut"}}
+    hold_f: 0
+
+  - n: 2
+    t: [1.07, 4.07]
+    frames: [32, 122]
+    layout: centre-stack
+    content: >
+      A dark-teal bar/platform slides in (blurred, fast, frame 32), then a
+      circle-outline "sun," a green filled semicircle, small rectangular
+      pillar/window primitives, a green dome arch, and two orange
+      quarter-circle "petal" shapes arrive one at a time roughly every 5f
+      (frames 37-62), assembling into a small flat vignette icon (a stylized
+      speaker/sun scene). It holds complete through frames 62-107, then every
+      primitive shrinks/fades in unison back down to a single floating dot by
+      frame 122.
+    moves:
+      - move: popIn
+        target: "icon1 primitives (bar, ring, semicircle, pillars x3, dome, petals x2)"
+        at_f: 0
+        params: {n: 9, stagger_f: 5, scale: "0.7->1", dur_f: 10, ease: backOut}
+      - move: collapseToPoint
+        target: icon1
+        at_f: 75
+        params: {dur_f: 15, ease: expoIn}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: none, params: {note: "the surviving point seeds shot 3, no cut"}}
+    hold_f: 6
+
+  - n: 3
+    t: [4.07, 7.91]
+    frames: [122, 237]
+    layout: centre-stack
+    content: >
+      From the surviving dot, a ground line appears (frame 127), a rounded
+      silo/tower base forms (frame 132), roof and flag pieces and repeated
+      arched-window shapes arrive in a tight stagger (frames 137-152),
+      assembling into a small flat building-facade icon. It holds complete
+      for an unusually long stretch (frames 152-217, ~65f), then collapses
+      back down to a single point by frame 237, the same way shot 2's icon
+      did.
+    moves:
+      - move: popIn
+        target: "icon2 primitives (ground line, silo, roof/flag pieces, arch windows x4-5)"
+        at_f: 0
+        params: {n: 7, stagger_f: 4, scale: "0.7->1", dur_f: 10, ease: backOut}
+      - move: collapseToPoint
+        target: icon2
+        at_f: 95
+        params: {dur_f: 15, ease: expoIn}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: tick
+    transition_out: {move: none, params: {note: "the surviving point seeds shot 4, no cut"}}
+    hold_f: 6
+
+  - n: 4
+    t: [7.91, 12.07]
+    frames: [237, 362]
+    layout: centre-stack
+    content: >
+      A bar/platform and arch reassemble (frame 237), an orange "sun" circle
+      rises into place alongside a green rectangle accent (frames 242-262),
+      completing a third vignette icon (a bridge/pillars scene with the sun
+      motif). It holds complete for ~70f (frames 267-337), then that same
+      orange sun shape scales up by roughly an order of magnitude while
+      sibling shapes (a teal dome, cream and plum corner wedges, a pale
+      rectangle) resize and reposition into a full-bleed layout on the same
+      timing -- a match cut executed as one continuous scale rather than a
+      hard cut, landing on the closing title card's background by frame 362.
+    moves:
+      - move: popIn
+        target: "icon3 primitives (bar, arch, windows, green rect)"
+        at_f: 0
+        params: {n: 5, stagger_f: 4, scale: "0.7->1", dur_f: 10, ease: backOut}
+      - move: accentScaleMatchCut
+        target: "orange sun shape -> title card background"
+        at_f: 100
+        params: {dur_f: 25, ease: expoInOut}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: whoosh
+    transition_out: {move: matchCut, params: {note: "orange accent shape persists across the transition into the title card"}}
+    hold_f: 0
+
+  - n: 5
+    t: [12.07, 13.27]
+    frames: [362, 397]
+    layout: full-bleed-ui
+    content: >
+      The full-bleed title-card background (large orange rounded shape
+      bottom-left, teal semicircle "hill" top-right, cream and dark-plum
+      corner wedges, pale blue-grey rectangle) is now in place. A ghost/faint
+      "MATTHEW" appears around frame 387, then the complete bold white
+      "MATTHEW / ENCINA / & CHRIS DO" three-line title lands by frame 392.
+    moves:
+      - move: maskWipeUp
+        target: "title text (3 lines)"
+        at_f: 15
+        params: {dur_f: 16, per_line_stagger_f: 4, ease: expoOut}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: impact
+    transition_out: {move: none, params: {note: "settles directly into the final hold, shot 6"}}
+    hold_f: 0
+
+  - n: 6
+    t: [13.27, 19.99]
+    frames: [397, 598]
+    layout: full-bleed-ui
+    content: >
+      The completed title card (background shapes + "MATTHEW ENCINA & CHRIS
+      DO") holds completely static for the remaining ~201 frames (6.7s), the
+      longest single hold in the piece, closing the video.
+    moves:
+      - move: breathe
+        target: titleCard
+        at_f: 0
+        params: {scale: "1->1.008->1", period_f: 180}
+    camera: {move: static, params: {}}
+    bg: {kind: flat, moves: []}
+    treatment: []
+    audio_cue: none
+    transition_out: {move: hardCut, params: {dur_f: 0}}
+    hold_f: 30
+
+techniques:
+  - id: primitive-by-primitive-icon-assembly
+    what: >
+      Each of the three small vignette icons is built from a shared vocabulary
+      of primitives (rectangle bars/pillars, semicircles, quarter-circle
+      "petals," circles) that pop in one at a time roughly every 4-5f, in an
+      order that reads base-first (platform/ground), then structure
+      (pillars/arches), then accent (the orange color pops arrive last).
+    where: shots 2-4, frames 32-362
+    why_it_reads: >
+      A consistent kit-of-parts and consistent stagger across three visually
+      unrelated icons makes the whole piece feel like one system rather than
+      three different illustrations, even though the content changes each
+      time.
+    remotion_recipe: >
+      Define each icon as an ordered array of {shape, props, arrive_f}
+      entries. Render each primitive with popIn (scale 0.7->1, opacity 0->1,
+      dur_f~10, backOut) staggered ~4-5f apart in array order. Group all of
+      one icon's primitives under a single parent so the whole icon can later
+      be scaled/faded as one unit for the collapse.
+    difficulty: trivial
+
+  - id: collapse-to-a-point-rebuild-cycle
+    what: >
+      A fully-built icon shrinks/fades in unison down to a single floating
+      dot before the next icon's primitives arrive from that same dot --
+      repeated twice in this piece (frames ~107-122 and ~217-237).
+    where: shots 2-3 boundaries
+    why_it_reads: >
+      The surviving dot gives the eye one continuous element to track across
+      what would otherwise be an unmotivated scene change, so three unrelated
+      illustrations never feel like three separate hard cuts.
+    remotion_recipe: >
+      At the collapse frame, animate the icon's primitive-group opacity/scale
+      down together (scaleOut-like, dur_f~15, expoIn) while one already-
+      present small circle primitive holds scale 1 and drifts slightly (e.g.
+      y+20px); that same dot becomes the first primitive in the next icon's
+      staggered arrival array, so the collapse and the next build share one
+      continuous element and no true cut ever happens.
+    difficulty: moderate
+
+  - id: accent-shape-scale-match-cut
+    what: >
+      The small orange "sun" shape inside the third vignette icon scales up
+      by roughly an order of magnitude and repositions to become the giant
+      background shape of the closing title card, while sibling shapes
+      (teal dome, corner wedges) resize into their final full-frame layout on
+      the same timing.
+    where: shot 4, frames ~337-362
+    why_it_reads: >
+      Keeping one element persistent and simply scaling/repositioning it
+      turns what could have been a jarring scene change (small illustration
+      to full-bleed title card) into the single strongest transition in the
+      piece.
+    remotion_recipe: >
+      Keep the "sun" shape as one persistent element across the transition --
+      never swap assets. Interpolate its transform-origin-anchored scale from
+      ~1x to ~14x and its position from the vignette's local coordinates to
+      the title card's final coordinates over ~25f with expoInOut; animate
+      the sibling background shapes into their final positions on the
+      identical timing so everything lands on the same frame.
+    difficulty: moderate
+
+  - id: long-dwell-title-card-close
+    what: >
+      A bold white three-line uppercase title reveals via a brief mask wipe
+      (~35f) then holds completely static for ~201 frames (6.7s).
+    where: shots 5-6, frames 362-598
+    why_it_reads: >
+      An intentionally long, confident final hold (well beyond the usual
+      6-10f settle-and-cut rule) reads correctly here because this is a
+      closing/end card, not a mid-video beat -- the eye is meant to sit with
+      the credit, not move past it.
+    remotion_recipe: >
+      Standard maskWipeUp per line (3 lines, per_line_stagger_f~4, dur_f~16,
+      expoOut) over the matched-cut background shapes; set hold_f to roughly
+      200f rather than the default 6-10f because this is the video's final
+      frame group.
+    difficulty: trivial
+
+rhythm:
+  cut_count: 1
+  median_shot_f: 102
+  fastest_f: 32
+  slowest_f: 201
+  pattern: >
+    32f empty establish -> 90f icon-1 build/hold/collapse -> 115f icon-2
+    build/long-hold/collapse -> 125f icon-3 build/hold/match-cut-scale-up ->
+    35f title-text reveal -> 201f final title-card hold. Zero hard cuts;
+    every icon-to-icon boundary is a collapse-to-a-point-and-rebuild, and the
+    final scene change is an accent-shape match cut.
+  beat_grid_f: none
+  energy_curve: wave
+
+transferable:
+  - Build a repeatable kit of shared primitives (bars, semicircles,
+    quarter-circle petals) and reuse the exact same stagger/entrance timing
+    across multiple different illustrations so a multi-scene piece reads as
+    one system.
+  - Collapse a completed composition down to a single surviving point before
+    building the next one from that same point -- a cheap, morph-driven way
+    to link unrelated scenes without a hard cut.
+  - When a small accent shape needs to become a full-bleed background later
+    in the piece, keep it as the SAME element and scale/reposition it rather
+    than cutting to a new asset -- turns a scene change into a match cut for
+    free.
+  - Reserve one dramatically long hold (here 6.7s, far past the usual 6-10f
+    rule) for the true final frame of a piece -- it reads as a confident
+    close, not a mistake, precisely because everything before it moved at a
+    normal pace.
+
+avoid:
+  - Do not procedurally generate the vignette icons -- author each as an
+    explicit ordered shape-list exactly like a small hand-built vector
+    illustration, then let one generic build/hold/collapse move sequence
+    drive all of them; the content authoring is the real cost here, not the
+    animation logic.
+  - Keep every within-icon primitive stagger at a strict, constant 2-4f per
+    the timing law even when the number of primitives differs between icons
+    (5 in icon 3, 9 in icon 1) -- an uneven stagger will read as a bug rather
+    than a stylistic choice.
+  - The 6.7-second final hold only reads as confident because nothing else in
+    the piece holds anywhere near that long -- do not apply a similarly long
+    hold to a mid-piece beat, it will read as the video having stalled.
+
+new_moves:
+  - name: collapseToPoint
+    params: {dur_f: 15, ease: expoIn}
+    description: >
+      A fully-formed group of shapes shrinks/fades in unison down to a
+      single point (one surviving primitive scaled to a small dot), which
+      then either drifts to seed the next construction or pops back outward
+      into a new shape -- used as a soft connective transition between two
+      constructed states instead of a hard cut. (Shared definition with
+      evanplace_B_a-logo-animation-of-openais-logo.yaml, which layers this
+      move underneath its ring/hexagon staging.)
+  - name: accentScaleMatchCut
+    params: {dur_f: 25, ease: expoInOut}
+    description: >
+      A small accent shape inside a compact illustration scales up by an
+      order of magnitude and repositions to become the full-bleed background
+      of the next full-frame layout, while sibling shapes resize/reposition
+      into their final places on the same timing -- a matchCut executed as
+      one continuous scale/reposition rather than a hard cut.
+
+convergence:
+  - >
+    The primitive-by-primitive icon assembly technique is convergent with
+    B_chromatic's "blueprint-construction-reveal" technique, in which guide
+    lines and shading progressively resolve a shape out of raw geometry --
+    both force the eye to parse construction before recognizing the result.
+  - >
+    The collapse-to-a-point-rebuild cycle and the accent-shape scale match
+    cut are both convergent with B_chromatic's overarching structural finding
+    (detection_notes: "every cut is actually a flash/morph on the same
+    continuing object, never a scene change") -- this piece achieves the
+    identical effect across three unrelated illustrations rather than one
+    persisting mark.
