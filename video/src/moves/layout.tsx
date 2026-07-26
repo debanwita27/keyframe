@@ -217,8 +217,12 @@ export const RackLoop: React.FC<{
   style?: React.CSSProperties;
 }> = ({ children, totalF, maxBlur = 12, scaleAmp = 0.04, style }) => {
   const frame = useCurrentFrame();
-  // triangle wave: 0 at both ends, 1 in the middle — identical first/last frame
-  const tri = 1 - Math.abs((frame / Math.max(1, totalF)) * 2 - 1);
+  // Triangle wave: 0 at both ends, 1 in the middle, so the first and last frame
+  // are identical. The frame is taken MODULO totalF — without that, anything past
+  // totalF drove tri negative, clamped to zero, and the element stayed at maximum
+  // blur forever. A move whose entire purpose is looping has to actually loop.
+  const cycle = Math.max(1, totalF);
+  const tri = 1 - Math.abs(((frame % cycle) / cycle) * 2 - 1);
   const focus = t(tri, 0, 1, "expoOut");
   return (
     <div

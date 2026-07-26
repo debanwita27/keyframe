@@ -74,6 +74,9 @@ const Dot: React.FC = () => (
   <div style={{ width: 34, height: 34, borderRadius: 999, background: C.accent }} />
 );
 
+/** each cell starts 20f after the previous, so the grid plays through */
+const S = (i: number) => i * 20;
+
 export const MovesSmoke: React.FC = () => {
   const frame = useCurrentFrame();
   return (
@@ -90,11 +93,11 @@ export const MovesSmoke: React.FC = () => {
         }}
       >
         <Cell label="wordCycle">
-          <WordCycle words={["faster", "clearer", "sharper", "shipped"]} startF={0} durF={40} />
+          <WordCycle words={["faster", "clearer", "sharper", "shipped"]} startF={S(0)} durF={40} />
         </Cell>
 
         <Cell label="wordBuild">
-          <WordBuild stem="proto" suffix="typed" startF={0} durF={28} />
+          <WordBuild stem="proto" suffix="typed" startF={S(1)} durF={28} />
         </Cell>
 
         <Cell label="liveCounter">
@@ -102,7 +105,7 @@ export const MovesSmoke: React.FC = () => {
         </Cell>
 
         <Cell label="toastPop">
-          <ToastPop startF={4} style={{ font: "600 15px ui-sans-serif" }}>
+          <ToastPop startF={S(3)} style={{ font: "600 15px ui-sans-serif" }}>
             PRD ready
           </ToastPop>
         </Cell>
@@ -111,7 +114,7 @@ export const MovesSmoke: React.FC = () => {
           <FontSwapBlur
             text="Launch"
             families={["ui-serif, Georgia", "ui-monospace, monospace", "ui-sans-serif, system-ui"]}
-            startF={0}
+            startF={S(4)}
             swapEveryF={8}
             style={{ fontSize: 30, fontWeight: 700 }}
           />
@@ -121,7 +124,7 @@ export const MovesSmoke: React.FC = () => {
           <DualSpeechChips
             first="they want someone"
             second="who gets them"
-            startF={2}
+            startF={S(5)}
             solid={C.accent}
             ink="#fff"
             outlineInk="#B57CFF"
@@ -132,7 +135,7 @@ export const MovesSmoke: React.FC = () => {
         <Cell label="stepRelay">
           <StepRelay
             steps={["Shape", "Define", "Validate", "Ship"]}
-            atF={[0, 14, 28, 42]}
+            atF={[S(6), S(6) + 14, S(6) + 28, S(6) + 42]}
             accent={C.accent}
             ink={C.ink}
             inkSoft={C.soft}
@@ -142,7 +145,7 @@ export const MovesSmoke: React.FC = () => {
 
         <Cell label="radialCluster">
           <div style={{ position: "relative", width: "100%", height: "100%" }}>
-            <RadialCluster radius={58} startF={0} staggerF={3}>
+            <RadialCluster radius={58} startF={S(7)} staggerF={3}>
               {[0, 1, 2, 3, 4, 5].map((i) => (
                 <div
                   key={i}
@@ -202,7 +205,7 @@ export const MovesSmoke: React.FC = () => {
           {/* explicit size: the component is width/height 100%, which collapses
               inside a content-sized grid cell */}
           <div style={{ width: 170, height: 110 }}>
-            <FlattenToIsometric startF={0} durF={34} tiltDeg={16} rotateZDeg={-9}>
+            <FlattenToIsometric startF={S(10)} durF={34} tiltDeg={16} rotateZDeg={-9}>
               {/* width:100% is load-bearing. The Cards use a percentage width, and
                   inside a place-content:center grid the track is sized to content —
                   a percentage against an indefinite track resolves to ZERO, so the
@@ -226,7 +229,7 @@ export const MovesSmoke: React.FC = () => {
         </Cell>
 
         <Cell label="paperFoldIn">
-          <PaperFoldIn startF={0} durF={30} origin="top">
+          <PaperFoldIn startF={S(11)} durF={30} origin="top">
             <div
               style={{
                 width: 130,
@@ -248,7 +251,7 @@ export const MovesSmoke: React.FC = () => {
           <div style={{ position: "relative", width: "100%", height: "100%" }}>
             <Fragments
               mode="converge"
-              startF={0}
+              startF={S(12)}
               durF={34}
               spread={120}
               to={[
@@ -271,7 +274,7 @@ export const MovesSmoke: React.FC = () => {
         </Cell>
 
         <Cell label="rackLoop">
-          <RackLoop totalF={60} maxBlur={10}>
+          <RackLoop totalF={90} maxBlur={10}>
             <div style={{ display: "grid", placeItems: "center", height: "100%" }}>
               <div style={{ font: "700 26px ui-sans-serif", color: C.ink }}>hero</div>
             </div>
