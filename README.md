@@ -38,11 +38,17 @@ cd video && npm install && cd ..
 python3 pipeline/make_sfx.py      # synthesise the SFX layer (no licensing risk)
 ./pipeline/fetch_music.sh         # the CC BY track the film ships with
 
-cd video
-npx remotion studio                       # live preview
-npx remotion render src/index.ts ProductOSLaunch out/raw.mp4
-../pipeline/post.sh out/raw.mp4 out/final.mp4 clean
+# build a cut end-to-end (locks the edit to the track, renders, masters, verifies)
+./pipeline/build.sh audio/raw/digital-lemonade.mp3 my-cut --at 127.3
+
+cd video && npx remotion studio   # live preview while authoring
 ```
+
+`build.sh` exists because `set_music.py` rewrites `beatgrid.ts` globally — render
+straight after setting a *different* track and you get a file whose name says one
+track and whose audio is another. It happened twice here. The script ties the two
+together and fails on a frame-count mismatch, which is the only reliable check:
+two tempos cannot produce the same length.
 
 Optional — rebuild the reference corpus (not shipped, see [Licensing](#licensing)):
 
@@ -62,6 +68,7 @@ keyframe/
 │   ├── MOVE_VOCAB.md       ~45 named moves with exact params
 │   ├── PRINCIPLES.md       the taste, written as numbers
 │   ├── SPEC_TEMPLATE.yaml  one schema for describing refs AND authoring new work
+│   ├── build.sh            one cut end-to-end: set track, render, master, verify
 │   ├── post.sh             grade + grain + bloom + two-pass loudnorm
 │   ├── fetch_refs.sh       rebuild the reference corpus locally
 │   └── fetch_music.sh      fetch + rank candidate tracks
@@ -261,6 +268,13 @@ a specific *frame*, and the mix stays versioned next to the edit. `HITS` is a fl
 data array so it can be read and retimed without touching JSX. SFX are
 **synthesised** by `make_sfx.py` (filtered noise sweeps, pitch-dropping sub
 thumps) — deterministic and licence-free.
+
+**Don't fight the music — use it.** The music's own hit on the cut was being heard
+as the mouse click, because it landed exactly as the cursor started moving. Muting
+that beat was the obvious fix and the wrong one: it is a downbeat, and a hole in
+the music reads as a broken render. Instead the cursor now travels during the
+*previous* shot's tail and arrives on the cut, so the track's transient and the
+click are the same event — measured 1.5 frames apart, which fuses perceptually.
 
 **A sound that is inaudible is worse than no sound.** The cursor's click was
 scored to the exact right frame and still read as badly mistimed, because the

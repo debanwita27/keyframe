@@ -171,6 +171,19 @@ export const S2_Typing: React.FC = () => (
         placeholder="ask product os anything…"
       />
     </AbsoluteFill>
+    {/*
+      The hand moves to send AFTER the sentence is typed, arriving on this shot's
+      last frame. That frame is the cut, and the cut is a downbeat — so the
+      track's own transient becomes the click instead of competing with it.
+      Muting that beat instead would leave an audible hole in the music.
+    */}
+    <Cursor
+      path={[
+        { x: 1120, y: 830, atF: 54 },
+        { x: 1521, y: 627, atF: 77 },
+      ]}
+      color="#F4F1FA"
+    />
   </DarkBase>
 );
 
@@ -178,8 +191,8 @@ export const S2_Typing: React.FC = () => (
 
 export const S3_Submit: React.FC = () => {
   const frame = useCurrentFrame();
-  const flash = t(frame, 23, 5, "expoIn");
-  const collapse = t(frame, 18, 12, "expoIn");
+  const flash = t(frame, 11, 5, "expoIn");
+  const collapse = t(frame, 3, 13, "expoIn");
   return (
     <DarkBase driftContent={false}>
       <AbsoluteFill
@@ -194,13 +207,9 @@ export const S3_Submit: React.FC = () => {
         <PromptCard text="i have a rough idea. where do i even start?" typedFrom={-400} activateAtF={-1} />
       </AbsoluteFill>
       <Cursor
-        path={[
-          // starts 3f after the cut, so the music hit at the cut is not read as
-          // the click; arrival lands on the next beat at b(1)
-          { x: 1120, y: 830, atF: 3 },
-          // arrival sits on a half-beat so the click SFX can land with it
-          { x: 1521, y: 627, atF: b(1), click: true },
-        ]}
+        // already at the button: the travel happened in the previous shot, so the
+        // click fires on frame 0 — on the cut, on the beat.
+        path={[{ x: 1521, y: 627, atF: 0, click: true }]}
         color="#F4F1FA"
       />
       <AbsoluteFill style={{ background: C.light, opacity: flash }} />

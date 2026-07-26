@@ -41,8 +41,11 @@ export const HITS: Hit[] = [
   //    Measured: the old `tick` sat at 1.2x the music bed, i.e. inaudible, so the
   //    ear paired the cursor with the music hit that lands as it starts moving
   //    and the click read as badly mistimed. Loud + broadband fixes that.
-  { file: "click", f: at(1) + 16, vol: 0.95, label: "cursor clicks send" },
-  { file: "impact-soft", f: at(1) + 16, vol: 0.2, label: "click body" },
+  // On the cut, which is a downbeat — the track's own hit and the click are now
+  // the same event, so the music needs no surgery. Body kept low because the
+  // music already supplies the low end on that beat.
+  { file: "click", f: at(1), vol: 0.9, label: "cursor clicks send (on the downbeat)" },
+  { file: "impact-soft", f: at(1), vol: 0.14, label: "click body" },
 
   // ── the drop. A riser fills the bar before the title; the impact lands on the
   //    flash frame. NO whoosh on this cut — it sat 21 frames before the underline
