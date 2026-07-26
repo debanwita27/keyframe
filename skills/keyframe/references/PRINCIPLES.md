@@ -175,3 +175,55 @@ After every render, before showing anyone:
 5. Check the motion sparkline shape against the intended energy curve. If you
    wanted rising energy and the sparkline is flat, the edit is not doing what
    you think it is.
+---
+
+## 13. Traps that only rendering catches
+
+Every one of these compiled cleanly, typechecked, and read correctly in the code.
+All were found by rendering and looking. None would have been found by review.
+
+**A component can lay out perfectly and draw nothing.**
+`FlattenToIsometric` rendered an empty cell. Outlining it proved the wrapper was
+the right size in the right place and its *children* had collapsed: a percentage
+width on an empty div inside a content-sized grid/flex track resolves against an
+indefinite basis and computes to **zero**. Give the track a definite size, or use
+px. I blamed contrast first and was wrong — instrument before theorising.
+
+**Same-fill copies occlude each other.**
+`ConcentricShapeBurst` duplicates a silhouette 18× at different scales. With an
+opaque fill the largest copy covers every smaller one and the whole effect is
+invisible. Pass a stroked or semi-transparent shape.
+
+**A loop move must take the frame modulo its cycle.**
+`RackLoop` shipped with a triangle wave over `frame / totalF`. Past `totalF` it went
+negative, clamped, and sat at maximum blur forever — a seamless-loop move that did
+not loop. Any perpetual move needs `frame % cycle`.
+
+**Most moves are one-shot; a shot built only from those will freeze.**
+Of 15 moves in `narrative.tsx`/`layout.tsx` only five are perpetual (`LiveCounter`,
+`AsyncDrift`, `ParticleField`, `RadialCluster` idle, `RackLoop`). Rule 4 above
+("nothing is ever still") is not satisfied by picking any five moves — check that
+at least one of them keeps running.
+
+**Ambient motion is sequence-local by default.**
+`useCurrentFrame()` inside a `<Sequence>` restarts at 0, so per-shot gradient and
+camera drift resets at every cut and the background visibly jumps. Pass the shot's
+absolute start frame in as a phase offset.
+
+**A correctly-timed sound can still be inaudible.**
+The cursor click sat on the exact right frame and measured **1.2× above the music
+bed** — inaudible, so the ear paired the cursor with the nearest loud transient
+instead and the click read as badly mistimed. Retiming could never have fixed it.
+Measure SFX against the bed in the sound's own frequency band, not just its frame.
+
+**Loudness normalisation will flatten a deliberate mix.**
+Single-pass `loudnorm` applies *dynamic* gain: it pulled a ducked open up by 14 dB
+and collapsed loudness range from 14.9 to 3.4 LU, destroying the drop. Use two-pass
+with `linear=true`.
+
+**Drift can push content out of frame.**
+A camera drift of ±1.8% with only 1.03 base zoom revealed empty edges and clipped a
+word off the right side. The base zoom has to exceed the drift amplitude.
+
+The pattern: **every defect above was invisible in the source and obvious in a
+render.** Budget for the render-and-look step; it is not a formality.
