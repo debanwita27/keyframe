@@ -1,6 +1,6 @@
 import React from "react";
 import { Audio, Sequence, interpolate, staticFile, useCurrentFrame } from "remotion";
-import { BEAT_DURATIONS, MUSIC } from "./beatgrid";
+import { BEAT_DURATIONS, DUCK, MUSIC } from "./beatgrid";
 
 /* ────────────────────────────────────────────────────────────────────────────
    THE MIX
@@ -41,12 +41,14 @@ export const HITS: Hit[] = [
   { file: "impact-deep", f: DROP_F, vol: 0.62, label: "title flash" },
   { file: "whoosh-hard", f: DROP_F - 5, vol: 0.3, label: "cut into title" },
 
-  // ── reframe: the strike-through and the three role chips
+  // the accent underline sweeping in under the wordmark — one beat after the cut
+  { file: "whoosh-soft", f: DROP_F + 16, vol: 0.34, label: "Product OS underline draws" },
+
+  // ── reframe: three role chips landing
   { file: "whoosh-soft", f: at(4), vol: 0.2, label: "cut to reframe" },
-  { file: "tick", f: at(4) + 20, vol: 0.16, label: "strike-through" },
-  { file: "tick", f: at(4) + 38, vol: 0.13, label: "chip 1" },
-  { file: "tick", f: at(4) + 42, vol: 0.13, label: "chip 2" },
-  { file: "tick", f: at(4) + 46, vol: 0.13, label: "chip 3" },
+  { file: "tick", f: at(4) + 31, vol: 0.13, label: "chip 1" },
+  { file: "tick", f: at(4) + 34, vol: 0.13, label: "chip 2" },
+  { file: "tick", f: at(4) + 37, vol: 0.13, label: "chip 3" },
 
   // ── lifecycle rail: one soft tick per stage node as the accent line passes
   { file: "whoosh-soft", f: at(5), vol: 0.2, label: "cut to rail" },
@@ -59,12 +61,12 @@ export const HITS: Hit[] = [
 
   // ── capability beats: a whoosh on every cut, alternating soft/hard so six
   //    cuts in a row don't sound identical
-  ...[6, 7, 8, 9, 10, 11].map((s, i) => ({
-    file: i % 2 === 0 ? "whoosh-soft" : "whoosh-hard",
-    f: at(s),
-    vol: i % 2 === 0 ? 0.22 : 0.19,
-    label: `cut to beat ${i + 1}`,
-  })),
+  // Only the first capability cut and the mid-sequence light/dark flip get a
+  // whoosh. The other four cuts land on the beat, so the track's own transient
+  // already marks them — six identical whooshes in a row is what makes motion
+  // design audio sound generic.
+  { file: "whoosh-soft", f: at(6), vol: 0.24, label: "into the capability sequence" },
+  { file: "whoosh-hard", f: at(9), vol: 0.2, label: "mid-sequence flip to dark" },
   // the accents inside individual beats
   { file: "tick", f: at(6) + 34, vol: 0.2, label: "idea ticked" },
   { file: "impact-soft", f: at(7) + 22, vol: 0.22, label: "competitor card lifts" },
@@ -93,7 +95,10 @@ const MusicBed: React.FC = () => {
   const volume = interpolate(
     frame,
     [0, DROP_F - 34, DROP_F - 4, DROP_F, END_CARD_F, TOTAL_F],
-    [0.20, 0.34, 0.08, 0.92, 0.92, 0.28],
+    // Gains come from beatgrid.ts, sized to this track's own dynamics by
+    // set_music.py. Reusing a hand-tuned envelope across tracks does not work:
+    // a duck sized for a flat track flattens a dynamic one.
+    [DUCK.open, DUCK.preRise, DUCK.dip, DUCK.body, DUCK.body, DUCK.outro],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" },
   );
   return <Audio src={staticFile(MUSIC.file)} volume={volume} />;

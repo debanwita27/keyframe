@@ -16,9 +16,11 @@ export const DriftCamera: React.FC<{
   ampPct?: number;
   periodF?: number;
   zoom?: number;
+  /** absolute start frame of the enclosing shot, so drift stays continuous across cuts */
+  phaseF?: number;
   style?: React.CSSProperties;
-}> = ({ children, ampPct = 1.5, periodF = 180, zoom = 1.02, style }) => {
-  const frame = useCurrentFrame();
+}> = ({ children, ampPct = 1.5, periodF = 180, zoom = 1.02, phaseF = 0, style }) => {
+  const frame = useCurrentFrame() + phaseF;
   const x = osc(frame, periodF) * ampPct;
   const y = osc(frame, periodF * 1.37, 1.1) * ampPct * 0.6;
   // The base zoom must exceed the drift amplitude, or the drift reveals empty
@@ -136,8 +138,10 @@ export const GradientDrift: React.FC<{
   periodF?: number;
   blurPx?: number;
   opacity?: number;
-}> = ({ colors, bg, periodF = 400, blurPx = 90, opacity = 0.9 }) => {
-  const frame = useCurrentFrame();
+  /** absolute start frame of the enclosing shot, so drift stays continuous across cuts */
+  phaseF?: number;
+}> = ({ colors, bg, periodF = 400, blurPx = 90, opacity = 0.9, phaseF = 0 }) => {
+  const frame = useCurrentFrame() + phaseF;
   const blobs = colors.map((c, i) => {
     const ph = (i / colors.length) * Math.PI * 2;
     const cx = 50 + osc(frame, periodF * (1 + i * 0.21), ph) * 26;

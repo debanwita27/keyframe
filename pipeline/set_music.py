@@ -36,7 +36,26 @@ from analyze_audio import (  # noqa: E402
 
 # The edit's rhythmic intent, in beats per shot. Tempo-independent — this is the
 # thing worth preserving when you swap tracks.
-SHOT_BEATS = [3, 5, 2, 4, 5, 6, 4, 3, 4, 3, 4, 3, 6]
+#
+# Weighted by READING LOAD, not by importance. A frame carrying five word-chips
+# or a two-line headline plus a labelled object needs longer than a frame showing
+# one shape move, and an even cut rhythm across both is what makes a text-heavy
+# product video feel rushed. Visual beats stay at 3-4; text-heavy ones get 5.
+SHOT_BEATS = [
+    3,   # 1  blank prompt
+    5,   # 2  the real question types in
+    2,   # 3  submit
+    4,   # 4  title
+    5,   # 5  reframe — struck-through line + three role chips
+    6,   # 6  lifecycle rail — five stage labels
+    4,   # 7a validate ideas
+    3,   # 7b benchmark UX      — visual, one card lifts
+    5,   # 7c structure problem — five word-chips to read
+    4,   # 7d objectives/PRD    — card headline + one metric
+    6,   # 7e knowledge base    — six labelled docs, ~9 words: the heaviest frame
+    4,   # 7f prototype         — mostly visual
+    6,   # 8  end card
+]
 FPS = 30
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -100,6 +119,38 @@ def main():
 
     seg = times[start:start + need + 1]
     t0 = float(seg[0])
+
+    # PHASE REFINEMENT.
+    # The beat grid is fitted globally with one tempo and one phase. Over a long
+    # track a small BPM error accumulates, so a window 70s in can sit a third of
+    # a beat off even though the grid is right on average. Measured on the first
+    # track this was 5 frames late — clearly audible as cuts landing behind the
+    # music. Search +/- half a beat and take the offset that puts our cuts on the
+    # loudest onsets, then move the window start to match.
+    efps = env_fps()
+    half = 0.5 * 60.0 / bpm
+    cand = np.linspace(-half, half, 41)
+
+    def phase_score(shift):
+        tot, n = 0.0, 0
+        for t in seg:
+            c = int((t + shift) * efps)
+            if 0 <= c < len(env):
+                tot += env[c]
+                n += 1
+        return tot / max(1, n)
+
+    scores = np.array([phase_score(c) for c in cand])
+    best_shift = float(cand[int(np.argmax(scores))])
+    base = phase_score(0.0)
+    if scores.max() > base * 1.04:      # only move if it's a real improvement
+        t0 += best_shift
+        seg = seg + best_shift
+        print(f"  phase refined by {best_shift*args.fps:+.1f}f "
+              f"({base:.3f} -> {scores.max():.3f} onset alignment)")
+    else:
+        print(f"  phase already aligned ({base:.3f})")
+
     cut_f = [round((t - t0) * args.fps) for t in seg]
     durs, acc = [], 0
     for n in SHOT_BEATS:
@@ -109,6 +160,39 @@ def main():
     print(f"  window: {t0:.3f}s → {t0 + total/args.fps:.3f}s  ({why})")
     print(f"  {need} beats = {total} frames = {total/args.fps:.2f}s")
     print(f"  shot durations: {durs}")
+
+    # DUCK ENVELOPE, derived from the material.
+    # Hand-tuning gains per track does not survive a track swap: a duck sized for
+    # a flat track flattens a dynamic one (measured: LRA collapsed from 14.9 to
+    # 3.4 LU when the same envelope was reused). So size the duck by how much
+    # contrast the music ALREADY provides, and only supply the remainder.
+    open_beats = sum(SHOT_BEATS[:3])          # shots 1-3, before the title flash
+    body_beats = sum(SHOT_BEATS[:12])
+    def rms_between(b0, b1):
+        a_ = int((t0 + b0 * 60.0 / bpm) * efps)
+        b_ = int((t0 + b1 * 60.0 / bpm) * efps)
+        a_, b_ = max(0, a_), min(len(rms), max(a_ + 1, b_))
+        return float(np.sqrt((rms[a_:b_] ** 2).mean()) + 1e-9)
+
+    r_open, r_body = rms_between(0, open_beats), rms_between(open_beats, body_beats)
+    natural_db = 20 * np.log10(r_body / r_open)
+    # The section table is bar-quantised, so a window that starts near the end of
+    # a quiet section overstates how quiet its opening really is. Measured on one
+    # track this claimed 16 dB of natural contrast where the render delivered 4.
+    # Cap what we credit to the music so the envelope still does real work.
+    natural_db = float(min(natural_db, 8.0))
+    TARGET_DB = 15.0                          # how far under the body the open should sit
+    remainder_db = max(0.0, TARGET_DB - natural_db)
+    open_gain = float(np.clip(10 ** (-remainder_db / 20), 0.16, 1.0))
+    print(f"  duck: music already gives {natural_db:.1f} dB of open→body contrast; "
+          f"envelope supplies {remainder_db:.1f} dB (open gain {open_gain:.2f})")
+    duck = {
+        "open": round(open_gain, 3),
+        "preRise": round(min(1.0, open_gain * 1.7), 3),
+        "dip": round(open_gain * 0.45, 3),
+        "body": 1.0,
+        "outro": 0.34,
+    }
 
     dest_name = src.stem + ".mp3"
     credit = args.credit or (
@@ -131,6 +215,16 @@ export const MUSIC = {{
   sourceSection: {json.dumps(why)},
 }} as const;
 
+/**
+ * One beat in frames. Shot-internal animation keyframes must be multiples of
+ * this (or clean halves of it), otherwise reveals land a few frames behind the
+ * music even though the cuts themselves are on the beat — which reads as the
+ * whole film being slightly out of sync.
+ */
+export const BEAT_F = {beat_f:.2f};
+/** Snap a beat count to whole frames: b(1) = one beat, b(0.5) = half a beat. */
+export const b = (beats: number) => Math.round(beats * BEAT_F);
+
 /** Beats per shot — the edit's rhythmic intent, independent of tempo. */
 export const SHOT_BEATS = {SHOT_BEATS};
 
@@ -141,6 +235,13 @@ export const CUT_FRAMES = {cut_f};
 export const BEAT_DURATIONS = {durs};
 
 export const FILM_FRAMES = {total};
+
+/**
+ * Ducking gains, derived from THIS track's own dynamics rather than hand-tuned.
+ * The music already supplies {natural_db:.1f} dB of open→body contrast, so the
+ * envelope only makes up the difference to {TARGET_DB:.0f} dB.
+ */
+export const DUCK = {json.dumps(duck)} as const;
 '''
     out_ts = ROOT / "video/src/compositions/product-os/beatgrid.ts"
     out_ts.write_text(ts)

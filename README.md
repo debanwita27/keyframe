@@ -172,6 +172,12 @@ traps are consistent:
 | **Epidemic Sound** — Enterprise | Required above that cap |
 | **Envato Elements** | Yes, with per-project licence registration |
 
+The film ships pointed at the CC BY track because that is the only one this repo
+can legally redistribute. The internal cut uses a Free To Use track instead;
+`.gitignore` excludes `video/public/ft-*.mp3` so restricted audio never lands in
+a commit. Swap either way with `set_music.py` — the duck envelope and every shot
+length re-derive themselves from whichever track you point it at.
+
 Two things that catch people out:
 
 - A "free" tier almost never covers a company's own launch video. Free usually
@@ -211,6 +217,37 @@ redistributing the files, and each project needs its own licence registration on
 their side. `audio/raw/` is gitignored; keep your own `video/public/*.mp3` out of
 commits too.
 
+### Syncing the animation, not just the cuts
+
+Landing cuts on beats is the easy half. Three things had to be fixed before it
+actually felt locked:
+
+1. **Phase drift.** The beat grid is fitted with one global tempo and phase, so a
+   window 76s into a track sat a third of a beat off even though the grid was
+   right on average. `set_music.py` now searches ±half a beat and moves the window
+   start to wherever the cuts sit on the loudest onsets (measured: 5 frames late,
+   corrected to within 1 frame — 86% of peak onset alignment).
+2. **Internal keyframes off the grid.** Every shot's cut was on the beat, but the
+   reveals inside it started at +2 to +8 frames, so each animation lagged the
+   music by up to 0.27s. `beatgrid.ts` now exports `BEAT_F` and a `b()` helper,
+   and shot-internal keyframes are multiples of it — `b(1)`, `b(1.5)`, `b(2)`.
+3. **Ambient phase reset.** `useCurrentFrame()` inside a `<Sequence>` is
+   sequence-local, so every shot restarted its gradient and camera drift from
+   phase 0 and the background visibly jumped at each cut. `ShotPhase` context
+   supplies each shot's absolute start frame so ambient motion runs on one clock.
+
+Related: content drift is now opt-out per shot (`driftContent={false}`). A prompt
+card is a fixed object; drifting it made the textarea appear to wander. The
+background still moves, so the frame stays alive.
+
+### Reading time is a function of tempo
+
+`SHOT_BEATS` is weighted by **reading load**, not importance. A frame with five
+word-chips or six labelled documents needs longer than one shape moving, and an
+even cut rhythm across both is what makes a text-heavy product video feel rushed.
+Visual beats get 3–4; text-heavy ones get 5–6. Because it is expressed in beats,
+a slower track automatically grants more reading time.
+
 ### Mixing
 
 Layering happens in Remotion (`product-os/mix.tsx`), not ffmpeg — every hit needs
@@ -218,6 +255,12 @@ a specific *frame*, and the mix stays versioned next to the edit. `HITS` is a fl
 data array so it can be read and retimed without touching JSX. SFX are
 **synthesised** by `make_sfx.py` (filtered noise sweeps, pitch-dropping sub
 thumps) — deterministic and licence-free.
+
+SFX are used sparingly on purpose. Once cuts are beat-locked, the track's own
+transient marks most of them — a whoosh on all six capability cuts read as a
+template, so it is two. Accents (ticks, soft impacts) fire on things that would
+plausibly make a sound: a tick landing, chips snapping into order, the accent
+underline sweeping in under the wordmark.
 
 ffmpeg does the master. **Two-pass `loudnorm` with `linear=true`** — single-pass
 applies *dynamic* gain, which flattened this mix badly: it pulled the ducked open

@@ -14,6 +14,13 @@ audio/analysis/
 # ── generated assets (regenerate with: python3 pipeline/make_sfx.py)
 video/public/sfx/
 
+# ── subscription / restricted-licence audio must never be committed.
+# Free To Use, Envato, Artlist, Musicbed and Epidemic all permit use in a
+# finished video but forbid redistributing the source file. Only the CC BY track
+# (digital-lemonade.mp3) is safe to ship, and it stays.
+video/public/ft-*.mp3
+audio/freetouse-manifest.json
+
 # ── renders and analysis output
 video/out/
 out-analysis/

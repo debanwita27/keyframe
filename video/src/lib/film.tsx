@@ -1,6 +1,18 @@
 import React from "react";
 import { Sequence, useVideoConfig } from "remotion";
 
+/**
+ * A shot's absolute start frame.
+ *
+ * `useCurrentFrame()` inside a <Sequence> is SEQUENCE-LOCAL, which is right for a
+ * shot's own animation but wrong for ambient motion: every shot restarted its
+ * gradient drift and camera drift from phase 0, so the background visibly jumped
+ * at each cut. Ambient layers add this offset back to recover one continuous
+ * clock across the whole film.
+ */
+export const ShotPhase = React.createContext(0);
+export const useShotPhase = () => React.useContext(ShotPhase);
+
 /* ────────────────────────────────────────────────────────────────────────────
    FILM / SHOT — sequencing without hand-computed frame offsets.
 
@@ -39,7 +51,9 @@ export const Film: React.FC<{ shots: Shot[] }> = ({ shots }) => {
         const Comp = s.render;
         return (
           <Sequence key={s.name + i} name={s.name} from={from} durationInFrames={s.durF}>
-            <Comp />
+            <ShotPhase.Provider value={from}>
+              <Comp />
+            </ShotPhase.Provider>
           </Sequence>
         );
       })}

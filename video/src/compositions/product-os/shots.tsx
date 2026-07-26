@@ -24,6 +24,8 @@ import {
   t,
   ts,
 } from "../../moves";
+import { useShotPhase } from "../../lib/film";
+import { b } from "./beatgrid";
 import { C, L, TYPE } from "./theme";
 
 /* ────────────────────────────────────────────────────────────────────────────
@@ -41,38 +43,66 @@ import { C, L, TYPE } from "./theme";
  * below the analyzer's static threshold, i.e. visually dead. Ambient motion has
  * to be large enough to register, while staying below conscious notice.
  */
-const DarkBase: React.FC<{ children: React.ReactNode; grain?: number }> = ({ children, grain = 0.05 }) => (
-  <AbsoluteFill style={{ background: C.dark, overflow: "hidden" }}>
-    <GradientDrift colors={["#3A0F7A", "#1B0B3D", "#4A1B8F"]} bg={C.dark} periodF={260} opacity={0.55} />
-    <DriftCamera ampPct={1.4} periodF={240} zoom={1.05}>
-      {children}
-    </DriftCamera>
-    <FilmGrain opacity={grain} />
-    <Vignette strength={0.22} />
-  </AbsoluteFill>
-);
+const DarkBase: React.FC<{
+  children: React.ReactNode;
+  grain?: number;
+  /**
+   * Whether the CONTENT drifts with the camera. Off for the opening shots: a
+   * prompt card is a fixed object on screen, and drifting it made the textarea
+   * appear to wander. The background keeps moving either way, so the frame is
+   * still alive.
+   */
+  driftContent?: boolean;
+}> = ({ children, grain = 0.05, driftContent = true }) => {
+  const phaseF = useShotPhase();
+  return (
+    <AbsoluteFill style={{ background: C.dark, overflow: "hidden" }}>
+      <GradientDrift colors={["#3A0F7A", "#1B0B3D", "#4A1B8F"]} bg={C.dark} periodF={260} opacity={0.55} phaseF={phaseF} />
+      {driftContent ? (
+        <DriftCamera ampPct={1.4} periodF={240} zoom={1.05} phaseF={phaseF}>
+          {children}
+        </DriftCamera>
+      ) : (
+        children
+      )}
+      <FilmGrain opacity={grain} />
+      <Vignette strength={0.22} />
+    </AbsoluteFill>
+  );
+};
 
-const LightBase: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <AbsoluteFill style={{ background: C.light, overflow: "hidden" }}>
-    <GradientDrift colors={["#E9DDFF", "#FFF3D6", "#F2EAFF"]} bg={C.light} periodF={300} opacity={0.8} />
-    <DriftCamera ampPct={1.3} periodF={280} zoom={1.05}>
-      {children}
-    </DriftCamera>
-    <FilmGrain opacity={0.045} />
-    <Vignette strength={0.1} />
-  </AbsoluteFill>
-);
+const LightBase: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const phaseF = useShotPhase();
+  return (
+    <AbsoluteFill style={{ background: C.light, overflow: "hidden" }}>
+      <GradientDrift colors={["#E9DDFF", "#FFF3D6", "#F2EAFF"]} bg={C.light} periodF={300} opacity={0.8} phaseF={phaseF} />
+      <DriftCamera ampPct={1.3} periodF={280} zoom={1.05} phaseF={phaseF}>
+        {children}
+      </DriftCamera>
+      <FilmGrain opacity={0.045} />
+      <Vignette strength={0.1} />
+    </AbsoluteFill>
+  );
+};
 
 /* ── 1. the blank prompt ─────────────────────────────────────────────── 40f */
 
-const PromptCard: React.FC<{ typedFrom?: number; text: string; showCursor?: boolean }> = ({
-  typedFrom,
-  text,
-  showCursor,
-}) => {
+const PromptCard: React.FC<{
+  typedFrom?: number;
+  text: string;
+  /** frame the send button lights up; omit to keep it inert */
+  activateAtF?: number;
+  /** true only for the very first shot — everywhere else the card is already there */
+  entrance?: boolean;
+  /** shown until typing begins, so the card is never blank */
+  placeholder?: string;
+}> = ({ typedFrom, text, activateAtF, entrance = false, placeholder }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const p = ts(frame, fps, 0, "soft", 20);
+  const p = entrance ? ts(frame, fps, 0, "soft", 20) : 1;
+  const active = activateAtF !== undefined && frame >= activateAtF;
+  // the button lights over 8f rather than popping on a cut
+  const lit = activateAtF === undefined ? 0 : t(frame, activateAtF, 8, "expoOut");
   return (
     <div
       style={{
@@ -90,6 +120,10 @@ const PromptCard: React.FC<{ typedFrom?: number; text: string; showCursor?: bool
       <div style={{ ...TYPE.mono, color: C.onDark, minHeight: 96, lineHeight: 1.35 }}>
         {typedFrom === undefined ? (
           <span style={{ color: C.onDarkSoft }}>{text}</span>
+        ) : frame < typedFrom ? (
+          // Before the first keystroke the card must not be empty — shot 2 opened
+          // on a blank box for two frames, which reads as a broken render.
+          <span style={{ color: C.onDarkSoft }}>{placeholder ?? ""}</span>
         ) : (
           <TypeOn text={text} startF={typedFrom} charsPerF={1.15} caret punctuationHoldF={5} />
         )}
@@ -100,14 +134,15 @@ const PromptCard: React.FC<{ typedFrom?: number; text: string; showCursor?: bool
             width: 58,
             height: 58,
             borderRadius: 999,
-            background: showCursor ? C.accent : C.lineDark,
+            background: lit > 0.02 ? C.accent : C.lineDark,
+            transform: `scale(${1 + lit * 0.06})`,
             display: "grid",
             placeItems: "center",
             transition: "none",
           }}
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke={showCursor ? "#fff" : C.onDarkSoft} strokeWidth="2.2" strokeLinecap="round" />
+            <path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke={active ? "#fff" : C.onDarkSoft} strokeWidth="2.2" strokeLinecap="round" />
           </svg>
         </div>
       </div>
@@ -116,9 +151,9 @@ const PromptCard: React.FC<{ typedFrom?: number; text: string; showCursor?: bool
 };
 
 export const S1_Blank: React.FC = () => (
-  <DarkBase>
+  <DarkBase driftContent={false}>
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-      <PromptCard text="ask product os anything…" />
+      <PromptCard text="ask product os anything…" entrance />
     </AbsoluteFill>
   </DarkBase>
 );
@@ -126,9 +161,14 @@ export const S1_Blank: React.FC = () => (
 /* ── 2. the real question gets typed ─────────────────────────────────── 85f */
 
 export const S2_Typing: React.FC = () => (
-  <DarkBase>
+  <DarkBase driftContent={false}>
     <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-      <PromptCard text="i have a rough idea. where do i even start?" typedFrom={4} />
+      <PromptCard
+        text="i have a rough idea. where do i even start?"
+        typedFrom={0}
+        activateAtF={62}
+        placeholder="ask product os anything…"
+      />
     </AbsoluteFill>
   </DarkBase>
 );
@@ -140,7 +180,7 @@ export const S3_Submit: React.FC = () => {
   const flash = t(frame, 22, 5, "expoIn");
   const collapse = t(frame, 13, 14, "expoIn");
   return (
-    <DarkBase>
+    <DarkBase driftContent={false}>
       <AbsoluteFill
         style={{
           alignItems: "center",
@@ -150,7 +190,7 @@ export const S3_Submit: React.FC = () => {
           opacity: 1 - collapse * 0.6,
         }}
       >
-        <PromptCard text="i have a rough idea. where do i even start?" showCursor />
+        <PromptCard text="i have a rough idea. where do i even start?" typedFrom={-400} activateAtF={-1} />
       </AbsoluteFill>
       <Cursor
         path={[
@@ -174,7 +214,7 @@ export const S4_Title: React.FC = () => {
         <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
           <div style={{ textAlign: "center" }}>
             <MaskWipeUp
-              startF={2}
+              startF={0}
               durF={20}
               perLineStaggerF={3}
               lines={[
@@ -190,14 +230,14 @@ export const S4_Title: React.FC = () => {
                 length={640}
                 stroke={C.accent}
                 strokeWidth={7}
-                startF={16}
+                startF={b(1)}
                 durF={26}
                 style={{ width: 620, height: 12 }}
               />
             </div>
             <div style={{ overflow: "hidden", marginTop: 30 }}>
               <MaskWipeUp
-                startF={26}
+                startF={b(2)}
                 durF={18}
                 lines={[
                   <span key="b" style={{ ...TYPE.body, color: C.inkSoft }}>
@@ -217,47 +257,33 @@ export const S4_Title: React.FC = () => {
 
 export const S5_Reframe: React.FC = () => {
   const frame = useCurrentFrame();
-  const strike = t(frame, 20, 14, "expoInOut");
   const roles = ["Product", "Design", "Engineering"];
   return (
     <LightBase>
       <AbsoluteFill style={{ padding: L.margin, justifyContent: "center" }}>
-        <div style={{ position: "relative", display: "inline-block", marginBottom: 34 }}>
-          <MaskWipeUp
-            startF={0}
-            durF={16}
-            lines={[
-              <span key="a" style={{ ...TYPE.h2, color: C.inkSoft }}>
-                It started as a PM operating system.
-              </span>,
-            ]}
-          />
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              top: "52%",
-              height: 5,
-              width: "100%",
-              background: C.ink,
-              transform: `scaleX(${strike})`,
-              transformOrigin: "left center",
-            }}
-          />
-        </div>
         <MaskWipeUp
-          startF={30}
+          startF={0}
+          durF={18}
+          lines={[
+            <span key="a" style={{ ...TYPE.h2, color: C.inkSoft }}>
+              Whatever you're building, start here.
+            </span>,
+          ]}
+          style={{ marginBottom: 30 }}
+        />
+        <MaskWipeUp
+          startF={b(1)}
           durF={20}
           perLineStaggerF={3}
           lines={[
             <span key="a" style={{ ...TYPE.h1, color: C.ink }}>
-              Now it belongs to
+              Made for
             </span>,
           ]}
         />
         <div style={{ display: "flex", gap: 22, marginTop: 20 }}>
           {roles.map((r, i) => {
-            const p = t(frame, 38 + i * 4, 16, "backOut");
+            const p = t(frame, b(2) + i * 3, 16, "backOut");
             return (
               <div
                 key={r}
@@ -288,7 +314,7 @@ const STAGES = ["Shape", "Define", "Validate", "Prototype", "Ship"];
 
 export const S6_Rail: React.FC = () => {
   const frame = useCurrentFrame();
-  const active = Math.min(STAGES.length - 1, Math.floor(t(frame, 20, 64, "expoInOut") * STAGES.length));
+  const active = Math.min(STAGES.length - 1, Math.floor(t(frame, b(1), 70, "expoInOut") * STAGES.length));
   return (
     <DarkBase grain={0.055}>
       <AbsoluteFill style={{ padding: L.margin, justifyContent: "center" }}>
@@ -310,7 +336,7 @@ export const S6_Rail: React.FC = () => {
               length={1520}
               stroke={C.lineDark}
               strokeWidth={6}
-              startF={8}
+              startF={0}
               durF={30}
               style={{ width: "100%", height: 8 }}
             />
@@ -322,14 +348,14 @@ export const S6_Rail: React.FC = () => {
               length={1520}
               stroke={C.accent}
               strokeWidth={6}
-              startF={20}
-              durF={68}
+              startF={b(1)}
+              durF={72}
               style={{ width: "100%", height: 8 }}
             />
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", position: "relative" }}>
             {STAGES.map((s, i) => {
-              const p = t(frame, 12 + i * 3, 16, "backOut");
+              const p = t(frame, b(0.5) + i * 3, 16, "backOut");
               const isActive = i <= active;
               return (
                 <div key={s} style={{ textAlign: "center", width: 272 }}>
@@ -379,7 +405,10 @@ const Beat: React.FC<{
   const Base = dark ? DarkBase : LightBase;
   return (
     <Base>
-      <PushIn from={1} to={1.05} durF={60} ease="expoInOut">
+      {/* Longer than the longest shot (94f) on purpose: the push must still be
+          moving when the cut comes, otherwise the extra reading time added to the
+          text-heavy beats turns into a frozen tail. */}
+      <PushIn from={1} to={1.06} durF={100} ease="expoInOut">
       <AbsoluteFill style={{ padding: L.margin, flexDirection: "row", alignItems: "center", gap: 70 }}>
         <div style={{ flex: "0 0 780px" }}>
           <div
@@ -465,7 +494,7 @@ export const S7a_Ideas: React.FC = () => {
     <Beat n={1} label={"Explore and|validate ideas"}>
       <div style={{ position: "relative", width: 700, height: 470 }}>
         <StaggerRise
-          startF={6}
+          startF={0}
           durF={22}
           staggerF={4}
           yFrom={34}
@@ -476,7 +505,7 @@ export const S7a_Ideas: React.FC = () => {
                   <div style={{ flex: 1 }}>
                     <SkeletonLines n={2} startF={12 + i * 4} widths={[86, 54]} />
                   </div>
-                  {i === 1 && <CheckOn startF={34} size={52} accent={C.accent} />}
+                  {i === 1 && <CheckOn startF={b(2)} size={52} accent={C.accent} />}
                 </div>
               </Card>
             </div>
@@ -490,12 +519,12 @@ export const S7a_Ideas: React.FC = () => {
 /** 7b — benchmark competitor UX: a grid of screens, one lifts out */
 export const S7b_Benchmark: React.FC = () => {
   const frame = useCurrentFrame();
-  const lift = t(frame, 22, 18, "expoOut");
+  const lift = t(frame, b(1.5), 18, "expoOut");
   return (
     <Beat n={2} dark label={"Benchmark|competitor UX"}>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 250px)", gap: 24 }}>
         {Array.from({ length: 6 }, (_, i) => {
-          const p = t(frame, 6 + i * 2, 16, "expoOut");
+          const p = t(frame, i * 2, 16, "expoOut");
           const hero = i === 4;
           return (
             <div
@@ -529,7 +558,7 @@ export const S7b_Benchmark: React.FC = () => {
 /** 7c — structure the problem: scattered chips snap into an ordered stack */
 export const S7c_Structure: React.FC = () => {
   const frame = useCurrentFrame();
-  const snap = t(frame, 14, 22, "expoInOut");
+  const snap = t(frame, b(1), 22, "expoInOut");
   const chips = ["churn?", "onboarding", "pricing", "retention", "support load"];
   const scatter = [
     { x: -240, y: -160, r: -14 },
@@ -542,7 +571,7 @@ export const S7c_Structure: React.FC = () => {
     <Beat n={3} label={"Structure the|problem"}>
       <div style={{ position: "relative", width: 720, height: 500 }}>
         {chips.map((c, i) => {
-          const appear = t(frame, 4 + i * 2, 14, "backOut");
+          const appear = t(frame, i * 2, 14, "backOut");
           const x = at(snap, scatter[i].x, 0);
           const y = at(snap, scatter[i].y, -215 + i * 108);
           const r = at(snap, scatter[i].r, 0);
@@ -594,11 +623,11 @@ export const S7d_Prd: React.FC = () => {
     <Beat n={4} dark label={"Objectives,|metrics, PRDs"}>
       <div style={{ position: "relative" }}>
         <TiltIdle ampDeg={2} periodF={200}>
-          <ScaleIn startF={2} durF={18}>
+          <ScaleIn startF={0} durF={18}>
             <Card w={640} h={430} dark>
               <div style={{ ...TYPE.label, color: C.onDarkSoft, marginBottom: 20 }}>prd · draft</div>
               <div style={{ ...TYPE.h2, fontSize: 42, color: C.onDark, marginBottom: 26 }}>
-                <MaskWipeSide startF={10} durF={20}>
+                <MaskWipeSide startF={b(0.5)} durF={20}>
                   Reduce time-to-first-PRD
                 </MaskWipeSide>
               </div>
@@ -611,15 +640,15 @@ export const S7d_Prd: React.FC = () => {
             position: "absolute",
             right: -90,
             bottom: -40,
-            opacity: t(frame, 24, 14, "expoOut"),
-            transform: `translateY(${at(t(frame, 24, 16, "backOut"), 30, 0)}px)`,
+            opacity: t(frame, b(1.5), 14, "expoOut"),
+            transform: `translateY(${at(t(frame, b(1.5), 16, "backOut"), 30, 0)}px)`,
           }}
         >
           <Card w={300} h={150} dark style={{ borderColor: C.accent }}>
             <div style={{ ...TYPE.label, color: C.onDarkSoft, marginBottom: 10 }}>success metric</div>
             <div style={{ ...TYPE.h1, fontSize: 68, color: C.accentSoft }}>
               <span style={{ fontVariantNumeric: "tabular-nums" }}>
-                {Math.round(at(t(frame, 26, 22, "expoOut"), 0, 4))}×
+                {Math.round(at(t(frame, b(1.5), 22, "expoOut"), 0, 4))}×
               </span>
             </div>
           </Card>
@@ -666,7 +695,7 @@ export const S7e_Knowledge: React.FC = () => {
         <OrbitRing
           radius={250}
           periodF={700}
-          revealStartF={8}
+          revealStartF={0}
           revealStaggerF={3}
           style={{ left: "50%", top: "50%" }}
           children={docs.map((d) => (
@@ -696,11 +725,11 @@ export const S7e_Knowledge: React.FC = () => {
 /** 7f — visualize and prototype: wireframe assembles into a real UI */
 export const S7f_Prototype: React.FC = () => {
   const frame = useCurrentFrame();
-  const solidify = t(frame, 20, 20, "expoInOut");
+  const solidify = t(frame, b(1.25), 20, "expoInOut");
   return (
     <Beat n={6} dark label={"Visualize it, then|prototype it"}>
       <TiltIdle ampDeg={2.4} periodF={230}>
-        <ScaleIn startF={2} durF={20} scaleFrom={0.9}>
+        <ScaleIn startF={0} durF={20} scaleFrom={0.9}>
           <div
             style={{
               width: 760,
@@ -723,7 +752,7 @@ export const S7f_Prototype: React.FC = () => {
             </div>
             <div style={{ display: "flex", gap: 18, flex: 1 }}>
               {[0, 1, 2].map((i) => {
-                const p = t(frame, 8 + i * 3, 16, "expoOut");
+                const p = t(frame, i * 3, 16, "expoOut");
                 return (
                   <div
                     key={i}
@@ -737,7 +766,7 @@ export const S7f_Prototype: React.FC = () => {
                       padding: 16,
                     }}
                   >
-                    {solidify > 0.6 && <SkeletonLines n={3} startF={26} dark widths={[80, 60, 44]} />}
+                    {solidify > 0.6 && <SkeletonLines n={3} startF={b(1.75)} dark widths={[80, 60, 44]} />}
                   </div>
                 );
               })}
@@ -757,9 +786,9 @@ export const S8_End: React.FC = () => {
     <DarkBase grain={0.06}>
       <PushIn from={1.04} to={1} durF={85}>
         <AbsoluteFill style={{ alignItems: "center", justifyContent: "center" }}>
-          <SpecularSweep startF={26} durF={34} style={{ borderRadius: 8, padding: "0 12px" }}>
+          <SpecularSweep startF={b(1.5)} durF={34} style={{ borderRadius: 8, padding: "0 12px" }}>
             <MaskWipeUp
-              startF={2}
+              startF={0}
               durF={22}
               perLineStaggerF={4}
               style={{ textAlign: "center" }}
@@ -772,7 +801,7 @@ export const S8_End: React.FC = () => {
           </SpecularSweep>
           <div style={{ marginTop: 26, textAlign: "center" }}>
             <MaskWipeUp
-              startF={24}
+              startF={b(1.5)}
               durF={18}
               lines={[
                 <span key="b" style={{ ...TYPE.body, fontSize: 38, color: C.onDarkSoft }}>
@@ -781,7 +810,7 @@ export const S8_End: React.FC = () => {
               ]}
             />
           </div>
-          <div style={{ marginTop: 44, opacity: t(frame, 44, 14, "expoOut") }}>
+          <div style={{ marginTop: 44, opacity: t(frame, b(3), 14, "expoOut") }}>
             <span
               style={{
                 ...TYPE.label,
@@ -790,7 +819,7 @@ export const S8_End: React.FC = () => {
                 borderRadius: 999,
                 padding: "16px 34px",
                 display: "inline-block",
-                transform: `translateY(${at(t(frame, 44, 18, "backOut"), 20, 0)}px)`,
+                transform: `translateY(${at(t(frame, b(3), 18, "backOut"), 20, 0)}px)`,
               }}
             >
               live now · ask it anything
