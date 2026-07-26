@@ -1,6 +1,10 @@
 # Pattern library (cross-corpus synthesis)
 
-Source: all 25 files in `refs/specs/*.yaml` (24 unique — `A_2d-loop-piece.yaml` is a
+Source: the reference corpus in `refs/specs/*.yaml`. Written when it held 25
+specs from @byshubh_; the corpus is now 47 across five designers, so the family
+definitions and ranked table below are grounded in the byshubh_ subset and the
+newer specs have not yet been folded into the counts. See `refs/specs/INDEX.md`
+for the full ranked corpus.
 recorded duplicate of `A_how-to-dream-2d.yaml`), ~93 individual `techniques:` entries.
 This document groups those techniques into reusable families, ranks the most
 transferable individual techniques, calls out where independent references converge

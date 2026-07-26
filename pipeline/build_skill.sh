@@ -23,8 +23,11 @@ for f in PRINCIPLES.md PATTERNS.md MOVE_VOCAB.md MOVE_VOCAB_ADDITIONS.md SPEC_TE
   [ -f "pipeline/$f" ] && cp "pipeline/$f" "$S/references/$f"
 done
 
-# ── the specs: our own written analysis, safe to ship
+# ── the specs: our own written analysis, safe to ship.
+# INDEX.md too — SKILL.md step 2 tells the reader to open it first, so shipping
+# only the .yaml files left the entry point dangling.
 cp refs/specs/*.yaml "$S/references/specs/" 2>/dev/null || true
+cp refs/specs/INDEX.md "$S/references/specs/" 2>/dev/null || true
 
 # ── measured analysis text (no imagery — see .gitignore for why)
 mkdir -p "$S/references/analysis"

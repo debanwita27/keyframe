@@ -8,7 +8,6 @@ A|1936832964287177045|micro-elements-animations
 A|1942464473169850653|motion-explainer-snippet
 A|1884903815587201212|explainer-zhylar-crm-cpq
 A|1982409048688664802|recent-motion-4k-vertical
-A|1990478232333004925|brand-animation-promo
 A|1943022663485829471|showreel-snippet
 A|1957524930888937580|how-to-dream-2d
 A|1954168284716192031|2d-animation-growth-hack

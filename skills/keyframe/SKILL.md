@@ -10,7 +10,7 @@ follow numeric law and read a still grid. So every step here converts motion int
 **numbers** (frame counts, named easings, measured velocity) and **contact sheets**
 (frames as a timecoded grid) — both of which you can act on.
 
-## Do this in order. Do not skip step 5.
+## Do this in order. Do not skip step 6.
 
 ### 1. Establish the category
 
@@ -24,7 +24,44 @@ Two kinds of launch video, and they need opposite treatment:
   inside 2 seconds. Establish once, then push into the one control that matters.
   Choreograph a synthetic cursor; a real screen recording cannot land on a beat.
 
-### 2. Read the law before writing any code
+### 2. Look at references before writing any code
+
+**Start with `references/specs/INDEX.md`.** 50 references is too many to read, so
+the index is the entry point: S/A/B/C tiers by visual quality, "start here by job"
+for the five job types, best-in-corpus per pattern family, and a skip list. Six
+references are explicitly not worth your context — one is an unedited
+talking-head take with zero authored motion.
+
+**Dispatch a subagent for this.** Reading 50 specs and viewing contact sheets will
+consume most of a context window, and you need that context for building. Send a
+Sonnet subagent with instructions to:
+
+- read `references/specs/INDEX.md`, pick the 3-4 references matching the job
+- read those specs in full, and **view their contact sheets and `keys.jpg`** —
+  it can see images, so make it actually look
+- return a compact brief: the palette it observed (with hex values), the shot
+  rhythm in frames, the 5-8 techniques worth stealing with their mechanisms, and
+  anything it saw that contradicts the spec text
+
+Then build from the brief. One agent, one round trip, and your context stays free.
+
+The flow the index sets out, which the subagent should follow:
+
+1. find the job in "start here by job" → it names 3-4 slugs in priority order
+2. **look at the contact sheets** for the top 2-3 of those, before reading anything
+3. only then open `references/specs/<slug>.yaml` for full timings
+
+Contact sheets are NOT in the repo — they are other designers' frames.
+`scripts/fetch_refs.sh --analyze` regenerates them locally. The committed
+`references/analysis/<slug>/profile.md` carries every measurement without them, so
+the text path works either way.
+
+Note the index ranks the **reference**, not the technique. Three of the strongest
+built moves come from C-tier sources: a screen recording can teach a mechanism
+perfectly while being a poor thing to study visually. Tiers decide what to *look
+at*; `PATTERNS.md` §2 decides what to *build*.
+
+### 3. Read the law before writing any code
 
 - `references/PRINCIPLES.md` — the taste, written as numbers. Timing table,
   easing rules, what may animate, treatment amounts. Non-negotiable.
@@ -41,7 +78,7 @@ Two kinds of launch video, and they need opposite treatment:
   `interpolate()` calls in a composition are how motion ends up looking like 2015
   PowerPoint; the vocabulary has defaults that already carry taste.
 
-### 3. Write the spec before the code
+### 4. Write the spec before the code
 
 Use `references/SPEC_TEMPLATE.yaml`. The same schema describes a reference and
 authors new work, so you can read 50 examples of the thing you are about to write.
@@ -50,7 +87,7 @@ Shot list, beats per shot, moves per shot with frame counts.
 Express shot lengths in **beats, not frames**. That is what lets the music change
 without breaking the edit.
 
-### 4. Build and render
+### 5. Build and render
 
 ```bash
 python3 scripts/make_sfx.py                      # synthesised SFX, no licensing risk
@@ -62,7 +99,7 @@ python3 scripts/make_sfx.py                      # synthesised SFX, no licensing
 rewrites the beat grid globally and rendering after setting a *different* track
 silently produces a mislabelled file.
 
-### 5. Critique your own output — this is the whole method
+### 6. Critique your own output — this is the whole method
 
 ```bash
 python3 scripts/analyze.py <rendered.mp4> --out out-analysis
@@ -94,12 +131,28 @@ Composition problems invisible in motion are obvious in a still grid. Always loo
 - **Opacity never animates alone.** Always paired with transform, blur or a mask.
 - **Nothing is linear** except continuous loops (rotation, marquee, drift).
 - **Every shot runs at least one ambient move.** A still frame reads as a broken
-  render, not as calm.
+  render, not as calm. Note that most moves are ONE-SHOT: of the 15 in
+  `narrative.tsx`/`layout.tsx` only `LiveCounter`, `AsyncDrift`, `ParticleField`,
+  `RadialCluster` (idle) and `RackLoop` are perpetual. A shot assembled purely
+  from one-shot moves freezes the moment they finish.
 - **Ambient motion uses a shot-phase offset.** `useCurrentFrame()` inside a
   `<Sequence>` is sequence-local, so per-shot ambient restarts at phase 0 and the
   background visibly jumps at every cut.
 - **Text reveals per line, through a mask.** One per-letter moment per video, max.
-- **Three colours**: background, ink, accent. The accent appears 2–3 times total.
+- **Three colours**: background, ink, accent, plus at most one support tint. The
+  accent appears 2–3 times in the whole video.
+- **Derive the palette; never inherit it.** In priority order:
+  1. the product's own brand, if there is one — pull the real hex values from its
+     site or design system rather than guessing a "close enough" colour
+  2. otherwise the palette of the references you chose. `profile.md` has a
+     measured **"Palette (screen share %)"** block for all 50 references, so this
+     is a lookup, not a judgement call
+  3. only with neither of those, choose freely
+
+  The worked example (`template/src/compositions/product-os/theme.ts`) is
+  `#8000FF`, which is **Headout's** brand purple, taken from their site for that
+  specific launch. It is not a default and carries no meaning for another product —
+  change it.
 
 ## Audio
 
