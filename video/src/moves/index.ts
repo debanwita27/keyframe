@@ -12,3 +12,5 @@ export * from "./ambient";
 export * from "./camera";
 export * from "./treatment";
 export * from "./masks";
+export * from "./narrative";
+export * from "./layout";

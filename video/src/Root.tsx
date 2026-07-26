@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { PRODUCT_OS_DURATION, ProductOSLaunch } from "./compositions/product-os";
 import { LottieBridge } from "./compositions/lottie-bridge";
 import { MaskSmoke } from "./compositions/mask-smoke";
+import { MovesSmoke } from "./compositions/moves-smoke";
 import { ThreeSmoke } from "./compositions/three-smoke";
 
 export const RemotionRoot: React.FC = () => (
@@ -23,6 +24,16 @@ export const RemotionRoot: React.FC = () => (
       fps={30}
       width={1280}
       height={720}
+    />
+    {/* Exercises the 15 newly-built PATTERNS §2 moves — verified rendering, not
+        just compiling. A component can compile and draw nothing. */}
+    <Composition
+      id="MovesSmoke"
+      component={MovesSmoke}
+      durationInFrames={70}
+      fps={30}
+      width={1800}
+      height={1000}
     />
     {/* Verifies the shape-mask family renders in headless Chromium — clip-path
         circle/polygon, SVG stroke-dash and transform-box all differ there. */}
