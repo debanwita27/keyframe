@@ -10,6 +10,46 @@ follow numeric law and read a still grid. So every step here converts motion int
 **numbers** (frame counts, named easings, measured velocity) and **contact sheets**
 (frames as a timecoded grid) — both of which you can act on.
 
+## The failure mode to defend against
+
+This library is large: 47 references, 196 techniques, 15 pattern families, 156
+named moves. With little or no steer from the user, the natural failure is **a
+video that samples many techniques instead of committing to a few**, which reads
+as a showreel of effects rather than as one authored piece. The references are
+coherent precisely because each uses a handful of ideas well.
+
+Five hard constraints:
+
+1. **Technique budget.** A 25–30s launch video uses **6–10 moves total**. For
+   calibration the worked example renders 17, and that count includes the base
+   and treatment layers (grain, vignette, gradient, drift) — so its actual
+   compositional vocabulary is about a dozen. Name your chosen moves in the spec
+   before building and do not add more mid-build.
+
+2. **One style anchor.** Pick a SINGLE reference as the visual anchor and take its
+   palette, cut rhythm and type treatment as a set. Use other references only for
+   individual mechanisms. **Never average five designers** — averaging five house
+   styles produces no style. Choose the anchor from the S-tier entry that matches
+   your job in `references/specs/INDEX.md`.
+
+3. **Prefer what is built.** When two techniques do the same job, pick the one
+   marked `built:` in `MOVE_VOCAB.md`. **73 of 107 family moves are `spec-only`** —
+   citing one is fine only if you also intend to implement and smoke-test it, and
+   a spec citing an unbuilt move will not compile.
+
+4. **Prefer convergent and cross-designer.** `PATTERNS.md` §3 lists techniques
+   multiple independent designers arrived at separately — those are craft. Families
+   marked **thin** (≤2 designers) or **single-designer** may be one house's habit;
+   using one is a deliberate experiment that needs a reason.
+
+5. **Document precedence when they disagree.**
+   `PRINCIPLES.md` (law, non-negotiable) → `MOVE_VOCAB.md` `status` (what exists) →
+   `INDEX.md` (what to look at) → `PATTERNS.md` (what is worth stealing).
+   PRINCIPLES wins every conflict.
+
+More reference material raises the ceiling; these constraints stop it lowering the
+floor.
+
 ## Do this in order. Do not skip step 6.
 
 ### 1. Establish the category
@@ -39,9 +79,13 @@ Sonnet subagent with instructions to:
 - read `references/specs/INDEX.md`, pick the 3-4 references matching the job
 - read those specs in full, and **view their contact sheets and `keys.jpg`** —
   it can see images, so make it actually look
-- return a compact brief: the palette it observed (with hex values), the shot
-  rhythm in frames, the 5-8 techniques worth stealing with their mechanisms, and
-  anything it saw that contradicts the spec text
+- return a compact brief: **one named style anchor** (which reference, and its
+  palette in hex, cut rhythm in frames, type treatment), then **at most 8**
+  techniques worth stealing with their mechanisms — marked `built` or `spec-only` —
+  and anything it saw that contradicts the spec text
+
+Ask it for a shortlist, not an inventory. A brief listing 30 techniques hands the
+dilution problem straight back to you.
 
 Then build from the brief. One agent, one round trip, and your context stays free.
 
