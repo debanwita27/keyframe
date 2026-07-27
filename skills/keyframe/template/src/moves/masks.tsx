@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
-import { EaseName, at, loop, osc, t } from "./easings";
+import { EaseName, at, atScale, loop, osc, t } from "./easings";
 
 /* ────────────────────────────────────────────────────────────────────────────
    SHAPE-DRIVEN MASKS
@@ -353,7 +353,9 @@ export const ConcentricShapeBurst: React.FC<{
               inset: 0,
               display: "grid",
               placeItems: "center",
-              transform: `scale(${at(p, 0, target).toFixed(3)})`,
+              // targets run to ~9.45x, where linear scale interpolation diverges
+              // ~25% from perceptual — the burst reads as stalling without this
+              transform: `scale(${atScale(p, 0, target).toFixed(3)})`,
               opacity: Math.max(0, 1 - i * opacityFalloff) * Math.min(1, p * 3),
             }}
           >

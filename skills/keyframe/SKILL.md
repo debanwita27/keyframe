@@ -203,6 +203,19 @@ Treat as bugs:
 
 Composition problems invisible in motion are obvious in a still grid. Always look.
 
+## Checking a Remotion API
+
+Do not code Remotion APIs from memory — append `.md` to any docs URL to get it as
+markdown, e.g. `https://remotion.dev/docs/interpolate.md`. Cheap, and it is how the
+`perceptual-scale` option below was found.
+
+Two things already settled, so they are not re-litigated:
+- `@remotion/media`'s `<Audio>` is **experimental** (WebCodecs). Use `Audio` from
+  `"remotion"`.
+- `@remotion/effects` is **canvas-only**. Our treatment stack is DOM-based and is
+  not replaceable by it; reach for it only for canvas/image content needing
+  halftone, scanlines, light leaks or lens distortion.
+
 ## Non-negotiables
 
 - **30fps, integer frames.** Every value derives from `useCurrentFrame()`.

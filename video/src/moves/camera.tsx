@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
-import { EaseName, at, osc, t } from "./easings";
+import { EaseName, at, atScale, osc, t } from "./easings";
 
 /* ────────────────────────────────────────────────────────────────────────────
    CAMERA MOVES — applied to a whole shot, not to one element.
@@ -55,7 +55,9 @@ export const DollyToUI: React.FC<
 > = ({ children, startF = 0, durF = 36, ease = "expoInOut", focus, zoom = 2.4, style }) => {
   const frame = useCurrentFrame();
   const p = t(frame, startF, durF, ease);
-  const s = at(p, 1, zoom);
+  // 2.4x by default — large enough that linear scale interpolation visibly
+  // decelerates. Interpolate in area space instead.
+  const s = atScale(p, 1, zoom);
   // translate so `focus` stays put while scaling from centre
   const tx = at(p, 0, (50 - focus.x) * (zoom - 1) / zoom);
   const ty = at(p, 0, (50 - focus.y) * (zoom - 1) / zoom);

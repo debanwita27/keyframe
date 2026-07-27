@@ -52,6 +52,11 @@ The base vocabulary, carried unchanged from the original `MOVE_VOCAB.md`. These 
 | `springSnap` | `spring({damping:14, mass:0.5, stiffness:180})` | icons, small elements, bounce |
 | `linear` | — | **only** for continuous loops (rotation, marquee, drift) |
 
+**Scaling by more than ~1.5x:** use `atScale()` rather than `at()`. It interpolates
+in area space, because perceived size follows area — a linear scale ramp reads as
+decelerating. Measured divergence: 0.7% at 1→1.06 (ignore it), 10.3% at 1→2.4,
+24.7% at 0→9.45.
+
 ## Entrance moves
 
 | move | params | description |

@@ -67,6 +67,29 @@ export const ts = (
 /** Map 0..1 progress onto a numeric range. */
 export const at = (p: number, from: number, to: number) => from + (to - from) * p;
 
+/**
+ * Map 0..1 progress onto a SCALE range, interpolated in area space.
+ *
+ * Linear scale interpolation reads as decelerating, because perceived size follows
+ * area and area grows as the square of scale. Remotion's `perceptual-scale` output
+ * mode corrects for that.
+ *
+ * Only worth it on large ranges — measured divergence from linear, as a percentage
+ * of the total range:
+ *   1 → 1.06   0.7%   (imperceptible; use plain `at`)
+ *   1 → 1.09   1.1%   (imperceptible)
+ *   1 → 2.4   10.3%   (use this)
+ *   0 → 9.45  24.7%   (definitely use this)
+ *
+ * Rule of thumb: reach for it when to/from exceeds ~1.5x.
+ */
+export const atScale = (p: number, from: number, to: number) =>
+  interpolate(p, [0, 1], [from, to], {
+    output: "perceptual-scale",
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
 /** Per-index delay for staggered groups. Keep staggerF in 2..4. */
 export const stagger = (i: number, staggerF: number) => i * staggerF;
 
