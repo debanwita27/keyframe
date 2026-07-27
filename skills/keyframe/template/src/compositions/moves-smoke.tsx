@@ -93,7 +93,7 @@ export const MovesSmoke: React.FC = () => {
         }}
       >
         <Cell label="wordCycle">
-          <WordCycle words={["faster", "clearer", "sharper", "shipped"]} startF={S(0)} durF={40} />
+          <WordCycle words={["faster", "clearer", "sharper", "shipped"]} startF={S(0)} durF={48} />
         </Cell>
 
         <Cell label="wordBuild">
@@ -115,7 +115,7 @@ export const MovesSmoke: React.FC = () => {
             text="Launch"
             families={["ui-serif, Georgia", "ui-monospace, monospace", "ui-sans-serif, system-ui"]}
             startF={S(4)}
-            swapEveryF={8}
+            swapEveryF={9}
             style={{ fontSize: 30, fontWeight: 700 }}
           />
         </Cell>

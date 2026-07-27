@@ -299,27 +299,45 @@ export const FontSwapBlur: React.FC<{
   families: string[];
   startF?: number;
   swapEveryF?: number;
+  /**
+   * Peak blur, in px. Keep this WELL under the font size — the first version used
+   * 26px on 30px text, which exceeded the glyph height and turned the word to
+   * mush. The blur exists to hide one frame of metric change, not to be seen.
+   */
   blurPx?: number;
-  skewDeg?: number;
+  squash?: number;
   style?: React.CSSProperties;
-}> = ({ text, families, startF = 0, swapEveryF = 7, blurPx = 26, skewDeg = 10, style }) => {
+}> = ({ text, families, startF = 0, swapEveryF = 9, blurPx = 7, squash = 0.04, style }) => {
   const frame = useCurrentFrame();
   const local = Math.max(0, frame - startF);
   const step = Math.floor(local / swapEveryF);
   const landed = step >= families.length - 1;
   const idx = Math.min(families.length - 1, step);
-  // blur spikes on the frames either side of a swap, clears in between
-  const intoSwap = local % swapEveryF;
-  const nearSwap = Math.min(intoSwap, swapEveryF - intoSwap);
-  const b = landed ? 0 : Math.max(0, 1 - nearSwap / 2) * blurPx;
+
+  /*
+   * Decay AFTER the swap only.
+   *
+   * The first version keyed blur off the distance to the nearest swap, which
+   * blurred on the way IN as well as out — the word pulsed continuously instead
+   * of flicking once per change. A new face is present from the swap frame
+   * onward, so that is the only side that needs masking.
+   */
+  const sinceSwap = landed ? 999 : local % swapEveryF;
+  const decay = Math.max(0, 1 - sinceSwap / 2.5);
+  const b = decay * blurPx;
+  // squashing horizontally reads as the letterforms changing width, which is
+  // what actually happens; skew read as the whole word tipping over.
+  const sx = 1 - decay * squash;
+
   return (
     <span
       style={{
         ...style,
         fontFamily: families[idx],
         display: "inline-block",
-        filter: b > 0.2 ? `blur(${b.toFixed(1)}px)` : undefined,
-        transform: `skewX(${(b / blurPx * skewDeg).toFixed(2)}deg)`,
+        filter: b > 0.15 ? `blur(${b.toFixed(2)}px)` : undefined,
+        transform: `scaleX(${sx.toFixed(4)})`,
+        willChange: "filter, transform",
       }}
     >
       {text}

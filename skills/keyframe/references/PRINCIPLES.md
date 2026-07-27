@@ -279,3 +279,61 @@ supporting text out, keep the mark alone, and let the root composition ease from
 moves (`flyOut` + `pullOut`), not a new mechanism — but it is the corpus's default
 ending and worth knowing as a convention rather than re-deriving it.
 Source: `B_logo-aim` (`mark-alone-sign-off`).
+---
+
+## 15. Two mistakes found only by a person watching
+
+Both of these passed the analyzer, rendered without error, and looked defensible
+in a still frame. A human watching the output caught them in seconds. Recorded
+because both generalise well beyond the moves they were found in.
+
+### Never ease an index
+
+Easing a continuous value is correct. Easing an **integer index** is not: the
+easing curve quantises into wildly uneven steps, and you cannot see that in the
+code.
+
+`WordCycle` eased a word index with `expoOut` over 34 frames. The resulting holds,
+in frames, were:
+
+```
+[1, 1, 0, 1, 1, 2, 2, 3, 23, 1]
+```
+
+One candidate never rendered at all. Most flashed for 33ms — below the threshold
+at which a word can be read. And the word the move exists to **land on** got a
+single frame at the end, because `floor(p * n)` only reaches `n` on the final
+frame. The move was not "too quick", it was broken.
+
+**Fix:** compute the schedule explicitly. Growing weights, a floor on the minimum
+hold, and the final state keeping the remainder:
+
+```
+holds  6f  10f  13f  →  lands at f29 and holds 19f
+```
+
+**Rule:** any move that steps through discrete states needs a minimum hold of
+**5 frames (~170ms)** per state, and the landing state must be given the remainder
+of the window explicitly, never inferred from the curve.
+
+### Blur is relative to feature size, and only masks one direction
+
+`FontSwapBlur` used a 7px-default-turned-26px blur on 30px text. 26px exceeds the
+glyph height, so the word became unreadable mush rather than a masked transition.
+It also keyed blur off distance to the *nearest* swap, so it blurred on the way in
+as well as out and the word pulsed continuously instead of flicking once per change.
+
+**Rules:**
+- Peak blur should stay under **~25% of the feature's size** — for 30px type that
+  is 7px, not 26px. A masking blur is meant to hide one frame of change, not to be
+  seen.
+- Decay **after** the event only. The new state exists from the event frame onward,
+  so that is the only side needing a mask. Symmetric decay reads as a pulse.
+- For a change in horizontal metrics, `scaleX` squash reads as the letterforms
+  changing width, which is what is actually happening. `skewX` reads as the whole
+  word tipping over.
+
+The general point: **the analyzer cannot see either of these.** Both produce
+healthy motion curves and no frozen frames. Showing a rendered video to a person
+remains the only way to catch them, which is why `MovesSmoke` renders as video
+rather than as a still grid.

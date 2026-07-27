@@ -22,30 +22,66 @@ import { EaseName, at, osc, t, ts } from "./easings";
  * From A_explainer-zhylar-crm-cpq (3-column word cycle).
  */
 export const WordCycle: React.FC<{
-  /** candidates cycled through; the LAST one is landed on */
+  /** candidates cycled through; the LAST one is landed on and held */
   words: string[];
   startF?: number;
   durF?: number;
-  /** how many swaps happen before it settles */
-  cycles?: number;
+  /**
+   * Frames the FIRST candidate holds. Every later one holds longer, so the cycle
+   * decelerates into its landing. Below ~5f a word is on screen for under 170ms
+   * and cannot be read, which defeats the point of showing candidates at all.
+   */
+  minHoldF?: number;
   style?: React.CSSProperties;
-}> = ({ words, startF = 0, durF = 34, cycles = 9, style }) => {
+}> = ({ words, startF = 0, durF = 48, minHoldF = 5, style }) => {
   const frame = useCurrentFrame();
-  const p = t(frame, startF, durF, "expoOut");
-  // expoOut on the INDEX is what produces spin-then-settle: even steps early,
-  // stretching steps late, landing exactly on the final word.
-  const step = Math.min(cycles, Math.floor(p * cycles));
-  const landed = p >= 1;
-  const word = landed ? words[words.length - 1] : words[step % words.length];
-  // a 1-frame vertical kick on each swap so the change is felt, not just seen
-  const kick = landed ? 0 : (step % 2 === 0 ? -3 : 3);
+
+  /*
+   * An explicit decelerating schedule, not an eased index.
+   *
+   * The first version eased the INDEX with expoOut, which produced holds of
+   * [1,1,0,1,1,2,2,3,23,1] frames: one candidate never rendered at all, most
+   * flashed for 33ms, and the word it was supposed to LAND on got a single frame
+   * at the end. Computing the schedule directly makes every hold readable and
+   * guarantees the landing word keeps the remainder.
+   */
+  const schedule = React.useMemo(() => {
+    const n = Math.max(1, words.length - 1); // candidates before the landing word
+    // linearly growing weights -> each hold longer than the last
+    const weights = Array.from({ length: n }, (_, i) => 1 + i * 0.55);
+    const total = weights.reduce((a, b) => a + b, 0);
+    // leave ~40% of the window for the landing word to sit still in
+    const spend = durF * 0.6;
+    const holds = weights.map((w) => Math.max(minHoldF, Math.round((w / total) * spend)));
+    const starts: number[] = [];
+    let acc = 0;
+    for (const h of holds) {
+      starts.push(acc);
+      acc += h;
+    }
+    starts.push(acc); // when the landing word takes over
+    return starts;
+  }, [words.length, durF, minHoldF]);
+
+  const local = frame - startF;
+  const landAt = schedule[schedule.length - 1];
+  const landed = local >= landAt;
+
+  let idx = 0;
+  while (idx < schedule.length - 1 && local >= schedule[idx + 1]) idx++;
+  const word = landed ? words[words.length - 1] : words[idx % words.length];
+
+  // a small settle on the landing word — it arrives, it does not merely appear
+  const settle = landed ? t(local, landAt, 10, "backOut") : 0;
+  // 1f of vertical offset while cycling, so each change is felt
+  const kick = landed ? at(settle, -4, 0) : idx % 2 === 0 ? -2 : 2;
+
   return (
     <span
       style={{
         ...style,
         display: "inline-block",
-        transform: `translateY(${kick}px)`,
-        filter: landed ? undefined : "blur(0.6px)",
+        transform: `translateY(${kick.toFixed(2)}px)`,
       }}
     >
       {word}
