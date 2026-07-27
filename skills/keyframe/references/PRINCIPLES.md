@@ -177,6 +177,21 @@ After every render, before showing anyone:
    you think it is.
 ---
 
+## 12b. The analyzer is a bug-finder, not a score
+
+`analyze.py`'s motion mean is **not** a quality metric and higher is not better. A
+strong 43s reference measures mean motion **1.1** with three hard cuts; a busier
+26s piece measures 2.7 with twelve. The calmer one is not worse — it is calmer.
+
+Use the analyzer for what it can actually settle:
+- frozen stretches (a real defect)
+- shots below the minimum length that were not meant as flashes
+- two consecutive shots of identical length
+- a `linear/constant velocity` classification that was not a deliberate loop
+- whether the energy curve matches what you intended
+
+Do not tune a video to raise a number.
+
 ## 13. Traps that only rendering catches
 
 Every one of these compiled cleanly, typechecked, and read correctly in the code.

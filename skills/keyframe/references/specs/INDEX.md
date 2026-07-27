@@ -42,6 +42,24 @@ mechanism perfectly while being a poor thing to study visually.
 
 ---
 
+## Range exemplars — our own prior outputs
+
+Not third-party references. These are outputs from earlier runs, kept because they
+show how differently two good launch videos can look. **If your output always
+resembles one of these, the library is constraining you rather than guiding you.**
+
+| output | duration | palette | cuts | what it does differently |
+|---|---|---|---|---|
+| `product-os-launch` | 26s | near-black + `#8000FF` purple | 12 hard cuts on a 120bpm grid | synthetic UI, beat-locked edit, staged capability list |
+| `OUR_lens-launch` | 43s | cream `#F0D8D8` + red accent | **3** hard cuts in 43s | opens on a human problem in plain words — *"Four hours per drawing. Then the revision lands."* — uses real CAD drawings as the hero, and proves the claim with a live counter reaching **74 detections in 41s**. Long continuous takes, small confident type, mean motion 1.1 (a tenth of ours). |
+
+The lesson from the pair: `lens-launch` is calmer, longer-take and quieter, and it
+lands because the STORY and the PROOF are strong, not because the motion is busy.
+Measured motion magnitude is not a quality score — do not read `analyze.py`'s mean
+as "more is better". Its job is finding frozen frames and broken easings.
+
+`refs/analysis/OUR_lens-launch/profile.md` has the full measurements.
+
 ## Tier list
 
 Columns: slug · designer · duration · orientation · what it is · strongest technique.

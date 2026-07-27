@@ -10,45 +10,62 @@ follow numeric law and read a still grid. So every step here converts motion int
 **numbers** (frame counts, named easings, measured velocity) and **contact sheets**
 (frames as a timecoded grid) — both of which you can act on.
 
-## The failure mode to defend against
+## Story first. Always.
 
-This library is large: 47 references, 196 techniques, 15 pattern families, 156
-named moves. With little or no steer from the user, the natural failure is **a
-video that samples many techniques instead of committing to a few**, which reads
-as a showreel of effects rather than as one authored piece. The references are
-coherent precisely because each uses a handful of ideas well.
+**Shot choice follows the story, never the move library.** If you pick shots
+because a move exists, every video you make will look the same — that is the one
+failure mode that matters, and it is worse than any individual weak shot.
 
-Five hard constraints:
+What makes a launch video good is creative liberty, a real story, inventive shots
+and compelling language. The references and the move library exist to raise the
+quality and taste of your execution. They are **not** a menu to assemble from, and
+they are not a style to copy.
 
-1. **Technique budget.** A 25–30s launch video uses **6–10 moves total**. For
-   calibration the worked example renders 17, and that count includes the base
-   and treatment layers (grain, vignette, gradient, drift) — so its actual
-   compositional vocabulary is about a dozen. Name your chosen moves in the spec
-   before building and do not add more mid-build.
+### How to size a video
 
-2. **One style anchor.** Pick a SINGLE reference as the visual anchor and take its
-   palette, cut rhythm and type treatment as a set. Use other references only for
-   individual mechanisms. **Never average five designers** — averaging five house
-   styles produces no style. Choose the anchor from the S-tier entry that matches
-   your job in `references/specs/INDEX.md`.
+Work from the story, not from a move count:
 
-3. **Prefer what is built.** When two techniques do the same job, pick the one
-   marked `built:` in `MOVE_VOCAB.md`. **73 of 107 family moves are `spec-only`** —
-   citing one is fine only if you also intend to implement and smoke-test it, and
-   a spec citing an unbuilt move will not compile.
+1. Write the beats of the story first — the problem, the turn, the proof, the close.
+   In words, before any move name is mentioned.
+2. Give each beat a shot. **Roughly 2 seconds per shot**, then modulate: longer for
+   a text-heavy or information-dense frame, shorter for a visual punch, and always
+   snapped to the music's beat grid.
+3. A shot then needs whatever moves its plan requires — commonly 3-6, including its
+   ambient layer. So the move count is an *output* (`shots × per-shot plan`), never
+   a budget you spend down.
 
-4. **Prefer convergent and cross-designer.** `PATTERNS.md` §3 lists techniques
-   multiple independent designers arrived at separately — those are craft. Families
-   marked **thin** (≤2 designers) or **single-designer** may be one house's habit;
-   using one is a deliberate experiment that needs a reason.
+A ~26s film lands around 13 shots. The worked example renders 17 distinct moves
+across 13 shots, which is the right order of magnitude — not a target.
 
-5. **Document precedence when they disagree.**
-   `PRINCIPLES.md` (law, non-negotiable) → `MOVE_VOCAB.md` `status` (what exists) →
-   `INDEX.md` (what to look at) → `PATTERNS.md` (what is worth stealing).
-   PRINCIPLES wins every conflict.
+### Practical guards that do not constrain the story
 
-More reference material raises the ceiling; these constraints stop it lowering the
-floor.
+- **One style anchor.** Take palette, cut rhythm and type treatment from a SINGLE
+  reference as a coherent set, chosen for the story you are telling. Averaging five
+  designers produces no style. Other references contribute individual mechanisms.
+- **Derive the palette** from the brand, or from that anchor's measured palette in
+  `profile.md`. Never inherit the example's purple.
+- **Check `status` before citing a move.** 73 of 107 family moves are `spec-only`
+  and will not compile. If the story genuinely wants one, implement and smoke-test
+  it — do not silently swap in a lesser move that happens to exist.
+- **Precedence when documents disagree:** `PRINCIPLES.md` (law) →
+  `MOVE_VOCAB.md` `status` (what exists) → `INDEX.md` (what to look at) →
+  `PATTERNS.md` (what is worth stealing). PRINCIPLES wins.
+- Techniques multiple independent designers converge on (`PATTERNS.md` §3) are
+  safer bets than families marked **thin** or **single-designer** — but a strong
+  story reason beats both.
+
+### Range is the goal
+
+The corpus deliberately spans very different registers, and good outputs have
+looked nothing alike:
+
+- dark, beat-cut, 12 shots, synthetic UI (the worked example)
+- cream and red, 3 hard cuts in 43s, real CAD drawings as the hero, opening on a
+  human problem — *"Four hours per drawing. Then the revision lands."* — and
+  proving the claim with a live counter reaching 74 detections in 41s
+
+Both are good. If your output always resembles one of them, the library is
+constraining you instead of guiding you, and you should ignore it harder.
 
 ## Do this in order. Do not skip step 6.
 
@@ -131,11 +148,22 @@ at*; `PATTERNS.md` §2 decides what to *build*.
   citing one will not compile until someone builds it. "Which primitives are built"
   gives the same mapping for Part 1, generated from the code.
 
-### 4. Write the spec before the code
+### 4. Write the story, then the spec
 
-Use `references/SPEC_TEMPLATE.yaml`. The same schema describes a reference and
-authors new work, so you can read 50 examples of the thing you are about to write.
-Shot list, beats per shot, moves per shot with frame counts.
+**Write the beats in plain words first** — the problem, the turn, the proof, the
+close — and the actual on-screen copy. Do this before opening the move library. If
+the story does not read well as a list of sentences, no amount of motion will save
+it, and the strongest reference in the corpus opens on a plain human problem
+(*"Four hours per drawing. Then the revision lands."*) rather than on an effect.
+
+Then turn each beat into a shot in `references/SPEC_TEMPLATE.yaml`. The same schema
+describes a reference and authors new work, so you have ~47 worked examples of the
+document you are writing. Shot list, beats per shot, moves per shot with frame
+counts.
+
+Prefer concrete proof over assertion: a counter reaching a real number, an artefact
+that visibly completes, a command visibly obeyed. Claims stated in a headline are
+the weakest shot you can build.
 
 Express shot lengths in **beats, not frames**. That is what lets the music change
 without breaking the edit.
